@@ -5,24 +5,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="EcoVolt – Next-generation clean energy platform powering a smarter, greener tomorrow." />
+    <meta name="author" content="Prographr" />
     <meta name="theme-color" content="#050f0a" />
 
-    <!-- OG / Social -->
-    <meta property="og:title" content="EcoVolt – Clean Energy Solutions" />
-    <meta property="og:description" content="Next-generation clean energy platform." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <!-- ========================= OG / SOCIAL ========================== -->
+    <meta property="og:title"       content="EcoVolt – Clean Energy Solutions" />
+    <meta property="og:description" content="Next-generation clean energy platform powering a smarter, greener tomorrow." />
+    <meta property="og:type"        content="website" />
+    <!-- Replace og-image.jpg with a 1200×630px screenshot of your homepage -->
+    <meta property="og:image"       content="/og-image.jpg" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="EcoVolt – Clean Energy Solutions" />
+    <meta name="twitter:description" content="Next-generation clean energy platform powering a smarter, greener tomorrow." />
+    <meta name="twitter:image"       content="/og-image.jpg" />
 
     <title>EcoVolt – Clean Energy Solutions</title>
 
     <!-- ========================= FAVICONS ========================== -->
-    <!-- To change: replace files in /public. See documentation/index.html -->
-    <link rel="icon" type="image/svg+xml" href="/favicon-icon.svg" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <!-- To change: replace files in /public — see documentation/index.html -->
+    <link rel="icon"             type="image/svg+xml"  href="/favicon-icon.svg" />
+    <link rel="icon"             href="/favicon.ico"   sizes="any" />
+    <link rel="icon"             type="image/png"      sizes="96x96"   href="/favicon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="180x180"       href="/apple-touch-icon.png" />
+    <link rel="manifest"         href="/site.webmanifest" />
+
+    <!-- ========================= FONT PRELOAD ========================== -->
+    <!-- Preload regular & bold weights used above the fold -->
+    <link rel="preload" href="/assets/fonts/inter/Inter-Regular.woff2"  as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="/assets/fonts/inter/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="/assets/fonts/inter/Inter-Bold.woff2"     as="font" type="font/woff2" crossorigin="anonymous" />
 
     <!-- ========================= FOUC PREVENTION ========================== -->
     <style>
@@ -30,31 +45,26 @@
       .navbar__mobile,
       .navbar__links,
       .navbar__actions,
-      .navbar__hamburger {
-        opacity: 0;
-        visibility: hidden;
-      }
+      .navbar__hamburger { opacity: 0; visibility: hidden; }
     </style>
   </head>
 
   <body>
 
+    <!-- Fallback: show navbar if JS is disabled -->
     <noscript>
       <style>
         .navbar,
         .navbar__links,
         .navbar__actions,
-        .navbar__hamburger {
-          opacity: 1 !important;
-          visibility: visible !important;
-        }
+        .navbar__hamburger { opacity: 1 !important; visibility: visible !important; }
       </style>
     </noscript>
 
     <!-- ========================= NAVBAR ========================== -->
     <nav class="navbar" id="navbar" aria-label="Main navigation">
 
-      <a href="#home" class="navbar__logo" aria-label="EcoVolt Home">
+      <a href="#home" class="navbar__logo" aria-label="EcoVolt – Go to homepage">
         <img
           src="/logo.svg"
           alt="EcoVolt Energy"
@@ -63,6 +73,7 @@
           height="40"
           loading="eager"
           decoding="async"
+          fetchpriority="high"
         />
       </a>
 
@@ -80,7 +91,7 @@
 
       <button
         class="navbar__hamburger"
-        aria-label="Open menu"
+        aria-label="Open navigation menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
@@ -98,7 +109,7 @@
       role="navigation"
       aria-label="Mobile navigation"
     >
-      <button class="navbar__close" aria-label="Close menu">&times;</button>
+      <button class="navbar__close" aria-label="Close navigation menu">&times;</button>
       <a href="#mission">Mission</a>
       <a href="#solutions">Solutions</a>
       <a href="#impact">Impact</a>
@@ -109,7 +120,9 @@
 
     <!-- ========================= MAIN CONTENT ========================== -->
     <main id="home">
-      <!-- Sections go here -->
+
+      <!-- ===================== SECTIONS GO HERE ===================== -->
+
     </main>
 
     <!-- ========================= SCRIPTS ========================== -->
