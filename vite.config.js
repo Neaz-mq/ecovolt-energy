@@ -3,6 +3,7 @@ import { resolve } from 'path'
 
 export default defineConfig({
   root: 'src',
+  publicDir: resolve(__dirname, 'public'), // ← ADDED: points to project-root/public/
   build: {
     outDir: '../dist',
     emptyOutDir: true,

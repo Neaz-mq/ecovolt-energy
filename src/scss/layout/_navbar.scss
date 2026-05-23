@@ -20,29 +20,27 @@
     padding-block: 14px;
   }
 
-  // Logo
+  // ── Logo ─────────────────────────────────
   &__logo {
-    @include flex-gap($sp-2);
-    font-size: $fz-lg;
-    font-weight: $fw-extrabold;
-    letter-spacing: -0.03em;
-    color: $clr-white;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     flex-shrink: 0;
 
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: $clr-primary;
-      box-shadow: 0 0 10px rgba(184, 245, 61, 0.7);
-      animation: pulse-dot 2.5s ease-in-out infinite;
-    }
+    &-img {
+      height: 38px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      transition: opacity 0.3s ease;
 
-    span { color: $clr-primary; }
+      &:hover {
+        opacity: 0.85;
+      }
+    }
   }
 
-  // Nav links
+  // ── Nav links ────────────────────────────
   &__links {
     @include flex-gap($sp-8);
 
@@ -74,13 +72,13 @@
     }
   }
 
-  // Right side actions
+  // ── Right side actions ───────────────────
   &__actions {
     @include flex-gap($sp-4);
     @include lg { display: none; }
   }
 
-  // Hamburger
+  // ── Hamburger ────────────────────────────
   &__hamburger {
     display: none;
     flex-direction: column;
@@ -116,7 +114,7 @@
     }
   }
 
-  // Mobile menu
+  // ── Mobile menu ──────────────────────────
   &__mobile {
     position: fixed;
     top: 0;
@@ -154,7 +152,7 @@
     .btn { margin-top: $sp-4; }
   }
 
-  // Mobile close button
+  // ── Mobile close button ──────────────────
   &__close {
     position: absolute;
     top: 24px;
@@ -165,9 +163,14 @@
     font-size: 28px;
     cursor: pointer;
     line-height: 1;
+    transition: color 0.2s ease;
+
+    &:hover { color: $clr-primary; }
   }
 }
 
+// ── Pulse animation (removed — no dot anymore) ──
+// If you use pulse elsewhere keep it, otherwise delete
 @keyframes pulse-dot {
   0%, 100% { box-shadow: 0 0 10px rgba(184, 245, 61, 0.7); }
   50%       { box-shadow: 0 0 20px rgba(184, 245, 61, 0.3); }
