@@ -6,17 +6,20 @@ export function initNavbar() {
 
   if (!navbar) return
 
-  // Scroll behavior
+  requestAnimationFrame(() => {
+    navbar.classList.add('is-ready')
+  })
+
   const onScroll = () => {
     navbar.classList.toggle('scrolled', window.scrollY > 50)
   }
   window.addEventListener('scroll', onScroll, { passive: true })
 
-  // Mobile toggle
   const toggleMenu = (open) => {
     hamburger?.classList.toggle('is-open', open)
     mobileMenu?.classList.toggle('is-open', open)
     document.body.style.overflow = open ? 'hidden' : ''
+    hamburger?.setAttribute('aria-expanded', open) 
   }
 
   hamburger?.addEventListener('click', () => {
@@ -26,7 +29,6 @@ export function initNavbar() {
 
   closeBtn?.addEventListener('click', () => toggleMenu(false))
 
-  // Close on mobile link click
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => toggleMenu(false))
   })

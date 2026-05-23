@@ -1,56 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="EcoVolt – Next-generation clean energy platform powering a smarter, greener tomorrow." />
-  <meta name="theme-color" content="#050f0a" />
-  <title>EcoVolt – Clean Energy Solutions</title>
-  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-</head>
-<body>
+  <head>
+    <!-- ========================= BASIC META ========================== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="EcoVolt – Next-generation clean energy platform powering a smarter, greener tomorrow." />
+    <meta name="theme-color" content="#050f0a" />
 
-  <!-- ============================
-       NAVBAR
-  ============================= -->
-  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <!-- OG / Social -->
+    <meta property="og:title" content="EcoVolt – Clean Energy Solutions" />
+    <meta property="og:description" content="Next-generation clean energy platform." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-    <a href="#home" class="navbar__logo" aria-label="EcoVolt Home">
-      <img src="/logo.svg" alt="EcoVolt Energy" class="navbar__logo-img" />
-    </a>
+    <title>EcoVolt – Clean Energy Solutions</title>
 
-    <ul class="navbar__links" role="list">
-      <li><a href="#mission">Mission</a></li>
-      <li><a href="#solutions">Solutions</a></li>
-      <li><a href="#impact">Impact</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <!-- ========================= FAVICONS ========================== -->
+    <!-- To change: replace files in /public. See documentation/index.html -->
+    <link rel="icon" type="image/svg+xml" href="/favicon-icon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-    <div class="navbar__actions">
-      <a href="#contact" class="btn btn--primary btn--sm">Get Started</a>
+    <!-- ========================= FOUC PREVENTION ========================== -->
+    <style>
+      .navbar,
+      .navbar__mobile,
+      .navbar__links,
+      .navbar__actions,
+      .navbar__hamburger {
+        opacity: 0;
+        visibility: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <noscript>
+      <style>
+        .navbar,
+        .navbar__links,
+        .navbar__actions,
+        .navbar__hamburger {
+          opacity: 1 !important;
+          visibility: visible !important;
+        }
+      </style>
+    </noscript>
+
+    <!-- ========================= NAVBAR ========================== -->
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+
+      <a href="#home" class="navbar__logo" aria-label="EcoVolt Home">
+        <img
+          src="/logo.svg"
+          alt="EcoVolt Energy"
+          class="navbar__logo-img"
+          width="140"
+          height="40"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+
+      <ul class="navbar__links" role="list">
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <a href="#contact" class="btn btn--primary btn--sm">Get Started</a>
+      </div>
+
+      <button
+        class="navbar__hamburger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
+
+    <!-- ========================= MOBILE MENU ========================== -->
+    <div
+      class="navbar__mobile"
+      id="mobile-menu"
+      role="navigation"
+      aria-label="Mobile navigation"
+    >
+      <button class="navbar__close" aria-label="Close menu">&times;</button>
+      <a href="#mission">Mission</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#impact">Impact</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn--primary">Get Started</a>
     </div>
 
-    <button class="navbar__hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
+    <!-- ========================= MAIN CONTENT ========================== -->
+    <main id="home">
+      <!-- Sections go here -->
+    </main>
 
-  <!-- Mobile Menu -->
-  <div class="navbar__mobile" role="navigation" aria-label="Mobile navigation">
-    <button class="navbar__close" aria-label="Close menu">&times;</button>
-    <a href="#mission">Mission</a>
-    <a href="#solutions">Solutions</a>
-    <a href="#impact">Impact</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="#contact" class="btn btn--primary">Get Started</a>
-  </div>
+    <!-- ========================= SCRIPTS ========================== -->
+    <script type="module" src="/js/main.js"></script>
 
-  <!-- SECTIONS ADDED HERE ONE BY ONE -->
-
-  <script type="module" src="/js/main.js"></script>
-</body>
+  </body>
 </html>
