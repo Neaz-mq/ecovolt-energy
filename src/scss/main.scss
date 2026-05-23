@@ -2,20 +2,20 @@
 // ECOVOLT — MAIN SCSS ENTRY
 // ============================================
 
-// 1. Abstracts
-@use 'abstracts/variables' as *;
-@use 'abstracts/mixins' as *;
+// 1. Abstracts (load first — available globally)
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
 
 // 2. Base
-@use 'base/fonts';
-@use 'base/reset';
-@use 'base/typography';
+@import 'base/fonts';
+@import 'base/reset';
+@import 'base/typography';
 
 // 3. Layout
-@use 'layout/navbar';
+@import 'layout/navbar';
 
 // 4. Components
-@use 'components/buttons';
+@import 'components/buttons';
 
 // 5. Sections (added as we build)
-// @use 'sections/hero';
+// @import 'sections/hero';

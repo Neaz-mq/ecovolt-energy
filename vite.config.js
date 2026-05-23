@@ -13,7 +13,7 @@ export default defineConfig({
       },
       output: {
         assetFileNames: (assetInfo) => {
-          if (/\.(woff|woff2|ttf|eot)$/.test(assetInfo.name)) {
+          if (/\.(woff|woff2|ttf)$/.test(assetInfo.name)) {
             return 'assets/fonts/inter/[name][extname]'
           }
           if (/\.(png|jpe?g|svg|gif|webp|ico)$/.test(assetInfo.name)) {
@@ -32,7 +32,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        silenceDeprecations: ['legacy-js-api'],
+        silenceDeprecations: ['import', 'legacy-js-api', 'global-builtin'],
       },
     },
   },
