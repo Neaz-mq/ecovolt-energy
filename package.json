@@ -1,0 +1,24 @@
+{
+  "name": "ecovolt-energy",
+  "version": "1.0.0",
+  "description": "EcoVolt - Clean Energy Landing Page HTML Template",
+  "author": "Prographr",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@studio-freight/lenis": "^1.0.42",
+    "aos": "^2.3.4",
+    "bootstrap": "^5.3.3",
+    "gsap": "^3.12.5",
+    "sass": "^1.77.0",
+    "swiper": "^11.1.3"
+  },
+  "devDependencies": {
+    "vite": "^5.3.1"
+  }
+}
