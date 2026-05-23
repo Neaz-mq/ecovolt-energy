@@ -1,2 +1,6 @@
-// EcoVolt – Main JS Entry Point
-console.log('EcoVolt ready')
+import '../scss/main.scss'
+import { initNavbar } from './modules/navbar.js'
+
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbar()
+})

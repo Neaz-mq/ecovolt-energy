@@ -1,0 +1,102 @@
+// ============================================
+// ECOVOLT — MIXINS
+// ============================================
+
+// Breakpoints
+@mixin xs    { @media (max-width: 480px)  { @content; } }
+@mixin sm    { @media (max-width: 576px)  { @content; } }
+@mixin md    { @media (max-width: 768px)  { @content; } }
+@mixin lg    { @media (max-width: 992px)  { @content; } }
+@mixin xl    { @media (max-width: 1200px) { @content; } }
+@mixin min-lg { @media (min-width: 993px) { @content; } }
+
+// Layout
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-gap($gap) {
+  display: flex;
+  align-items: center;
+  gap: $gap;
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $container-pad;
+}
+
+// Section padding
+@mixin section-space {
+  padding-block: $sp-32;
+  @include lg { padding-block: $sp-24; }
+  @include md { padding-block: $sp-16; }
+}
+
+// Grid background
+@mixin grid-bg($opacity: 0.05) {
+  background-image:
+    linear-gradient(rgba(184, 245, 61, $opacity) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 245, 61, $opacity) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+// Lime glow
+@mixin lime-glow($size: 30px, $opacity: 0.35) {
+  box-shadow: 0 0 $size rgba(184, 245, 61, $opacity);
+}
+
+// Card style
+@mixin card-base {
+  background: $clr-bg-card;
+  border: 1px solid $clr-border-white;
+  border-radius: $radius-lg;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+// Section label
+@mixin section-label {
+  font-size: $fz-xs;
+  font-weight: $fw-semibold;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $clr-primary;
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-2;
+
+  &::before {
+    content: '';
+    width: 20px;
+    height: 2px;
+    background: $clr-primary;
+    border-radius: 2px;
+    display: block;
+  }
+}
+
+// Text truncate
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,32 @@
+// ============================================
+// ECOVOLT — TYPOGRAPHY UTILITIES
+// ============================================
+
+.section-label {
+  @include section-label;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: $fw-extrabold;
+  color: $clr-white;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+
+  span { color: $clr-primary; }
+}
+
+.section-desc {
+  font-size: $fz-md;
+  color: $clr-muted;
+  line-height: 1.8;
+  max-width: 580px;
+}
+
+.text-lime    { color: $clr-primary !important; }
+.text-white   { color: $clr-white !important; }
+.text-muted   { color: $clr-muted !important; }
+.fw-medium    { font-weight: $fw-medium; }
+.fw-semibold  { font-weight: $fw-semibold; }
+.fw-bold      { font-weight: $fw-bold; }
+.fw-extrabold { font-weight: $fw-extrabold; }

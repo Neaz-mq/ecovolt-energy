@@ -1,0 +1,122 @@
+// ============================================
+// ECOVOLT — BUTTONS
+// ============================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-2;
+  font-family: $font-primary;
+  font-weight: $fw-semibold;
+  font-size: $fz-sm;
+  letter-spacing: 0.02em;
+  border-radius: $radius-sm;
+  padding: 14px 28px;
+  transition: $ease-base;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: relative;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  &:hover svg {
+    transform: translateX(3px);
+  }
+
+  // Primary
+  &--primary {
+    background: $clr-primary;
+    color: #0a1a0d;
+
+    &:hover {
+      background: $clr-primary-dark;
+      transform: translateY(-2px);
+      @include lime-glow(32px, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Ghost
+  &--ghost {
+    background: transparent;
+    color: $clr-white;
+    border: 1px solid $clr-border-white;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  // Outline lime
+  &--outline {
+    background: transparent;
+    color: $clr-primary;
+    border: 1px solid $clr-border;
+
+    &:hover {
+      background: rgba(184, 245, 61, 0.08);
+      border-color: rgba(184, 245, 61, 0.3);
+    }
+  }
+
+  // Sizes
+  &--sm {
+    font-size: $fz-xs;
+    padding: 10px 20px;
+  }
+
+  &--lg {
+    font-size: $fz-base;
+    padding: 17px 36px;
+  }
+}
+
+// Play button
+.btn-play {
+  @include flex-gap($sp-3);
+  background: transparent;
+  color: $clr-white;
+  font-size: $fz-sm;
+  font-weight: $fw-medium;
+  border: none;
+  cursor: pointer;
+  transition: $ease-base;
+
+  .play-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid $clr-border-white;
+    @include flex-center;
+    transition: $ease-base;
+    flex-shrink: 0;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: $clr-white;
+      margin-left: 2px;
+    }
+  }
+
+  &:hover {
+    color: $clr-primary;
+
+    .play-circle {
+      border-color: $clr-primary;
+      background: rgba(184, 245, 61, 0.08);
+    }
+  }
+}

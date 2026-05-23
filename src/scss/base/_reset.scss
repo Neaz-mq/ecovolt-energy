@@ -1,0 +1,79 @@
+// ============================================
+// ECOVOLT — RESET & BASE
+// ============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: $clr-bg;
+  color: $clr-white;
+  font-family: $font-primary;
+  font-weight: $fw-regular;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: $ease-fast;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: $font-primary;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+input,
+textarea,
+select {
+  font-family: $font-primary;
+  outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-primary;
+  color: $clr-white;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+p {
+  color: $clr-muted;
+  line-height: 1.75;
+}
+
+section {
+  position: relative;
+  overflow: hidden;
+}
