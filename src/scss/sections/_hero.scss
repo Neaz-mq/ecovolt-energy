@@ -24,64 +24,62 @@
     object-position: center top;
     display: block;
   }
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background:
-    // ── CITY GLOW — warm skyline light
-      radial-gradient(
-        ellipse 40% 35% at 50% 72%,
-        rgba(136, 196, 153, 0.4) 0%,
-        rgba(136, 196, 153, 0.12) 45%,
-        transparent 100%
-      ),
-      // ── ZONE 1: FAR LEFT
-      linear-gradient(
-          to right,
-          rgba(5, 25, 14, 0.75) 0%,
-          rgba(7, 33, 28, 0.519) 25%,
-          rgba(3, 15, 12, 0.323) 35%,
-          transparent 48%
-        ),
-      // ── ZONE 2: LEFT MID
-      linear-gradient(
-          to right,
-          rgba(5, 25, 19, 0.478) 0%,
-          rgba(5, 25, 18, 0.204) 18%,
-          transparent 45%
-        ),
-      // ── ZONE 3: CENTER — darker base
-      radial-gradient(
-          ellipse 80% 80% at 55% 50%,
-          rgba(8, 42, 26, 0.5) 10%,
-          // was 0.25
-          rgba(8, 42, 26, 0.65) 80%,
-          // was 0.40
-          rgba(5, 25, 14, 0.75) 100% // was 0.55
-        ),
-      // ── ZONE 4: FAR RIGHT
-      linear-gradient(
-          to left,
-          rgba(5, 25, 14, 0.95) 0%,
-          rgba(5, 25, 14, 0.6) 12%,
-          transparent 30%
-        ),
-      // ── TOP dark
-      linear-gradient(
-          to bottom,
-          rgba(2, 10, 5, 0.96) 0%,
-          rgba(2, 10, 5, 0.6) 14%,
-          transparent 30%
-        ),
-      // ── BOTTOM dark
-      linear-gradient(
-          to top,
-          rgba(2, 10, 5, 0.98) 0%,
-          rgba(2, 10, 5, 0.75) 18%,
-          rgba(2, 10, 5, 0.35) 30%,
-          transparent 42%
-        );
-  }
+ &__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    // City glow — warm center light
+    radial-gradient(
+      ellipse 40% 35% at 50% 72%,
+      rgba(136, 196, 153, 0.40) 0%,
+      rgba(136, 196, 153, 0.12) 45%,
+      transparent 100%
+    ),
+    // Left fade
+    linear-gradient(
+      to right,
+      rgba(5, 25, 14, 0.75) 0%,
+      rgba(7, 33, 28, 0.50) 25%,
+      rgba(3, 15, 12, 0.30) 35%,
+      transparent 48%
+    ),
+    // Left mid
+    linear-gradient(
+      to right,
+      rgba(5, 25, 19, 0.48) 0%,
+      rgba(5, 25, 18, 0.20) 18%,
+      transparent 45%
+    ),
+    // Center base
+    radial-gradient(
+      ellipse 80% 80% at 55% 50%,
+      rgba(8, 42, 26, 0.50) 10%,
+      rgba(8, 42, 26, 0.65) 80%,
+      rgba(5, 25, 14, 0.75) 100%
+    ),
+    // Right edge
+    linear-gradient(
+      to left,
+      rgba(5, 25, 14, 0.95) 0%,
+      rgba(5, 25, 14, 0.60) 12%,
+      transparent 30%
+    ),
+    // Top dark
+    linear-gradient(
+      to bottom,
+      rgba(2, 10, 5, 0.96) 0%,
+      rgba(2, 10, 5, 0.60) 14%,
+      transparent 30%
+    ),
+    // Bottom dark
+    linear-gradient(
+      to top,
+      rgba(2, 10, 5, 0.98) 0%,
+      rgba(2, 10, 5, 0.75) 18%,
+      rgba(2, 10, 5, 0.35) 30%,
+      transparent 42%
+    );
+}
   // ── Container ────────────────────────────
   &__container {
     @include container;

@@ -18,7 +18,6 @@
       content="Next-generation clean energy platform powering a smarter, greener tomorrow."
     />
     <meta property="og:type" content="website" />
-    <!-- Replace og-image.jpg with a 1200×630px screenshot of your homepage -->
     <meta property="og:image" content="/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -35,7 +34,6 @@
     <title>EcoVolt – Clean Energy Solutions</title>
 
     <!-- ========================= FAVICONS ========================== -->
-    <!-- To change: replace files in /public — see documentation/index.html -->
     <link rel="icon" type="image/svg+xml" href="/favicon-icon.svg" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
@@ -43,7 +41,6 @@
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- ========================= FONT PRELOAD ========================== -->
-    <!-- Preload regular & bold weights used above the fold -->
     <link
       rel="preload"
       href="/assets/fonts/inter/Inter-Regular.woff2"
@@ -75,6 +72,7 @@
       .navbar__hamburger {
         opacity: 0;
         visibility: hidden;
+        border-bottom: none !important;  /* ← add this line */
       }
     </style>
   </head>
@@ -95,29 +93,25 @@
 
     <!-- ========================= NAVBAR ========================== -->
     <nav class="navbar" id="navbar" aria-label="Main navigation">
-      <a
-        href="#home"
-        class="navbar__logo"
-        aria-label="EcoVolt – Go to homepage"
-      >
-        <img
-          src="/logo.svg"
-          alt="EcoVolt Energy"
-          class="navbar__logo-img"
-          width="140"
-          height="40"
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
-        />
-      </a>
+  <a href="#home" class="navbar__logo" aria-label="EcoVolt – Go to homepage">
+    <img
+      src="/logo.svg"
+      alt="EcoVolt Energy"
+      class="navbar__logo-img"
+      width="140"
+      height="40"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+    />
+  </a>
+
 
       <ul class="navbar__links" role="list">
-        <li><a href="#mission">Mission</a></li>
-        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#technology">Technology</a></li>
         <li><a href="#impact">Impact</a></li>
+        <li><a href="#solutions">Solutions</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
       </ul>
 
       <div class="navbar__actions">
@@ -146,11 +140,10 @@
       <button class="navbar__close" aria-label="Close navigation menu">
         &times;
       </button>
-      <a href="#mission">Mission</a>
-      <a href="#solutions">Solutions</a>
+      <a href="#technology">Technology</a>
       <a href="#impact">Impact</a>
+      <a href="#solutions">Solutions</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
       <a href="#contact" class="btn btn--primary">Get Started</a>
     </div>
 
@@ -296,7 +289,6 @@
           </div>
         </div>
 
-      
         <!-- Scroll hint -->
         <div class="hero__scroll" aria-hidden="true">
           <span class="hero__scroll-text">SCROLL</span>
