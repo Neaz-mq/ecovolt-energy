@@ -1,0 +1,368 @@
+// ============================================
+// ECOVOLT — HERO SECTION
+// ============================================
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+
+  // ── Background ───────────────────────────
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  &__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+    // ── CITY GLOW — warm skyline light
+      radial-gradient(
+        ellipse 40% 35% at 50% 72%,
+        rgba(136, 196, 153, 0.4) 0%,
+        rgba(136, 196, 153, 0.12) 45%,
+        transparent 100%
+      ),
+      // ── ZONE 1: FAR LEFT
+      linear-gradient(
+          to right,
+          rgba(5, 25, 14, 0.75) 0%,
+          rgba(7, 33, 28, 0.519) 25%,
+          rgba(3, 15, 12, 0.323) 35%,
+          transparent 48%
+        ),
+      // ── ZONE 2: LEFT MID
+      linear-gradient(
+          to right,
+          rgba(5, 25, 19, 0.478) 0%,
+          rgba(5, 25, 18, 0.204) 18%,
+          transparent 45%
+        ),
+      // ── ZONE 3: CENTER — darker base
+      radial-gradient(
+          ellipse 80% 80% at 55% 50%,
+          rgba(8, 42, 26, 0.5) 10%,
+          // was 0.25
+          rgba(8, 42, 26, 0.65) 80%,
+          // was 0.40
+          rgba(5, 25, 14, 0.75) 100% // was 0.55
+        ),
+      // ── ZONE 4: FAR RIGHT
+      linear-gradient(
+          to left,
+          rgba(5, 25, 14, 0.95) 0%,
+          rgba(5, 25, 14, 0.6) 12%,
+          transparent 30%
+        ),
+      // ── TOP dark
+      linear-gradient(
+          to bottom,
+          rgba(2, 10, 5, 0.96) 0%,
+          rgba(2, 10, 5, 0.6) 14%,
+          transparent 30%
+        ),
+      // ── BOTTOM dark
+      linear-gradient(
+          to top,
+          rgba(2, 10, 5, 0.98) 0%,
+          rgba(2, 10, 5, 0.75) 18%,
+          rgba(2, 10, 5, 0.35) 30%,
+          transparent 42%
+        );
+  }
+  // ── Container ────────────────────────────
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: $sp-10;
+    padding-top: 130px;
+    padding-bottom: $sp-20;
+    min-height: 100vh;
+
+    @include xl {
+      grid-template-columns: 1fr 1fr;
+      gap: $sp-8;
+    }
+    @include lg {
+      grid-template-columns: 1fr;
+      padding-top: 120px;
+      padding-bottom: $sp-16;
+      min-height: auto;
+    }
+    @include md {
+      padding-top: 100px;
+    }
+  }
+
+  // ── Left ─────────────────────────────────
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: $sp-6;
+  }
+
+  &__title {
+    font-size: $fz-hero;
+    font-weight: $fw-extrabold;
+    color: $clr-white;
+    line-height: 1.07;
+    letter-spacing: -0.03em;
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+      opacity 0.9s ease,
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $sp-4;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+      opacity 0.8s ease 0.2s,
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @include sm {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__desc {
+    font-size: $fz-md;
+    color: rgba(210, 235, 220, 0.72);
+    line-height: 1.78;
+    max-width: 490px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.8s ease 0.38s,
+      transform 0.8s ease 0.38s;
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // ── Right: Stat Cards ────────────────────
+  &__stats {
+    display: flex;
+    flex-direction: column;
+    gap: $sp-4;
+    opacity: 0;
+    transform: translateX(35px);
+    transition:
+      opacity 0.9s ease 0.25s,
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @include lg {
+      flex-direction: row;
+      flex-wrap: wrap;
+      transform: translateY(30px);
+
+      &.is-visible {
+        transform: translateY(0);
+      }
+    }
+
+    @include sm {
+      flex-direction: column;
+    }
+  }
+
+  &__stat-card {
+    display: flex;
+    align-items: center;
+    gap: $sp-5;
+    padding: $sp-5 $sp-6;
+    border-radius: $radius-lg;
+    cursor: default;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    &--glass {
+      background: rgba(15, 50, 28, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      .hero__stat-icon {
+        color: $clr-primary;
+        background: rgba(184, 245, 61, 0.12);
+      }
+      .hero__stat-num {
+        color: $clr-white;
+      }
+      .hero__stat-label {
+        color: rgba(195, 225, 208, 0.65);
+      }
+
+      &:hover {
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+      }
+    }
+    &--accent {
+      background: $clr-primary;
+      border: 1px solid $clr-primary;
+
+      .hero__stat-icon {
+        color: #0a1a0d;
+        background: rgba(10, 26, 13, 0.15);
+      }
+      .hero__stat-num {
+        color: #0a1a0d;
+      }
+      .hero__stat-label {
+        color: rgba(10, 26, 13, 0.7);
+      }
+
+      &:hover {
+        @include lime-glow(48px, 0.45);
+      }
+    }
+
+    @include lg {
+      flex: 1;
+      min-width: 170px;
+    }
+    @include sm {
+      flex: none;
+      width: 100%;
+    }
+  }
+
+  &__stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s ease;
+  }
+
+  &__stat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  &__stat-num {
+    font-size: $fz-2xl;
+    font-weight: $fw-extrabold;
+    letter-spacing: -0.025em;
+    line-height: 1;
+
+    sub {
+      font-size: 0.5em;
+      vertical-align: baseline;
+      font-weight: $fw-medium;
+    }
+  }
+
+  &__stat-label {
+    font-size: $fz-xs;
+    font-weight: $fw-medium;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  // ── Scroll Indicator ─────────────────────
+  &__scroll {
+    position: absolute;
+    bottom: $sp-8;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    animation: heroScrollShow 0.8s ease 1.3s forwards;
+
+    @include md {
+      display: none;
+    }
+  }
+
+  &__scroll-text {
+    font-size: 0.6rem;
+    font-weight: $fw-semibold;
+    letter-spacing: 0.22em;
+    color: rgba(200, 230, 210, 0.45);
+    text-transform: uppercase;
+  }
+
+  &__scroll svg {
+    color: rgba(200, 230, 210, 0.5);
+    display: block;
+
+    &:first-of-type {
+      animation: heroScrollBounce 1.8s ease-in-out infinite;
+      margin-bottom: -8px;
+    }
+
+    &:last-of-type {
+      animation: heroScrollBounce 1.8s ease-in-out 0.2s infinite;
+    }
+  }
+}
+
+// ── Keyframes ────────────────────────────────
+@keyframes heroScrollShow {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroScrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}

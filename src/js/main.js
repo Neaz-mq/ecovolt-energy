@@ -1,5 +1,6 @@
 import '../scss/main.scss'
 import { initNavbar } from './modules/navbar.js'
+import { initHero }   from './modules/hero.js'
 
-// ✅ Module scripts are deferred by default — no need for DOMContentLoaded
 initNavbar()
+initHero()
