@@ -24,91 +24,107 @@
     object-position: center top;
     display: block;
   }
- &__overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    // City glow — warm center light
-    radial-gradient(
-      ellipse 40% 35% at 50% 72%,
-      rgba(136, 196, 153, 0.40) 0%,
-      rgba(136, 196, 153, 0.12) 45%,
-      transparent 100%
-    ),
-    // Left fade
-    linear-gradient(
-      to right,
-      rgba(5, 25, 14, 0.75) 0%,
-      rgba(7, 33, 28, 0.50) 25%,
-      rgba(3, 15, 12, 0.30) 35%,
-      transparent 48%
-    ),
-    // Left mid
-    linear-gradient(
-      to right,
-      rgba(5, 25, 19, 0.48) 0%,
-      rgba(5, 25, 18, 0.20) 18%,
-      transparent 45%
-    ),
-    // Center base
-    radial-gradient(
-      ellipse 80% 80% at 55% 50%,
-      rgba(8, 42, 26, 0.50) 10%,
-      rgba(8, 42, 26, 0.65) 80%,
-      rgba(5, 25, 14, 0.75) 100%
-    ),
-    // Right edge
-    linear-gradient(
-      to left,
-      rgba(5, 25, 14, 0.95) 0%,
-      rgba(5, 25, 14, 0.60) 12%,
-      transparent 30%
-    ),
-    // Top dark
-    linear-gradient(
-      to bottom,
-      rgba(2, 10, 5, 0.96) 0%,
-      rgba(2, 10, 5, 0.60) 14%,
-      transparent 30%
-    ),
-    // Bottom dark
-    linear-gradient(
-      to top,
-      rgba(2, 10, 5, 0.98) 0%,
-      rgba(2, 10, 5, 0.75) 18%,
-      rgba(2, 10, 5, 0.35) 30%,
-      transparent 42%
-    );
-}
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        ellipse 40% 35% at 50% 72%,
+        rgba(136, 196, 153, 0.40) 0%,
+        rgba(136, 196, 153, 0.12) 45%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(5, 25, 14, 0.75) 0%,
+        rgba(7, 33, 28, 0.50) 25%,
+        rgba(3, 15, 12, 0.30) 35%,
+        transparent 48%
+      ),
+      linear-gradient(
+        to right,
+        rgba(5, 25, 19, 0.48) 0%,
+        rgba(5, 25, 18, 0.20) 18%,
+        transparent 45%
+      ),
+      radial-gradient(
+        ellipse 80% 80% at 55% 50%,
+        rgba(8, 42, 26, 0.50) 10%,
+        rgba(8, 42, 26, 0.65) 80%,
+        rgba(5, 25, 14, 0.75) 100%
+      ),
+      linear-gradient(
+        to left,
+        rgba(5, 25, 14, 0.95) 0%,
+        rgba(5, 25, 14, 0.60) 12%,
+        transparent 30%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(2, 10, 5, 0.96) 0%,
+        rgba(2, 10, 5, 0.60) 14%,
+        transparent 30%
+      ),
+      linear-gradient(
+        to top,
+        rgba(2, 10, 5, 0.98) 0%,
+        rgba(2, 10, 5, 0.75) 18%,
+        rgba(2, 10, 5, 0.35) 30%,
+        transparent 42%
+      );
+  }
+
   // ── Container ────────────────────────────
   &__container {
     @include container;
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
+    grid-template-columns: 1fr 380px;
     align-items: center;
-    gap: $sp-10;
+    gap: clamp(12px, 1.5vw, 24px);
     padding-top: 130px;
     padding-bottom: $sp-20;
     min-height: 100vh;
 
     @include xl {
-      grid-template-columns: 1fr 1fr;
-      gap: $sp-8;
+      grid-template-columns: 1fr 340px;
+      gap: clamp(10px, 1.5vw, 20px);
     }
+
     @include lg {
       grid-template-columns: 1fr;
       padding-top: 120px;
       padding-bottom: $sp-16;
       min-height: auto;
     }
+
     @include md {
+      padding-top: 110px;
+    }
+
+    @include sm {
       padding-top: 100px;
+    }
+
+    @include respond-min(2xl) {
+      grid-template-columns: 1fr 460px;
+      gap: clamp(16px, 1.5vw, 28px);
+    }
+
+    @include respond-min(3xl) {
+      grid-template-columns: 1fr 540px;
+      gap: clamp(20px, 1.5vw, 36px);
+    }
+
+    @include respond-min(4xl) {
+      grid-template-columns: 1fr 660px;
+      gap: clamp(24px, 1.5vw, 44px);
     }
   }
 
-  // ── Left ─────────────────────────────────
+  // ── Left: Text Content ────────────────────
   &__left {
     display: flex;
     flex-direction: column;
@@ -116,19 +132,31 @@
   }
 
   &__title {
-    font-size: $fz-hero;
-    font-weight: $fw-extrabold;
-    color: $clr-white;
-    line-height: 1.07;
-    letter-spacing: -0.03em;
-    opacity: 0;
-    transform: translateY(40px);
-    transition:
-      opacity 0.9s ease,
-      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  font-size: clamp(2.4rem, 3.8vw, 4.4rem);
+  font-weight: $fw-bold;
+  color: $clr-white;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 
-   &.is-visible { opacity: 1; transform: translateY(0); }
+  &.is-visible { opacity: 1; transform: translateY(0); }
+
+  @include respond-min(2xl) {
+    font-size: clamp(3.2rem, 3.8vw, 5rem);
   }
+
+  @include respond-min(3xl) {
+    font-size: clamp(4rem, 3.8vw, 5.8rem);
+  }
+
+  @include respond-min(4xl) {
+    font-size: clamp(5rem, 3.8vw, 7.2rem);
+  }
+}
 
   &__actions {
     display: flex;
@@ -153,7 +181,7 @@
   }
 
   &__desc {
-    font-size: $fz-md;
+    font-size: $fz-sm;                           // ← was fz-md → smaller
     color: rgba(210, 235, 220, 0.72);
     line-height: 1.78;
     max-width: 490px;
@@ -167,6 +195,21 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    @include respond-min(2xl) {
+      font-size: $fz-md;
+      max-width: 560px;
+    }
+
+    @include respond-min(3xl) {
+      font-size: $fz-lg;
+      max-width: 640px;
+    }
+
+    @include respond-min(4xl) {
+      font-size: $fz-xl;
+      max-width: 780px;
+    }
   }
 
   // ── Right: Stat Cards ────────────────────
@@ -174,6 +217,11 @@
     display: flex;
     flex-direction: column;
     gap: $sp-4;
+    width: 100%;
+    max-width: 480px;
+    flex-shrink: 0;
+    justify-self: end;
+    margin-right: clamp(20px, 5vw, 100px);
     opacity: 0;
     transform: translateX(35px);
     transition:
@@ -185,9 +233,18 @@
       transform: translateX(0);
     }
 
+    @include xl {
+      max-width: 340px;
+      margin-right: clamp(16px, 4vw, 80px);
+    }
+
     @include lg {
       flex-direction: row;
       flex-wrap: wrap;
+      width: 100%;
+      max-width: 100%;
+      justify-self: auto;
+      margin-right: 0;
       transform: translateY(30px);
 
       &.is-visible {
@@ -195,8 +252,30 @@
       }
     }
 
+    @include md {
+      gap: $sp-3;
+    }
+
     @include sm {
       flex-direction: column;
+    }
+
+    @include respond-min(2xl) {
+      max-width: 460px;
+      gap: $sp-5;
+      margin-right: clamp(40px, 5vw, 120px);
+    }
+
+    @include respond-min(3xl) {
+      max-width: 540px;
+      gap: $sp-6;
+      margin-right: clamp(60px, 5vw, 160px);
+    }
+
+    @include respond-min(4xl) {
+      max-width: 660px;
+      gap: $sp-8;
+      margin-right: clamp(80px, 5vw, 200px);
     }
   }
 
@@ -215,51 +294,51 @@
       transform: translateY(-3px);
     }
 
+    @include respond-min(2xl) {
+      padding: $sp-6 $sp-8;
+      gap: $sp-6;
+      border-radius: $radius-xl;
+    }
+
+    @include respond-min(3xl) {
+      padding: $sp-8 $sp-10;
+      gap: $sp-7;
+    }
+
+    @include respond-min(4xl) {
+      padding: $sp-10 $sp-12;
+      gap: $sp-8;
+    }
+
     &--glass {
       background: rgba(15, 50, 28, 0.45);
       border: 1px solid rgba(255, 255, 255, 0.13);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
 
-      .hero__stat-icon {
-        color: $clr-primary;
-        background: rgba(184, 245, 61, 0.12);
-      }
-      .hero__stat-num {
-        color: $clr-white;
-      }
-      .hero__stat-label {
-        color: rgba(195, 225, 208, 0.65);
-      }
+      .hero__stat-icon  { color: $clr-primary; background: rgba(184, 245, 61, 0.12); }
+      .hero__stat-num   { color: $clr-white; }
+      .hero__stat-label { color: rgba(195, 225, 208, 0.65); }
 
-      &:hover {
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
-      }
+      &:hover { box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3); }
     }
+
     &--accent {
       background: $clr-primary;
       border: 1px solid $clr-primary;
 
-      .hero__stat-icon {
-        color: #0a1a0d;
-        background: rgba(10, 26, 13, 0.15);
-      }
-      .hero__stat-num {
-        color: #0a1a0d;
-      }
-      .hero__stat-label {
-        color: rgba(10, 26, 13, 0.7);
-      }
+      .hero__stat-icon  { color: #0a1a0d; background: rgba(10, 26, 13, 0.15); }
+      .hero__stat-num   { color: #0a1a0d; }
+      .hero__stat-label { color: rgba(10, 26, 13, 0.7); }
 
-      &:hover {
-        @include lime-glow(48px, 0.45);
-      }
+      &:hover { @include lime-glow(48px, 0.45); }
     }
 
-    @include lg {
+    @include md {
       flex: 1;
       min-width: 170px;
     }
+
     @include sm {
       flex: none;
       width: 100%;
@@ -275,6 +354,19 @@
     justify-content: center;
     flex-shrink: 0;
     transition: background 0.3s ease;
+
+    @include respond-min(2xl) { width: 60px;  height: 60px; }
+    @include respond-min(3xl) { width: 72px;  height: 72px; }
+    @include respond-min(4xl) { width: 88px;  height: 88px; }
+
+    svg {
+      width: 22px;
+      height: 22px;
+
+      @include respond-min(2xl) { width: 28px; height: 28px; }
+      @include respond-min(3xl) { width: 34px; height: 34px; }
+      @include respond-min(4xl) { width: 42px; height: 42px; }
+    }
   }
 
   &__stat-body {
@@ -283,24 +375,32 @@
     gap: 3px;
   }
 
-  &__stat-num {
-    font-size: $fz-2xl;
-    font-weight: $fw-extrabold;
-    letter-spacing: -0.025em;
-    line-height: 1;
+ &__stat-num {
+  font-size: $fz-xl;                            // ← was $fz-2xl
+  font-weight: $fw-extrabold;
+  letter-spacing: -0.025em;
+  line-height: 1;
 
-    sub {
-      font-size: 0.5em;
-      vertical-align: baseline;
-      font-weight: $fw-medium;
-    }
+  @include respond-min(2xl) { font-size: $fz-2xl; }  // ← was $fz-3xl
+  @include respond-min(3xl) { font-size: clamp(2rem, 2.5vw, 3rem); }  // ← was clamp(3rem, 3vw, 4rem)
+  @include respond-min(4xl) { font-size: clamp(3rem, 2.5vw, 4rem); }  // ← was clamp(4rem, 3vw, 5rem)
+
+  sub {
+    font-size: 0.5em;
+    vertical-align: baseline;
+    font-weight: $fw-medium;
   }
+}
 
   &__stat-label {
     font-size: $fz-xs;
     font-weight: $fw-medium;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+
+    @include respond-min(2xl) { font-size: $fz-sm; }
+    @include respond-min(3xl) { font-size: $fz-base; }
+    @include respond-min(4xl) { font-size: $fz-md; }
   }
 
   // ── Scroll Indicator ─────────────────────
@@ -317,9 +417,7 @@
     opacity: 0;
     animation: heroScrollShow 0.8s ease 1.3s forwards;
 
-    @include md {
-      display: none;
-    }
+    @include md { display: none; }
   }
 
   &__scroll-text {
@@ -347,17 +445,10 @@
 
 // ── Keyframes ────────────────────────────────
 @keyframes heroScrollShow {
-  to {
-    opacity: 1;
-  }
+  to { opacity: 1; }
 }
 
 @keyframes heroScrollBounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(6px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
 }
