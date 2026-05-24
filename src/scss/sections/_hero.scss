@@ -214,70 +214,71 @@
 
   // ── Right: Stat Cards ────────────────────
   &__stats {
-    display: flex;
-    flex-direction: column;
-    gap: $sp-4;
+  display: flex;
+  flex-direction: column;
+  gap: $sp-2;
+  width: 100%;
+  max-width: 480px;
+  flex-shrink: 0;
+  justify-self: end;
+  margin-right: clamp(20px, 5vw, 100px);
+  opacity: 0;
+  transform: translateX(35px);
+  transition:
+    opacity 0.9s ease 0.25s,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @include xl {
+    max-width: 340px;
+    margin-right: clamp(16px, 4vw, 80px);
+  }
+
+  @include lg {
+    flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
-    max-width: 480px;
-    flex-shrink: 0;
-    justify-self: end;
-    margin-right: clamp(20px, 5vw, 100px);
-    opacity: 0;
-    transform: translateX(35px);
-    transition:
-      opacity 0.9s ease 0.25s,
-      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
+    max-width: 100%;
+    justify-self: auto;
+    margin-right: 0;
+    gap: $sp-3;
+    transform: translateY(30px);
 
     &.is-visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    @include xl {
-      max-width: 340px;
-      margin-right: clamp(16px, 4vw, 80px);
-    }
-
-    @include lg {
-      flex-direction: row;
-      flex-wrap: wrap;
-      width: 100%;
-      max-width: 100%;
-      justify-self: auto;
-      margin-right: 0;
-      transform: translateY(30px);
-
-      &.is-visible {
-        transform: translateY(0);
-      }
-    }
-
-    @include md {
-      gap: $sp-3;
-    }
-
-    @include sm {
-      flex-direction: column;
-    }
-
-    @include respond-min(2xl) {
-      max-width: 460px;
-      gap: $sp-5;
-      margin-right: clamp(40px, 5vw, 120px);
-    }
-
-    @include respond-min(3xl) {
-      max-width: 540px;
-      gap: $sp-6;
-      margin-right: clamp(60px, 5vw, 160px);
-    }
-
-    @include respond-min(4xl) {
-      max-width: 660px;
-      gap: $sp-8;
-      margin-right: clamp(80px, 5vw, 200px);
+      transform: translateY(0);
     }
   }
+
+  @include md {
+    gap: $sp-2;
+  }
+
+  @include sm {
+    flex-direction: column;
+  }
+
+  @include respond-min(2xl) {
+    max-width: 460px;
+    gap: $sp-3;
+    margin-right: clamp(40px, 5vw, 120px);
+  }
+
+  @include respond-min(3xl) {
+    max-width: 540px;
+    gap: $sp-4;
+    margin-right: clamp(60px, 5vw, 160px);
+  }
+
+  @include respond-min(4xl) {
+    max-width: 660px;
+    gap: $sp-5;
+    margin-right: clamp(80px, 5vw, 200px);
+  }
+}
 
   &__stat-card {
     display: flex;
