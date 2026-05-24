@@ -1,6 +1,13 @@
 // ============================================
-// ECOVOLT — HERO SECTION
+// ECOVOLT — HERO SECTION  |  ThemeForest Standard
 // ============================================
+//
+// FIX: All respond-min(4xl) blocks now FREEZE at the
+// 2560px layout values. No further scaling at 4K/5K/9999px.
+// Added overflow: hidden + min-width: 0 on __left and
+// __stats so grid children never overflow their columns.
+// ============================================
+
 
 .hero {
   position: relative;
@@ -9,6 +16,7 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+
 
   // ── Background ───────────────────────────
   &__bg {
@@ -44,7 +52,7 @@
       ),
       linear-gradient(
         to right,
-        rgba(5, 25, 19, 0.48) 0%,
+        rgba(5, 25, 18, 0.48) 0%,
         rgba(5, 25, 18, 0.20) 18%,
         transparent 45%
       ),
@@ -75,6 +83,7 @@
       );
   }
 
+
   // ── Container ────────────────────────────
   &__container {
     @include container;
@@ -88,6 +97,10 @@
     padding-bottom: $sp-20;
     min-height: 100vh;
 
+    // CRITICAL: prevents any child from overflowing
+    // its grid column at any screen width
+    overflow: hidden;
+
     @include xl {
       grid-template-columns: 1fr 340px;
       gap: clamp(10px, 1.5vw, 20px);
@@ -100,13 +113,8 @@
       min-height: auto;
     }
 
-    @include md {
-      padding-top: 110px;
-    }
-
-    @include sm {
-      padding-top: 100px;
-    }
+    @include md { padding-top: 110px; }
+    @include sm { padding-top: 100px; }
 
     @include respond-min(2xl) {
       grid-template-columns: 1fr 460px;
@@ -118,45 +126,54 @@
       gap: clamp(20px, 1.5vw, 36px);
     }
 
+    // ── HARD FREEZE at 2560px ─────────────
+    // Identical to respond-min(3xl) values.
+    // Nothing changes at 4K, 5K, or 9999px.
     @include respond-min(4xl) {
-      grid-template-columns: 1fr 660px;
-      gap: clamp(24px, 1.5vw, 44px);
+      grid-template-columns: 1fr 540px;
+      gap: 36px;
     }
   }
+
 
   // ── Left: Text Content ────────────────────
   &__left {
     display: flex;
     flex-direction: column;
     gap: $sp-6;
+    // Prevents title text overflowing into stat cards
+    min-width: 0;
+    overflow: hidden;
   }
 
   &__title {
-  font-size: clamp(2.4rem, 3.8vw, 4.4rem);
-  font-weight: $fw-bold;
-  color: $clr-white;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  opacity: 0;
-  transform: translateY(40px);
-  transition:
-    opacity 0.9s ease,
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    font-size: clamp(2.4rem, 3.8vw, 4.4rem);
+    font-weight: $fw-bold;
+    color: $clr-white;
+    line-height: 1.15;
+    letter-spacing: $ls-tight;
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+      opacity   0.9s $ease-out,
+      transform 0.9s $ease-snap;
 
-  &.is-visible { opacity: 1; transform: translateY(0); }
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  @include respond-min(2xl) {
-    font-size: clamp(3.2rem, 3.8vw, 5rem);
+    @include reduced-motion {
+      transform: none;
+      transition: opacity $dur-base $ease-out;
+    }
+
+    @include respond-min(2xl) { font-size: clamp(3.2rem, 3.8vw, 5rem); }
+    @include respond-min(3xl) { font-size: clamp(4rem, 3.8vw, 5.8rem); }
+
+    // ── HARD FREEZE at 2560px ─────────────
+    @include respond-min(4xl) { font-size: 5.8rem; }
   }
-
-  @include respond-min(3xl) {
-    font-size: clamp(4rem, 3.8vw, 5.8rem);
-  }
-
-  @include respond-min(4xl) {
-    font-size: clamp(5rem, 3.8vw, 7.2rem);
-  }
-}
 
   &__actions {
     display: flex;
@@ -166,12 +183,17 @@
     opacity: 0;
     transform: translateY(25px);
     transition:
-      opacity 0.8s ease 0.2s,
-      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+      opacity   0.8s $ease-out   0.2s,
+      transform 0.8s $ease-snap  0.2s;
 
     &.is-visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    @include reduced-motion {
+      transform: none;
+      transition: opacity $dur-base $ease-out 0.2s;
     }
 
     @include sm {
@@ -181,104 +203,102 @@
   }
 
   &__desc {
-    font-size: $fz-sm;                           // ← was fz-md → smaller
+    font-size: $fz-sm;
     color: rgba(210, 235, 220, 0.72);
     line-height: 1.78;
     max-width: 490px;
     opacity: 0;
     transform: translateY(20px);
     transition:
-      opacity 0.8s ease 0.38s,
-      transform 0.8s ease 0.38s;
+      opacity   0.8s $ease-out  0.38s,
+      transform 0.8s $ease-out  0.38s;
 
     &.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
+    @include reduced-motion {
+      transform: none;
+      transition: opacity $dur-base $ease-out 0.38s;
+    }
+
+    @include respond-min(2xl) { font-size: $fz-md;  max-width: 560px; }
+    @include respond-min(3xl) { font-size: $fz-lg;  max-width: 640px; }
+
+    // ── HARD FREEZE at 2560px ─────────────
+    @include respond-min(4xl) { font-size: $fz-lg;  max-width: 640px; }
+  }
+
+
+  // ── Right: Stat Cards ─────────────────────
+  &__stats {
+    display: flex;
+    flex-direction: column;
+    gap: $sp-2;
+    width: 100%;
+    max-width: 480px;
+    flex-shrink: 0;
+    justify-self: end;
+    margin-right: clamp(20px, 5vw, 100px);
+    opacity: 0;
+    transform: translateX(35px);
+    transition:
+      opacity   0.9s $ease-out   0.25s,
+      transform 0.9s $ease-snap  0.25s;
+    // Prevents cards overflowing their column
+    min-width: 0;
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @include reduced-motion {
+      transform: none;
+      transition: opacity $dur-base $ease-out 0.25s;
+    }
+
+    @include xl {
+      max-width: 340px;
+      margin-right: clamp(16px, 4vw, 80px);
+    }
+
+    @include lg {
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 100%;
+      justify-self: auto;
+      margin-right: 0;
+      gap: $sp-3;
+      transform: translateY(30px);
+
+      &.is-visible { transform: translateY(0); }
+    }
+
+    @include md { gap: $sp-2; }
+    @include sm { flex-direction: column; }
+
     @include respond-min(2xl) {
-      font-size: $fz-md;
-      max-width: 560px;
+      max-width: 460px;
+      gap: $sp-3;
+      margin-right: clamp(40px, 5vw, 120px);
     }
 
     @include respond-min(3xl) {
-      font-size: $fz-lg;
-      max-width: 640px;
+      max-width: 540px;
+      gap: $sp-4;
+      margin-right: clamp(60px, 5vw, 160px);
     }
 
+    // ── HARD FREEZE at 2560px ─────────────
     @include respond-min(4xl) {
-      font-size: $fz-xl;
-      max-width: 780px;
+      max-width: 540px;
+      gap: $sp-4;
+      margin-right: 160px;
     }
   }
-
-  // ── Right: Stat Cards ────────────────────
-  &__stats {
-  display: flex;
-  flex-direction: column;
-  gap: $sp-2;
-  width: 100%;
-  max-width: 480px;
-  flex-shrink: 0;
-  justify-self: end;
-  margin-right: clamp(20px, 5vw, 100px);
-  opacity: 0;
-  transform: translateX(35px);
-  transition:
-    opacity 0.9s ease 0.25s,
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
-
-  &.is-visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  @include xl {
-    max-width: 340px;
-    margin-right: clamp(16px, 4vw, 80px);
-  }
-
-  @include lg {
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 100%;
-    justify-self: auto;
-    margin-right: 0;
-    gap: $sp-3;
-    transform: translateY(30px);
-
-    &.is-visible {
-      transform: translateY(0);
-    }
-  }
-
-  @include md {
-    gap: $sp-2;
-  }
-
-  @include sm {
-    flex-direction: column;
-  }
-
-  @include respond-min(2xl) {
-    max-width: 460px;
-    gap: $sp-3;
-    margin-right: clamp(40px, 5vw, 120px);
-  }
-
-  @include respond-min(3xl) {
-    max-width: 540px;
-    gap: $sp-4;
-    margin-right: clamp(60px, 5vw, 160px);
-  }
-
-  @include respond-min(4xl) {
-    max-width: 660px;
-    gap: $sp-5;
-    margin-right: clamp(80px, 5vw, 200px);
-  }
-}
 
   &__stat-card {
     display: flex;
@@ -288,12 +308,10 @@
     border-radius: $radius-lg;
     cursor: default;
     transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+      transform  $dur-base $ease-out,
+      box-shadow $dur-base $ease-out;
 
-    &:hover {
-      transform: translateY(-3px);
-    }
+    &:hover { transform: translateY(-3px); }
 
     @include respond-min(2xl) {
       padding: $sp-6 $sp-8;
@@ -301,49 +319,38 @@
       border-radius: $radius-xl;
     }
 
-    @include respond-min(3xl) {
-      padding: $sp-8 $sp-10;
-      gap: $sp-7;
-    }
+    @include respond-min(3xl) { padding: $sp-8 $sp-10; gap: $sp-7; }
 
-    @include respond-min(4xl) {
-      padding: $sp-10 $sp-12;
-      gap: $sp-8;
-    }
+    // ── HARD FREEZE at 2560px ─────────────
+    @include respond-min(4xl) { padding: $sp-8 $sp-10; gap: $sp-7; }
 
+    // ── Glass variant ─────────────────────
     &--glass {
+      @include glass(0.07, 18px);
       background: rgba(15, 50, 28, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      border-color: rgba(255, 255, 255, 0.13);
 
-      .hero__stat-icon  { color: $clr-primary; background: rgba(184, 245, 61, 0.12); }
+      .hero__stat-icon  { color: $clr-primary; background: rgba($clr-primary, 0.12); }
       .hero__stat-num   { color: $clr-white; }
-      .hero__stat-label { color: rgba(195, 225, 208, 0.65); }
+      .hero__stat-label { color: $clr-muted; }
 
       &:hover { box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3); }
     }
 
+    // ── Accent variant ────────────────────
     &--accent {
       background: $clr-primary;
       border: 1px solid $clr-primary;
 
-      .hero__stat-icon  { color: #0a1a0d; background: rgba(10, 26, 13, 0.15); }
-      .hero__stat-num   { color: #0a1a0d; }
-      .hero__stat-label { color: rgba(10, 26, 13, 0.7); }
+      .hero__stat-icon  { color: $clr-bg; background: rgba($clr-bg, 0.15); }
+      .hero__stat-num   { color: $clr-bg; }
+      .hero__stat-label { color: rgba($clr-bg, 0.7); }
 
       &:hover { @include lime-glow(48px, 0.45); }
     }
 
-    @include md {
-      flex: 1;
-      min-width: 170px;
-    }
-
-    @include sm {
-      flex: none;
-      width: 100%;
-    }
+    @include md { flex: 1; min-width: 170px; }
+    @include sm { flex: none; width: 100%; }
   }
 
   &__stat-icon {
@@ -354,11 +361,13 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: background 0.3s ease;
+    @include transition(background);
 
     @include respond-min(2xl) { width: 60px;  height: 60px; }
     @include respond-min(3xl) { width: 72px;  height: 72px; }
-    @include respond-min(4xl) { width: 88px;  height: 88px; }
+
+    // ── HARD FREEZE at 2560px ─────────────
+    @include respond-min(4xl) { width: 72px;  height: 72px; }
 
     svg {
       width: 22px;
@@ -366,43 +375,50 @@
 
       @include respond-min(2xl) { width: 28px; height: 28px; }
       @include respond-min(3xl) { width: 34px; height: 34px; }
-      @include respond-min(4xl) { width: 42px; height: 42px; }
+
+      // ── HARD FREEZE at 2560px ─────────────
+      @include respond-min(4xl) { width: 34px; height: 34px; }
     }
   }
 
   &__stat-body {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: $sp-1;
   }
 
- &__stat-num {
-  font-size: $fz-xl;                            // ← was $fz-2xl
-  font-weight: $fw-extrabold;
-  letter-spacing: -0.025em;
-  line-height: 1;
+  &__stat-num {
+    font-size: $fz-xl;
+    font-weight: $fw-extrabold;
+    letter-spacing: $ls-tight;
+    line-height: $lh-tight;
 
-  @include respond-min(2xl) { font-size: $fz-2xl; }  // ← was $fz-3xl
-  @include respond-min(3xl) { font-size: clamp(2rem, 2.5vw, 3rem); }  // ← was clamp(3rem, 3vw, 4rem)
-  @include respond-min(4xl) { font-size: clamp(3rem, 2.5vw, 4rem); }  // ← was clamp(4rem, 3vw, 5rem)
+    @include respond-min(2xl) { font-size: $fz-2xl; }
+    @include respond-min(3xl) { font-size: clamp(2rem, 2.5vw, 3rem); }
 
-  sub {
-    font-size: 0.5em;
-    vertical-align: baseline;
-    font-weight: $fw-medium;
+    // ── HARD FREEZE at 2560px ─────────────
+    @include respond-min(4xl) { font-size: 3rem; }
+
+    sub {
+      font-size: 0.5em;
+      vertical-align: baseline;
+      font-weight: $fw-medium;
+    }
   }
-}
 
   &__stat-label {
     font-size: $fz-xs;
     font-weight: $fw-medium;
-    letter-spacing: 0.05em;
+    letter-spacing: $ls-wide;
     text-transform: uppercase;
 
     @include respond-min(2xl) { font-size: $fz-sm; }
     @include respond-min(3xl) { font-size: $fz-base; }
-    @include respond-min(4xl) { font-size: $fz-md; }
+
+    // ── HARD FREEZE at 2560px ─────────────
+    @include respond-min(4xl) { font-size: $fz-base; }
   }
+
 
   // ── Scroll Indicator ─────────────────────
   &__scroll {
@@ -414,15 +430,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: $sp-1 + 2px;
     opacity: 0;
-    animation: heroScrollShow 0.8s ease 1.3s forwards;
+    animation: heroScrollShow 0.8s $ease-out 1.3s forwards;
+
+    @include reduced-motion {
+      animation: none;
+      opacity: 1;
+    }
 
     @include md { display: none; }
   }
 
   &__scroll-text {
-    font-size: 0.6rem;
+    font-size: $fz-xs;
     font-weight: $fw-semibold;
     letter-spacing: 0.22em;
     color: rgba(200, 230, 210, 0.45);
@@ -434,15 +455,20 @@
     display: block;
 
     &:first-of-type {
-      animation: heroScrollBounce 1.8s ease-in-out infinite;
+      animation: heroScrollBounce 1.8s $ease-in-out infinite;
       margin-bottom: -8px;
     }
 
     &:last-of-type {
-      animation: heroScrollBounce 1.8s ease-in-out 0.2s infinite;
+      animation: heroScrollBounce 1.8s $ease-in-out 0.2s infinite;
+    }
+
+    @include reduced-motion {
+      animation: none;
     }
   }
 }
+
 
 // ── Keyframes ────────────────────────────────
 @keyframes heroScrollShow {
