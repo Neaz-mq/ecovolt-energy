@@ -1,15 +1,54 @@
 // ============================================
-// ECOVOLT — NAVBAR
+// ECOVOLT — NAVBAR  (v4 — ThemeForest Standard)
+//
+// Breakpoint system (matches ThemeForest convention):
+//   $bp-xs  : 375px   — small phones
+//   $bp-sm  : 576px   — phones landscape / large phones
+//   $bp-md  : 768px   — tablets portrait
+//   $bp-lg  : 1024px  — tablets landscape / small laptops ← hamburger cutoff
+//   $bp-xl  : 1280px  — desktops
+//   $bp-xxl : 1536px  — large desktops
+//   $bp-max : 1920px  — wide / ultrawide
+//
+// Z-index strategy (stacking context fix):
+//   .navbar__mobile  z-index: 1000  ← overlay
+//   .navbar          z-index: 1001  ← always above overlay; hamburger inherits
+//
+// Double-× fix:
+//   navbar__close button → display:none always
+//   hamburger .is-open   → sole close control via CSS animation
 // ============================================
 
+
+// ── Internal breakpoint mixins ────────────────
+// (mirrors your existing @include lg / md — extend as needed)
+// xs  : ≤375px
+// sm  : ≤576px
+// md  : ≤768px
+// lg  : ≤1024px   ← hamburger activates here
+// xl  : ≤1280px
+// xxl : ≤1536px
+
+@mixin respond($bp) {
+  @if      $bp == xs  { @media (max-width: 375px)  { @content; } }
+  @else if $bp == sm  { @media (max-width: 576px)  { @content; } }
+  @else if $bp == md  { @media (max-width: 768px)  { @content; } }
+  @else if $bp == lg  { @media (max-width: 1024px) { @content; } }
+  @else if $bp == xl  { @media (max-width: 1280px) { @content; } }
+  @else if $bp == xxl { @media (max-width: 1536px) { @content; } }
+}
+
+
+// ============================================
+// NAVBAR
+// ============================================
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1001;                 // above mobile overlay (1000)
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   background: transparent;
@@ -17,18 +56,51 @@
   opacity: 0;
   visibility: hidden;
 
-  // ── Responsive padding ────────────────────
-  padding: 18px clamp(24px, 8vw, 280px);
+  // ── Fluid padding per breakpoint ──────────
+  // Wide (>1536px): large side margins
+  padding: 20px clamp(120px, 10vw, 280px);
+
+  // Desktop (1281–1536px)
+  @include respond(xxl) { padding: 18px clamp(60px, 6vw, 120px); }
+
+  // Small desktop / large laptop (1025–1280px)
+  @include respond(xl)  { padding: 16px clamp(32px, 4vw, 60px); }
+
+  // Tablet landscape / hamburger zone (≤1024px)
+  @include respond(lg)  { padding: 14px clamp(20px, 4vw, 40px); }
+
+  // Tablet portrait (≤768px)
+  @include respond(md)  { padding: 12px clamp(16px, 4vw, 32px); }
+
+  // Phones (≤576px)
+  @include respond(sm)  { padding: 12px 20px; }
+
+  // Small phones (≤375px)
+  @include respond(xs)  { padding: 10px 16px; }
 
   transition:
-    opacity 0.15s ease,
-    visibility 0.15s ease,
-    background 0.4s ease,
-    border-bottom 0.4s ease,
-    box-shadow 0.4s ease,
-    padding 0.3s ease;
+    opacity      0.15s ease,
+    visibility   0.15s ease,
+    background   0.4s  ease,
+    border-color 0.4s  ease,
+    box-shadow   0.4s  ease,
+    padding      0.3s  ease;
 
-  // ── Ready state ───────────────────────────
+  // ── Scrolled state ────────────────────────
+  &.scrolled {
+    background: rgba(4, 16, 9, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+
+    // Tighten vertical padding when scrolled
+    padding-block: 12px;
+    @include respond(lg) { padding-block: 10px; }
+    @include respond(sm) { padding-block: 8px;  }
+  }
+
+  // ── Ready state (JS adds .is-ready) ───────
   &.is-ready {
     opacity: 1;
     visibility: visible;
@@ -41,17 +113,10 @@
     }
   }
 
-  // ── Scrolled state ────────────────────────
-  &.scrolled {
-    background: rgba(4, 16, 9, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
-    padding-block: 12px;
-  }
 
-  // ── Logo ─────────────────────────────────
+  // ──────────────────────────────────────────
+  // LOGO
+  // ──────────────────────────────────────────
   &__logo {
     display: flex;
     align-items: center;
@@ -65,19 +130,23 @@
       object-fit: contain;
       transition: opacity 0.3s ease;
 
-      @include lg { height: 44px; }
-      @include md { height: 38px; }
+      @include respond(xl)  { height: 46px; }
+      @include respond(lg)  { height: 42px; }
+      @include respond(md)  { height: 38px; }
+      @include respond(sm)  { height: 34px; }
+      @include respond(xs)  { height: 30px; }
 
       &:hover { opacity: 0.85; }
     }
   }
 
-  // ── Nav links ────────────────────────────
+
+  // ──────────────────────────────────────────
+  // DESKTOP NAV LINKS
+  // ──────────────────────────────────────────
   &__links {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: clamp(24px, 3vw, 48px);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -85,10 +154,13 @@
     visibility: hidden;
     transition: opacity 0.15s ease, visibility 0.15s ease;
 
-    @include lg { display: none; }
+    // Gap scales between breakpoints
+    gap: clamp(28px, 3.5vw, 56px);
+    @include respond(xl)  { gap: clamp(20px, 2.5vw, 36px); }
+    @include respond(lg)  { display: none; } // hamburger takes over
 
     a {
-      font-size: $fz-sm;
+      font-size: 16px;
       font-weight: $fw-medium;
       color: $clr-white;
       text-decoration: none;
@@ -97,6 +169,7 @@
       padding-bottom: 2px;
       letter-spacing: 0.01em;
 
+      // Underline hover effect
       &::after {
         content: '';
         position: absolute;
@@ -116,10 +189,12 @@
     }
   }
 
-  // ── Right side actions ───────────────────
+
+  // ──────────────────────────────────────────
+  // DESKTOP CTA BUTTON
+  // ──────────────────────────────────────────
   &__actions {
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: $sp-4;
     flex-shrink: 0;
@@ -127,13 +202,13 @@
     visibility: hidden;
     transition: opacity 0.15s ease, visibility 0.15s ease;
 
-    @include lg { display: none; }
+    @include respond(lg) { display: none; }
 
     .btn--primary {
       background: #F4D03F;
       color: #0a1a0d;
       font-weight: $fw-semibold;
-      font-size: $fz-sm;
+      font-size: 15px;
       padding: 10px 24px;
       border-radius: 999px;
       border: none;
@@ -143,9 +218,11 @@
       align-items: center;
       cursor: pointer;
       transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        background  0.2s ease,
+        transform   0.2s ease,
+        box-shadow  0.2s ease;
+
+      @include respond(xl) { padding: 9px 20px; font-size: 14px; }
 
       &:hover {
         background: #f7dc6f;
@@ -155,20 +232,30 @@
     }
   }
 
-  // ── Hamburger ────────────────────────────
+
+  // ──────────────────────────────────────────
+  // HAMBURGER  (visible ≤1024px)
+  // z-index inherited from .navbar (1001) → always above overlay (1000)
+  // ──────────────────────────────────────────
   &__hamburger {
     display: none;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
-    padding: 4px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
     background: transparent;
     border: none;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.15s ease, visibility 0.15s ease;
+    flex-shrink: 0;
+    transition:
+      opacity    0.15s ease,
+      visibility 0.15s ease;
 
-    @include lg { display: flex; }
+    @include respond(lg) { display: flex; }
 
     span {
       display: block;
@@ -176,59 +263,96 @@
       height: 1.5px;
       background: $clr-white;
       border-radius: 2px;
-      transition: $ease-base;
+      transition:
+        transform   0.35s cubic-bezier(0.23, 1, 0.32, 1),
+        opacity     0.25s ease,
+        background  0.2s  ease;
       transform-origin: center;
+
+      @include respond(sm) { width: 20px; }
     }
 
+    // Animate 3 lines → clean × when open
     &.is-open {
-      span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-      span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-      span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+      span:nth-child(1) { transform: translateY(6.5px) rotate(45deg);  }
+      span:nth-child(2) { opacity: 0; transform: scaleX(0);            }
+      span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg);}
+      span              { background: #F4D03F; }
     }
   }
 
-  // ── Mobile menu ──────────────────────────
+
+  // ──────────────────────────────────────────
+  // MOBILE OVERLAY MENU
+  // z-index: 1000 — BELOW .navbar (1001)
+  // ──────────────────────────────────────────
   &__mobile {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;                    // top/right/bottom/left: 0
     width: 100%;
     height: 100vh;
-    background: rgba(4, 16, 9, 0.99);
+    height: 100dvh;              // dynamic viewport — Safari address-bar safe
+    background: rgba(4, 16, 9, 0.98);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: $sp-6;
-    z-index: 999;
+    gap: clamp(20px, 4vh, 36px);
+    z-index: 1000;               // below navbar → hamburger always visible
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
+    pointer-events: none;        // no click-blocking when hidden
+    transition:
+      opacity    0.35s ease,
+      visibility 0.35s ease;
 
     &.is-open {
       opacity: 1;
       visibility: visible;
+      pointer-events: auto;
     }
 
+    // Nav links — staggered entrance
     a {
-      font-size: $fz-xl;
+      font-size: clamp(22px, 5vw, 32px);
       font-weight: $fw-bold;
       color: $clr-white;
       text-decoration: none;
       letter-spacing: -0.02em;
-      transition: color 0.2s ease;
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        color      0.2s  ease,
+        opacity    0.35s ease,
+        transform  0.35s ease;
+
+      @include respond(sm) { font-size: 24px; }
+      @include respond(xs) { font-size: 20px; }
 
       &:hover { color: #F4D03F; }
     }
 
+    &.is-open a {
+      opacity: 1;
+      transform: translateY(0);
+
+      &:nth-child(1) { transition-delay: 0.06s; }
+      &:nth-child(2) { transition-delay: 0.12s; }
+      &:nth-child(3) { transition-delay: 0.18s; }
+      &:nth-child(4) { transition-delay: 0.24s; }
+      &:nth-child(5) { transition-delay: 0.30s; } // CTA btn
+    }
+
+    // CTA button inside mobile menu
     .btn--primary {
-      margin-top: $sp-4;
+      margin-top: 8px;
       background: #F4D03F;
       color: #0a1a0d;
       font-weight: $fw-semibold;
-      padding: 12px 28px;
+      font-size: 16px;
+      padding: 13px 32px;
       border-radius: 999px;
       border: none;
       text-decoration: none;
@@ -236,7 +360,12 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease;
+      transition:
+        background 0.2s ease,
+        transform  0.2s ease;
+
+      @include respond(sm) { padding: 11px 28px; font-size: 15px; }
+      @include respond(xs) { padding: 10px 24px; font-size: 14px; }
 
       &:hover {
         background: #f7dc6f;
@@ -245,24 +374,21 @@
     }
   }
 
-  // ── Mobile close button ──────────────────
-  &__close {
-    position: absolute;
-    top: 24px;
-    right: 32px;
-    background: transparent;
-    border: none;
-    color: $clr-white;
-    font-size: 28px;
-    cursor: pointer;
-    line-height: 1;
-    transition: color 0.2s ease;
 
-    &:hover { color: #F4D03F; }
+  // ──────────────────────────────────────────
+  // __close — PERMANENTLY DISABLED
+  // Remove <button class="navbar__close"> from HTML.
+  // Hamburger .is-open IS the close button.
+  // ──────────────────────────────────────────
+  &__close {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }
 
-// ── Pulse animation ──────────────────────────
+
+// ── Pulse dot animation ───────────────────────
 @keyframes pulse-dot {
   0%, 100% { box-shadow: 0 0 10px rgba(244, 208, 63, 0.7); }
   50%       { box-shadow: 0 0 20px rgba(244, 208, 63, 0.3); }
