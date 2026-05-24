@@ -1,8 +1,8 @@
 export function initNavbar() {
-  const navbar     = document.querySelector('.navbar')
-  const hamburger  = document.querySelector('.navbar__hamburger')
+  const navbar    = document.querySelector('.navbar')
+  const hamburger = document.querySelector('.navbar__hamburger')
   const mobileMenu = document.querySelector('.navbar__mobile')
-  const closeBtn   = document.querySelector('.navbar__close')
+  const closeBtn  = document.querySelector('.navbar__mobile-close-btn') // ← updated
 
   if (!navbar) return
 
@@ -19,7 +19,7 @@ export function initNavbar() {
     hamburger?.classList.toggle('is-open', open)
     mobileMenu?.classList.toggle('is-open', open)
     document.body.style.overflow = open ? 'hidden' : ''
-    hamburger?.setAttribute('aria-expanded', open) 
+    hamburger?.setAttribute('aria-expanded', String(open)) // ← fixed: was bare boolean
   }
 
   hamburger?.addEventListener('click', () => {
@@ -28,6 +28,14 @@ export function initNavbar() {
   })
 
   closeBtn?.addEventListener('click', () => toggleMenu(false))
+
+  // ESC key closes the menu
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('is-open')) {
+      toggleMenu(false)
+      hamburger?.focus() // return focus for accessibility
+    }
+  })
 
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => toggleMenu(false))

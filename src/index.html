@@ -1,69 +1,37 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- ========================= BASIC META ========================== -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="EcoVolt – Next-generation clean energy platform powering a smarter, greener tomorrow."
-    />
+    <meta name="description" content="EcoVolt – Next-generation clean energy platform powering a smarter, greener tomorrow." />
     <meta name="author" content="Prographr" />
     <meta name="theme-color" content="#050f0a" />
 
-    <!-- ========================= OG / SOCIAL ========================== -->
     <meta property="og:title" content="EcoVolt – Clean Energy Solutions" />
-    <meta
-      property="og:description"
-      content="Next-generation clean energy platform powering a smarter, greener tomorrow."
-    />
+    <meta property="og:description" content="Next-generation clean energy platform powering a smarter, greener tomorrow." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="EcoVolt – Clean Energy Solutions" />
-    <meta
-      name="twitter:description"
-      content="Next-generation clean energy platform powering a smarter, greener tomorrow."
-    />
+    <meta name="twitter:description" content="Next-generation clean energy platform powering a smarter, greener tomorrow." />
     <meta name="twitter:image" content="/og-image.jpg" />
 
     <title>EcoVolt – Clean Energy Solutions</title>
 
-    <!-- ========================= FAVICONS ========================== -->
     <link rel="icon" type="image/svg+xml" href="/favicon-icon.svg" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- ========================= FONT PRELOAD ========================== -->
-    <link
-      rel="preload"
-      href="/assets/fonts/inter/Inter-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      href="/assets/fonts/inter/Inter-SemiBold.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="preload"
-      href="/assets/fonts/inter/Inter-Bold.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
+    <link rel="preload" href="/assets/fonts/inter/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="/assets/fonts/inter/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="/assets/fonts/inter/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
-    <!-- ========================= FOUC PREVENTION ========================== -->
+    <!-- FOUC PREVENTION -->
     <style>
       .navbar,
       .navbar__mobile,
@@ -72,13 +40,12 @@
       .navbar__hamburger {
         opacity: 0;
         visibility: hidden;
-        border-bottom: none !important;  /* ← add this line */
+        border-bottom: none !important;
       }
     </style>
   </head>
 
   <body>
-    <!-- Fallback: show navbar if JS is disabled -->
     <noscript>
       <style>
         .navbar,
@@ -93,19 +60,18 @@
 
     <!-- ========================= NAVBAR ========================== -->
     <nav class="navbar" id="navbar" aria-label="Main navigation">
-  <a href="#home" class="navbar__logo" aria-label="EcoVolt – Go to homepage">
-    <img
-      src="/logo.svg"
-      alt="EcoVolt Energy"
-      class="navbar__logo-img"
-      width="140"
-      height="40"
-      loading="eager"
-      decoding="async"
-      fetchpriority="high"
-    />
-  </a>
-
+      <a href="#home" class="navbar__logo" aria-label="EcoVolt – Go to homepage">
+        <img
+          src="/logo.svg"
+          alt="EcoVolt Energy"
+          class="navbar__logo-img"
+          width="140"
+          height="40"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </a>
 
       <ul class="navbar__links" role="list">
         <li><a href="#technology">Technology</a></li>
@@ -137,21 +103,35 @@
       role="navigation"
       aria-label="Mobile navigation"
     >
-      <button class="navbar__close" aria-label="Close navigation menu">
-        &times;
-      </button>
-      <a href="#technology">Technology</a>
-      <a href="#impact">Impact</a>
-      <a href="#solutions">Solutions</a>
-      <a href="#about">About</a>
-      <a href="#contact" class="btn btn--primary">Get Started</a>
+      <!-- Nav items — no header div, padding-top handles spacing -->
+      <nav class="navbar__mobile-nav">
+        <a href="#technology">
+          <span class="navbar__mobile-num" aria-hidden="true">01</span>
+          <span class="navbar__mobile-text">Technology</span>
+        </a>
+        <a href="#impact">
+          <span class="navbar__mobile-num" aria-hidden="true">02</span>
+          <span class="navbar__mobile-text">Impact</span>
+        </a>
+        <a href="#solutions">
+          <span class="navbar__mobile-num" aria-hidden="true">03</span>
+          <span class="navbar__mobile-text">Solutions</span>
+        </a>
+        <a href="#about">
+          <span class="navbar__mobile-num" aria-hidden="true">04</span>
+          <span class="navbar__mobile-text">About</span>
+        </a>
+      </nav>
+
+      <!-- Footer CTA strip -->
+      <div class="navbar__mobile-footer">
+        <a href="#contact" class="btn btn--primary">Get Started</a>
+      </div>
     </div>
 
     <!-- ========================= MAIN CONTENT ========================== -->
     <main id="home">
-      <!-- ========================= HERO ========================== -->
       <section class="hero" id="hero" aria-label="Hero">
-        <!-- Background -->
         <div class="hero__bg" aria-hidden="true">
           <img
             src="/assets/images/sections/hero-bg.webp"
@@ -166,9 +146,7 @@
           <div class="hero__overlay"></div>
         </div>
 
-        <!-- Content -->
         <div class="hero__container">
-          <!-- LEFT -->
           <div class="hero__left">
             <h1 class="hero__title" data-anim="hero-title">
               Powering a<br />
@@ -179,23 +157,11 @@
             <div class="hero__actions" data-anim="hero-actions">
               <a href="#contact" class="btn btn--primary">
                 Get Started
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
-              <a href="#solutions" class="btn btn--ghost">
-                Explore Technology
-              </a>
+              <a href="#solutions" class="btn btn--ghost">Explore Technology</a>
             </div>
 
             <p class="hero__desc" data-anim="hero-desc">
@@ -205,122 +171,59 @@
             </p>
           </div>
 
-          <!-- RIGHT: Stats -->
-          <div
-            class="hero__stats"
-            data-anim="hero-stats"
-            aria-label="Key statistics"
-          >
-            <!-- Card 1 -->
+          <div class="hero__stats" data-anim="hero-stats" aria-label="Key statistics">
             <div class="hero__stat-card hero__stat-card--glass">
               <div class="hero__stat-icon" aria-hidden="true">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
                 </svg>
               </div>
               <div class="hero__stat-body">
-                <strong class="hero__stat-num">
-                  <span data-counter="95" data-suffix="%">0</span>
-                </strong>
+                <strong class="hero__stat-num"><span data-counter="95" data-suffix="%">0</span></strong>
                 <span class="hero__stat-label">AI Accuracy</span>
               </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="hero__stat-card hero__stat-card--glass">
               <div class="hero__stat-icon" aria-hidden="true">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="3" />
-                  <path
-                    d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-                  />
+                  <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
                 </svg>
               </div>
               <div class="hero__stat-body">
-                <strong class="hero__stat-num">
-                  <span data-counter="250" data-suffix="K+">0</span>
-                </strong>
+                <strong class="hero__stat-num"><span data-counter="250" data-suffix="K+">0</span></strong>
                 <span class="hero__stat-label">Devices Connected</span>
               </div>
             </div>
 
-            <!-- Card 3 — Accent -->
             <div class="hero__stat-card hero__stat-card--accent">
               <div class="hero__stat-icon" aria-hidden="true">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
                   <polyline points="17 6 23 6 23 12" />
                 </svg>
               </div>
               <div class="hero__stat-body">
-                <strong class="hero__stat-num">
-                  <span data-counter="1.2" data-suffix="M kg">0</span>
-                </strong>
+                <strong class="hero__stat-num"><span data-counter="1.2" data-suffix="M kg">0</span></strong>
                 <span class="hero__stat-label">CO<sub>2</sub> Reduced</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Scroll hint -->
         <div class="hero__scroll" aria-hidden="true">
           <span class="hero__scroll-text">SCROLL</span>
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 12 15 18 9" />
           </svg>
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 12 15 18 9" />
           </svg>
         </div>
       </section>
     </main>
 
-    <!-- ========================= SCRIPTS ========================== -->
     <script type="module" src="/js/main.js"></script>
   </body>
 </html>
