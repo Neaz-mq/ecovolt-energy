@@ -1,11 +1,14 @@
 // ============================================
 // ECOVOLT — HERO SECTION  |  ThemeForest Standard
 // ============================================
-//
-// FIX: All respond-min(4xl) blocks now FREEZE at the
-// 2560px layout values. No further scaling at 4K/5K/9999px.
-// Added overflow: hidden + min-width: 0 on __left and
-// __stats so grid children never overflow their columns.
+// RESPONSIVE UPDATES:
+//  1. &__stat-num   — white-space: nowrap stops "1.2M kg" wrapping
+//  2. @include lg   — stats: 3-col grid, horizontal cards + separator line
+//  3. @include sm   — FIXED slider: gap:0 + full 100% card width + 16px
+//                     padding on container so cards are never cut off
+//  4. &__actions    — both buttons stay in one row on mobile
+//  5. &__overlay    — mobile: flat dark base, no centre radial glow
+//  6. &__stats-dots — pill dot indicators for mobile slider
 // ============================================
 
 
@@ -36,6 +39,8 @@
   &__overlay {
     position: absolute;
     inset: 0;
+
+    // ── Desktop / Tablet ──────────────────
     background:
       radial-gradient(
         ellipse 40% 35% at 50% 72%,
@@ -81,6 +86,25 @@
         rgba(2, 10, 5, 0.35) 30%,
         transparent 42%
       );
+
+    // ── MOBILE: flat uniform dark — kills centre glow ──
+    @include sm {
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(2, 10, 5, 0.96) 0%,
+          rgba(2, 10, 5, 0.55) 12%,
+          transparent 28%
+        ),
+        linear-gradient(
+          to top,
+          rgba(2, 10, 5, 0.98) 0%,
+          rgba(2, 10, 5, 0.70) 16%,
+          rgba(2, 10, 5, 0.30) 30%,
+          transparent 44%
+        ),
+        rgba(4, 18, 10, 0.72);
+    }
   }
 
 
@@ -96,9 +120,6 @@
     padding-top: 130px;
     padding-bottom: $sp-20;
     min-height: 100vh;
-
-    // CRITICAL: prevents any child from overflowing
-    // its grid column at any screen width
     overflow: hidden;
 
     @include xl {
@@ -106,15 +127,23 @@
       gap: clamp(10px, 1.5vw, 20px);
     }
 
+    // ── TABLET: single col, generous vertical space ──
     @include lg {
       grid-template-columns: 1fr;
-      padding-top: 120px;
-      padding-bottom: $sp-16;
+      padding-top: 140px;
+      padding-bottom: $sp-14;
       min-height: auto;
+      gap: $sp-10;
     }
 
     @include md { padding-top: 110px; }
-    @include sm { padding-top: 100px; }
+
+    // ── MOBILE ──
+    @include sm {
+      padding-top: 96px;
+      padding-bottom: $sp-10;
+      gap: $sp-8;
+    }
 
     @include respond-min(2xl) {
       grid-template-columns: 1fr 460px;
@@ -126,9 +155,6 @@
       gap: clamp(20px, 1.5vw, 36px);
     }
 
-    // ── HARD FREEZE at 2560px ─────────────
-    // Identical to respond-min(3xl) values.
-    // Nothing changes at 4K, 5K, or 9999px.
     @include respond-min(4xl) {
       grid-template-columns: 1fr 540px;
       gap: 36px;
@@ -141,9 +167,11 @@
     display: flex;
     flex-direction: column;
     gap: $sp-6;
-    // Prevents title text overflowing into stat cards
     min-width: 0;
     overflow: hidden;
+
+    @include lg { gap: $sp-5; }
+    @include sm { gap: $sp-5; }
   }
 
   &__title {
@@ -168,18 +196,29 @@
       transition: opacity $dur-base $ease-out;
     }
 
+    // ── TABLET: large, impactful, capped width ──
+    @include lg {
+      font-size: clamp(3rem, 5.5vw, 4.2rem);
+      max-width: 700px;
+    }
+
+    // ── MOBILE: dominant headline, tight leading ──
+    @include sm {
+      font-size: clamp(2.4rem, 9.5vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
     @include respond-min(2xl) { font-size: clamp(3.2rem, 3.8vw, 5rem); }
     @include respond-min(3xl) { font-size: clamp(4rem, 3.8vw, 5.8rem); }
-
-    // ── HARD FREEZE at 2560px ─────────────
     @include respond-min(4xl) { font-size: 5.8rem; }
   }
 
   &__actions {
     display: flex;
     align-items: center;
-    gap: $sp-4;
-    flex-wrap: wrap;
+    gap: $sp-3;
+    flex-wrap: nowrap;
     opacity: 0;
     transform: translateY(25px);
     transition:
@@ -196,10 +235,23 @@
       transition: opacity $dur-base $ease-out 0.2s;
     }
 
+    // ── MOBILE: compact side-by-side buttons ──
     @include sm {
-      flex-direction: column;
-      align-items: flex-start;
+      gap: $sp-2;
+
+      .btn {
+        padding: 11px 18px;
+        font-size: $fz-xs;
+        white-space: nowrap;
+      }
+
+      .btn svg {
+        width: 13px;
+        height: 13px;
+      }
     }
+
+    @media (max-width: 360px) { flex-wrap: wrap; }
   }
 
   &__desc {
@@ -223,15 +275,28 @@
       transition: opacity $dur-base $ease-out 0.38s;
     }
 
+    // ── TABLET: slightly wider, larger text ──
+    @include lg {
+      max-width: 560px;
+      font-size: $fz-base;
+      color: rgba(210, 235, 220, 0.68);
+    }
+
+    // ── MOBILE: 88% width prevents edge-to-edge run ──
+    @include sm {
+      font-size: $fz-xs;
+      max-width: 88%;
+      line-height: 1.75;
+      color: rgba(210, 235, 220, 0.60);
+    }
+
     @include respond-min(2xl) { font-size: $fz-md;  max-width: 560px; }
     @include respond-min(3xl) { font-size: $fz-lg;  max-width: 640px; }
-
-    // ── HARD FREEZE at 2560px ─────────────
     @include respond-min(4xl) { font-size: $fz-lg;  max-width: 640px; }
   }
 
 
-  // ── Right: Stat Cards ─────────────────────
+  // ── Right / Bottom: Stat Cards ────────────
   &__stats {
     display: flex;
     flex-direction: column;
@@ -246,7 +311,6 @@
     transition:
       opacity   0.9s $ease-out   0.25s,
       transform 0.9s $ease-snap  0.25s;
-    // Prevents cards overflowing their column
     min-width: 0;
 
     &.is-visible {
@@ -264,21 +328,49 @@
       margin-right: clamp(16px, 4vw, 80px);
     }
 
+    // ── TABLET: 3-col grid, horizontal cards ─────────────
     @include lg {
-      flex-direction: row;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       width: 100%;
       max-width: 100%;
       justify-self: auto;
       margin-right: 0;
       gap: $sp-3;
+      padding-top: $sp-8;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       transform: translateY(30px);
 
       &.is-visible { transform: translateY(0); }
     }
 
     @include md { gap: $sp-2; }
-    @include sm { flex-direction: column; }
+
+    // ── MOBILE: full-bleed auto-sliding scroll strip ──────
+    // Simplest reliable approach:
+    //  • No gap, no padding — JS sets each card to exactly clientWidth px
+    //  • scroll-snap-type mandatory + snap-align start = crisp per-card stops
+    //  • Negative margins bleed to screen edges so the strip uses all space
+    @include sm {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      -webkit-mask-image: none;
+      mask-image: none;
+
+      &::-webkit-scrollbar { display: none; }
+
+      transform: translateY(30px);
+      &.is-visible { transform: translateY(0); }
+    }
 
     @include respond-min(2xl) {
       max-width: 460px;
@@ -292,7 +384,6 @@
       margin-right: clamp(60px, 5vw, 160px);
     }
 
-    // ── HARD FREEZE at 2560px ─────────────
     @include respond-min(4xl) {
       max-width: 540px;
       gap: $sp-4;
@@ -320,11 +411,41 @@
     }
 
     @include respond-min(3xl) { padding: $sp-8 $sp-10; gap: $sp-7; }
-
-    // ── HARD FREEZE at 2560px ─────────────
     @include respond-min(4xl) { padding: $sp-8 $sp-10; gap: $sp-7; }
 
-    // ── Glass variant ─────────────────────
+    // ── TABLET: horizontal layout ──
+    @include lg {
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      padding: $sp-5 $sp-5;
+      gap: $sp-4;
+    }
+
+    @include md {
+      padding: $sp-4 $sp-4;
+      gap: $sp-3;
+    }
+
+    // ── MOBILE: JS sets exact pixel width via style attr ──
+    // width/min-width are overridden by initStatsSlider() to
+    // stats.clientWidth, so each card fills the strip perfectly.
+    // scroll-snap-align: start snaps each card's left edge to 0.
+    @include sm {
+      flex: none;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      // Fallback before JS runs — overridden immediately on init
+      width: 100%;
+      min-width: 100%;
+      padding: $sp-6 $sp-6;
+      gap: $sp-5;
+      box-sizing: border-box;
+      scroll-snap-align: start;
+    }
+
+    // ── Glass variant ──────────────────────
     &--glass {
       @include glass(0.07, 18px);
       background: rgba(15, 50, 28, 0.45);
@@ -337,7 +458,7 @@
       &:hover { box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3); }
     }
 
-    // ── Accent variant ────────────────────
+    // ── Accent variant ─────────────────────
     &--accent {
       background: $clr-primary;
       border: 1px solid $clr-primary;
@@ -348,9 +469,6 @@
 
       &:hover { @include lime-glow(48px, 0.45); }
     }
-
-    @include md { flex: 1; min-width: 170px; }
-    @include sm { flex: none; width: 100%; }
   }
 
   &__stat-icon {
@@ -363,20 +481,27 @@
     flex-shrink: 0;
     @include transition(background);
 
+    // ── TABLET: compact ──
+    @include lg { width: 42px; height: 42px; }
+    @include md { width: 38px; height: 38px; }
+
+    // ── MOBILE: slightly larger in slider ──
+    @include sm { width: 52px; height: 52px; }
+
     @include respond-min(2xl) { width: 60px;  height: 60px; }
     @include respond-min(3xl) { width: 72px;  height: 72px; }
-
-    // ── HARD FREEZE at 2560px ─────────────
     @include respond-min(4xl) { width: 72px;  height: 72px; }
 
     svg {
       width: 22px;
       height: 22px;
 
+      @include lg { width: 19px; height: 19px; }
+      @include md { width: 17px; height: 17px; }
+      @include sm { width: 22px; height: 22px; }
+
       @include respond-min(2xl) { width: 28px; height: 28px; }
       @include respond-min(3xl) { width: 34px; height: 34px; }
-
-      // ── HARD FREEZE at 2560px ─────────────
       @include respond-min(4xl) { width: 34px; height: 34px; }
     }
   }
@@ -393,10 +518,18 @@
     letter-spacing: $ls-tight;
     line-height: $lh-tight;
 
+    // Prevents "1.2M kg" / "250K+" wrapping at any breakpoint
+    white-space: nowrap;
+
+    // ── TABLET: balanced for 3-col ──
+    @include lg { font-size: $fz-lg; }
+    @include md { font-size: $fz-base; }
+
+    // ── MOBILE: large focal number ──
+    @include sm { font-size: $fz-2xl; }
+
     @include respond-min(2xl) { font-size: $fz-2xl; }
     @include respond-min(3xl) { font-size: clamp(2rem, 2.5vw, 3rem); }
-
-    // ── HARD FREEZE at 2560px ─────────────
     @include respond-min(4xl) { font-size: 3rem; }
 
     sub {
@@ -412,11 +545,47 @@
     letter-spacing: $ls-wide;
     text-transform: uppercase;
 
+    @include lg { font-size: $fz-xs; }
+
+    @include sm {
+      font-size: $fz-xs;
+      letter-spacing: 0.12em;
+    }
+
     @include respond-min(2xl) { font-size: $fz-sm; }
     @include respond-min(3xl) { font-size: $fz-base; }
-
-    // ── HARD FREEZE at 2560px ─────────────
     @include respond-min(4xl) { font-size: $fz-base; }
+  }
+
+
+  // ── Slider Dot Indicators ─────────────────
+  &__stats-dots {
+    display: none;
+
+    @include sm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: $sp-4;
+    }
+  }
+
+  &__stats-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    transition:
+      width      0.35s $ease-snap,
+      background 0.35s $ease-out;
+    flex-shrink: 0;
+
+    &.is-active {
+      width: 20px;
+      border-radius: 3px;
+      background: $clr-primary;
+    }
   }
 
 
@@ -463,9 +632,7 @@
       animation: heroScrollBounce 1.8s $ease-in-out 0.2s infinite;
     }
 
-    @include reduced-motion {
-      animation: none;
-    }
+    @include reduced-motion { animation: none; }
   }
 }
 
