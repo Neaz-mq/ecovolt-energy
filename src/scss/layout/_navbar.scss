@@ -1,34 +1,6 @@
 // ============================================
-// ECOVOLT — NAVBAR  (v5 — ThemeForest Standard)
+// ECOVOLT — NAVBAR
 // ============================================
-
-@mixin respond($bp) {
-  @if $bp == xs {
-    @media (max-width: 375px) {
-      @content;
-    }
-  } @else if $bp == sm {
-    @media (max-width: 576px) {
-      @content;
-    }
-  } @else if $bp == md {
-    @media (max-width: 768px) {
-      @content;
-    }
-  } @else if $bp == lg {
-    @media (max-width: 1024px) {
-      @content;
-    }
-  } @else if $bp == xl {
-    @media (max-width: 1280px) {
-      @content;
-    }
-  } @else if $bp == xxl {
-    @media (max-width: 1536px) {
-      @content;
-    }
-  }
-}
 
 .navbar {
   position: fixed;
@@ -39,42 +11,32 @@
   opacity: 0;
   visibility: hidden;
   background: transparent;
-  border-bottom: 1px solid transparent;
 
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
 
   padding: 28px clamp(120px, 10vw, 280px) 20px;
-  @include respond(xxl) {
-    padding: 28px clamp(60px, 6vw, 120px) 18px;
-  }
-  @include respond(xl) {
-    padding: 24px clamp(32px, 4vw, 60px) 16px;
-  }
 
-  @include respond(lg) {
+  @include respond(xxl) { padding: 28px clamp(60px, 6vw, 120px) 18px; }
+  @include respond(xl)  { padding: 24px clamp(32px, 4vw, 60px) 16px; }
+  @include respond(lg)  {
     grid-template-columns: 1fr auto;
     padding: 14px clamp(20px, 4vw, 40px);
   }
-  @include respond(md) {
-    padding: 12px clamp(16px, 4vw, 32px);
-  }
-  @include respond(sm) {
-    padding: 12px 20px;
-  }
-  @include respond(xs) {
-    padding: 10px 16px;
-  }
+  @include respond(md)  { padding: 12px clamp(16px, 4vw, 32px); }
+  @include respond(sm)  { padding: 12px 20px; }
+  @include respond(xs)  { padding: 10px 16px; }
 
   transition:
-    opacity 0.15s ease,
-    visibility 0.15s ease,
-    background 0.4s ease,
+    opacity      0.15s ease,
+    visibility   0.15s ease,
+    background   0.4s ease,
     border-color 0.4s ease,
-    box-shadow 0.4s ease,
-    padding 0.3s ease;
+    box-shadow   0.4s ease,
+    padding      0.3s ease;
 
+  // ── Scrolled state ────────────────────────
   &.scrolled {
     background: rgba(4, 16, 9, 0.95);
     backdrop-filter: blur(20px);
@@ -82,14 +44,12 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
     padding-block: 12px;
-    @include respond(lg) {
-      padding-block: 10px;
-    }
-    @include respond(sm) {
-      padding-block: 8px;
-    }
+
+    @include respond(lg) { padding-block: 10px; }
+    @include respond(sm) { padding-block: 8px; }
   }
 
+  // ── Ready state (JS adds after first paint) ──
   &.is-ready {
     opacity: 1;
     visibility: visible;
@@ -116,28 +76,14 @@
       object-fit: contain;
       transition: opacity 0.3s ease;
 
-      @include respond(xxl) {
-        height: 48px;
-      }
-      @include respond(xl) {
-        height: 44px;
-      }
-      @include respond(lg) {
-        height: 42px;
-      }
-      @include respond(md) {
-        height: 38px;
-      }
-      @include respond(sm) {
-        height: 34px;
-      }
-      @include respond(xs) {
-        height: 30px;
-      }
+      @include respond(xxl) { height: 48px; }
+      @include respond(xl)  { height: 44px; }
+      @include respond(lg)  { height: 42px; }
+      @include respond(md)  { height: 38px; }
+      @include respond(sm)  { height: 34px; }
+      @include respond(xs)  { height: 30px; }
 
-      &:hover {
-        opacity: 0.85;
-      }
+      &:hover { opacity: 0.85; }
     }
   }
 
@@ -152,20 +98,14 @@
     opacity: 0;
     visibility: hidden;
     justify-self: center;
+    gap: clamp(28px, 3.5vw, 56px);
     transition:
-      opacity 0.15s ease,
+      opacity    0.15s ease,
       visibility 0.15s ease;
 
-    gap: clamp(28px, 3.5vw, 56px);
-    @include respond(xxl) {
-      gap: clamp(24px, 3vw, 48px);
-    }
-    @include respond(xl) {
-      gap: clamp(18px, 2.5vw, 32px);
-    }
-    @include respond(lg) {
-      display: none;
-    }
+    @include respond(xxl) { gap: clamp(24px, 3vw, 48px); }
+    @include respond(xl)  { gap: clamp(18px, 2.5vw, 32px); }
+    @include respond(lg)  { display: none; }
 
     a {
       font-size: 15px;
@@ -178,7 +118,7 @@
       letter-spacing: 0.01em;
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         bottom: -2px;
         left: 0;
@@ -191,9 +131,7 @@
 
       &:hover {
         color: #f4d03f;
-        &::after {
-          width: 100%;
-        }
+        &::after { width: 100%; }
       }
     }
   }
@@ -208,12 +146,10 @@
     opacity: 0;
     visibility: hidden;
     transition:
-      opacity 0.15s ease,
+      opacity    0.15s ease,
       visibility 0.15s ease;
 
-    @include respond(lg) {
-      display: none;
-    }
+    @include respond(lg) { display: none; }
 
     .btn--primary {
       background: #f4d03f;
@@ -229,15 +165,9 @@
       align-items: center;
       transition: none;
 
-      @include respond(xxl) {
-        padding: 10px 22px;
-      }
-      @include respond(xl) {
-        padding: 9px 18px;
-        font-size: 14px;
-      }
+      @include respond(xxl) { padding: 10px 22px; }
+      @include respond(xl)  { padding: 9px 18px; font-size: 14px; }
 
-      // Kill all hover/focus/active effects
       &:hover,
       &:focus,
       &:active {
@@ -266,12 +196,10 @@
     visibility: hidden;
     justify-self: end;
     transition:
-      opacity 0.15s ease,
+      opacity    0.15s ease,
       visibility 0.15s ease;
 
-    @include respond(lg) {
-      display: flex;
-    }
+    @include respond(lg) { display: flex; }
 
     span {
       display: block;
@@ -279,31 +207,20 @@
       height: 1.5px;
       background: $clr-white;
       border-radius: 2px;
-      transition:
-        transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
-        opacity 0.25s ease,
-        background 0.2s ease;
       transform-origin: center;
+      transition:
+        transform  0.35s cubic-bezier(0.23, 1, 0.32, 1),
+        opacity    0.25s ease,
+        background 0.2s ease;
 
-      @include respond(sm) {
-        width: 20px;
-      }
+      @include respond(sm) { width: 20px; }
     }
 
     &.is-open {
-      span:nth-child(1) {
-        transform: translateY(6.5px) rotate(45deg);
-      }
-      span:nth-child(2) {
-        opacity: 0;
-        transform: scaleX(0);
-      }
-      span:nth-child(3) {
-        transform: translateY(-6.5px) rotate(-45deg);
-      }
-      span {
-        background: #f4d03f;
-      }
+      span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+      span { background: #f4d03f; }
     }
   }
 
@@ -311,29 +228,26 @@
   &__mobile {
     position: fixed;
     inset: 0;
-    top: 0;
     height: 100vh;
     height: 100dvh;
     z-index: 1000;
-
     transform: translateY(100%);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition:
-      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 0.35s ease,
-      visibility 0.35s ease;
-
     background: rgba(4, 13, 7, 0.98);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-
     display: flex;
     flex-direction: column;
+    transition:
+      transform   0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity     0.35s ease,
+      visibility  0.35s ease;
 
+    // Decorative corner glow
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       bottom: 0;
       left: 0;
@@ -360,19 +274,12 @@
       display: flex;
       flex-direction: column;
       overflow-y: auto;
-
       padding: 96px 28px 0;
-      @include respond(lg) {
-        padding-top: 88px;
-      }
-      @include respond(sm) {
-        padding: 80px 22px 0;
-      }
-      @include respond(xs) {
-        padding: 72px 18px 0;
-      }
 
-      // ── Arrow ONLY on nav links — NOT on footer CTA ──
+      @include respond(lg) { padding-top: 88px; }
+      @include respond(sm) { padding: 80px 22px 0; }
+      @include respond(xs) { padding: 72px 18px 0; }
+
       a {
         display: flex;
         align-items: center;
@@ -384,28 +291,23 @@
         opacity: 0;
         transform: translateX(-20px);
         transition:
-          opacity 0.4s ease,
+          opacity   0.4s ease,
           transform 0.4s ease,
-          color 0.2s ease;
+          color     0.2s ease;
 
-        // Arrow scoped here — never bleeds to footer CTA
         &::after {
-          content: "→";
+          content: '→';
           font-size: 16px;
           color: rgba(255, 255, 255, 0.18);
           margin-left: auto;
           transition:
-            color 0.25s ease,
+            color     0.25s ease,
             transform 0.25s ease;
         }
 
         &:hover {
-          .navbar__mobile-num {
-            color: #f7dc6f;
-          }
-          .navbar__mobile-text {
-            color: #f4d03f;
-          }
+          .navbar__mobile-num  { color: #f7dc6f; }
+          .navbar__mobile-text { color: #f4d03f; }
 
           &::after {
             color: #f4d03f;
@@ -413,31 +315,20 @@
           }
         }
 
-        @include respond(sm) {
-          padding: 16px 0;
-        }
-        @include respond(xs) {
-          padding: 14px 0;
-        }
+        @include respond(sm) { padding: 16px 0; }
+        @include respond(xs) { padding: 14px 0; }
       }
     }
 
-    // Stagger animation — scoped to nav links inside &-nav
+    // Stagger animation on open
     &.is-open &-nav a {
       opacity: 1;
       transform: translateX(0);
-      &:nth-child(1) {
-        transition-delay: 0.08s;
-      }
-      &:nth-child(2) {
-        transition-delay: 0.14s;
-      }
-      &:nth-child(3) {
-        transition-delay: 0.2s;
-      }
-      &:nth-child(4) {
-        transition-delay: 0.26s;
-      }
+
+      &:nth-child(1) { transition-delay: 0.08s; }
+      &:nth-child(2) { transition-delay: 0.14s; }
+      &:nth-child(3) { transition-delay: 0.20s; }
+      &:nth-child(4) { transition-delay: 0.26s; }
     }
 
     &-num {
@@ -458,12 +349,8 @@
       line-height: 1;
       transition: color 0.25s ease;
 
-      @include respond(sm) {
-        font-size: 26px;
-      }
-      @include respond(xs) {
-        font-size: 22px;
-      }
+      @include respond(sm) { font-size: 26px; }
+      @include respond(xs) { font-size: 22px; }
     }
 
     // ── Footer CTA strip ─────────────────────
@@ -473,19 +360,15 @@
       border-top: 1px solid rgba(255, 255, 255, 0.06);
       background: rgba(255, 255, 255, 0.02);
 
-      @include respond(sm) {
-        padding: 16px 22px 28px;
-      }
-      @include respond(xs) {
-        padding: 14px 18px 24px;
-      }
+      @include respond(sm) { padding: 16px 22px 28px; }
+      @include respond(xs) { padding: 14px 18px 24px; }
     }
 
-    // ── Footer CTA button — black text, NO arrow, NO hover effect ──
     &-footer .btn--primary {
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
       width: 100%;
       background: #f4d03f;
       color: #0a1a0d;
@@ -496,22 +379,12 @@
       border: none;
       text-decoration: none;
       letter-spacing: -0.01em;
-
-      // No transition — no hover effect at all
       transition: none;
 
-      &::after {
-        display: none !important;
-        content: none !important;
-      }
+      &::after { display: none !important; content: none !important; }
 
-      svg {
-        color: #0a1a0d;
-        stroke: #0a1a0d;
-        flex-shrink: 0;
-      }
+      svg { color: #0a1a0d; stroke: #0a1a0d; flex-shrink: 0; }
 
-      // Completely disable all hover states
       &:hover,
       &:focus,
       &:active {
@@ -522,26 +395,12 @@
         outline: none;
       }
 
-      @include respond(sm) {
-        font-size: 14px;
-        padding: 14px 24px;
-      }
-      @include respond(xs) {
-        font-size: 13px;
-        padding: 13px 20px;
-      }
-    }
-
-    &-tagline {
-      text-align: center;
-      color: rgba(255, 255, 255, 0.2);
-      font-size: 11px;
-      letter-spacing: 0.03em;
-      margin-top: 12px;
+      @include respond(sm) { font-size: 14px; padding: 14px 24px; }
+      @include respond(xs) { font-size: 13px; padding: 13px 20px; }
     }
   }
 
-  // ── Disabled elements ─────────────────────
+  // ── Disabled legacy elements ───────────────
   &__close,
   &__mobile-header,
   &__mobile-close-btn,
@@ -552,12 +411,8 @@
   }
 }
 
+// ── Animations ────────────────────────────────
 @keyframes pulse-dot {
-  0%,
-  100% {
-    box-shadow: 0 0 10px rgba(244, 208, 63, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(244, 208, 63, 0.3);
-  }
+  0%, 100% { box-shadow: 0 0 10px rgba(244, 208, 63, 0.7); }
+  50%       { box-shadow: 0 0 20px rgba(244, 208, 63, 0.3); }
 }

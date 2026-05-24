@@ -2,15 +2,26 @@
 // ECOVOLT — MIXINS
 // ============================================
 
-// Breakpoints
-@mixin xs    { @media (max-width: 480px)  { @content; } }
+// ── Respond mixin (primary — used by navbar & sections) ──
+@mixin respond($bp) {
+  @if      $bp == xs  { @media (max-width: 375px)  { @content; } }
+  @else if $bp == sm  { @media (max-width: 576px)  { @content; } }
+  @else if $bp == md  { @media (max-width: 768px)  { @content; } }
+  @else if $bp == lg  { @media (max-width: 1024px) { @content; } }
+  @else if $bp == xl  { @media (max-width: 1280px) { @content; } }
+  @else if $bp == xxl { @media (max-width: 1536px) { @content; } }
+}
+
+// ── Shorthand aliases (same values as respond) ───────────
+@mixin xs    { @media (max-width: 375px)  { @content; } }
 @mixin sm    { @media (max-width: 576px)  { @content; } }
 @mixin md    { @media (max-width: 768px)  { @content; } }
-@mixin lg    { @media (max-width: 992px)  { @content; } }
-@mixin xl    { @media (max-width: 1200px) { @content; } }
-@mixin min-lg { @media (min-width: 993px) { @content; } }
+@mixin lg    { @media (max-width: 1024px) { @content; } }
+@mixin xl    { @media (max-width: 1280px) { @content; } }
+@mixin xxl   { @media (max-width: 1536px) { @content; } }
+@mixin min-lg { @media (min-width: 1025px) { @content; } }
 
-// Layout
+// ── Flex helpers ─────────────────────────────
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -29,7 +40,7 @@
   gap: $gap;
 }
 
-// Container
+// ── Container ────────────────────────────────
 @mixin container {
   width: 100%;
   max-width: $container-max;
@@ -37,14 +48,14 @@
   padding-inline: $container-pad;
 }
 
-// Section padding
+// ── Section spacing ──────────────────────────
 @mixin section-space {
   padding-block: $sp-32;
   @include lg { padding-block: $sp-24; }
   @include md { padding-block: $sp-16; }
 }
 
-// Grid background
+// ── Grid background ──────────────────────────
 @mixin grid-bg($opacity: 0.05) {
   background-image:
     linear-gradient(rgba(184, 245, 61, $opacity) 1px, transparent 1px),
@@ -52,12 +63,12 @@
   background-size: 60px 60px;
 }
 
-// Lime glow
+// ── Lime glow ────────────────────────────────
 @mixin lime-glow($size: 30px, $opacity: 0.35) {
   box-shadow: 0 0 $size rgba(184, 245, 61, $opacity);
 }
 
-// Card style
+// ── Card base ────────────────────────────────
 @mixin card-base {
   background: $clr-bg-card;
   border: 1px solid $clr-border-white;
@@ -66,7 +77,7 @@
   -webkit-backdrop-filter: blur(12px);
 }
 
-// Section label
+// ── Section label ────────────────────────────
 @mixin section-label {
   font-size: $fz-xs;
   font-weight: $fw-semibold;
@@ -87,7 +98,7 @@
   }
 }
 
-// Text truncate
+// ── Text truncate ────────────────────────────
 @mixin truncate($lines: 1) {
   @if $lines == 1 {
     overflow: hidden;

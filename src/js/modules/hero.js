@@ -1,43 +1,32 @@
+// ============================================
+// ECOVOLT — HERO
+// ============================================
+
 export function initHero() {
 
-  // ── Selectors ─────────────────────────────
   const ANIM_KEYS = ['hero-title', 'hero-actions', 'hero-desc', 'hero-stats']
 
   // ── Entrance animations ───────────────────
-  // Uses rAF + setTimeout for reliable first-paint trigger.
-  // Falls back after 1500ms in case something blocks the first run.
   function revealHero() {
     let revealed = false
 
     function doReveal() {
       if (revealed) return
       revealed = true
-
       ANIM_KEYS.forEach(key => {
         const el = document.querySelector(`[data-anim="${key}"]`)
-        if (el) {
-          el.classList.add('is-visible')
-        } else {
-          console.warn(`[Hero] element not found: [data-anim="${key}"]`)
-        }
+        if (el) el.classList.add('is-visible')
       })
     }
 
-    // Primary: rAF → setTimeout chain (your original logic, kept)
-    requestAnimationFrame(() => {
-      setTimeout(doReveal, 80)
-    })
-
-    // Hard fallback: if primary never fires (e.g. tab hidden, slow device)
-    setTimeout(doReveal, 1500)
+    requestAnimationFrame(() => setTimeout(doReveal, 80))
+    setTimeout(doReveal, 1500) // hard fallback
   }
 
-  // ── Wait for navbar is-ready before revealing ─
-  // Prevents a flash where hero animates in before navbar appears.
+  // ── Wait for navbar before revealing ──────
   const navbar = document.getElementById('navbar')
 
   if (navbar && !navbar.classList.contains('is-ready')) {
-    // Poll until navbar is ready (max 2s)
     let attempts = 0
     const poll = setInterval(() => {
       attempts++
@@ -47,39 +36,49 @@ export function initHero() {
       }
     }, 50)
   } else {
-    // Navbar already ready (or doesn't exist) — reveal immediately
     revealHero()
   }
 
-  // ── Counter animation ─────────────────────
-  document.querySelectorAll('[data-counter]').forEach(el => {
+  // ── Counter animation (IntersectionObserver) ──
+  // Fires only when stat cards scroll into view, not immediately on load
+  const counterEls = document.querySelectorAll('[data-counter]')
+
+  if (!counterEls.length) return
+
+  const runCounter = (el) => {
     const target  = parseFloat(el.dataset.counter)
     const suffix  = el.dataset.suffix ?? ''
     const isFloat = String(el.dataset.counter).includes('.')
     const steps   = 60
-    const delay   = 600
-    let count     = 0
 
-    if (isNaN(target)) {
-      console.warn('[Hero] invalid data-counter value:', el.dataset.counter)
-      return
-    }
+    if (isNaN(target)) return
 
-    setTimeout(() => {
-      const timer = setInterval(() => {
-        count++
-        const current = (target / steps) * count
+    let count = 0
+    const timer = setInterval(() => {
+      count++
+      const current = (target / steps) * count
 
-        if (count >= steps) {
-          el.textContent = (isFloat ? target.toFixed(1) : target) + suffix
-          clearInterval(timer)
-          return
-        }
+      if (count >= steps) {
+        el.textContent = (isFloat ? target.toFixed(1) : target) + suffix
+        clearInterval(timer)
+        return
+      }
 
-        el.textContent = isFloat
-          ? current.toFixed(1) + suffix
-          : Math.floor(current) + suffix
-      }, 1800 / steps)
-    }, delay)
-  })
+      el.textContent = isFloat
+        ? current.toFixed(1) + suffix
+        : Math.floor(current) + suffix
+    }, 1800 / steps)
+  }
+
+  // Use IntersectionObserver so counters only fire when visible
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        runCounter(entry.target)
+        observer.unobserve(entry.target) // run once only
+      }
+    })
+  }, { threshold: 0.3 })
+
+  counterEls.forEach(el => observer.observe(el))
 }
