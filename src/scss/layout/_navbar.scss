@@ -1,5 +1,5 @@
 // ============================================
-// ECOVOLT — NAVBAR
+// ECOVOLT — NAVBAR  |  ThemeForest Standard
 // ============================================
 
 .navbar {
@@ -11,30 +11,12 @@
   opacity: 0;
   visibility: hidden;
   background: transparent;
-
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-
-  padding: 28px clamp(120px, 10vw, 280px) 20px;
-
-  @include respond(xxl) { padding: 28px clamp(60px, 6vw, 120px) 18px; }
-  @include respond(xl)  { padding: 24px clamp(32px, 4vw, 60px) 16px; }
-  @include respond(lg)  {
-    grid-template-columns: 1fr auto;
-    padding: 14px clamp(20px, 4vw, 40px);
-  }
-  @include respond(md)  { padding: 12px clamp(16px, 4vw, 32px); }
-  @include respond(sm)  { padding: 12px 20px; }
-  @include respond(xs)  { padding: 10px 16px; }
-
   transition:
     opacity      0.15s ease,
     visibility   0.15s ease,
     background   0.4s ease,
     border-color 0.4s ease,
-    box-shadow   0.4s ease,
-    padding      0.3s ease;
+    box-shadow   0.4s ease;
 
   // ── Scrolled state ────────────────────────
   &.scrolled {
@@ -43,13 +25,9 @@
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
-    padding-block: 12px;
-
-    @include respond(lg) { padding-block: 10px; }
-    @include respond(sm) { padding-block: 8px; }
   }
 
-  // ── Ready state (JS adds after first paint) ──
+  // ── Ready state ───────────────────────────
   &.is-ready {
     opacity: 1;
     visibility: visible;
@@ -62,12 +40,53 @@
     }
   }
 
+  // ── Inner container ───────────────────────
+  &__container {
+    @include container;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding-block: 24px 20px;
+    transition: padding-block 0.3s ease;
+
+    @include respond(lg) {
+      grid-template-columns: 1fr auto;
+      padding-block: 16px;
+    }
+    @include respond(sm) { padding-block: 12px; }
+    @include respond(xs) { padding-block: 10px; }
+
+    // ── 1920px ─────────────────────────────
+    @media (min-width: 1441px) {
+      max-width: 1920px;
+      padding-inline: clamp(120px, 8vw, 180px);
+    }
+
+    // ── 2560px ─────────────────────────────
+    @media (min-width: 1921px) {
+      max-width: 2560px;
+      padding-inline: clamp(120px, 6vw, 200px);
+    }
+
+    .navbar.scrolled & {
+      padding-block: 12px;
+      @include respond(sm) { padding-block: 10px; }
+    }
+  }
+
   // ── Logo ──────────────────────────────────
   &__logo {
     display: flex;
     align-items: center;
     text-decoration: none;
     justify-self: start;
+
+    // TF Standard: focus visible for accessibility
+    &:focus-visible {
+      outline: 2px solid #f4d03f;
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
 
     &-img {
       height: 52px;
@@ -76,12 +95,11 @@
       object-fit: contain;
       transition: opacity 0.3s ease;
 
-      @include respond(xxl) { height: 48px; }
-      @include respond(xl)  { height: 44px; }
-      @include respond(lg)  { height: 42px; }
-      @include respond(md)  { height: 38px; }
-      @include respond(sm)  { height: 34px; }
-      @include respond(xs)  { height: 30px; }
+      @include respond(xl) { height: 46px; }
+      @include respond(lg) { height: 42px; }
+      @include respond(md) { height: 38px; }
+      @include respond(sm) { height: 34px; }
+      @include respond(xs) { height: 30px; }
 
       &:hover { opacity: 0.85; }
     }
@@ -94,18 +112,15 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    margin-top: 8px;
     opacity: 0;
     visibility: hidden;
     justify-self: center;
-    gap: clamp(28px, 3.5vw, 56px);
+    gap: clamp(24px, 3vw, 52px);
     transition:
       opacity    0.15s ease,
       visibility 0.15s ease;
 
-    @include respond(xxl) { gap: clamp(24px, 3vw, 48px); }
-    @include respond(xl)  { gap: clamp(18px, 2.5vw, 32px); }
-    @include respond(lg)  { display: none; }
+    @include respond(lg) { display: none; }
 
     a {
       font-size: 15px;
@@ -116,6 +131,13 @@
       position: relative;
       padding-bottom: 2px;
       letter-spacing: 0.01em;
+
+      // TF Standard: always visible focus for keyboard users
+      &:focus-visible {
+        outline: 2px solid #f4d03f;
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
 
       &::after {
         content: '';
@@ -133,15 +155,20 @@
         color: #f4d03f;
         &::after { width: 100%; }
       }
+
+      // TF Standard: active state for current page
+      &.is-active {
+        color: #f4d03f;
+        &::after { width: 100%; }
+      }
     }
   }
 
-  // ── CTA Button ────────────────────────────
+  // ── CTA ───────────────────────────────────
   &__actions {
     display: flex;
     align-items: center;
     justify-self: end;
-    margin-top: 8px;
     gap: $sp-4;
     opacity: 0;
     visibility: hidden;
@@ -158,24 +185,30 @@
       font-size: 14px;
       padding: 10px 24px;
       border-radius: 999px;
-      border: none;
+      border: 2px solid transparent;
       white-space: nowrap;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      transition: none;
+      transition:
+        background 0.25s ease,
+        color      0.25s ease,
+        box-shadow 0.25s ease;
 
-      @include respond(xxl) { padding: 10px 22px; }
-      @include respond(xl)  { padding: 9px 18px; font-size: 14px; }
+      // TF Standard: hover must have visible change
+      &:hover {
+        background: darken(#f4d03f, 8%);
+        box-shadow: 0 4px 20px rgba(244, 208, 63, 0.35);
+      }
 
-      &:hover,
-      &:focus,
+      // TF Standard: focus visible
+      &:focus-visible {
+        outline: 2px solid #f4d03f;
+        outline-offset: 3px;
+      }
+
       &:active {
-        background: #f4d03f;
-        color: #1e5b4d;
-        transform: none;
-        box-shadow: none;
-        outline: none;
+        transform: scale(0.97);
       }
     }
   }
@@ -186,9 +219,9 @@
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 36px;
-    height: 36px;
-    padding: 6px;
+    width: 44px;  // TF Standard: min 44x44px touch target
+    height: 44px; // TF Standard: min 44x44px touch target
+    padding: 8px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -198,6 +231,13 @@
     transition:
       opacity    0.15s ease,
       visibility 0.15s ease;
+
+    // TF Standard: focus visible
+    &:focus-visible {
+      outline: 2px solid #f4d03f;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
 
     @include respond(lg) { display: flex; }
 
@@ -241,11 +281,16 @@
     display: flex;
     flex-direction: column;
     transition:
-      transform   0.5s cubic-bezier(0.16, 1, 0.3, 1),
-      opacity     0.35s ease,
-      visibility  0.35s ease;
+      transform  0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity    0.35s ease,
+      visibility 0.35s ease;
 
-    // Decorative corner glow
+    // TF Standard: respect reduced motion
+    @media (prefers-reduced-motion: reduce) {
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      transform: none;
+    }
+
     &::before {
       content: '';
       position: absolute;
@@ -268,7 +313,6 @@
       pointer-events: auto;
     }
 
-    // ── Nav list ─────────────────────────────
     &-nav {
       flex: 1;
       display: flex;
@@ -287,13 +331,18 @@
         text-decoration: none;
         padding: 20px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        position: relative;
         opacity: 0;
         transform: translateX(-20px);
         transition:
           opacity   0.4s ease,
           transform 0.4s ease,
           color     0.2s ease;
+
+        // TF Standard: respect reduced motion
+        @media (prefers-reduced-motion: reduce) {
+          transform: none;
+          transition: opacity 0.2s ease;
+        }
 
         &::after {
           content: '→';
@@ -305,14 +354,17 @@
             transform 0.25s ease;
         }
 
+        // TF Standard: focus visible
+        &:focus-visible {
+          outline: 2px solid #f4d03f;
+          outline-offset: 4px;
+          border-radius: 2px;
+        }
+
         &:hover {
           .navbar__mobile-num  { color: #f7dc6f; }
           .navbar__mobile-text { color: #f4d03f; }
-
-          &::after {
-            color: #f4d03f;
-            transform: translateX(4px);
-          }
+          &::after { color: #f4d03f; transform: translateX(4px); }
         }
 
         @include respond(sm) { padding: 16px 0; }
@@ -320,7 +372,6 @@
       }
     }
 
-    // Stagger animation on open
     &.is-open &-nav a {
       opacity: 1;
       transform: translateX(0);
@@ -353,7 +404,6 @@
       @include respond(xs) { font-size: 22px; }
     }
 
-    // ── Footer CTA strip ─────────────────────
     &-footer {
       flex-shrink: 0;
       padding: 20px 28px 32px;
@@ -379,21 +429,25 @@
       border: none;
       text-decoration: none;
       letter-spacing: -0.01em;
-      transition: none;
+      transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease;
 
       &::after { display: none !important; content: none !important; }
-
       svg { color: #0a1a0d; stroke: #0a1a0d; flex-shrink: 0; }
 
-      &:hover,
-      &:focus,
-      &:active {
-        background: #f4d03f;
-        color: #0a1a0d;
-        transform: none;
-        box-shadow: none;
-        outline: none;
+      // TF Standard: hover must change
+      &:hover {
+        background: darken(#f4d03f, 8%);
+        box-shadow: 0 4px 20px rgba(244, 208, 63, 0.3);
       }
+
+      &:focus-visible {
+        outline: 2px solid #f4d03f;
+        outline-offset: 3px;
+      }
+
+      &:active { transform: scale(0.97); }
 
       @include respond(sm) { font-size: 14px; padding: 14px 24px; }
       @include respond(xs) { font-size: 13px; padding: 13px 20px; }
@@ -411,7 +465,26 @@
   }
 }
 
-// ── Animations ────────────────────────────────
+// ── Skip Navigation (TF Accessibility Standard) ──
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 24px;
+  z-index: 9999;
+  padding: 8px 16px;
+  background: #f4d03f;
+  color: #0a1a0d;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+
+  &:focus {
+    top: 0;
+  }
+}
+
 @keyframes pulse-dot {
   0%, 100% { box-shadow: 0 0 10px rgba(244, 208, 63, 0.7); }
   50%       { box-shadow: 0 0 20px rgba(244, 208, 63, 0.3); }

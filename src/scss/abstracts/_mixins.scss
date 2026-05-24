@@ -1,27 +1,88 @@
 // ============================================
 // ECOVOLT — MIXINS
+// ThemeForest Standard v1.0
 // ============================================
 
-// ── Respond mixin (primary — used by navbar & sections) ──
+// ── Respond mixin ─────────────────────────────
+// Aligned to $bp-* tokens in _variables.scss
 @mixin respond($bp) {
-  @if      $bp == xs  { @media (max-width: 375px)  { @content; } }
-  @else if $bp == sm  { @media (max-width: 576px)  { @content; } }
-  @else if $bp == md  { @media (max-width: 768px)  { @content; } }
-  @else if $bp == lg  { @media (max-width: 1024px) { @content; } }
-  @else if $bp == xl  { @media (max-width: 1280px) { @content; } }
-  @else if $bp == xxl { @media (max-width: 1536px) { @content; } }
+  @if      $bp == xs  { @media (max-width: #{$bp-xs})  { @content; } }
+  @else if $bp == sm  { @media (max-width: #{$bp-sm})  { @content; } }
+  @else if $bp == md  { @media (max-width: #{$bp-md})  { @content; } }
+  @else if $bp == lg  { @media (max-width: #{$bp-lg})  { @content; } }
+  @else if $bp == xl  { @media (max-width: #{$bp-xl})  { @content; } }
+  @else if $bp == 2xl { @media (max-width: #{$bp-2xl}) { @content; } }
+  @else if $bp == 3xl { @media (max-width: #{$bp-3xl}) { @content; } }
+  @else if $bp == 4xl { @media (max-width: #{$bp-4xl}) { @content; } }
 }
 
-// ── Shorthand aliases (same values as respond) ───────────
-@mixin xs    { @media (max-width: 375px)  { @content; } }
-@mixin sm    { @media (max-width: 576px)  { @content; } }
-@mixin md    { @media (max-width: 768px)  { @content; } }
-@mixin lg    { @media (max-width: 1024px) { @content; } }
-@mixin xl    { @media (max-width: 1280px) { @content; } }
-@mixin xxl   { @media (max-width: 1536px) { @content; } }
-@mixin min-lg { @media (min-width: 1025px) { @content; } }
+// ── Min-width respond mixin ───────────────────
+// For wide-screen overrides (1920px, 2560px)
+@mixin respond-min($bp) {
+  @if      $bp == xs  { @media (min-width: #{$bp-xs})       { @content; } }
+  @else if $bp == sm  { @media (min-width: #{$bp-sm})       { @content; } }
+  @else if $bp == md  { @media (min-width: #{$bp-md})       { @content; } }
+  @else if $bp == lg  { @media (min-width: #{$bp-lg})       { @content; } }
+  @else if $bp == xl  { @media (min-width: #{$bp-xl})       { @content; } }
+  @else if $bp == 2xl { @media (min-width: #{$bp-2xl + 1})  { @content; } }
+  @else if $bp == 3xl { @media (min-width: #{$bp-3xl + 1})  { @content; } }
+  @else if $bp == 4xl { @media (min-width: #{$bp-4xl + 1})  { @content; } }
+}
 
-// ── Flex helpers ─────────────────────────────
+// ── Shorthand aliases ─────────────────────────
+@mixin xs  { @media (max-width: #{$bp-xs})  { @content; } }
+@mixin sm  { @media (max-width: #{$bp-sm})  { @content; } }
+@mixin md  { @media (max-width: #{$bp-md})  { @content; } }
+@mixin lg  { @media (max-width: #{$bp-lg})  { @content; } }
+@mixin xl  { @media (max-width: #{$bp-xl})  { @content; } }
+@mixin xxl { @media (max-width: #{$bp-2xl}) { @content; } }
+
+// Min-width shorthands
+@mixin min-sm  { @media (min-width: #{$bp-sm})       { @content; } }
+@mixin min-md  { @media (min-width: #{$bp-md})       { @content; } }
+@mixin min-lg  { @media (min-width: #{$bp-lg + 1})   { @content; } }
+@mixin min-xl  { @media (min-width: #{$bp-xl + 1})   { @content; } }
+@mixin min-2xl { @media (min-width: #{$bp-2xl + 1})  { @content; } }
+@mixin min-3xl { @media (min-width: #{$bp-3xl + 1})  { @content; } }
+@mixin min-4xl { @media (min-width: #{$bp-4xl + 1})  { @content; } }
+
+
+// ── Container ─────────────────────────────────
+// Single source of truth for all section containers.
+// Navbar, hero, and every section use this mixin —
+// padding is identical at every breakpoint automatically.
+@mixin container {
+  width: 100%;
+  max-width: $container-max; // 1920px from variables
+  margin-inline: auto;
+  padding-inline: $container-pad; // clamp(16px, 5vw, 80px)
+
+  // ── 1441px–1920px: large desktop ──────────
+  @include respond-min(2xl) {
+    max-width: $bp-3xl; // 1920px
+    padding-inline: clamp(120px, 8vw, 180px);
+  }
+
+  // ── 1921px–2560px: full HD / 2K ───────────
+  @include respond-min(3xl) {
+    max-width: $bp-4xl; // 2560px
+    padding-inline: clamp(120px, 6vw, 200px);
+  }
+}
+
+
+// ── Section spacing ───────────────────────────
+@mixin section-space {
+  padding-block: $section-pad-y; // clamp(64px, 8vw, 120px)
+
+  @include lg { padding-block: $section-pad-y-sm; }
+  @include md { padding-block: clamp(40px, 5vw, 64px); }
+  @include sm { padding-block: $sp-16; }
+  @include xs { padding-block: $sp-12; }
+}
+
+
+// ── Flex helpers ──────────────────────────────
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -34,54 +95,59 @@
   justify-content: space-between;
 }
 
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
 @mixin flex-gap($gap) {
   display: flex;
   align-items: center;
   gap: $gap;
 }
 
-// ── Container ────────────────────────────────
-@mixin container {
-  width: 100%;
-  max-width: $container-max;
-  margin-inline: auto;
-  padding-inline: $container-pad;
+
+// ── Grid helpers ──────────────────────────────
+@mixin grid($cols: 12, $gap: $grid-gap) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: $gap;
 }
 
-// ── Section spacing ──────────────────────────
-@mixin section-space {
-  padding-block: $sp-32;
-  @include lg { padding-block: $sp-24; }
-  @include md { padding-block: $sp-16; }
-}
 
-// ── Grid background ──────────────────────────
-@mixin grid-bg($opacity: 0.05) {
-  background-image:
-    linear-gradient(rgba(184, 245, 61, $opacity) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(184, 245, 61, $opacity) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-// ── Lime glow ────────────────────────────────
-@mixin lime-glow($size: 30px, $opacity: 0.35) {
-  box-shadow: 0 0 $size rgba(184, 245, 61, $opacity);
-}
-
-// ── Card base ────────────────────────────────
+// ── Card base ─────────────────────────────────
 @mixin card-base {
   background: $clr-bg-card;
   border: 1px solid $clr-border-white;
   border-radius: $radius-lg;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  transition:
+    background  $dur-base $ease-out,
+    box-shadow  $dur-base $ease-out,
+    transform   $dur-base $ease-out;
+
+  &:hover {
+    background: $clr-bg-card-hover;
+    box-shadow: $shadow-lg;
+  }
 }
 
-// ── Section label ────────────────────────────
+
+// ── Glass effect ──────────────────────────────
+@mixin glass($opacity: 0.07, $blur: 16px) {
+  background: rgba(255, 255, 255, $opacity);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+
+// ── Section label ─────────────────────────────
 @mixin section-label {
   font-size: $fz-xs;
   font-weight: $fw-semibold;
-  letter-spacing: 0.12em;
+  letter-spacing: $ls-wider;
   text-transform: uppercase;
   color: $clr-primary;
   display: inline-flex;
@@ -93,12 +159,30 @@
     width: 20px;
     height: 2px;
     background: $clr-primary;
-    border-radius: 2px;
+    border-radius: $radius-xs;
     display: block;
+    flex-shrink: 0;
   }
 }
 
-// ── Text truncate ────────────────────────────
+
+// ── Lime glow ─────────────────────────────────
+@mixin lime-glow($size: 30px, $opacity: 0.35) {
+  box-shadow: 0 0 $size rgba(184, 245, 61, $opacity);
+}
+
+
+// ── Focus visible (TF: reuse across all components) ──
+@mixin focus-ring($color: $clr-primary, $offset: 3px) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: $offset;
+    border-radius: $radius-sm;
+  }
+}
+
+
+// ── Truncate text ─────────────────────────────
 @mixin truncate($lines: 1) {
   @if $lines == 1 {
     overflow: hidden;
@@ -109,5 +193,36 @@
     -webkit-line-clamp: $lines;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+}
+
+
+// ── Grid background ───────────────────────────
+@mixin grid-bg($opacity: 0.05) {
+  background-image:
+    linear-gradient(rgba(184, 245, 61, $opacity) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 245, 61, $opacity) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+
+// ── Visually hidden (TF: accessibility required) ──
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+// ── Reduced motion wrapper ────────────────────
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
   }
 }

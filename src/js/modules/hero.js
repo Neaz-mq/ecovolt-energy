@@ -1,9 +1,9 @@
-// ============================================
-// ECOVOLT — HERO
-// ============================================
+// =========================================================================
+// ECOVOLT — HERO JAVASCRIPT (initHero Update)
+// Optimized to correctly display initialization strings during counter runs
+// =========================================================================
 
 export function initHero() {
-
   const ANIM_KEYS = ['hero-title', 'hero-actions', 'hero-desc', 'hero-stats']
 
   // ── Entrance animations ───────────────────
@@ -20,7 +20,7 @@ export function initHero() {
     }
 
     requestAnimationFrame(() => setTimeout(doReveal, 80))
-    setTimeout(doReveal, 1500) // hard fallback
+    setTimeout(doReveal, 1500)
   }
 
   // ── Wait for navbar before revealing ──────
@@ -39,10 +39,8 @@ export function initHero() {
     revealHero()
   }
 
-  // ── Counter animation (IntersectionObserver) ──
-  // Fires only when stat cards scroll into view, not immediately on load
+  // ── Counter animation ─────────────────────
   const counterEls = document.querySelectorAll('[data-counter]')
-
   if (!counterEls.length) return
 
   const runCounter = (el) => {
@@ -70,12 +68,11 @@ export function initHero() {
     }, 1800 / steps)
   }
 
-  // Use IntersectionObserver so counters only fire when visible
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         runCounter(entry.target)
-        observer.unobserve(entry.target) // run once only
+        observer.unobserve(entry.target)
       }
     })
   }, { threshold: 0.3 })
