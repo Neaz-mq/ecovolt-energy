@@ -8,10 +8,10 @@
   justify-content: center;
   gap: $sp-2;
   font-family: $font-primary;
-  font-weight: $fw-semibold;
+  font-weight: $fw-bold;
   font-size: $fz-sm;
   letter-spacing: 0.02em;
-  border-radius: $radius-sm;
+  border-radius: $radius-lg;
   padding: 14px 28px;
   transition: $ease-base;
   white-space: nowrap;
@@ -33,13 +33,17 @@
 
   // Primary
   &--primary {
-    background: $clr-primary;
-    color: #0a1a0d;
+    background: $clr-warning; // ← was $clr-primary
+    color: #1e5b4d;
 
     &:hover {
-      background: $clr-primary-dark;
+      background: color-mix(
+        in srgb,
+        $clr-warning 92%,
+        #000
+      ); // ← was $clr-primary-dark
       transform: translateY(-2px);
-      @include lime-glow(32px, 0.3);
+      box-shadow: 0 8px 32px rgba($clr-warning, 0.35); // ← was lime-glow
     }
 
     &:active {
@@ -51,10 +55,10 @@
   &--ghost {
     background: transparent;
     color: $clr-white;
-    border: 1px solid $clr-border-white;
+    border: 1px solid rgba(255, 255, 255, 0.55); // ← change this line
 
     &:hover {
-      border-color: rgba(255, 255, 255, 0.35);
+      border-color: rgba(255, 255, 255, 0.85); // ← and this line
       background: rgba(255, 255, 255, 0.05);
     }
   }

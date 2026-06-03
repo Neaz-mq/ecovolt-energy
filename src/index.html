@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="EcoVolt – Next-generation clean energy platform powering a smarter, greener tomorrow." />
+    <meta
+      name="description"
+      content="EcoVolt – Next-generation clean energy platform powering a smarter, greener tomorrow."
+    />
     <meta name="author" content="Prographr" />
     <meta name="theme-color" content="#050f0a" />
 
@@ -15,7 +18,10 @@
 
     <!-- ── Open Graph ────────────────────────────────────────────────── -->
     <meta property="og:title" content="EcoVolt – Clean Energy Solutions" />
-    <meta property="og:description" content="Next-generation clean energy platform powering a smarter, greener tomorrow." />
+    <meta
+      property="og:description"
+      content="Next-generation clean energy platform powering a smarter, greener tomorrow."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -24,7 +30,10 @@
     <!-- ── Twitter Card ──────────────────────────────────────────────── -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="EcoVolt – Clean Energy Solutions" />
-    <meta name="twitter:description" content="Next-generation clean energy platform powering a smarter, greener tomorrow." />
+    <meta
+      name="twitter:description"
+      content="Next-generation clean energy platform powering a smarter, greener tomorrow."
+    />
     <meta name="twitter:image" content="/og-image.jpg" />
 
     <title>EcoVolt – Clean Energy Solutions</title>
@@ -48,9 +57,27 @@
       fetchpriority="high"
     />
 
-    <link rel="preload" href="/assets/fonts/inter/Inter-Regular.woff2"  as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="/assets/fonts/inter/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="/assets/fonts/inter/Inter-Bold.woff2"     as="font" type="font/woff2" crossorigin="anonymous" />
+    <link
+      rel="preload"
+      href="/assets/fonts/inter/Inter-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/inter/Inter-SemiBold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/inter/Inter-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
 
     <!-- ── FOUC prevention ───────────────────────────────────────────────
          Hides navbar and children before JS runs.
@@ -70,7 +97,6 @@
   </head>
 
   <body>
-
     <!-- ── No-JS fallback ────────────────────────────────────────────── -->
     <noscript>
       <style>
@@ -95,8 +121,11 @@
     <!-- ── Navbar ────────────────────────────────────────────────────── -->
     <nav class="navbar" id="navbar" aria-label="Main navigation">
       <div class="navbar__container">
-
-        <a href="#home" class="navbar__logo" aria-label="EcoVolt – Go to homepage">
+        <a
+          href="#home"
+          class="navbar__logo"
+          aria-label="EcoVolt – Go to homepage"
+        >
           <img
             src="/logo.svg"
             alt="EcoVolt Energy"
@@ -130,7 +159,6 @@
           <span></span>
           <span></span>
         </button>
-
       </div>
     </nav>
 
@@ -164,7 +192,8 @@
         <a href="#contact" class="btn btn--primary">
           Get Started
           <svg
-            width="16" height="16"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -174,7 +203,7 @@
             aria-hidden="true"
             focusable="false"
           >
-            <path d="M5 12h14M12 5l7 7-7 7"/>
+            <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </a>
       </div>
@@ -187,10 +216,8 @@
            logo href  → #home        (scroll target, on <section>)
     ─────────────────────────────────────────────────────────────────── -->
     <main id="main-content">
-
       <!-- ── Hero ──────────────────────────────────────────────────── -->
       <section class="hero" id="home" aria-label="Hero">
-
         <div class="hero__bg" aria-hidden="true">
           <img
             src="/assets/images/sections/hero-bg.webp"
@@ -206,9 +233,7 @@
         </div>
 
         <div class="hero__container">
-
           <div class="hero__left">
-
             <h1 class="hero__title" data-anim="hero-title">
               Powering a Cleaner,<br />
               Smarter Tomorrow
@@ -218,7 +243,8 @@
               <a href="#contact" class="btn btn--primary">
                 Get Started
                 <svg
-                  width="16" height="16"
+                  width="16"
+                  height="16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -239,69 +265,65 @@
               living affordable, scalable, and intelligent for communities,
               businesses, and the planet.
             </p>
-
           </div>
 
           <!-- ── Stat cards ─────────────────────────────────────────── -->
           <div
-            class="hero__stats"
-            data-anim="hero-stats"
-            aria-label="Key statistics"
-          >
+  class="hero__stats"
+  data-anim="hero-stats"
+  aria-label="Key statistics"
+>
 
-            <div class="hero__stat-card hero__stat-card--glass">
-              <div class="hero__stat-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                </svg>
-              </div>
-              <div class="hero__stat-body">
-                <strong class="hero__stat-num">
-                  <span data-counter="95" data-suffix="%">0%</span>
-                </strong>
-                <span class="hero__stat-label">AI Accuracy</span>
-              </div>
-            </div>
+  <div class="hero__stat-card hero__stat-card--glass">
+    <div class="hero__stat-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2c0 6-6 8-6 14a6 6 0 0 0 12 0c0-6-6-8-6-14z"/>
+        <path d="M12 12c0 3-2 4-2 7a2 2 0 0 0 4 0c0-3-2-4-2-7z"/>
+      </svg>
+    </div>
+    <div class="hero__stat-body">
+      <strong class="hero__stat-num">
+        <span data-counter="95" data-suffix="%">0%</span>
+      </strong>
+      <span class="hero__stat-label">AI Accuracy</span>
+    </div>
+  </div>
 
-            <div class="hero__stat-card hero__stat-card--glass">
-              <div class="hero__stat-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <circle cx="12" cy="12" r="10"/>
-                </svg>
-              </div>
-              <div class="hero__stat-body">
-                <strong class="hero__stat-num">
-                  <span data-counter="250" data-suffix="K+">0K+</span>
-                </strong>
-                <span class="hero__stat-label">Devices Connected</span>
-              </div>
-            </div>
+ <div class="hero__stat-card hero__stat-card--glass">
+ <div class="hero__stat-icon" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2"  y="2"  width="6" height="6" rx="1"/>
+    <rect x="16" y="2"  width="6" height="6" rx="1"/>
+    <rect x="9"  y="16" width="6" height="6" rx="1"/>
+    <path d="M5 8v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8"/>
+    <line x1="12" y1="13" x2="12" y2="16"/>
+  </svg>
+</div>
+  <div class="hero__stat-body">
+    <strong class="hero__stat-num">
+      <span data-counter="250" data-suffix="K+">0K+</span>
+    </strong>
+    <span class="hero__stat-label">Devices Connected</span>
+  </div>
+</div>
 
-            <div class="hero__stat-card hero__stat-card--accent">
-              <div class="hero__stat-icon" aria-hidden="true">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-                  <polyline points="16 7 22 7 22 13"/>
-                </svg>
-              </div>
-              <div class="hero__stat-body">
-                <strong class="hero__stat-num">
-                  <span data-counter="1.2" data-suffix="M kg">0.0M kg</span>
-                </strong>
-                <span class="hero__stat-label">CO₂ Reduced</span>
-              </div>
-            </div>
+  <div class="hero__stat-card hero__stat-card--accent">
+    <div class="hero__stat-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+        <polyline points="16 7 22 7 22 13"/>
+      </svg>
+    </div>
+    <div class="hero__stat-body">
+      <strong class="hero__stat-num">
+        <span data-counter="1.2" data-suffix="M kg">0.0M kg</span>
+      </strong>
+      <span class="hero__stat-label">CO₂ Reduced</span>
+    </div>
+  </div>
 
-          </div>
+</div>
           <!-- /hero__stats -->
-
         </div>
         <!-- /hero__container -->
 
@@ -309,7 +331,8 @@
         <div class="hero__scroll" aria-hidden="true">
           <span class="hero__scroll-text">SCROLL</span>
           <svg
-            width="18" height="18"
+            width="18"
+            height="18"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -317,10 +340,11 @@
             stroke-linecap="round"
             stroke-linejoin="round"
           >
-            <polyline points="6 9 12 15 18 9"/>
+            <polyline points="6 9 12 15 18 9" />
           </svg>
           <svg
-            width="18" height="18"
+            width="18"
+            height="18"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -328,13 +352,11 @@
             stroke-linecap="round"
             stroke-linejoin="round"
           >
-            <polyline points="6 9 12 15 18 9"/>
+            <polyline points="6 9 12 15 18 9" />
           </svg>
         </div>
-
       </section>
       <!-- /hero -->
-
     </main>
 
     <script type="module" src="/js/main.js"></script>
