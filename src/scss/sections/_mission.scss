@@ -4,29 +4,33 @@
 
 .mission {
   position: relative;
-  background: $clr-bg;
+  background: #071a13; // ← was #000000, now matches wave front fill
   overflow: hidden;
-  padding: $sp-24 0 0;          // no bottom padding — wave divider handles it
+  padding: $sp-24 0 0;
+  padding-bottom: 0;
 
-  @include lg { padding-top: $sp-20; }
-  @include md { padding-top: $sp-16; }
-  @include sm { padding-top: $sp-14; }
+  @include lg {
+    padding-top: $sp-20;
+  }
+  @include md {
+    padding-top: $sp-16;
+  }
+  @include sm {
+    padding-top: $sp-14;
+  }
 
   // ── Background wave texture ───────────────
-  // waves.jpg tiled/stretched across the section background
   &__bg-waves {
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-
-    background:
-      url('/assets/images/sections/waves.jpg') center center / cover no-repeat;
-    opacity: 0.18;              // subtle — just enough to show the texture
+    background: url("/assets/images/sections/waves.jpg") center center / cover
+      no-repeat;
+    opacity: 0.18; // ← bump up so texture is visible on black bg
     mix-blend-mode: screen;
   }
-
-  // ── Background blobs ─────────────────────
+  // ── Background blobs + particles ─────────
   &__bg-dots {
     position: absolute;
     inset: 0;
@@ -36,10 +40,10 @@
 
     &::before,
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       border-radius: 50%;
-      opacity: 0.04;
+      opacity: 0.05;
     }
 
     &::before {
@@ -67,48 +71,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $sp-16;
-    padding-bottom: $sp-20;     // space above the wave divider
+    gap: $sp-12;
+    padding-bottom: $sp-16;
 
-    @include md { gap: $sp-12; padding-bottom: $sp-16; }
-    @include sm { gap: $sp-10; padding-bottom: $sp-14; }
+    @include md {
+      gap: $sp-10;
+      padding-bottom: $sp-14;
+    }
+    @include sm {
+      gap: $sp-8;
+      padding-bottom: $sp-12;
+    }
   }
 
   // ── Header ───────────────────────────────
   &__header {
     text-align: center;
-    max-width: 680px;
+    max-width: 720px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: $sp-5;
 
-    @include sm { gap: $sp-4; }
+    @include sm {
+      gap: $sp-4;
+    }
   }
 
+  // Hide the pill label — not shown in target design
   &__label {
-    display: inline-flex;
-    align-items: center;
-    gap: $sp-2;
-    font-size: $fz-xs;
-    font-weight: $fw-semibold;
-    letter-spacing: $ls-wide;
-    text-transform: uppercase;
-    color: $clr-primary;
-    padding: $sp-1 + 2px $sp-4;
-    border: 1px solid rgba($clr-primary, 0.3);
-    border-radius: $radius-full;
-    background: rgba($clr-primary, 0.08);
-
-    &::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: $clr-primary;
-      flex-shrink: 0;
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
+    display: none;
   }
 
   &__title {
@@ -119,19 +111,20 @@
     letter-spacing: $ls-tight;
     margin: 0;
 
-    @include sm { font-size: clamp(2rem, 8vw, 2.8rem); }
+    @include sm {
+      font-size: clamp(2rem, 8vw, 2.8rem);
+    }
   }
 
   &__intro {
     font-size: $fz-base;
-    color: rgba($clr-white, 0.62);
+    color: rgba($clr-white, 0.7);
     line-height: 1.8;
-    max-width: 600px;
+    max-width: 640px;
     margin: 0;
 
     @include sm {
       font-size: $fz-sm;
-      color: rgba($clr-white, 0.7);
     }
   }
 
@@ -141,17 +134,21 @@
     letter-spacing: $ls-normal;
     margin: 0;
 
-    @include sm { font-size: $fz-xs; }
+    @include sm {
+      font-size: $fz-xs;
+    }
   }
 
   // ── Cards Grid ───────────────────────────
   &__cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: $sp-4;
+    gap: $sp-5;
     width: 100%;
 
-    @include lg { grid-template-columns: repeat(2, 1fr); }
+    @include lg {
+      grid-template-columns: repeat(2, 1fr);
+    }
     @include sm {
       grid-template-columns: 1fr 1fr;
       gap: $sp-3;
@@ -165,20 +162,21 @@
   &__card {
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column; // ← icon on top, text below
+    align-items: center; // ← everything centered
+    text-align: center;
     gap: $sp-5;
-    padding: $sp-7 $sp-6;
+    padding: $sp-8 $sp-6 $sp-7;
     border-radius: $radius-xl;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     cursor: default;
     overflow: hidden;
     transition:
       border-color $dur-base $ease-out,
-      background   $dur-base $ease-out,
-      transform    $dur-base $ease-out,
-      box-shadow   $dur-base $ease-out;
+      background $dur-base $ease-out,
+      transform $dur-base $ease-out,
+      box-shadow $dur-base $ease-out;
 
     opacity: 0;
     transform: translateY(32px);
@@ -188,20 +186,53 @@
       transform: translateY(0);
     }
 
-    &:nth-child(1) { transition: opacity 0.7s $ease-out 0.08s, transform 0.7s $ease-snap 0.08s, border-color $dur-base $ease-out, background $dur-base $ease-out, box-shadow $dur-base $ease-out; }
-    &:nth-child(2) { transition: opacity 0.7s $ease-out 0.18s, transform 0.7s $ease-snap 0.18s, border-color $dur-base $ease-out, background $dur-base $ease-out, box-shadow $dur-base $ease-out; }
-    &:nth-child(3) { transition: opacity 0.7s $ease-out 0.28s, transform 0.7s $ease-snap 0.28s, border-color $dur-base $ease-out, background $dur-base $ease-out, box-shadow $dur-base $ease-out; }
-    &:nth-child(4) { transition: opacity 0.7s $ease-out 0.38s, transform 0.7s $ease-snap 0.38s, border-color $dur-base $ease-out, background $dur-base $ease-out, box-shadow $dur-base $ease-out; }
+    &:nth-child(1) {
+      transition:
+        opacity 0.7s $ease-out 0.08s,
+        transform 0.7s $ease-snap 0.08s,
+        border-color $dur-base $ease-out,
+        background $dur-base $ease-out,
+        box-shadow $dur-base $ease-out;
+    }
+    &:nth-child(2) {
+      transition:
+        opacity 0.7s $ease-out 0.18s,
+        transform 0.7s $ease-snap 0.18s,
+        border-color $dur-base $ease-out,
+        background $dur-base $ease-out,
+        box-shadow $dur-base $ease-out;
+    }
+    &:nth-child(3) {
+      transition:
+        opacity 0.7s $ease-out 0.28s,
+        transform 0.7s $ease-snap 0.28s,
+        border-color $dur-base $ease-out,
+        background $dur-base $ease-out,
+        box-shadow $dur-base $ease-out;
+    }
+    &:nth-child(4) {
+      transition:
+        opacity 0.7s $ease-out 0.38s,
+        transform 0.7s $ease-snap 0.38s,
+        border-color $dur-base $ease-out,
+        background $dur-base $ease-out,
+        box-shadow $dur-base $ease-out;
+    }
 
     @include reduced-motion {
       transform: none;
-      transition: opacity $dur-base $ease-out, border-color $dur-base $ease-out, background $dur-base $ease-out;
+      transition:
+        opacity $dur-base $ease-out,
+        border-color $dur-base $ease-out,
+        background $dur-base $ease-out;
     }
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 1px;
       background: linear-gradient(
         to right,
@@ -214,42 +245,72 @@
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
       transform: translateY(-4px);
-      &::before { opacity: 1; }
+      &::before {
+        opacity: 1;
+      }
     }
 
     &[data-color="green"] {
-      &:hover { box-shadow: 0 20px 48px rgba($clr-primary, 0.12); }
-      .mission__card-icon { background: rgba($clr-primary, 0.15); color: $clr-primary; }
-      .mission__card-name { color: $clr-primary; }
+      &:hover {
+        box-shadow: 0 20px 48px rgba($clr-primary, 0.14);
+      }
+      .mission__card-icon {
+        background: rgba($clr-primary, 0.18);
+        color: $clr-primary;
+      }
+      .mission__card-name {
+        color: $clr-primary;
+      }
     }
     &[data-color="teal"] {
-      &:hover { box-shadow: 0 20px 48px rgba($clr-primary-light, 0.12); }
-      .mission__card-icon { background: rgba($clr-primary-light, 0.15); color: $clr-primary-light; }
-      .mission__card-name { color: $clr-primary-light; }
+      &:hover {
+        box-shadow: 0 20px 48px rgba($clr-primary-light, 0.14);
+      }
+      .mission__card-icon {
+        background: rgba($clr-primary-light, 0.18);
+        color: $clr-primary-light;
+      }
+      .mission__card-name {
+        color: $clr-primary-light;
+      }
     }
     &[data-color="warning"] {
-      &:hover { box-shadow: 0 20px 48px rgba($clr-warning, 0.14); }
-      .mission__card-icon { background: rgba($clr-warning, 0.15); color: $clr-warning; }
-      .mission__card-name { color: $clr-warning; }
+      &:hover {
+        box-shadow: 0 20px 48px rgba($clr-warning, 0.16);
+      }
+      .mission__card-icon {
+        background: rgba($clr-warning, 0.18);
+        color: $clr-warning;
+      }
+      .mission__card-name {
+        color: $clr-warning;
+      }
     }
     &[data-color="blue"] {
-      &:hover { box-shadow: 0 20px 48px rgba(88, 166, 255, 0.12); }
-      .mission__card-icon { background: rgba(88, 166, 255, 0.15); color: #58a6ff; }
-      .mission__card-name { color: #58a6ff; }
+      &:hover {
+        box-shadow: 0 20px 48px rgba(88, 166, 255, 0.14);
+      }
+      .mission__card-icon {
+        background: rgba(88, 166, 255, 0.18);
+        color: #58a6ff;
+      }
+      .mission__card-name {
+        color: #58a6ff;
+      }
     }
 
     @include sm {
-      padding: $sp-5 $sp-4;
+      padding: $sp-6 $sp-4 $sp-5;
       gap: $sp-4;
     }
   }
 
   &__card-icon {
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
     border-radius: $radius-lg;
     display: flex;
     align-items: center;
@@ -257,12 +318,18 @@
     flex-shrink: 0;
     @include transition(background);
 
-    svg { width: 24px; height: 24px; }
+    svg {
+      width: 26px;
+      height: 26px;
+    }
 
     @include sm {
-      width: 44px;
-      height: 44px;
-      svg { width: 20px; height: 20px; }
+      width: 48px;
+      height: 48px;
+      svg {
+        width: 22px;
+        height: 22px;
+      }
     }
   }
 
@@ -270,21 +337,23 @@
     display: flex;
     flex-direction: column;
     gap: $sp-2;
-    flex: 1;
+    align-items: center; // ← center text under icon
   }
 
   &__card-name {
-    font-size: $fz-lg;
+    font-size: $fz-xl;
     font-weight: $fw-bold;
     letter-spacing: $ls-tight;
     line-height: $lh-tight;
     @include transition(color);
 
-    @include sm { font-size: $fz-base; }
+    @include sm {
+      font-size: $fz-lg;
+    }
   }
 
   &__card-desc {
-    font-size: $fz-xs;
+    font-size: $fz-sm;
     color: rgba($clr-white, 0.5);
     line-height: 1.65;
     font-weight: $fw-medium;
@@ -295,14 +364,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $sp-4;
+    gap: $sp-3;
     text-align: center;
-    max-width: 600px;
+    max-width: 680px;
     padding-top: $sp-4;
     opacity: 0;
     transform: translateY(20px);
     transition:
-      opacity   0.8s $ease-out 0.2s,
+      opacity 0.8s $ease-out 0.2s,
       transform 0.8s $ease-out 0.2s;
 
     &.is-visible {
@@ -317,45 +386,47 @@
   }
 
   &__quote-mark {
-    font-size: 3rem;
+    font-size: 3.5rem;
     line-height: 1;
-    color: $clr-primary;
+    color: #a8b820; // ← olive-yellow matching Image 2 exactly
     font-family: Georgia, serif;
-    opacity: 0.6;
+    opacity: 0.9;
     user-select: none;
+    // no text-shadow, no filter — clean
   }
 
   &__quote-text {
-    font-size: clamp($fz-base, 2vw, $fz-lg);
+    font-size: clamp($fz-base, 2vw, $fz-xl);
     font-style: italic;
-    color: rgba($clr-white, 0.72);
+    color: rgba($clr-white, 0.8);
     line-height: 1.7;
     margin: 0;
 
-    @include sm { font-size: $fz-sm; }
+    @include sm {
+      font-size: $fz-sm;
+    }
   }
 
   // ── Bottom wave divider ───────────────────
-  // wave.jpg sits at the very bottom, full-width,
-  // transitioning the section into the next one
+  // Filled white+teal wave matching Image 2 reference exactly.
   &__wave {
     position: relative;
     z-index: 1;
     width: 100%;
-    line-height: 0;             // kills inline gap under img
+    line-height: 0;
     display: block;
+    margin-top: 0; // ← was $sp-8, removes the gap above wave
+    margin-bottom: -2px; // ← kills 1-2px subpixel seam between wave and next section
 
-    img {
+    svg {
       display: block;
       width: 100%;
       height: auto;
-      object-fit: cover;
-      object-position: top center;
+      min-height: 100px;
 
-      // clamp height so it doesn't get too tall on large screens
-      max-height: 180px;
-
-      @include sm { max-height: 100px; }
+      @include sm {
+        min-height: 70px;
+      }
     }
   }
 }

@@ -378,10 +378,10 @@
       <!-- /hero -->
 
       <!-- ── Mission ───────────────────────────────────────────────────── -->
+      <!-- ── Mission ───────────────────────────────────────────────────── -->
       <section class="mission" id="mission" aria-labelledby="mission-title">
-        <!-- waves.jpg: subtle background texture across the whole section -->
+        <!-- waves.jpg: subtle background texture -->
         <div class="mission__bg-waves" aria-hidden="true"></div>
-
         <!-- decorative colour blobs -->
         <div class="mission__bg-dots" aria-hidden="true"></div>
 
@@ -389,16 +389,13 @@
           <!-- Header -->
           <header class="mission__header">
             <span class="mission__label">Our Mission</span>
-
             <h2 class="mission__title" id="mission-title">Our Mission</h2>
-
             <p class="mission__intro">
               At EcoVolt Energy, our mission is to revolutionize global energy
               access through intelligent renewable technologies that reduce
               carbon emissions, improve energy efficiency, and create a cleaner
               future for generations to come.
             </p>
-
             <p class="mission__tagline">
               We believe sustainable energy should be:
             </p>
@@ -503,18 +500,31 @@
         </div>
         <!-- /mission__container -->
 
-        <!-- wave.jpg: bottom section divider -->
-        <div class="mission__wave" aria-hidden="true">
-          <img
-            src="/assets/images/sections/wave.jpg"
-            alt=""
-            loading="lazy"
-            decoding="async"
-            width="1920"
-            height="180"
-          />
-        </div>
+        <!--
+    Bottom wave divider — pure inline SVG, no image file needed.
+    Two layered paths mirror the reference: dark back wave + bright front wave.
+    viewBox width 1440 so it scales cleanly at all breakpoints.
+  -->
+       <div class="mission__wave" aria-hidden="true">
+  <svg
+    viewBox="0 0 1440 140"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
+  >
+    <!-- Back layer: teal border/crest line -->
+    <path
+      d="M0,60 C240,110 480,10 720,55 C960,98 1200,15 1440,50 L1440,140 L0,140 Z"
+      fill="#0d3d30"
+    />
+    <!-- Front layer: pure black — merges seamlessly with next section -->
+    <path
+      d="M0,75 C220,118 460,28 720,68 C960,108 1200,30 1440,65 L1440,140 L0,140 Z"
+      fill="#000000"
+    />
+  </svg>
+</div>
       </section>
+      <!-- /mission -->
       <!-- /mission -->
     </main>
 
