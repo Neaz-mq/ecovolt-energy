@@ -73,7 +73,7 @@
     grid-template-columns: 1fr 380px;
     align-items: center;
     gap: clamp(12px, 1.5vw, 24px);
-    padding-top: 130px;
+    padding-top: 80px;
     padding-bottom: $sp-20;
     min-height: 100vh;
     overflow: hidden;
@@ -85,18 +85,18 @@
 
     @include lg {
       grid-template-columns: 1fr;
-      padding-top: 140px;
+      padding-top: 10px;
       padding-bottom: $sp-14;
       min-height: auto;
       gap: $sp-10;
     }
 
     @include md {
-      padding-top: 110px;
+      padding-top: 10px;
     }
 
     @include sm {
-      padding-top: 96px;
+      padding-top: 4px;
       padding-bottom: $sp-10;
       gap: $sp-8;
     }
@@ -159,7 +159,7 @@
     }
 
     @include sm {
-      font-size: clamp(2.4rem, 9.5vw, 3.2rem);
+      font-size: clamp(2.1rem, 9.5vw, 2.1rem);
       line-height: 1.1;
       letter-spacing: -0.02em;
     }
@@ -307,7 +307,7 @@
       scrollbar-width: none;
       gap: 0;
       padding: 0;
-      padding-top: $sp-6; 
+      padding-top: $sp-6;
       width: 100%;
       max-width: 100%;
       -webkit-mask-image: none;
@@ -636,7 +636,7 @@
     &.is-active {
       width: 20px;
       border-radius: 3px;
-      background: #1E5B4D;
+      background: #1e5b4d;
     }
   }
 

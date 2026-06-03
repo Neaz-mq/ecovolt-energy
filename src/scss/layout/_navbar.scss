@@ -57,7 +57,7 @@
       grid-template-columns: 1fr auto;
       padding-block: $sp-4;
     }
-    @include respond(sm) { padding-block: $sp-3; }
+    @include respond(sm) { padding-block: $sp-2; }
     @include respond(xs) { padding-block: 10px; }
 
     .navbar.scrolled & {
@@ -87,8 +87,8 @@
       @include respond(xl) { height: 46px; }
       @include respond(lg) { height: 36px; }
       @include respond(md) { height: 32px; }
-      @include respond(sm) { height: 28px; }
-      @include respond(xs) { height: 24px; }
+      @include respond(sm) { height: 32px; }
+      @include respond(xs) { height: 28px; }
 
       &:hover { opacity: 0.85; }
     }
