@@ -25,48 +25,44 @@
     display: block;
   }
 
-&__overlay {
-  position: absolute;
-  inset: 0;
+  &__overlay {
+    position: absolute;
+    inset: 0;
 
-  background:
-    radial-gradient(
-      ellipse 50% 40% at 70% 65%,
-      rgba(140, 210, 170, 0.22) 0%,
-      rgba(140, 210, 170, 0.08) 45%,
-      transparent 100%
-    ),
-
-    linear-gradient(
-      to right,
-      rgba(5, 25, 14, 0.55) 0%,
-      rgba(5, 25, 14, 0.30) 20%,
-      rgba(5, 25, 14, 0.12) 35%,
-      transparent 52%
-    ),
-
-    radial-gradient(
-      ellipse 80% 80% at 60% 50%,
-      rgba(20, 80, 50, 0.10) 0%,
-      rgba(20, 80, 50, 0.18) 70%,
-      rgba(5, 25, 14, 0.28) 100%
-    ),
-
-    linear-gradient(
-      to bottom,
-      rgba(2, 10, 5, 0.75) 0%,
-      rgba(2, 10, 5, 0.25) 18%,
-      transparent 35%
-    ),
-
-    linear-gradient(
-      to top,
-      rgba(2, 10, 5, 0.85) 0%,
-      rgba(2, 10, 5, 0.45) 18%,
-      rgba(2, 10, 5, 0.15) 30%,
-      transparent 45%
-    );
-}
+    background:
+      radial-gradient(
+        ellipse 50% 40% at 70% 65%,
+        rgba(140, 210, 170, 0.22) 0%,
+        rgba(140, 210, 170, 0.08) 45%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(5, 25, 14, 0.55) 0%,
+        rgba(5, 25, 14, 0.3) 20%,
+        rgba(5, 25, 14, 0.12) 35%,
+        transparent 52%
+      ),
+      radial-gradient(
+        ellipse 80% 80% at 60% 50%,
+        rgba(20, 80, 50, 0.1) 0%,
+        rgba(20, 80, 50, 0.18) 70%,
+        rgba(5, 25, 14, 0.28) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(2, 10, 5, 0.75) 0%,
+        rgba(2, 10, 5, 0.25) 18%,
+        transparent 35%
+      ),
+      linear-gradient(
+        to top,
+        rgba(2, 10, 5, 0.85) 0%,
+        rgba(2, 10, 5, 0.45) 18%,
+        rgba(2, 10, 5, 0.15) 30%,
+        transparent 45%
+      );
+  }
 
   // ── Container ────────────────────────────
   &__container {
@@ -95,7 +91,9 @@
       gap: $sp-10;
     }
 
-    @include md { padding-top: 110px; }
+    @include md {
+      padding-top: 110px;
+    }
 
     @include sm {
       padding-top: 96px;
@@ -125,8 +123,12 @@
     min-width: 0;
     overflow: hidden;
 
-    @include lg { gap: $sp-5; }
-    @include sm { gap: $sp-5; }
+    @include lg {
+      gap: $sp-5;
+    }
+    @include sm {
+      gap: $sp-5;
+    }
   }
 
   &__title {
@@ -138,7 +140,7 @@
     opacity: 0;
     transform: translateY(40px);
     transition:
-      opacity   0.9s $ease-out,
+      opacity 0.9s $ease-out,
       transform 0.9s $ease-snap;
 
     &.is-visible {
@@ -162,9 +164,15 @@
       letter-spacing: -0.02em;
     }
 
-    @include respond-min(2xl) { font-size: clamp(3.2rem, 3.8vw, 5rem); }
-    @include respond-min(3xl) { font-size: clamp(4rem, 3.8vw, 5.8rem); }
-    @include respond-min(4xl) { font-size: 5.8rem; }
+    @include respond-min(2xl) {
+      font-size: clamp(3.2rem, 3.8vw, 5rem);
+    }
+    @include respond-min(3xl) {
+      font-size: clamp(4rem, 3.8vw, 5.8rem);
+    }
+    @include respond-min(4xl) {
+      font-size: 5.8rem;
+    }
   }
 
   &__actions {
@@ -175,7 +183,7 @@
     opacity: 0;
     transform: translateY(25px);
     transition:
-      opacity   0.8s $ease-out  0.2s,
+      opacity 0.8s $ease-out 0.2s,
       transform 0.8s $ease-snap 0.2s;
 
     &.is-visible {
@@ -203,7 +211,9 @@
       }
     }
 
-    @media (max-width: 360px) { flex-wrap: wrap; }
+    @media (max-width: 360px) {
+      flex-wrap: wrap;
+    }
   }
 
   &__desc {
@@ -214,7 +224,7 @@
     opacity: 0;
     transform: translateY(20px);
     transition:
-      opacity   0.8s $ease-out 0.38s,
+      opacity 0.8s $ease-out 0.38s,
       transform 0.8s $ease-out 0.38s;
 
     &.is-visible {
@@ -230,19 +240,28 @@
     @include lg {
       max-width: 560px;
       font-size: $fz-base;
-      color: rgba(210, 235, 220, 0.68);
+      color: rgb(255, 255, 255);
     }
 
     @include sm {
-      font-size: $fz-xs;
+      font-size: $fz-sm;
       max-width: 88%;
       line-height: 1.75;
-      color: rgba(210, 235, 220, 0.6);
+      color: rgb(255, 255, 255);
     }
 
-    @include respond-min(2xl) { font-size: $fz-md; max-width: 560px; }
-    @include respond-min(3xl) { font-size: $fz-lg; max-width: 640px; }
-    @include respond-min(4xl) { font-size: $fz-lg; max-width: 640px; }
+    @include respond-min(2xl) {
+      font-size: $fz-md;
+      max-width: 560px;
+    }
+    @include respond-min(3xl) {
+      font-size: $fz-lg;
+      max-width: 640px;
+    }
+    @include respond-min(4xl) {
+      font-size: $fz-lg;
+      max-width: 640px;
+    }
   }
 
   // ── Right / Bottom: Stat Cards ────────────
@@ -274,7 +293,9 @@
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    @include md { gap: $sp-2; }
+    @include md {
+      gap: $sp-2;
+    }
 
     @include sm {
       display: flex;
@@ -286,12 +307,15 @@
       scrollbar-width: none;
       gap: 0;
       padding: 0;
+      padding-top: $sp-6; 
       width: 100%;
       max-width: 100%;
       -webkit-mask-image: none;
       mask-image: none;
 
-      &::-webkit-scrollbar { display: none; }
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
 
     @include respond-min(2xl) {
@@ -311,118 +335,147 @@
     }
   }
 
-// ── SINGLE &__stat-card block ─────────────
-&__stat-card {
-  position: relative;
-  overflow: hidden;
+  // ── SINGLE &__stat-card block ─────────────
+  &__stat-card {
+    position: relative;
+    overflow: hidden;
 
-  display: flex;
-  align-items: center;
-  gap: $sp-6;
-
-  min-height: 118px;
-  padding: $sp-7 $sp-6;
-  border-radius: 28px;
-  cursor: default;
-
-  will-change: transform;
-  isolation: isolate;
-
-  clip-path: inset(0 100% 0 0 round 28px);
-  transition:
-    clip-path  0.9s $ease-snap,
-    transform  0.35s ease,
-    box-shadow 0.35s ease;
-
-  &.is-visible {
-    clip-path: inset(0 0 0 0 round 28px);
-  }
-
-  &:hover { transform: translateY(-4px); }
-
-  &:nth-child(1) { transition-delay: 0.10s; }
-  &:nth-child(2) { transition-delay: 0.22s; }
-  &:nth-child(3) { transition-delay: 0.34s; }
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.16) 0%,
-      rgba(255, 255, 255, 0.05) 35%,
-      transparent 100%
-    );
-    pointer-events: none;
-    z-index: 1;
-  }
-@include respond-min(xl) { padding: $sp-2 $sp-6; gap: $sp-5; }
-  @include respond-min(2xl) { padding: $sp-6 $sp-6; gap: $sp-6; }
-  @include respond-min(3xl) { padding: $sp-10 $sp-10; gap: $sp-7; }
-  @include respond-min(4xl) { padding: $sp-10 $sp-10; gap: $sp-7; }
-
-  @include lg {
-    flex-direction: row;
+    display: flex;
     align-items: center;
-    text-align: left;
-    padding: $sp-6 $sp-4;
-    gap: $sp-4;
-    min-height: auto;
-  }
+    gap: $sp-6;
 
-  @include md { padding: $sp-6 $sp-4; gap: $sp-3; }
+    padding: $sp-4 $sp-6;
+    border-radius: 28px;
+    cursor: default;
 
-  @include sm {
-    flex: none;
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    min-height: 108px;
-    width: 100%;
-    min-width: 100%;
-    padding: $sp-6 $sp-6;
-    gap: $sp-5;
-    box-sizing: border-box;
-    scroll-snap-align: start;
-  }
+    will-change: transform;
+    isolation: isolate;
 
-  // ── Glass variant ──────────────────────
-  &--glass {
-    background: #1e5b4dd0;
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    clip-path: inset(0 100% 0 0 round 28px);
+    transition:
+      clip-path 0.9s $ease-snap,
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
 
-    .hero__stat-icon {
-      color: $clr-white;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 50%;
+    &.is-visible {
+      clip-path: inset(0 0 0 0 round 28px);
     }
-    .hero__stat-num   { color: $clr-white; }
-    .hero__stat-label { color: rgba(255, 255, 255, 0.70); }
 
-    &:hover { box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25); }
-  }
-
-  // ── Accent variant ─────────────────────
-  &--accent {
-    background: #a58d2a9a;
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
-    border: 1px solid rgba($clr-warning, 0.30);
-
-    .hero__stat-icon {
-      color: $clr-warning;
-      background: rgba(255, 255, 255, 0.18);
-      border-radius: 50%;
+    &:hover {
+      transform: translateY(-4px);
     }
-    .hero__stat-num   { color: $clr-white; }
-    .hero__stat-label { color: rgba(255, 255, 255, 0.75); }
 
-    &:hover { box-shadow: 0 16px 48px rgba($clr-warning, 0.25); }
+    &:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+    &:nth-child(2) {
+      transition-delay: 0.22s;
+    }
+    &:nth-child(3) {
+      transition-delay: 0.34s;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0.05) 35%,
+        transparent 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+    @include respond-min(xl) {
+      padding: $sp-4 $sp-6;
+      gap: $sp-5;
+      min-height: auto;
+    }
+    @include respond-min(2xl) {
+      padding: $sp-6 $sp-6;
+      gap: $sp-6;
+      min-height: auto;
+    }
+    @include respond-min(3xl) {
+      padding: $sp-10 $sp-10;
+      gap: $sp-7;
+    }
+    @include respond-min(4xl) {
+      padding: $sp-10 $sp-10;
+      gap: $sp-7;
+    }
+
+    @include lg {
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      padding: $sp-6 $sp-4;
+      gap: $sp-4;
+      min-height: auto;
+    }
+
+    @include md {
+      padding: $sp-6 $sp-4;
+      gap: $sp-3;
+      min-height: auto;
+    }
+
+    @include sm {
+      flex: none;
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      width: 100%;
+      min-width: 100%;
+      padding: $sp-6 $sp-6;
+      gap: $sp-5;
+      scroll-snap-align: start;
+    }
+
+    // ── Glass variant ──────────────────────
+    &--glass {
+      background: #1e5b4dd0;
+
+      .hero__stat-icon {
+        color: $clr-white;
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .hero__stat-num {
+        color: $clr-white;
+      }
+      .hero__stat-label {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      &:hover {
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    // ── Accent variant ─────────────────────
+    &--accent {
+      background: #a58d2a9a;
+      backdrop-filter: blur(0px);
+
+      .hero__stat-icon {
+        color: $clr-warning;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+      }
+      .hero__stat-num {
+        color: $clr-white;
+      }
+      .hero__stat-label {
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      &:hover {
+        box-shadow: 0 16px 48px rgba($clr-warning, 0.25);
+      }
+    }
   }
-}
 
   &__stat-icon {
     width: 50px;
@@ -434,25 +487,61 @@
     flex-shrink: 0;
     @include transition(background);
 
-    @include lg { width: 42px; height: 42px; }
-    @include md { width: 38px; height: 38px; }
-    @include sm { width: 52px; height: 52px; }
+    @include lg {
+      width: 42px;
+      height: 42px;
+    }
+    @include md {
+      width: 38px;
+      height: 38px;
+    }
+    @include sm {
+      width: 52px;
+      height: 52px;
+    }
 
-    @include respond-min(2xl) { width: 60px; height: 60px; }
-    @include respond-min(3xl) { width: 72px; height: 72px; }
-    @include respond-min(4xl) { width: 72px; height: 72px; }
+    @include respond-min(2xl) {
+      width: 60px;
+      height: 60px;
+    }
+    @include respond-min(3xl) {
+      width: 72px;
+      height: 72px;
+    }
+    @include respond-min(4xl) {
+      width: 72px;
+      height: 72px;
+    }
 
     svg {
       width: 22px;
       height: 22px;
 
-      @include lg { width: 19px; height: 19px; }
-      @include md { width: 17px; height: 17px; }
-      @include sm { width: 22px; height: 22px; }
+      @include lg {
+        width: 19px;
+        height: 19px;
+      }
+      @include md {
+        width: 17px;
+        height: 17px;
+      }
+      @include sm {
+        width: 22px;
+        height: 22px;
+      }
 
-      @include respond-min(2xl) { width: 28px; height: 28px; }
-      @include respond-min(3xl) { width: 34px; height: 34px; }
-      @include respond-min(4xl) { width: 34px; height: 34px; }
+      @include respond-min(2xl) {
+        width: 28px;
+        height: 28px;
+      }
+      @include respond-min(3xl) {
+        width: 34px;
+        height: 34px;
+      }
+      @include respond-min(4xl) {
+        width: 34px;
+        height: 34px;
+      }
     }
   }
 
@@ -469,13 +558,25 @@
     line-height: $lh-tight;
     white-space: nowrap;
 
-    @include lg  { font-size: $fz-lg; }
-    @include md  { font-size: $fz-base; }
-    @include sm  { font-size: $fz-2xl; }
+    @include lg {
+      font-size: $fz-lg;
+    }
+    @include md {
+      font-size: $fz-base;
+    }
+    @include sm {
+      font-size: $fz-2xl;
+    }
 
-    @include respond-min(2xl) { font-size: $fz-2xl; }
-    @include respond-min(3xl) { font-size: clamp(2rem, 2.5vw, 3rem); }
-    @include respond-min(4xl) { font-size: 3rem; }
+    @include respond-min(2xl) {
+      font-size: $fz-2xl;
+    }
+    @include respond-min(3xl) {
+      font-size: clamp(2rem, 2.5vw, 3rem);
+    }
+    @include respond-min(4xl) {
+      font-size: 3rem;
+    }
 
     sub {
       font-size: 0.5em;
@@ -489,16 +590,24 @@
     font-weight: $fw-medium;
     letter-spacing: $ls-normal;
 
-    @include lg { font-size: $fz-xs; }
+    @include lg {
+      font-size: $fz-xs;
+    }
 
     @include sm {
       font-size: $fz-xs;
       letter-spacing: 0.04em;
     }
 
-    @include respond-min(2xl) { font-size: $fz-sm; }
-    @include respond-min(3xl) { font-size: $fz-base; }
-    @include respond-min(4xl) { font-size: $fz-base; }
+    @include respond-min(2xl) {
+      font-size: $fz-sm;
+    }
+    @include respond-min(3xl) {
+      font-size: $fz-base;
+    }
+    @include respond-min(4xl) {
+      font-size: $fz-base;
+    }
   }
 
   // ── Slider Dot Indicators ─────────────────
@@ -520,14 +629,14 @@
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.22);
     transition:
-      width      0.35s $ease-snap,
+      width 0.35s $ease-snap,
       background 0.35s $ease-out;
     flex-shrink: 0;
 
     &.is-active {
       width: 20px;
       border-radius: 3px;
-      background: $clr-primary;
+      background: #1E5B4D;
     }
   }
 
@@ -550,7 +659,9 @@
       opacity: 1;
     }
 
-    @include md { display: none; }
+    @include md {
+      display: none;
+    }
   }
 
   &__scroll-text {
@@ -574,16 +685,25 @@
       animation: heroScrollBounce 1.8s $ease-in-out 0.2s infinite;
     }
 
-    @include reduced-motion { animation: none; }
+    @include reduced-motion {
+      animation: none;
+    }
   }
 }
 
 // ── Keyframes ────────────────────────────────
 @keyframes heroScrollShow {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes heroScrollBounce {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
 }
