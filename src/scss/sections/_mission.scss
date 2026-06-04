@@ -356,7 +356,7 @@
   // ── Quote waves ──────────────────────────
   // Fills entire blockquote top→bottom.
   // Large padding-top means waves are visible above the centered text.
-  &__quote-waves {
+ &__quote-waves {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -364,7 +364,7 @@
 
   svg {
     position: absolute;
-    bottom: 0;    // ← anchor waves to bottom so they sit behind the wave divider
+    top: 0;       // ← top, not bottom — arches grow from top down
     left: 0;
     width: 100%;
     height: 100%;
