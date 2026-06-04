@@ -225,7 +225,7 @@
             class="hero__bg-img"
             loading="eager"
             fetchpriority="high"
-            decoding="async"
+            decoding="sync"
             width="1920"
             height="1080"
           />
@@ -374,12 +374,13 @@
             <polyline points="6 9 12 15 18 9" />
           </svg>
         </div>
-        
       </section>
       <!-- /hero -->
 
       <!-- ── Mission ───────────────────────────────────────────────────── -->
       <section class="mission" id="mission" aria-labelledby="mission-title">
+        <!-- ── Hero→Mission shadow transition ───────────────────────────── -->
+
         <div class="mission__container">
           <!-- Header -->
           <header class="mission__header">

@@ -7,7 +7,6 @@
   background: #000000;
   overflow: visible;
   padding: $sp-24 0 0;
-  padding-bottom: 0;
 
   @include lg {
     padding-top: $sp-20;
@@ -19,11 +18,30 @@
     padding-top: $sp-14;
   }
 
+    // ── Top shadow overlay (hero → mission transition) ─────────────────────
+&::before {
+  content: "";
+  position: absolute;
+  top: -160px;           // bleeds UP into hero
+  left: 0;
+  width: 100%;
+  height: 220px;         // total fade height
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.55) 35%,
+    rgba(0, 0, 0, 0.85) 65%,
+    #000000 100%
+  );
+  z-index: 5;            // above hero bg/overlay, below mission content
+  pointer-events: none;
+}
+
   // ── Container ────────────────────────────
   &__container {
     @include container;
     position: relative;
-    z-index: 1;
+    z-index: 6;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,6 +57,8 @@
       padding-bottom: $sp-12;
     }
   }
+
+
 
   // ── Header ───────────────────────────────
   &__header {
