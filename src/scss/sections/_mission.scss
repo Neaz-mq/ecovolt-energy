@@ -314,116 +314,113 @@
     font-weight: $fw-medium;
   }
 
-  &__quote {
-    position: relative;
+  // ── Quote ────────────────────────────────
+  // Large padding-top gives waves visible room above the text.
+  // padding-bottom 0 so quote sits flush against the wave divider.
+  // No min-height, no spacer div, no justify-content flex-end.
+&__quote {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-3;
+  text-align: center;
+  padding: $sp-20 $sp-6 180px; // ← generous top, fixed px bottom to clear wave
+  background: transparent;
+  overflow: hidden;
+  z-index: 4;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s $ease-out 0.2s,
+    transform 0.8s $ease-out 0.2s;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @include reduced-motion {
+    transform: none;
+    transition: opacity $dur-base $ease-out;
+  }
+
+  @include sm {
+    padding: $sp-16 $sp-4 140px;
+  }
+}
+
+
+  // ── Quote waves ──────────────────────────
+  // Fills entire blockquote top→bottom.
+  // Large padding-top means waves are visible above the centered text.
+  &__quote-waves {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  svg {
+    position: absolute;
+    bottom: 0;    // ← anchor waves to bottom so they sit behind the wave divider
+    left: 0;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: $sp-3;
-    text-align: center;
-    padding: $sp-14 $sp-6 $sp-12;
-    background: transparent;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-      opacity 0.8s $ease-out 0.2s,
-      transform 0.8s $ease-out 0.2s;
-
-    &.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @include reduced-motion {
-      transform: none;
-      transition: opacity $dur-base $ease-out;
-    }
-
-    @include sm {
-      padding: $sp-10 $sp-4 $sp-8;
-    }
+    height: 100%;
   }
+}
 
-  &__quote-waves {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
+&__quote-mark {
+  position: relative;
+  z-index: 1;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: #a8b820;
+  font-family: Georgia, serif;
+  opacity: 0.9;
+  user-select: none;
+}
 
-    svg {
-      position: absolute;
-      bottom: 0; // ← anchored to bottom, waves flow up from here
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+&__quote-text {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  padding: 0 $sp-6;
+  font-size: clamp($fz-base, 2vw, $fz-xl);
+  font-style: italic;
+  color: rgba($clr-white, 0.85);
+  line-height: 1.7;
+  margin: 0;
+
+  @include sm {
+    font-size: $fz-sm;
+    padding: 0 $sp-4;
   }
-
-  &__quote-waves {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-
-    svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &__quote-mark {
-    position: relative;
-    z-index: 1;
-    font-size: 3.5rem;
-    line-height: 1;
-    color: #a8b820;
-    font-family: Georgia, serif;
-    opacity: 0.9;
-    user-select: none;
-  }
-
-  &__quote-text {
-    position: relative;
-    z-index: 1;
-    max-width: 680px;
-    padding: 0 $sp-6;
-    font-size: clamp($fz-base, 2vw, $fz-xl);
-    font-style: italic;
-    color: rgba($clr-white, 0.85);
-    line-height: 1.7;
-    margin: 0;
-
-    @include sm {
-      font-size: $fz-sm;
-      padding: 0 $sp-4;
-    }
   }
 
   // ── Bottom wave divider ───────────────────
-  &__wave {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    line-height: 0;
+// ── Bottom wave divider ───────────────────
+&__wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  line-height: 0;
+  display: block;
+  margin: 0;
+  pointer-events: none;
+
+  svg {
     display: block;
-    margin-top: 0;
-    margin-bottom: -2px;
+    width: 100%;
+    height: auto;
+    min-height: 140px;
 
-    svg {
-      display: block;
-      width: 100%;
-      height: auto;
-      min-height: 100px;
-
-      @include sm {
-        min-height: 70px;
-      }
+    @include sm {
+      min-height: 90px;
     }
   }
+}
 }
