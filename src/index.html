@@ -378,13 +378,7 @@
       <!-- /hero -->
 
       <!-- ── Mission ───────────────────────────────────────────────────── -->
-      <!-- ── Mission ───────────────────────────────────────────────────── -->
       <section class="mission" id="mission" aria-labelledby="mission-title">
-        <!-- waves.jpg: subtle background texture -->
-        <div class="mission__bg-waves" aria-hidden="true"></div>
-        <!-- decorative colour blobs -->
-        <div class="mission__bg-dots" aria-hidden="true"></div>
-
         <div class="mission__container">
           <!-- Header -->
           <header class="mission__header">
@@ -488,43 +482,66 @@
             </article>
           </div>
           <!-- /mission__cards -->
-
-          <!-- Quote -->
-          <blockquote class="mission__quote" data-anim="mission-quote">
-            <span class="mission__quote-mark" aria-hidden="true">"</span>
-            <p class="mission__quote-text">
-              Sustainability is no longer optional — it's the foundation of
-              tomorrow.
-            </p>
-          </blockquote>
         </div>
-        <!-- /mission__container -->
+        <!-- /mission__container  ← blockquote is now OUTSIDE this div -->
 
-        <!--
-    Bottom wave divider — pure inline SVG, no image file needed.
-    Two layered paths mirror the reference: dark back wave + bright front wave.
-    viewBox width 1440 so it scales cleanly at all breakpoints.
-  -->
-       <div class="mission__wave" aria-hidden="true">
+        <!-- Quote — direct child of section, naturally full width -->
+        <blockquote class="mission__quote" data-anim="mission-quote">
+          <div class="mission__quote-waves" aria-hidden="true">
   <svg
-    viewBox="0 0 1440 140"
     xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 400"
     preserveAspectRatio="none"
+    width="100%"
+    height="100%"
   >
-    <!-- Back layer: teal border/crest line -->
-    <path
-      d="M0,60 C240,110 480,10 720,55 C960,98 1200,15 1440,50 L1440,140 L0,140 Z"
-      fill="#0d3d30"
-    />
-    <!-- Front layer: pure black — merges seamlessly with next section -->
-    <path
-      d="M0,75 C220,118 460,28 720,68 C960,108 1200,30 1440,65 L1440,140 L0,140 Z"
-      fill="#000000"
-    />
+    <g fill="none" stroke="#4ecba0" stroke-width="0.7" opacity="0.28">
+      <!-- Each path mirrors the bottom wave's S-curve: deep dip left, rise center, dip right -->
+      <path d="M0,400 C120,378 280,398 480,385 C640,373 780,393 960,380 C1100,369 1280,388 1440,375 L1440,400 Z" fill="none"/>
+      <path d="M0,400 C120,378 280,398 480,385 C640,373 780,393 960,380 C1100,369 1280,388 1440,375"/>
+      <path d="M0,383 C120,360 280,381 480,367 C640,354 780,375 960,362 C1100,350 1280,371 1440,357"/>
+      <path d="M0,366 C120,342 280,364 480,349 C640,335 780,357 960,343 C1100,331 1280,353 1440,339"/>
+      <path d="M0,349 C120,324 280,347 480,331 C640,316 780,339 960,324 C1100,312 1280,335 1440,321"/>
+      <path d="M0,332 C120,306 280,330 480,313 C640,297 780,321 960,305 C1100,293 1280,317 1440,303"/>
+      <path d="M0,315 C120,288 280,313 480,295 C640,278 780,303 960,286 C1100,274 1280,299 1440,285"/>
+      <path d="M0,298 C120,270 280,296 480,277 C640,259 780,285 960,267 C1100,255 1280,281 1440,267"/>
+      <path d="M0,281 C120,252 280,279 480,259 C640,240 780,267 960,248 C1100,236 1280,263 1440,249"/>
+      <path d="M0,264 C120,234 280,262 480,241 C640,221 780,249 960,229 C1100,217 1280,245 1440,231"/>
+      <path d="M0,247 C120,216 280,245 480,223 C640,202 780,231 960,210 C1100,198 1280,227 1440,213"/>
+      <path d="M0,230 C120,198 280,228 480,205 C640,183 780,213 960,191 C1100,179 1280,209 1440,195"/>
+      <path d="M0,213 C120,180 280,211 480,187 C640,164 780,195 960,172 C1100,160 1280,191 1440,177"/>
+      <path d="M0,196 C120,162 280,194 480,169 C640,145 780,177 960,153 C1100,141 1280,173 1440,159"/>
+      <path d="M0,179 C120,144 280,177 480,151 C640,126 780,159 960,134 C1100,122 1280,155 1440,141"/>
+      <path d="M0,162 C120,126 280,160 480,133 C640,107 780,141 960,115 C1100,103 1280,137 1440,123"/>
+    </g>
   </svg>
 </div>
+          <span class="mission__quote-mark" aria-hidden="true">"</span>
+          <p class="mission__quote-text">
+            Sustainability is no longer optional — it's the foundation of
+            tomorrow.
+          </p>
+        </blockquote>
+
+        <!-- Bottom wave divider -->
+        <div class="mission__wave" aria-hidden="true">
+          <svg
+            viewBox="0 0 1440 160"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            <rect width="1440" height="160" fill="#ffffff" />
+            <path
+              d="M0,90 C120,40 280,130 480,70 C640,20 780,110 960,60 C1100,20 1280,100 1440,55 L1440,0 L0,0 Z"
+              fill="#0d3d30"
+            />
+            <path
+              d="M0,100 C120,52 280,140 480,82 C640,32 780,118 960,72 C1100,34 1280,108 1440,68 L1440,0 L0,0 Z"
+              fill="#000000"
+            />
+          </svg>
+        </div>
       </section>
-      <!-- /mission -->
       <!-- /mission -->
     </main>
 

@@ -4,8 +4,8 @@
 
 .mission {
   position: relative;
-  background: #071a13; // ← was #000000, now matches wave front fill
-  overflow: hidden;
+  background: #000000;
+  overflow: visible;
   padding: $sp-24 0 0;
   padding-bottom: 0;
 
@@ -17,50 +17,6 @@
   }
   @include sm {
     padding-top: $sp-14;
-  }
-
-  // ── Background wave texture ───────────────
-  &__bg-waves {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background: url("/assets/images/sections/waves.jpg") center center / cover
-      no-repeat;
-    opacity: 0.18; // ← bump up so texture is visible on black bg
-    mix-blend-mode: screen;
-  }
-  // ── Background blobs + particles ─────────
-  &__bg-dots {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.05;
-    }
-
-    &::before {
-      width: 600px;
-      height: 600px;
-      top: -200px;
-      left: -200px;
-      background: radial-gradient(circle, $clr-primary 0%, transparent 70%);
-    }
-
-    &::after {
-      width: 500px;
-      height: 500px;
-      bottom: 0;
-      right: -100px;
-      background: radial-gradient(circle, $clr-warning 0%, transparent 70%);
-    }
   }
 
   // ── Container ────────────────────────────
@@ -98,7 +54,6 @@
     }
   }
 
-  // Hide the pill label — not shown in target design
   &__label {
     display: none;
   }
@@ -162,8 +117,8 @@
   &__card {
     position: relative;
     display: flex;
-    flex-direction: column; // ← icon on top, text below
-    align-items: center; // ← everything centered
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     gap: $sp-5;
     padding: $sp-8 $sp-6 $sp-7;
@@ -337,7 +292,7 @@
     display: flex;
     flex-direction: column;
     gap: $sp-2;
-    align-items: center; // ← center text under icon
+    align-items: center;
   }
 
   &__card-name {
@@ -359,15 +314,18 @@
     font-weight: $fw-medium;
   }
 
-  // ── Quote ────────────────────────────────
   &__quote {
+    position: relative;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: $sp-3;
     text-align: center;
-    max-width: 680px;
-    padding-top: $sp-4;
+    padding: $sp-14 $sp-6 $sp-12;
+    background: transparent;
+    overflow: hidden;
     opacity: 0;
     transform: translateY(20px);
     transition:
@@ -383,40 +341,79 @@
       transform: none;
       transition: opacity $dur-base $ease-out;
     }
+
+    @include sm {
+      padding: $sp-10 $sp-4 $sp-8;
+    }
+  }
+
+  &__quote-waves {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    svg {
+      position: absolute;
+      bottom: 0; // ← anchored to bottom, waves flow up from here
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__quote-waves {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__quote-mark {
+    position: relative;
+    z-index: 1;
     font-size: 3.5rem;
     line-height: 1;
-    color: #a8b820; // ← olive-yellow matching Image 2 exactly
+    color: #a8b820;
     font-family: Georgia, serif;
     opacity: 0.9;
     user-select: none;
-    // no text-shadow, no filter — clean
   }
 
   &__quote-text {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    padding: 0 $sp-6;
     font-size: clamp($fz-base, 2vw, $fz-xl);
     font-style: italic;
-    color: rgba($clr-white, 0.8);
+    color: rgba($clr-white, 0.85);
     line-height: 1.7;
     margin: 0;
 
     @include sm {
       font-size: $fz-sm;
+      padding: 0 $sp-4;
     }
   }
 
   // ── Bottom wave divider ───────────────────
-  // Filled white+teal wave matching Image 2 reference exactly.
   &__wave {
     position: relative;
     z-index: 1;
     width: 100%;
     line-height: 0;
     display: block;
-    margin-top: 0; // ← was $sp-8, removes the gap above wave
-    margin-bottom: -2px; // ← kills 1-2px subpixel seam between wave and next section
+    margin-top: 0;
+    margin-bottom: -2px;
 
     svg {
       display: block;
