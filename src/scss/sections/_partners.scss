@@ -97,12 +97,16 @@
   }
 
   // ── Single brand item ─────────────────────
-  &__item {
-    display: flex;
-    align-items: center;
-    padding: 0 56px;
-  }
+  // ── Single brand item ─────────────────────
+&__item {
+  display: flex;
+  align-items: center;
+  padding: 0 56px;
 
+  @include sm {
+    padding: 0 28px;   // ← half gap on mobile
+  }
+}
   // ── Brand name text ───────────────────────
   &__name {
     font-size: 18px;
