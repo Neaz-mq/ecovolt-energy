@@ -388,15 +388,17 @@
             viewBox="0 0 1440 700"
             preserveAspectRatio="xMidYMid slice"
           >
-            <!-- top-left, just above/beside title -->
-            <circle cx="340" cy="55" r="2.5" fill="#88C499" opacity="0.65" />
-            <!-- top-right, beside title -->
-            <circle cx="1105" cy="80" r="2" fill="#88C499" opacity="0.55" />
-            <!-- just below title, center-left -->
-            <circle cx="580" cy="145" r="2" fill="#F4D03F" opacity="0.5" />
-            <!-- left of paragraph text -->
+            <!-- tight to heading, upper-left -->
+            <circle cx="430" cy="42" r="2.5" fill="#F4D03F" opacity="0.75" />
+            <!-- tight to heading, upper-right -->
+            <circle cx="1010" cy="38" r="2" fill="#88C499" opacity="0.65" />
+            <!-- just below heading, left -->
+            <circle cx="505" cy="115" r="2" fill="#F4D03F" opacity="0.55" />
+            <!-- tight left of heading -->
+            <circle cx="310" cy="68" r="2" fill="#88C499" opacity="0.5" />
+            <!-- left of paragraph -->
             <circle cx="115" cy="210" r="2" fill="#1E5B4D" opacity="0.6" />
-            <!-- right of paragraph text -->
+            <!-- right of paragraph -->
             <circle cx="1300" cy="195" r="2" fill="#88C499" opacity="0.45" />
             <!-- below cards bottom-left -->
             <circle cx="55" cy="480" r="2" fill="#2E86C1" opacity="0.5" />
@@ -564,7 +566,12 @@
           </div>
 
           <!-- Quote content -->
-          <span class="mission__quote-mark" aria-hidden="true">"</span>
+ <svg class="mission__quote-mark" aria-hidden="true" width="48" height="44" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- left bar: wide top, narrow bottom -->
+  <polygon points="0,0 14,0 11,32 3,32" fill="rgba(255,255,255,0.18)" />
+  <!-- right bar: wide top, narrow bottom -->
+  <polygon points="22,0 36,0 33,32 25,32" fill="rgba(255,255,255,0.18)" />
+</svg>
           <p class="mission__quote-text">
             Sustainability is no longer optional — it's the foundation of
             tomorrow.
