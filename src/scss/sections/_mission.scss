@@ -168,7 +168,7 @@
   &__cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: $sp-4;
+    gap: $sp-6;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -400,7 +400,7 @@
     font-size: $fz-xl;
     font-weight: $fw-bold;
     letter-spacing: $ls-tight;
-    line-height: $lh-tight;
+
     @include transition(color);
 
     @include sm {
@@ -409,9 +409,9 @@
   }
 
   &__card-desc {
-    font-size: $fz-sm;
-    color: rgba($clr-white, 0.5);
-    line-height: 1.65;
+    font-size: $fz-base;
+    color: rgba($clr-white, 0.7);
+    line-height: 1.7;
     font-weight: $fw-medium;
     max-width: 160px;
   }
@@ -467,15 +467,15 @@
     }
   }
 
-&__quote-mark {
-  position: relative;
-  z-index: 1;
-  display: block;
-  margin-bottom: $sp-2;
-  opacity: 1;
-  user-select: none;
-  transform: skewX(-12deg);
-}
+  &__quote-mark {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin-bottom: $sp-2;
+    opacity: 1;
+    user-select: none;
+    transform: skewX(-12deg);
+  }
 
   &__quote-text {
     position: relative;
