@@ -566,41 +566,143 @@
           </div>
 
           <!-- Quote content -->
- <svg class="mission__quote-mark" aria-hidden="true" width="48" height="44" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- left bar: wide top, narrow bottom -->
-  <polygon points="0,0 14,0 11,32 3,32" fill="rgba(255,255,255,0.18)" />
-  <!-- right bar: wide top, narrow bottom -->
-  <polygon points="22,0 36,0 33,32 25,32" fill="rgba(255,255,255,0.18)" />
-</svg>
+          <svg
+            class="mission__quote-mark"
+            aria-hidden="true"
+            width="48"
+            height="44"
+            viewBox="0 0 40 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!-- left bar: wide top, narrow bottom -->
+            <polygon
+              points="0,0 14,0 11,32 3,32"
+              fill="rgba(255,255,255,0.18)"
+            />
+            <!-- right bar: wide top, narrow bottom -->
+            <polygon
+              points="22,0 36,0 33,32 25,32"
+              fill="rgba(255,255,255,0.18)"
+            />
+          </svg>
           <p class="mission__quote-text">
             Sustainability is no longer optional — it's the foundation of
             tomorrow.
           </p>
 
           <!-- Bottom wave divider — MOVED INSIDE blockquote -->
-          <div class="mission__wave" aria-hidden="true">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 1440 180"
-              preserveAspectRatio="none"
-              width="100%"
-              height="100%"
-            >
-              <!-- Green band -->
-              <path
-                d="M0,136 C120,88 280,151 480,118 C640,88 780,148 960,108 C1100,70 1280,138 1440,104 L1440,180 L0,180 Z"
-                fill="#1E5B4D"
-              />
-              <!-- White wave on top -->
-              <path
-                d="M0,144 C120,96 280,159 480,126 C640,96 780,156 960,116 C1100,78 1280,146 1440,112 L1440,180 L0,180 Z"
-                fill="#ffffff"
-              />
-            </svg>
-          </div>
+<div class="mission__wave" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 180"
+    preserveAspectRatio="none"
+    width="100%"
+    height="100%"
+  >
+    <!-- Green band -->
+    <path
+      d="M0,136 C120,88 280,151 480,118 C640,88 780,148 960,108 C1100,70 1280,138 1440,104 L1440,181 L0,181 Z"
+      fill="#1E5B4D"
+    />
+    <!-- White wave on top -->
+    <path
+      d="M0,144 C120,96 280,159 480,126 C640,96 780,156 960,116 C1100,78 1280,146 1440,112 L1440,181 L0,181 Z"
+      fill="#ffffff"
+    />
+    <!-- White bleed rect — kills any subpixel gap absolutely -->
+    <rect x="0" y="178" width="1440" height="4" fill="#ffffff" />
+  </svg>
+</div>
         </blockquote>
       </section>
       <!-- /mission -->
+
+      <!-- ── Partners ──────────────────────────────────────────────────── -->
+      <section class="partners" aria-label="Strategic Partners">
+        <span class="partners__label">Strategic Partners</span>
+
+        <div class="partners__track-wrapper">
+          <div class="partners__track">
+            <!-- Set 1 (visible / announced) -->
+            <ul class="partners__set" role="list">
+              <li class="partners__item">
+                <span class="partners__name">Google</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Amazon</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Microsoft</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Tesla Energy</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Siemens</span>
+              </li>
+            </ul>
+
+            <!-- Set 2 -->
+            <ul class="partners__set" role="list" aria-hidden="true">
+              <li class="partners__item">
+                <span class="partners__name">Google</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Amazon</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Microsoft</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Tesla Energy</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Siemens</span>
+              </li>
+            </ul>
+
+            <!-- Set 3 -->
+            <ul class="partners__set" role="list" aria-hidden="true">
+              <li class="partners__item">
+                <span class="partners__name">Google</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Amazon</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Microsoft</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Tesla Energy</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Siemens</span>
+              </li>
+            </ul>
+
+            <!-- Set 4 -->
+            <ul class="partners__set" role="list" aria-hidden="true">
+              <li class="partners__item">
+                <span class="partners__name">Google</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Amazon</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Microsoft</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Tesla Energy</span>
+              </li>
+              <li class="partners__item">
+                <span class="partners__name">Siemens</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <!-- /partners -->
     </main>
 
     <script type="module" src="/js/main.js"></script>

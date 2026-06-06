@@ -1,0 +1,122 @@
+// ============================================
+// PARTNERS — Infinite marquee strip
+// ============================================
+
+.partners {
+  background: #ffffff;
+  padding: 48px 0 80px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+
+  // ── Cover any subpixel gap from mission wave ──
+  &::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: #ffffff;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  // ── Label ────────────────────────────────
+  &__label {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: #aaaaaa;
+    margin-bottom: 32px;
+  }
+
+  // ── Track wrapper — centered, constrained ─
+  &__track-wrapper {
+    position: relative;
+    overflow: hidden;
+    max-width: 860px;
+    margin: 0 auto;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.6) 40%,
+        transparent 100%
+      );
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.6) 40%,
+        transparent 100%
+      );
+    }
+  }
+
+  // ── Scrolling track ───────────────────────
+  &__track {
+    display: flex;
+    width: max-content;
+    animation: partners-marquee 30s linear infinite;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  // ── One repeated set ──────────────────────
+  &__set {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // ── Single brand item ─────────────────────
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 0 52px;
+  }
+
+  // ── Brand name text ───────────────────────
+  &__name {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #797777;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+  }
+
+  &__item:hover &__name {
+    color: #555555;
+  }
+}
+
+// ── Keyframe ──────────────────────────────────
+@keyframes partners-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
