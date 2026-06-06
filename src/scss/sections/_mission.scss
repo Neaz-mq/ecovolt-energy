@@ -18,24 +18,24 @@
     padding-top: $sp-14;
   }
 
-    // ── Top shadow overlay (hero → mission transition) ─────────────────────
-&::before {
-  content: "";
-  position: absolute;
-  top: -160px;           // bleeds UP into hero
-  left: 0;
-  width: 100%;
-  height: 220px;         // total fade height
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.55) 35%,
-    rgba(0, 0, 0, 0.85) 65%,
-    #000000 100%
-  );
-  z-index: 5;            // above hero bg/overlay, below mission content
-  pointer-events: none;
-}
+  // ── Top shadow overlay (hero → mission transition) ─────────────────────
+  &::before {
+    content: "";
+    position: absolute;
+    top: -160px;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.55) 35%,
+      rgba(0, 0, 0, 0.85) 65%,
+      #000000 100%
+    );
+    z-index: 5;
+    pointer-events: none;
+  }
 
   // ── Container ────────────────────────────
   &__container {
@@ -57,8 +57,6 @@
       padding-bottom: $sp-12;
     }
   }
-
-
 
   // ── Header ───────────────────────────────
   &__header {
@@ -229,52 +227,24 @@
     }
 
     &[data-color="green"] {
-      &:hover {
-        box-shadow: 0 20px 48px rgba($clr-primary, 0.14);
-      }
-      .mission__card-icon {
-        background: rgba($clr-primary, 0.18);
-        color: $clr-primary;
-      }
-      .mission__card-name {
-        color: $clr-primary;
-      }
+      &:hover { box-shadow: 0 20px 48px rgba($clr-primary, 0.14); }
+      .mission__card-icon { background: rgba($clr-primary, 0.18); color: $clr-primary; }
+      .mission__card-name { color: $clr-primary; }
     }
     &[data-color="teal"] {
-      &:hover {
-        box-shadow: 0 20px 48px rgba($clr-primary-light, 0.14);
-      }
-      .mission__card-icon {
-        background: rgba($clr-primary-light, 0.18);
-        color: $clr-primary-light;
-      }
-      .mission__card-name {
-        color: $clr-primary-light;
-      }
+      &:hover { box-shadow: 0 20px 48px rgba($clr-primary-light, 0.14); }
+      .mission__card-icon { background: rgba($clr-primary-light, 0.18); color: $clr-primary-light; }
+      .mission__card-name { color: $clr-primary-light; }
     }
     &[data-color="warning"] {
-      &:hover {
-        box-shadow: 0 20px 48px rgba($clr-warning, 0.16);
-      }
-      .mission__card-icon {
-        background: rgba($clr-warning, 0.18);
-        color: $clr-warning;
-      }
-      .mission__card-name {
-        color: $clr-warning;
-      }
+      &:hover { box-shadow: 0 20px 48px rgba($clr-warning, 0.16); }
+      .mission__card-icon { background: rgba($clr-warning, 0.18); color: $clr-warning; }
+      .mission__card-name { color: $clr-warning; }
     }
     &[data-color="blue"] {
-      &:hover {
-        box-shadow: 0 20px 48px rgba(88, 166, 255, 0.14);
-      }
-      .mission__card-icon {
-        background: rgba(88, 166, 255, 0.18);
-        color: #58a6ff;
-      }
-      .mission__card-name {
-        color: #58a6ff;
-      }
+      &:hover { box-shadow: 0 20px 48px rgba(88, 166, 255, 0.14); }
+      .mission__card-icon { background: rgba(88, 166, 255, 0.18); color: #58a6ff; }
+      .mission__card-name { color: #58a6ff; }
     }
 
     @include sm {
@@ -301,10 +271,7 @@
     @include sm {
       width: 48px;
       height: 48px;
-      svg {
-        width: 22px;
-        height: 22px;
-      }
+      svg { width: 22px; height: 22px; }
     }
   }
 
@@ -334,113 +301,116 @@
     font-weight: $fw-medium;
   }
 
-  // ── Quote ────────────────────────────────
-  // Large padding-top gives waves visible room above the text.
-  // padding-bottom 0 so quote sits flush against the wave divider.
-  // No min-height, no spacer div, no justify-content flex-end.
-&__quote {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: $sp-3;
-  text-align: center;
-  padding: $sp-20 $sp-6 180px; // ← generous top, fixed px bottom to clear wave
-  background: transparent;
-  overflow: hidden;
-  z-index: 4;
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.8s $ease-out 0.2s,
-    transform 0.8s $ease-out 0.2s;
-
-  &.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @include reduced-motion {
-    transform: none;
-    transition: opacity $dur-base $ease-out;
-  }
-
-  @include sm {
-    padding: $sp-16 $sp-4 140px;
-  }
-}
-
-
-  // ── Quote waves ──────────────────────────
-  // Fills entire blockquote top→bottom.
-  // Large padding-top means waves are visible above the centered text.
- &__quote-waves {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-
-  svg {
-    position: absolute;
-    top: 0;       // ← top, not bottom — arches grow from top down
-    left: 0;
+  // ── Quote ─────────────────────────────────────────────────────────────
+  // KEY FIX: quote is now position:relative so the wave sits INSIDE it
+  // at the bottom, not floating relative to the whole .mission section.
+  // padding-bottom uses clamp() so it always clears the wave at any width.
+  &__quote {
+    position: relative;        // ← wave is now relative to THIS, not .mission
     width: 100%;
-    height: 100%;
-  }
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $sp-3;
+    text-align: center;
+    padding: $sp-20 $sp-6 clamp(160px, 12vw, 220px); // ← clamp scales with viewport
+    background: transparent;
+    overflow: hidden;          // ← clips the wave SVG cleanly inside the quote
+    z-index: 4;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.8s $ease-out 0.2s,
+      transform 0.8s $ease-out 0.2s;
 
-&__quote-mark {
-  position: relative;
-  z-index: 1;
-  font-size: 3.5rem;
-  line-height: 1;
-  color: #a8b820;
-  font-family: Georgia, serif;
-  opacity: 0.9;
-  user-select: none;
-}
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-&__quote-text {
-  position: relative;
-  z-index: 1;
-  max-width: 680px;
-  padding: 0 $sp-6;
-  font-size: clamp($fz-base, 2vw, $fz-xl);
-  font-style: italic;
-  color: rgba($clr-white, 0.85);
-  line-height: 1.7;
-  margin: 0;
-
-  @include sm {
-    font-size: $fz-sm;
-    padding: 0 $sp-4;
-  }
-  }
-
-  // ── Bottom wave divider ───────────────────
-// ── Bottom wave divider ───────────────────
-&__wave {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 3;
-  width: 100%;
-  line-height: 0;
-  display: block;
-  margin: 0;
-  pointer-events: none;
-
-  svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    min-height: 140px;
+    @include reduced-motion {
+      transform: none;
+      transition: opacity $dur-base $ease-out;
+    }
 
     @include sm {
-      min-height: 90px;
+      padding: $sp-16 $sp-4 clamp(120px, 10vw, 160px);
     }
   }
-}
+
+  // ── Quote waves ───────────────────────────────────────────────────────
+  &__quote-waves {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__quote-mark {
+    position: relative;
+    z-index: 1;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: #a8b820;
+    font-family: Georgia, serif;
+    opacity: 0.9;
+    user-select: none;
+  }
+
+  &__quote-text {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    padding: 0 $sp-6;
+    font-size: clamp($fz-base, 2vw, $fz-xl);
+    font-style: italic;
+    color: rgba($clr-white, 0.85);
+    line-height: 1.7;
+    margin: 0;
+
+    @include sm {
+      font-size: $fz-sm;
+      padding: 0 $sp-4;
+    }
+  }
+
+  // ── Bottom wave divider ───────────────────────────────────────────────
+  // KEY FIX: moved to sit inside __quote via position:absolute bottom:0.
+  // Since __quote now has overflow:hidden, the wave clips perfectly.
+  // The SVG uses preserveAspectRatio="none" so it always fills width
+  // without changing its height — wave crest never rises on wide screens.
+  &__wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    line-height: 0;
+    display: block;
+    margin: 0;
+    pointer-events: none;
+
+    svg {
+      display: block;
+      width: 100%;
+      // KEY FIX: fixed height instead of height:auto — prevents the SVG
+      // from scaling its height proportionally on ultrawide screens,
+      // which was pushing the wave crest up into the text.
+      height: 180px;
+      min-height: unset; // ← remove old min-height, fixed height takes over
+
+      @include sm {
+        height: 110px;
+      }
+    }
+  }
 }

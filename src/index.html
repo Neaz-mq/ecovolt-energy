@@ -379,8 +379,6 @@
 
       <!-- ── Mission ───────────────────────────────────────────────────── -->
       <section class="mission" id="mission" aria-labelledby="mission-title">
-        <!-- ── Hero→Mission shadow transition ───────────────────────────── -->
-
         <div class="mission__container">
           <!-- Header -->
           <header class="mission__header">
@@ -487,8 +485,9 @@
         </div>
         <!-- /mission__container -->
 
-        <!-- Quote — direct child of section, naturally full width -->
+        <!-- Quote — wave divider now lives INSIDE the blockquote -->
         <blockquote class="mission__quote" data-anim="mission-quote">
+          <!-- Background waves -->
           <div class="mission__quote-waves" aria-hidden="true">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -538,35 +537,35 @@
             </svg>
           </div>
 
-          <!-- NO spacer div -->
-
+          <!-- Quote content -->
           <span class="mission__quote-mark" aria-hidden="true">"</span>
           <p class="mission__quote-text">
             Sustainability is no longer optional — it's the foundation of
             tomorrow.
           </p>
-        </blockquote>
 
-        <!-- Bottom wave divider -->
-        <div class="mission__wave" aria-hidden="true">
-          <svg
-            viewBox="0 0 1440 160"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-          >
-            <rect width="1440" height="160" fill="#ffffff" />
-            <!-- green path slightly lower = thin green edge at bottom of wave -->
-            <path
-              d="M0,144 C120,96 280,159 480,126 C640,96 780,156 960,116 C1100,78 1280,146 1440,112 L1440,0 L0,0 Z"
-              fill="#1E5B4D"
-            />
-            <!-- black on top, 4px higher = covers green except the thin bottom strip -->
-            <path
-              d="M0,140 C120,92 280,155 480,122 C640,92 780,152 960,112 C1100,74 1280,142 1440,108 L1440,0 L0,0 Z"
-              fill="#000000"
-            />
-          </svg>
-        </div>
+          <!-- Bottom wave divider — MOVED INSIDE blockquote -->
+          <div class="mission__wave" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1440 180"
+              preserveAspectRatio="none"
+              width="100%"
+              height="100%"
+            >
+              <!-- Green band -->
+              <path
+                d="M0,136 C120,88 280,151 480,118 C640,88 780,148 960,108 C1100,70 1280,138 1440,104 L1440,180 L0,180 Z"
+                fill="#1E5B4D"
+              />
+              <!-- White wave on top -->
+              <path
+                d="M0,144 C120,96 280,159 480,126 C640,96 780,156 960,116 C1100,78 1280,146 1440,112 L1440,180 L0,180 Z"
+                fill="#ffffff"
+              />
+            </svg>
+          </div>
+        </blockquote>
       </section>
       <!-- /mission -->
     </main>
