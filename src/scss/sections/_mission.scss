@@ -58,6 +58,54 @@
     }
   }
 
+  // ── Dots layer ────────────────────────────────────────────────────────
+  &__dots {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+
+    svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    background-image:
+      radial-gradient(circle, rgba(#88c499, 0.65) 0%, transparent 60%),
+      radial-gradient(circle, rgba(#88c499, 0.55) 0%, transparent 60%),
+      radial-gradient(circle, rgba(#f4d03f, 0.5) 0%, transparent 60%),
+      radial-gradient(circle, rgba(#1e5b4d, 0.6) 0%, transparent 60%),
+      radial-gradient(circle, rgba(#88c499, 0.45) 0%, transparent 60%),
+      radial-gradient(circle, rgba(#2e86c1, 0.5) 0%, transparent 60%),
+      radial-gradient(circle, rgba(#1e5b4d, 0.45) 0%, transparent 60%),
+      radial-gradient(circle, rgba(#f4d03f, 0.55) 0%, transparent 60%);
+
+    background-size:
+      3px 3px,
+      2px 2px,
+      2px 2px,
+      2px 2px,
+      2px 2px,
+      2px 2px,
+      2px 2px,
+      3px 3px;
+
+    background-position:
+      24% 8%,
+      77% 11%,
+      40% 21%,
+      8% 30%,
+      90% 28%,
+      4% 69%,
+      18% 84%,
+      66% 82%;
+
+    background-repeat: no-repeat;
+  }
+
   // ── Header ───────────────────────────────
   &__header {
     text-align: center;
@@ -89,18 +137,19 @@
     }
   }
 
-&__intro {
-  font-size: clamp($fz-sm, 1.05vw, $fz-base);
-  color: rgba($clr-white, 0.8);
-  line-height: 1.8;
-  max-width: 680px;  // was 520px → wider to fit 3 lines
-  margin: 0;
+  &__intro {
+    font-size: clamp($fz-sm, 1.05vw, $fz-base);
+    color: rgba($clr-white, 0.8);
+    line-height: 1.8;
+    max-width: 680px;
+    margin: 0;
 
-  @include sm {
-    font-size: $fz-sm;
-    max-width: 100%;
+    @include sm {
+      font-size: $fz-sm;
+      max-width: 100%;
+    }
   }
-}
+
   &__tagline {
     font-size: $fz-base;
     color: rgba($clr-white, 0.5);
@@ -116,18 +165,23 @@
   &__cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: $sp-5;
+    gap: $sp-4;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 
     @include lg {
       grid-template-columns: repeat(2, 1fr);
+      max-width: 600px;
     }
     @include sm {
       grid-template-columns: 1fr 1fr;
       gap: $sp-3;
+      max-width: 100%;
     }
     @media (max-width: 400px) {
       grid-template-columns: 1fr;
+      max-width: 280px;
     }
   }
 
@@ -138,16 +192,15 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: $sp-5;
-    padding: $sp-8 $sp-6 $sp-7;
+    gap: $sp-6;
+    padding: $sp-14 $sp-5 $sp-14;
     border-radius: $radius-xl;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     cursor: default;
     overflow: hidden;
+    isolation: isolate;
     transition:
-      border-color $dur-base $ease-out,
-      background $dur-base $ease-out,
       transform $dur-base $ease-out,
       box-shadow $dur-base $ease-out;
 
@@ -163,100 +216,154 @@
       transition:
         opacity 0.7s $ease-out 0.08s,
         transform 0.7s $ease-snap 0.08s,
-        border-color $dur-base $ease-out,
-        background $dur-base $ease-out,
         box-shadow $dur-base $ease-out;
     }
     &:nth-child(2) {
       transition:
         opacity 0.7s $ease-out 0.18s,
         transform 0.7s $ease-snap 0.18s,
-        border-color $dur-base $ease-out,
-        background $dur-base $ease-out,
         box-shadow $dur-base $ease-out;
     }
     &:nth-child(3) {
       transition:
         opacity 0.7s $ease-out 0.28s,
         transform 0.7s $ease-snap 0.28s,
-        border-color $dur-base $ease-out,
-        background $dur-base $ease-out,
         box-shadow $dur-base $ease-out;
     }
     &:nth-child(4) {
       transition:
         opacity 0.7s $ease-out 0.38s,
         transform 0.7s $ease-snap 0.38s,
-        border-color $dur-base $ease-out,
-        background $dur-base $ease-out,
         box-shadow $dur-base $ease-out;
     }
 
     @include reduced-motion {
       transform: none;
-      transition:
-        opacity $dur-base $ease-out,
-        border-color $dur-base $ease-out,
-        background $dur-base $ease-out;
-    }
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(
-        to right,
-        transparent 0%,
-        rgba(255, 255, 255, 0.18) 50%,
-        transparent 100%
-      );
-      opacity: 0;
       transition: opacity $dur-base $ease-out;
     }
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.15);
-      transform: translateY(-4px);
+    // ── Rotating beam pseudo ───────────────
+    &::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.8s $ease-out;
+      pointer-events: none;
+      will-change: transform;
+      animation: missionBeamRotate 8s linear infinite;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 150deg,
+        rgba(255, 255, 255, 0.08) 195deg,
+        rgba(255, 255, 255, 0.75) 210deg,
+        #ffffff 215deg,
+        rgba(255, 255, 255, 0.75) 220deg,
+        rgba(255, 255, 255, 0.08) 265deg,
+        transparent 310deg,
+        transparent 360deg
+      );
+    }
+
+    &.is-visible::before {
+      opacity: 1;
+    }
+
+    &:nth-child(1)::before {
+      animation-delay: 0s;
+    }
+    &:nth-child(2)::before {
+      animation-delay: -2s;
+    }
+    &:nth-child(3)::before {
+      animation-delay: -4s;
+    }
+    &:nth-child(4)::before {
+      animation-delay: -6s;
+    }
+
+    @include reduced-motion {
       &::before {
-        opacity: 1;
+        animation: none;
+        opacity: 0;
       }
     }
 
+    // ── Interior fill ──────────────────────
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: calc(#{$radius-xl} - 1px);
+      background: #121214;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+
+    // ── Accessible — #1E5B4D ──────────────
     &[data-color="green"] {
-      &:hover { box-shadow: 0 20px 48px rgba($clr-primary, 0.14); }
-      .mission__card-icon { background: rgba($clr-primary, 0.18); color: $clr-primary; }
-      .mission__card-name { color: $clr-primary; }
+      .mission__card-icon {
+        background: rgba(#1e5b4d, 0.22);
+        color: #1e5b4d;
+      }
+      .mission__card-name {
+        color: #1e5b4d;
+      }
     }
+
+    // ── Intelligent — #88C499 ─────────────
     &[data-color="teal"] {
-      &:hover { box-shadow: 0 20px 48px rgba($clr-primary-light, 0.14); }
-      .mission__card-icon { background: rgba($clr-primary-light, 0.18); color: $clr-primary-light; }
-      .mission__card-name { color: $clr-primary-light; }
+      .mission__card-icon {
+        background: rgba(#88c499, 0.18);
+        color: #88c499;
+      }
+      .mission__card-name {
+        color: #88c499;
+      }
     }
+
+    // ── Affordable — #F4D03F ──────────────
     &[data-color="warning"] {
-      &:hover { box-shadow: 0 20px 48px rgba($clr-warning, 0.16); }
-      .mission__card-icon { background: rgba($clr-warning, 0.18); color: $clr-warning; }
-      .mission__card-name { color: $clr-warning; }
+      .mission__card-icon {
+        background: rgba(#f4d03f, 0.18);
+        color: #f4d03f;
+      }
+      .mission__card-name {
+        color: #f4d03f;
+      }
     }
+
+    // ── Scalable — #2E86C1 ────────────────
     &[data-color="blue"] {
-      &:hover { box-shadow: 0 20px 48px rgba(88, 166, 255, 0.14); }
-      .mission__card-icon { background: rgba(88, 166, 255, 0.18); color: #58a6ff; }
-      .mission__card-name { color: #58a6ff; }
+      .mission__card-icon {
+        background: rgba(#2e86c1, 0.18);
+        color: #2e86c1;
+      }
+      .mission__card-name {
+        color: #2e86c1;
+      }
     }
 
     @include sm {
-      padding: $sp-6 $sp-4 $sp-5;
-      gap: $sp-4;
+      padding: $sp-10 $sp-4 $sp-10;
+      gap: $sp-3;
     }
   }
 
+  // ── Card Icon ─────────────────────────────
   &__card-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: $radius-lg;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -264,17 +371,21 @@
     @include transition(background);
 
     svg {
-      width: 26px;
-      height: 26px;
+      width: 22px;
+      height: 22px;
     }
 
     @include sm {
-      width: 48px;
-      height: 48px;
-      svg { width: 22px; height: 22px; }
+      width: 44px;
+      height: 44px;
+      svg {
+        width: 19px;
+        height: 19px;
+      }
     }
   }
 
+  // ── Card Body ─────────────────────────────
   &__card-body {
     display: flex;
     flex-direction: column;
@@ -290,7 +401,7 @@
     @include transition(color);
 
     @include sm {
-      font-size: $fz-lg;
+      font-size: $fz-xl;
     }
   }
 
@@ -299,14 +410,12 @@
     color: rgba($clr-white, 0.5);
     line-height: 1.65;
     font-weight: $fw-medium;
+    max-width: 160px;
   }
 
   // ── Quote ─────────────────────────────────────────────────────────────
-  // KEY FIX: quote is now position:relative so the wave sits INSIDE it
-  // at the bottom, not floating relative to the whole .mission section.
-  // padding-bottom uses clamp() so it always clears the wave at any width.
   &__quote {
-    position: relative;        // ← wave is now relative to THIS, not .mission
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -314,9 +423,9 @@
     justify-content: center;
     gap: $sp-3;
     text-align: center;
-    padding: $sp-20 $sp-6 clamp(160px, 12vw, 220px); // ← clamp scales with viewport
+    padding: $sp-20 $sp-6 clamp(160px, 12vw, 220px);
     background: transparent;
-    overflow: hidden;          // ← clips the wave SVG cleanly inside the quote
+    overflow: hidden;
     z-index: 4;
     opacity: 0;
     transform: translateY(20px);
@@ -384,10 +493,6 @@
   }
 
   // ── Bottom wave divider ───────────────────────────────────────────────
-  // KEY FIX: moved to sit inside __quote via position:absolute bottom:0.
-  // Since __quote now has overflow:hidden, the wave clips perfectly.
-  // The SVG uses preserveAspectRatio="none" so it always fills width
-  // without changing its height — wave crest never rises on wide screens.
   &__wave {
     position: absolute;
     bottom: 0;
@@ -402,15 +507,22 @@
     svg {
       display: block;
       width: 100%;
-      // KEY FIX: fixed height instead of height:auto — prevents the SVG
-      // from scaling its height proportionally on ultrawide screens,
-      // which was pushing the wave crest up into the text.
       height: 180px;
-      min-height: unset; // ← remove old min-height, fixed height takes over
+      min-height: unset;
 
       @include sm {
         height: 110px;
       }
     }
+  }
+}
+
+// ── Border beam keyframe ──────────────────────────────────────────────────
+@keyframes missionBeamRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
