@@ -1,9 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // _smartgrid.scss
-// Image is 1921×1081 — top ~45% is white/sky, landscape in bottom 55%
-// Strategy: cards render first in normal flow; image follows below them.
-// The fade blends the white sky into the white section bg above.
-// Bottom wave cuts through the image exactly like the mission section.
+// Desktop: cards in normal flow, bg image pulled up behind lower cards.
+// Tablet/Mobile: bg image sits fully BELOW cards, no overlap — clean stacking.
 // ─────────────────────────────────────────────────────────────────────────────
 
 .smartgrid {
@@ -11,10 +9,9 @@
   background-color: #ffffff;
   overflow: hidden;
   z-index: 7;
-  // Pulls up 2px to swallow any subpixel border/gap from partners section
   margin-block-start: -2px;
 
-  // Solid white bleed strip — covers any seam from partners bottom edge
+  // White bleed — covers seam from partners bottom edge
   &::before {
     content: "";
     position: absolute;
@@ -36,6 +33,14 @@
     padding-inline: var(--space-6, 1.5rem);
     padding-block-start: clamp(4rem, 6vw, 7rem);
     padding-block-end: 0;
+
+    @media (max-width: 1024px) {
+      padding-inline: clamp(1.5rem, 5vw, 3rem);
+    }
+
+    @media (max-width: 480px) {
+      padding-inline: 1.25rem;
+    }
   }
 
   // ── Header ────────────────────────────────────────────────────────────────
@@ -74,12 +79,18 @@
     gap: clamp(1rem, 2vw, 1.75rem);
     align-items: start;
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 560px;
+      margin-inline: auto;
     }
 
     @media (max-width: 480px) {
       grid-template-columns: 1fr;
+      gap: 1.25rem;
+      max-width: 320px;
+      margin-inline: auto;
     }
   }
 
@@ -101,10 +112,12 @@
       transform: translateY(0);
     }
 
+    // Staggered offsets — desktop only
     &:nth-child(2) { margin-block-start: 2rem; }
     &:nth-child(3) { margin-block-start: 3.5rem; }
 
-    @media (max-width: 900px) {
+    // Reset stagger on tablet & mobile — cards stack cleanly
+    @media (max-width: 1024px) {
       &:nth-child(2),
       &:nth-child(3) { margin-block-start: 0; }
     }
@@ -153,32 +166,49 @@
   }
 
   // ── Background image ──────────────────────────────────────────────────────
-  // position: relative so it flows BELOW the cards in document order.
-  // margin-block-start pulls it up so the image sits behind the lower cards.
   &__bg {
     position: relative;
     z-index: 1;
     pointer-events: none;
     line-height: 0;
-    // Responsive negative margin — scales with viewport so image stays
-    // consistently positioned behind cards on all screen sizes
+    // Desktop: pull image up behind cards using responsive clamp
     margin-block-start: clamp(-65rem, -35vw, -30rem);
+
+    // Tablet (≤1024px): reset overlap — image sits cleanly below cards
+    @media (max-width: 1024px) {
+      margin-block-start: 2rem;
+    }
+
+    // Mobile: slightly less gap
+    @media (max-width: 480px) {
+      margin-block-start: 1.5rem;
+    }
   }
 
   &__bg-img {
     width: 100%;
     height: auto;
     display: block;
-    // Subtle greenish tint on the image only — section bg stays white
+    // Subtle greenish tint on image only — section bg stays white
     filter: saturate(1.1) hue-rotate(15deg) brightness(1.03);
+
+    // Limit image height on tablet/mobile so it doesn't dominate
+    @media (max-width: 1024px) {
+      max-height: 320px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    @media (max-width: 480px) {
+      max-height: 220px;
+    }
   }
 
-  // White fade at the top of the bg — blends image into the white section above
+  // White fade — blends top of image into white section above
   &__bg-fade {
     position: absolute;
     inset: 0;
     z-index: 2;
-    // Wider white zone so on large screens the top stays clean
     background: linear-gradient(
       to bottom,
       #ffffff                      0%,
@@ -186,11 +216,19 @@
       rgba(255, 255, 255, 0.80)    32%,
       rgba(255, 255, 255, 0.0)     48%
     );
+
+    // On tablet/mobile the image is below cards — fade only the very top edge
+    @media (max-width: 1024px) {
+      background: linear-gradient(
+        to bottom,
+        #ffffff                      0%,
+        rgba(255, 255, 255, 0.60)    10%,
+        rgba(255, 255, 255, 0.0)     25%
+      );
+    }
   }
 
   // ── Bottom wave divider ───────────────────────────────────────────────────
-  // Same two-path technique as the mission section wave.
-  // Green band sits below, white wave on top — cuts through the image cleanly.
   &__wave {
     position: absolute;
     bottom: -2px;
@@ -206,8 +244,12 @@
       height: 181px;
       vertical-align: bottom;
 
-      @media (max-width: 768px) {
-        height: 111px;
+      @media (max-width: 1024px) {
+        height: 100px;
+      }
+
+      @media (max-width: 480px) {
+        height: 70px;
       }
     }
   }
