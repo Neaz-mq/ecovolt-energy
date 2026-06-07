@@ -55,10 +55,15 @@
     @include sm {
       gap: $sp-8;
       padding-bottom: $sp-12;
+      overflow: hidden;
+      align-items: flex-start;
+      padding-left: 0;
+      padding-right: 0;
+      width: 100%;
     }
   }
 
-  // ── Dots layer ────────────────────────────────────────────────────────
+  // ── Dots layer (background decorative dots) ───────────────────────────
   &__dots {
     position: absolute;
     inset: 0;
@@ -120,6 +125,8 @@
 
     @include sm {
       gap: $sp-4;
+      padding: 0 $sp-4;
+      align-self: center;
     }
   }
 
@@ -177,14 +184,36 @@
       grid-template-columns: repeat(2, 1fr);
       max-width: 600px;
     }
+
     @include sm {
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: row;
+      overflow: visible;
+      width: max-content;
+      max-width: none;
+      margin: 0;
       gap: $sp-3;
-      max-width: 100%;
-    }
-    @media (max-width: 400px) {
-      grid-template-columns: 1fr;
-      max-width: 280px;
+      padding: $sp-1 0;
+      animation: missionMarquee 22s linear infinite;
+      will-change: transform;
+
+      &:hover {
+        animation-play-state: paused;
+      }
+
+      @include reduced-motion {
+        animation: none;
+        overflow-x: auto;
+        width: 100%;
+        max-width: 100%;
+        padding: $sp-1 $sp-4;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
     }
   }
 
@@ -357,8 +386,21 @@
     }
 
     @include sm {
-      padding: $sp-10 $sp-4 $sp-10;
+      flex: none;
+      width: 68vw;
+      min-width: 68vw;
+      padding: $sp-6 $sp-5 $sp-8;
       gap: $sp-3;
+
+      @include reduced-motion {
+        scroll-snap-align: start;
+        width: 76vw;
+        min-width: 76vw;
+
+        &:last-child {
+          margin-right: $sp-4;
+        }
+      }
     }
   }
 
@@ -379,11 +421,11 @@
     }
 
     @include sm {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       svg {
-        width: 19px;
-        height: 19px;
+        width: 17px;
+        height: 17px;
       }
     }
   }
@@ -394,6 +436,10 @@
     flex-direction: column;
     gap: $sp-2;
     align-items: center;
+
+    @include sm {
+      gap: $sp-1;
+    }
   }
 
   &__card-name {
@@ -404,7 +450,7 @@
     @include transition(color);
 
     @include sm {
-      font-size: $fz-xl;
+      font-size: $fz-lg;
     }
   }
 
@@ -414,11 +460,17 @@
     line-height: 1.7;
     font-weight: $fw-medium;
     max-width: 160px;
+
+    @include sm {
+      font-size: $fz-xs;
+      max-width: 180px;
+      line-height: 1.6;
+    }
   }
 
   // ── Quote ─────────────────────────────────────────────────────────────
   &__quote {
-    margin: 0; // ← add this — kills browser default blockquote margin
+    margin: 0;
     position: relative;
     width: 100%;
     display: flex;
@@ -498,7 +550,7 @@
   // ── Bottom wave divider ───────────────────────────────────────────────
   &__wave {
     position: absolute;
-    bottom: -2px; // ← -2px so it overlaps into partners by 2px
+    bottom: -2px;
     left: 0;
     z-index: 3;
     width: 100%;
@@ -521,12 +573,16 @@
   }
 }
 
-// ── Border beam keyframe ──────────────────────────────────────────────────
+// ── Keyframes ────────────────────────────────────────────────────────────
 @keyframes missionBeamRotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+// Renamed from missionCardsMarquee — offset is now exact pixel width of one
+// set (set by JS), so the CSS loop reset lands invisibly on the same visual
+// position → no gap, no jump, infinite seamless scroll.
+@keyframes missionMarquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(var(--marquee-offset, -50%)); }
 }

@@ -21,4 +21,49 @@ export function initMission() {
 
   cards.forEach(card => observer.observe(card))
   if (quote) observer.observe(quote)
+
+  // ── Mobile marquee ────────────────────────────────────────────────────
+  const track = document.querySelector('.mission__cards')
+  if (!track) return
+
+  const mq = window.matchMedia('(max-width: 640px)')
+  let resizeTimer = null
+
+  function teardown() {
+    track.querySelectorAll('[data-clone]').forEach(el => el.remove())
+    track.style.removeProperty('--marquee-offset')
+    track.style.animation = ''
+  }
+
+  function setupMarquee() {
+    teardown()
+    if (!mq.matches) return
+
+    // Clone originals once → gives us [A B C D] [A' B' C' D']
+    const originals = [...track.querySelectorAll('.mission__card:not([data-clone])')]
+    originals.forEach(card => {
+      const clone = card.cloneNode(true)
+      clone.setAttribute('data-clone', '')
+      clone.setAttribute('aria-hidden', 'true')
+      track.appendChild(clone)
+    })
+
+    // Measure after paint so offsetWidth is accurate
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const gap = parseFloat(getComputedStyle(track).gap) || 12
+      // Sum each card's actual width — handles cards with different widths safely
+      const setWidth = originals.reduce((acc, c) => acc + c.offsetWidth + gap, 0)
+      // Translate by exactly one set → CSS loop reset is visually invisible
+      track.style.setProperty('--marquee-offset', `-${setWidth}px`)
+    }))
+  }
+
+  window.addEventListener('resize', () => {
+    if (!mq.matches) return
+    clearTimeout(resizeTimer)
+    resizeTimer = setTimeout(setupMarquee, 150)
+  }, { passive: true })
+
+  mq.addEventListener('change', setupMarquee)
+  setupMarquee()
 }
