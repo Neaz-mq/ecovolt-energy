@@ -1,23 +1,23 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // _impact.scss
 // "The Planet Needs Smarter Energy Solutions" — stat cards section
-// Light grey background, 3-col stat cards, clean centered layout.
+// White background, 3-col stat cards + mobile slider (mirrors hero stats).
 // ─────────────────────────────────────────────────────────────────────────────
 
 .impact {
   background-color: #ffffff;
   position: relative;
-  z-index: 8; // ← above smartgrid (z-index: 7)
+  z-index: 8;
   margin-block-start: -2px;
 
   // ── Cover subpixel seam from smartgrid wave ───────────────────────────
   &::before {
     content: "";
     position: absolute;
-    top: -8px; // ← was -4px
+    top: -8px;
     left: 0;
     width: 100%;
-    height: 16px; // ← was 8px
+    height: 16px;
     background: #ffffff;
     z-index: 1;
     pointer-events: none;
@@ -50,7 +50,7 @@
     margin-block-end: 1.25rem;
 
     @media (max-width: 480px) {
-      font-size: 1.625rem;
+      font-size: 1.75rem;
     }
   }
 
@@ -66,7 +66,7 @@
     margin-inline: auto;
 
     @media (max-width: 480px) {
-      font-size: 0.9375rem;
+      font-size: 1rem;
     }
   }
 
@@ -77,16 +77,30 @@
     gap: clamp(1rem, 2.5vw, 1.75rem);
 
     @media (max-width: 640px) {
-      grid-template-columns: 1fr;
-      max-width: 22rem;
-      margin-inline: auto;
-      gap: 1rem;
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      margin-inline: 0;
+      -webkit-mask-image: none;
+      mask-image: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 
   // ── Single card ───────────────────────────────────────────────────────────
   &__stat-card {
-    background-color: #eef2f0; // ← card: light grey-green tint
+    background-color: #eef2f0;
     border: 1px solid #e2ebe6;
     border-radius: 1rem;
     padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 1.75rem);
@@ -103,20 +117,22 @@
       transform: translateY(0);
     }
 
-    // Stagger via nth-child delay
-    &:nth-child(1) {
-      transition-delay: 0s;
-    }
-    &:nth-child(2) {
-      transition-delay: 0.12s;
-    }
-    &:nth-child(3) {
-      transition-delay: 0.24s;
-    }
+    &:nth-child(1) { transition-delay: 0s;    }
+    &:nth-child(2) { transition-delay: 0.12s; }
+    &:nth-child(3) { transition-delay: 0.24s; }
 
-    @media (max-width: 480px) {
-      padding: 1.5rem 1.25rem;
-      text-align: left;
+    @media (max-width: 640px) {
+      flex: none;
+      width: 100%;
+      min-width: 100%;
+      scroll-snap-align: start;
+      padding: 2.5rem 1.25rem;   // ← taller
+      border-radius: 1rem;
+      text-align: center;        // ← center text on mobile
+      display: flex;
+      flex-direction: column;
+      align-items: center;       // ← center content horizontally
+      justify-content: center;   // ← center content vertically
     }
   }
 
@@ -130,7 +146,7 @@
     margin-block-end: 0.875rem;
 
     @media (max-width: 480px) {
-      font-size: 2.25rem;
+      font-size: 2.5rem;
     }
   }
 
@@ -143,7 +159,38 @@
     margin: 0;
 
     @media (max-width: 480px) {
-      font-size: 0.9rem;
+      font-size: 0.9375rem;
+      max-width: 14rem;  // ← prevents desc from stretching full width when centered
+    }
+  }
+
+  // ── Slider dot indicators — mirrors hero__stats-dots ──────────────────────
+  &__stats-dots {
+    display: none;
+
+    @media (max-width: 640px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1rem;
+    }
+  }
+
+  &__stats-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(30, 91, 77, 0.18);
+    transition:
+      width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      background 0.35s ease;
+    flex-shrink: 0;
+
+    &.is-active {
+      width: 20px;
+      border-radius: 3px;
+      background: #1e5b4d;
     }
   }
 
