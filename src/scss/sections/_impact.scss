@@ -74,7 +74,9 @@
   &__stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1rem, 2.5vw, 1.75rem);
+    gap: clamp(0.5rem, 2.5vw, 1rem);
+    max-width: 45rem;      // ← narrows grid so each card ~240px wide
+    margin-inline: auto;   // ← keeps grid centered
 
     @media (max-width: 640px) {
       display: flex;
@@ -87,7 +89,7 @@
       gap: 0;
       padding: 0;
       width: 100%;
-      max-width: 100%;
+      max-width: 100%;   // ← full width on mobile
       margin-inline: 0;
       -webkit-mask-image: none;
       mask-image: none;
@@ -103,7 +105,7 @@
     background-color: #eef2f0;
     border: 1px solid #e2ebe6;
     border-radius: 1rem;
-    padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 1.75rem);
+    padding: clamp(1.5rem, 3vw, 2rem) clamp(1.25rem, 2.5vw, 1.5rem); // ← slightly tighter inline padding
     text-align: left;
 
     opacity: 0;
@@ -126,13 +128,13 @@
       width: 100%;
       min-width: 100%;
       scroll-snap-align: start;
-      padding: 2.5rem 1.25rem;   // ← taller
+      padding: 2.5rem 1.25rem;
       border-radius: 1rem;
-      text-align: center;        // ← center text on mobile
+      text-align: center;
       display: flex;
       flex-direction: column;
-      align-items: center;       // ← center content horizontally
-      justify-content: center;   // ← center content vertically
+      align-items: center;
+      justify-content: center;
     }
   }
 
@@ -151,18 +153,19 @@
   }
 
   // ── Stat description ──────────────────────────────────────────────────────
-  &__stat-desc {
-    font-size: clamp(0.875rem, 1.8vw, 0.9375rem);
-    line-height: 1.55;
-    color: #3a4a42;
-    font-weight: 500;
-    margin: 0;
+&__stat-desc {
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  line-height: 1.55;
+  color: #3a4a42;
+  font-weight: 500;
+  margin: 0;
+  max-width: 10rem;  // ← was 10rem, bump to fit "come from energy" on line 3
 
-    @media (max-width: 480px) {
-      font-size: 0.9375rem;
-      max-width: 14rem;  // ← prevents desc from stretching full width when centered
-    }
+  @media (max-width: 480px) {
+    font-size: 0.9375rem;
+    max-width: 14rem;
   }
+}
 
   // ── Slider dot indicators — mirrors hero__stats-dots ──────────────────────
   &__stats-dots {
