@@ -833,7 +833,7 @@
         </div>
         <!-- /smartgrid__container -->
 
-        <!-- Background image fade -->
+        <!-- Background image + wave -->
         <div class="smartgrid__bg" aria-hidden="true">
           <img
             src="/assets/images/sections/smartgrid.webp"
@@ -845,8 +845,31 @@
             height="600"
           />
           <div class="smartgrid__bg-fade"></div>
-        </div>
 
+          <!-- ── Bottom wave divider — same technique as mission section ── -->
+          <div class="smartgrid__wave" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1440 120"
+              preserveAspectRatio="none"
+              width="100%"
+              height="100%"
+            >
+              <!-- Green band underneath -->
+              <path
+                d="M0,60 C180,110 360,20 540,70 C720,120 900,30 1080,75 C1260,115 1380,45 1440,65 L1440,121 L0,121 Z"
+                fill="#88C499"
+              />
+              <!-- White wave on top -->
+              <path
+                d="M0,68 C180,118 360,28 540,78 C720,128 900,38 1080,83 C1260,123 1380,53 1440,73 L1440,121 L0,121 Z"
+                fill="#ffffff"
+              />
+              <!-- White bleed — kills subpixel gap -->
+              <rect x="0" y="119" width="1440" height="4" fill="#ffffff" />
+            </svg>
+          </div>
+        </div>
       </section>
       <!-- /smartgrid -->
     </main>

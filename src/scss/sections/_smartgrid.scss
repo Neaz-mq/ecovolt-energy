@@ -3,6 +3,7 @@
 // Image is 1921×1081 — top ~45% is white/sky, landscape in bottom 55%
 // Strategy: cards render first in normal flow; image follows below them.
 // The fade blends the white sky into the white section bg above.
+// Bottom wave cuts through the image exactly like the mission section.
 // ─────────────────────────────────────────────────────────────────────────────
 
 .smartgrid {
@@ -10,6 +11,21 @@
   background-color: #ffffff;
   overflow: hidden;
   z-index: 7;
+  // Pulls up 2px to swallow any subpixel border/gap from partners section
+  margin-block-start: -2px;
+
+  // Solid white bleed strip — covers any seam from partners bottom edge
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #ffffff;
+    z-index: 10;
+    pointer-events: none;
+  }
 
   // ── Container ─────────────────────────────────────────────────────────────
   &__container {
@@ -19,7 +35,6 @@
     margin-inline: auto;
     padding-inline: var(--space-6, 1.5rem);
     padding-block-start: clamp(4rem, 8vw, 7rem);
-    // No large bottom padding needed — the bg image is no longer behind cards
     padding-block-end: 0;
   }
 
@@ -138,19 +153,13 @@
   }
 
   // ── Background image ──────────────────────────────────────────────────────
-  // KEY CHANGE: position is now `relative` (normal flow), NOT absolute.
-  // This means the image renders BELOW the cards in document order,
-  // exactly matching the reference design. The full image is visible
-  // (width: 100%; height: auto) so the landscape strip shows completely.
-  //
-  // The fade overlays only the top of the image, blending the
-  // white sky zone into the white section background above.
+  // position: relative so it flows BELOW the cards in document order.
+  // margin-block-start pulls it up so the image sits behind the lower cards.
   &__bg {
-    position: relative;       // ← was: absolute; bottom: 0
+    position: relative;
     z-index: 1;
     pointer-events: none;
     line-height: 0;
-    // Pull slightly upward so the white sky in the image kisses the card area
     margin-block-start: -38rem;
   }
 
@@ -158,11 +167,11 @@
     width: 100%;
     height: auto;
     display: block;
-    // Greenish tint only on the image itself — section stays white
+    // Subtle greenish tint on the image only — section bg stays white
     filter: saturate(1.1) hue-rotate(15deg) brightness(1.03);
   }
 
-  // White fade covers the top of the bg element so section/header stays clean white
+  // White fade at the top of the bg — blends image into the white section above
   &__bg-fade {
     position: absolute;
     inset: 0;
@@ -174,6 +183,30 @@
       rgba(255, 255, 255, 0.70)    28%,
       rgba(255, 255, 255, 0.0)     42%
     );
+  }
+
+  // ── Bottom wave divider ───────────────────────────────────────────────────
+  // Same two-path technique as the mission section wave.
+  // Green band sits below, white wave on top — cuts through the image cleanly.
+  &__wave {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+    line-height: 0;
+    pointer-events: none;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 181px;
+      vertical-align: bottom;
+
+      @media (max-width: 768px) {
+        height: 111px;
+      }
+    }
   }
 
   // ── Reduced-motion ────────────────────────────────────────────────────────
