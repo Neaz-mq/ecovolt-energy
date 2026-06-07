@@ -1,0 +1,187 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// _smartgrid.scss
+// Image is 1921×1081 — top ~45% is white/sky, landscape in bottom 55%
+// Strategy: cards render first in normal flow; image follows below them.
+// The fade blends the white sky into the white section bg above.
+// ─────────────────────────────────────────────────────────────────────────────
+
+.smartgrid {
+  position: relative;
+  background-color: #ffffff;
+  overflow: hidden;
+  z-index: 7;
+
+  // ── Container ─────────────────────────────────────────────────────────────
+  &__container {
+    position: relative;
+    z-index: 3;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6, 1.5rem);
+    padding-block-start: clamp(4rem, 8vw, 7rem);
+    // No large bottom padding needed — the bg image is no longer behind cards
+    padding-block-end: 0;
+  }
+
+  // ── Header ────────────────────────────────────────────────────────────────
+  &__header {
+    text-align: center;
+    max-width: 44rem;
+    margin-inline: auto;
+    margin-block-end: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  &__title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #0d2b22;
+    margin-block-end: 1rem;
+  }
+
+  &__title-accent {
+    color: #2ecc71;
+    font-style: normal;
+  }
+
+  &__intro {
+    font-size: clamp(0.9375rem, 1.6vw, 1.0625rem);
+    line-height: 1.7;
+    color: #4a6b5c;
+    max-width: 38rem;
+    margin-inline: auto;
+  }
+
+  // ── Cards grid ────────────────────────────────────────────────────────────
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 2vw, 1.75rem);
+    align-items: start;
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ── Single card ───────────────────────────────────────────────────────────
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.875rem;
+    padding: 1.25rem 1rem;
+
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &:nth-child(2) { margin-block-start: 2rem; }
+    &:nth-child(3) { margin-block-start: 3.5rem; }
+
+    @media (max-width: 900px) {
+      &:nth-child(2),
+      &:nth-child(3) { margin-block-start: 0; }
+    }
+  }
+
+  // ── Card icon bubble ──────────────────────────────────────────────────────
+  &__card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+
+    svg { width: 1.5rem; height: 1.5rem; }
+
+    .smartgrid__card[data-color="dark"] &    { background-color: #e8f0ec; color: #1a3d2e; }
+    .smartgrid__card[data-color="teal"] &    { background-color: #d6eee7; color: #1a6b55; }
+    .smartgrid__card[data-color="warning"] & { background-color: #fef3cd; color: #b8860b; }
+    .smartgrid__card[data-color="blue"] &    { background-color: #ddeaf7; color: #1a5fa6; }
+  }
+
+  &__card:hover &__card-icon { transform: scale(1.08); }
+
+  // ── Card text ─────────────────────────────────────────────────────────────
+  &__card-name {
+    font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+
+    .smartgrid__card[data-color="dark"] &    { color: #1a3d2e; }
+    .smartgrid__card[data-color="teal"] &    { color: #1a6b55; }
+    .smartgrid__card[data-color="warning"] & { color: #b8860b; }
+    .smartgrid__card[data-color="blue"] &    { color: #1a5fa6; }
+  }
+
+  &__card-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #5a7268;
+    margin: 0;
+    max-width: 16rem;
+  }
+
+  // ── Background image ──────────────────────────────────────────────────────
+  // KEY CHANGE: position is now `relative` (normal flow), NOT absolute.
+  // This means the image renders BELOW the cards in document order,
+  // exactly matching the reference design. The full image is visible
+  // (width: 100%; height: auto) so the landscape strip shows completely.
+  //
+  // The fade overlays only the top of the image, blending the
+  // white sky zone into the white section background above.
+  &__bg {
+    position: relative;       // ← was: absolute; bottom: 0
+    z-index: 1;
+    pointer-events: none;
+    line-height: 0;
+    // Pull slightly upward so the white sky in the image kisses the card area
+    margin-block-start: -38rem;
+  }
+
+  &__bg-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    // Greenish tint only on the image itself — section stays white
+    filter: saturate(1.1) hue-rotate(15deg) brightness(1.03);
+  }
+
+  // White fade covers the top of the bg element so section/header stays clean white
+  &__bg-fade {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      #ffffff                      0%,
+      #ffffff                      18%,
+      rgba(255, 255, 255, 0.70)    28%,
+      rgba(255, 255, 255, 0.0)     42%
+    );
+  }
+
+  // ── Reduced-motion ────────────────────────────────────────────────────────
+  @media (prefers-reduced-motion: reduce) {
+    &__card {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}

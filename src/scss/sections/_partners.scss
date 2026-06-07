@@ -7,10 +7,10 @@
   padding: 68px 0 80px;
   overflow: hidden;
   position: relative;
-  z-index: 10;
+  z-index: 10; // above mission (z-index:6) and smartgrid (z-index:7)
   margin: 0;
 
-  // ── Cover any subpixel gap from mission wave ──────────────────────────
+  // ── Cover any subpixel gap from smartgrid wave ────────────────────────
   &::before {
     content: "";
     position: absolute;
@@ -19,7 +19,7 @@
     width: 100%;
     height: 40px;
     background: #ffffff;
-    z-index: 10;
+    z-index: 1;
     pointer-events: none;
   }
 
@@ -97,16 +97,16 @@
   }
 
   // ── Single brand item ─────────────────────
-  // ── Single brand item ─────────────────────
-&__item {
-  display: flex;
-  align-items: center;
-  padding: 0 56px;
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 0 56px;
 
-  @include sm {
-    padding: 0 28px;   // ← half gap on mobile
+    @include sm {
+      padding: 0 28px;
+    }
   }
-}
+
   // ── Brand name text ───────────────────────
   &__name {
     font-size: 18px;
@@ -124,10 +124,6 @@
 
 // ── Keyframe ──────────────────────────────────
 @keyframes partners-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-25%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
 }
