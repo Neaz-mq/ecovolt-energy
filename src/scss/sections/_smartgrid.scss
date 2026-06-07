@@ -10,6 +10,7 @@
   overflow: hidden;
   z-index: 7;
   margin-block-start: -2px;
+  margin-block-end: -2px;
 
   // White bleed — covers seam from partners bottom edge
   &::before {
@@ -57,36 +58,36 @@
     margin-block-end: clamp(2.5rem, 5vw, 4rem);
   }
 
- &__title {
-  font-size: clamp(2rem, 5vw, 3.75rem);
-  font-weight: 700;
-  line-height: 1.15;
-  color: #1E5B4D;
-  margin-block-end: 2.5rem;
+  &__title {
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #1e5b4d;
+    margin-block-end: 2.5rem;
 
-  @media (max-width: 480px) {
-    font-size: 1.5rem;
-    line-height: 1.25;  // 26px — solid readable heading on small phones
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+      line-height: 1.25; // 26px — solid readable heading on small phones
+    }
   }
-}
 
   &__title-accent {
-    color: #88C499;
+    color: #88c499;
     font-style: normal;
   }
 
   &__intro {
-  font-size: clamp(1rem, 2.6vw, 1.1rem);
-  line-height: 1.7;
-  font-weight: 500;
-  color: #1E5B4D;
-  max-width: 58rem;
-  margin-inline: auto;
+    font-size: clamp(1rem, 2.6vw, 1.1rem);
+    line-height: 1.7;
+    font-weight: 500;
+    color: #1e5b4d;
+    max-width: 58rem;
+    margin-inline: auto;
 
-  @media (max-width: 480px) {
-    font-size: 0.8rem;  // 16px — never shrinks below base
+    @media (max-width: 480px) {
+      font-size: 0.8rem; // 16px — never shrinks below base
+    }
   }
-}
   // ── Cards grid ────────────────────────────────────────────────────────────
   &__cards {
     display: grid;
@@ -120,7 +121,9 @@
 
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
 
     &.is-visible {
       opacity: 1;
@@ -128,19 +131,29 @@
     }
 
     // Staggered offsets — full desktop
-    &:nth-child(2) { margin-block-start: 2rem; }
-    &:nth-child(3) { margin-block-start: 3.5rem; }
+    &:nth-child(2) {
+      margin-block-start: 2rem;
+    }
+    &:nth-child(3) {
+      margin-block-start: 3.5rem;
+    }
 
     // Reduce stagger on mid-range so cards don't drop into image zone
     @media (max-width: 1200px) {
-      &:nth-child(2) { margin-block-start: 1rem; }
-      &:nth-child(3) { margin-block-start: 1.75rem; }
+      &:nth-child(2) {
+        margin-block-start: 1rem;
+      }
+      &:nth-child(3) {
+        margin-block-start: 1.75rem;
+      }
     }
 
     // Reset stagger on tablet & mobile
     @media (max-width: 1024px) {
       &:nth-child(2),
-      &:nth-child(3) { margin-block-start: 0; }
+      &:nth-child(3) {
+        margin-block-start: 0;
+      }
     }
 
     @media (max-width: 480px) {
@@ -150,50 +163,55 @@
   }
 
   // ── Card icon bubble ──────────────────────────────────────────────────────
- &__card-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 4.75rem;      // 76px — matches reference
-  height: 4.75rem;
-  border-radius: 50%;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
+  &__card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.75rem; // 76px — matches reference
+    height: 4.75rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
 
-  svg {
-    width: 1.75rem;    // 28px — slightly larger for the bigger circle
-    height: 1.75rem;
+    svg {
+      width: 1.75rem; // 28px — slightly larger for the bigger circle
+      height: 1.75rem;
+    }
+
+    .smartgrid__card[data-color="dark"] & {
+      background-color: #eef4f0;
+      border: 1.5px solid #c2d9cb;
+      color: #1e5b4d;
+    }
+    .smartgrid__card[data-color="teal"] & {
+      background-color: #e4f4ed;
+      border: 1.5px solid #a8d9c2;
+      color: #88c499;
+    }
+    .smartgrid__card[data-color="warning"] & {
+      background-color: #fef6e0;
+      border: 1.5px solid #f5d78e;
+      color: #f4d03f;
+    }
+    .smartgrid__card[data-color="blue"] & {
+      background-color: #e8f1fb;
+      border: 1.5px solid #a9c8ee;
+      color: #2e86c1;
+    }
+
+    @media (max-width: 480px) {
+      width: 3.75rem;
+      height: 3.75rem;
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
   }
 
-  .smartgrid__card[data-color="dark"] & {
-    background-color: #eef4f0;
-    border: 1.5px solid #c2d9cb;
-    color: #1E5B4D;
+  &__card:hover &__card-icon {
+    transform: scale(1.08);
   }
-  .smartgrid__card[data-color="teal"] & {
-    background-color: #e4f4ed;
-    border: 1.5px solid #a8d9c2;
-    color: #88C499;
-  }
-  .smartgrid__card[data-color="warning"] & {
-    background-color: #fef6e0;
-    border: 1.5px solid #f5d78e;
-    color: #F4D03F;
-  }
-  .smartgrid__card[data-color="blue"] & {
-    background-color: #e8f1fb;
-    border: 1.5px solid #a9c8ee;
-    color: #2E86C1;
-  }
-
-  @media (max-width: 480px) {
-    width: 3.75rem;
-    height: 3.75rem;
-    svg { width: 1.5rem; height: 1.5rem; }
-  }
-}
-
-  &__card:hover &__card-icon { transform: scale(1.08); }
 
   // ── Card text ─────────────────────────────────────────────────────────────
   &__card-name {
@@ -202,10 +220,18 @@
     line-height: 1.3;
     margin: 0;
 
-    .smartgrid__card[data-color="dark"] &    { color: #1E5B4D; }
-    .smartgrid__card[data-color="teal"] &    { color: #88C499; }
-    .smartgrid__card[data-color="warning"] & { color: #F4D03F; }
-    .smartgrid__card[data-color="blue"] &    { color: #2E86C1; }
+    .smartgrid__card[data-color="dark"] & {
+      color: #1e5b4d;
+    }
+    .smartgrid__card[data-color="teal"] & {
+      color: #88c499;
+    }
+    .smartgrid__card[data-color="warning"] & {
+      color: #f4d03f;
+    }
+    .smartgrid__card[data-color="blue"] & {
+      color: #2e86c1;
+    }
 
     @media (max-width: 480px) {
       font-size: 0.875rem;
@@ -294,19 +320,19 @@
     // Desktop: deep fade — image sits behind cards
     background: linear-gradient(
       to bottom,
-      #ffffff                      0%,
-      #ffffff                      22%,
-      rgba(255, 255, 255, 0.80)    32%,
-      rgba(255, 255, 255, 0.0)     48%
+      #ffffff 0%,
+      #ffffff 22%,
+      rgba(255, 255, 255, 0.8) 32%,
+      rgba(255, 255, 255, 0) 48%
     );
 
     // Large tablet ≤1024px: fade only the very top so image body stays visible
     @media (max-width: 1024px) {
       background: linear-gradient(
         to bottom,
-        #ffffff                      0%,
-        rgba(255, 255, 255, 0.85)    12%,
-        rgba(255, 255, 255, 0.0)     28%
+        #ffffff 0%,
+        rgba(255, 255, 255, 0.85) 12%,
+        rgba(255, 255, 255, 0) 28%
       );
     }
 
@@ -314,9 +340,9 @@
     @media (max-width: 768px) {
       background: linear-gradient(
         to bottom,
-        #ffffff                      0%,
-        rgba(255, 255, 255, 0.80)    10%,
-        rgba(255, 255, 255, 0.0)     25%
+        #ffffff 0%,
+        rgba(255, 255, 255, 0.8) 10%,
+        rgba(255, 255, 255, 0) 25%
       );
     }
   }

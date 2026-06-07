@@ -1,0 +1,158 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// _impact.scss
+// "The Planet Needs Smarter Energy Solutions" — stat cards section
+// Light grey background, 3-col stat cards, clean centered layout.
+// ─────────────────────────────────────────────────────────────────────────────
+
+.impact {
+  background-color: #ffffff;
+  position: relative;
+  z-index: 8; // ← above smartgrid (z-index: 7)
+  margin-block-start: -2px;
+
+  // ── Cover subpixel seam from smartgrid wave ───────────────────────────
+  &::before {
+    content: "";
+    position: absolute;
+    top: -8px; // ← was -4px
+    left: 0;
+    width: 100%;
+    height: 16px; // ← was 8px
+    background: #ffffff;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  // ── Container ─────────────────────────────────────────────────────────────
+  &__container {
+    max-width: 56rem;
+    margin-inline: auto;
+    padding-inline: var(--space-6, 1.5rem);
+    padding-block: clamp(4rem, 7vw, 7rem);
+    text-align: center;
+
+    @media (max-width: 480px) {
+      padding-inline: 1.25rem;
+      padding-block: 3rem;
+    }
+  }
+
+  // ── Header ────────────────────────────────────────────────────────────────
+  &__header {
+    margin-block-end: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  &__title {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1a201d;
+    margin-block-end: 1.25rem;
+
+    @media (max-width: 480px) {
+      font-size: 1.625rem;
+    }
+  }
+
+  &__title-accent {
+    color: #88c499;
+  }
+
+  &__intro {
+    font-size: clamp(0.9375rem, 2vw, 1rem);
+    line-height: 1.7;
+    color: #4a5550;
+    max-width: 38rem;
+    margin-inline: auto;
+
+    @media (max-width: 480px) {
+      font-size: 0.9375rem;
+    }
+  }
+
+  // ── Stat cards grid ───────────────────────────────────────────────────────
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      max-width: 22rem;
+      margin-inline: auto;
+      gap: 1rem;
+    }
+  }
+
+  // ── Single card ───────────────────────────────────────────────────────────
+  &__stat-card {
+    background-color: #eef2f0; // ← card: light grey-green tint
+    border: 1px solid #e2ebe6;
+    border-radius: 1rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 1.75rem);
+    text-align: left;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    // Stagger via nth-child delay
+    &:nth-child(1) {
+      transition-delay: 0s;
+    }
+    &:nth-child(2) {
+      transition-delay: 0.12s;
+    }
+    &:nth-child(3) {
+      transition-delay: 0.24s;
+    }
+
+    @media (max-width: 480px) {
+      padding: 1.5rem 1.25rem;
+      text-align: left;
+    }
+  }
+
+  // ── Stat number ───────────────────────────────────────────────────────────
+  &__stat-num {
+    display: block;
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #88c499;
+    line-height: 1;
+    margin-block-end: 0.875rem;
+
+    @media (max-width: 480px) {
+      font-size: 2.25rem;
+    }
+  }
+
+  // ── Stat description ──────────────────────────────────────────────────────
+  &__stat-desc {
+    font-size: clamp(0.875rem, 1.8vw, 0.9375rem);
+    line-height: 1.55;
+    color: #3a4a42;
+    font-weight: 500;
+    margin: 0;
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
+  }
+
+  // ── Reduced-motion ────────────────────────────────────────────────────────
+  @media (prefers-reduced-motion: reduce) {
+    &__stat-card {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
