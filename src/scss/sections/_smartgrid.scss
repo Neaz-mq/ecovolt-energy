@@ -57,13 +57,18 @@
     margin-block-end: clamp(2.5rem, 5vw, 4rem);
   }
 
-  &__title {
-    font-size: clamp(1.85rem, 5vw, 3.75rem);
-    font-weight: 700;
-    line-height: 1.15;
-    color: #1E5B4D;
-    margin-block-end: 2.5rem;
+ &__title {
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #1E5B4D;
+  margin-block-end: 2.5rem;
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+    line-height: 1.25;  // 26px — solid readable heading on small phones
   }
+}
 
   &__title-accent {
     color: #88C499;
@@ -71,14 +76,17 @@
   }
 
   &__intro {
-    font-size: clamp(1rem, 2.6vw, 1.1rem);
-    line-height: 1.7;
-    font-weight: 500;
-    color: #1E5B4D;
-    max-width: 58rem;
-    margin-inline: auto;
-  }
+  font-size: clamp(1rem, 2.6vw, 1.1rem);
+  line-height: 1.7;
+  font-weight: 500;
+  color: #1E5B4D;
+  max-width: 58rem;
+  margin-inline: auto;
 
+  @media (max-width: 480px) {
+    font-size: 0.8rem;  // 16px — never shrinks below base
+  }
+}
   // ── Cards grid ────────────────────────────────────────────────────────────
   &__cards {
     display: grid;
