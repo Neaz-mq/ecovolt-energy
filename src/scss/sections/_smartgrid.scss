@@ -34,7 +34,7 @@
     max-width: 72rem;
     margin-inline: auto;
     padding-inline: var(--space-6, 1.5rem);
-    padding-block-start: clamp(4rem, 8vw, 7rem);
+    padding-block-start: clamp(4rem, 6vw, 7rem);
     padding-block-end: 0;
   }
 
@@ -160,7 +160,9 @@
     z-index: 1;
     pointer-events: none;
     line-height: 0;
-    margin-block-start: -38rem;
+    // Responsive negative margin — scales with viewport so image stays
+    // consistently positioned behind cards on all screen sizes
+    margin-block-start: clamp(-65rem, -35vw, -30rem);
   }
 
   &__bg-img {
@@ -176,12 +178,13 @@
     position: absolute;
     inset: 0;
     z-index: 2;
+    // Wider white zone so on large screens the top stays clean
     background: linear-gradient(
       to bottom,
       #ffffff                      0%,
-      #ffffff                      18%,
-      rgba(255, 255, 255, 0.70)    28%,
-      rgba(255, 255, 255, 0.0)     42%
+      #ffffff                      22%,
+      rgba(255, 255, 255, 0.80)    32%,
+      rgba(255, 255, 255, 0.0)     48%
     );
   }
 
