@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // _smartgrid.scss
 // Desktop: cards in normal flow, bg image pulled up behind lower cards.
-// Tablet/Mobile: bg image sits fully BELOW cards, no overlap — clean stacking.
+// Tablet/Mobile: bg image sits directly below cards with no gap — clean stack.
 // ─────────────────────────────────────────────────────────────────────────────
 
 .smartgrid {
@@ -34,12 +34,18 @@
     padding-block-start: clamp(4rem, 6vw, 7rem);
     padding-block-end: 0;
 
+    @media (max-width: 1200px) {
+      padding-block-start: clamp(3.5rem, 5.5vw, 6rem);
+    }
+
     @media (max-width: 1024px) {
       padding-inline: clamp(1.5rem, 5vw, 3rem);
+      padding-block-start: clamp(3rem, 5vw, 5rem);
     }
 
     @media (max-width: 480px) {
       padding-inline: 1.25rem;
+      padding-block-start: 2.5rem;
     }
   }
 
@@ -87,9 +93,9 @@
     }
 
     @media (max-width: 480px) {
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-      max-width: 320px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 100%;
       margin-inline: auto;
     }
   }
@@ -112,14 +118,25 @@
       transform: translateY(0);
     }
 
-    // Staggered offsets — desktop only
+    // Staggered offsets — full desktop
     &:nth-child(2) { margin-block-start: 2rem; }
     &:nth-child(3) { margin-block-start: 3.5rem; }
 
-    // Reset stagger on tablet & mobile — cards stack cleanly
+    // Reduce stagger on mid-range so cards don't drop into image zone
+    @media (max-width: 1200px) {
+      &:nth-child(2) { margin-block-start: 1rem; }
+      &:nth-child(3) { margin-block-start: 1.75rem; }
+    }
+
+    // Reset stagger on tablet & mobile
     @media (max-width: 1024px) {
       &:nth-child(2),
       &:nth-child(3) { margin-block-start: 0; }
+    }
+
+    @media (max-width: 480px) {
+      gap: 0.625rem;
+      padding: 1rem 0.75rem;
     }
   }
 
@@ -140,6 +157,12 @@
     .smartgrid__card[data-color="teal"] &    { background-color: #d6eee7; color: #1a6b55; }
     .smartgrid__card[data-color="warning"] & { background-color: #fef3cd; color: #b8860b; }
     .smartgrid__card[data-color="blue"] &    { background-color: #ddeaf7; color: #1a5fa6; }
+
+    @media (max-width: 480px) {
+      width: 2.75rem;
+      height: 2.75rem;
+      svg { width: 1.25rem; height: 1.25rem; }
+    }
   }
 
   &__card:hover &__card-icon { transform: scale(1.08); }
@@ -155,6 +178,10 @@
     .smartgrid__card[data-color="teal"] &    { color: #1a6b55; }
     .smartgrid__card[data-color="warning"] & { color: #b8860b; }
     .smartgrid__card[data-color="blue"] &    { color: #1a5fa6; }
+
+    @media (max-width: 480px) {
+      font-size: 0.875rem;
+    }
   }
 
   &__card-desc {
@@ -163,6 +190,11 @@
     color: #5a7268;
     margin: 0;
     max-width: 16rem;
+
+    @media (max-width: 480px) {
+      font-size: 0.8125rem;
+      max-width: 100%;
+    }
   }
 
   // ── Background image ──────────────────────────────────────────────────────
@@ -171,17 +203,28 @@
     z-index: 1;
     pointer-events: none;
     line-height: 0;
-    // Desktop: pull image up behind cards using responsive clamp
+
+    // Desktop wide (>1200px): full pull up behind staggered cards
     margin-block-start: clamp(-65rem, -35vw, -30rem);
 
-    // Tablet (≤1024px): reset overlap — image sits cleanly below cards
-    @media (max-width: 1024px) {
-      margin-block-start: 2rem;
+    // Mid desktop (1025px–1200px): less aggressive — cards have less stagger
+    @media (max-width: 1200px) {
+      margin-block-start: clamp(-40rem, -28vw, -22rem);
     }
 
-    // Mobile: slightly less gap
+    // Large tablet (769px–1024px): strong pull up
+    @media (max-width: 1024px) {
+      margin-block-start: -17rem;
+    }
+
+    // Tablet (641px–768px): moderate pull
+    @media (max-width: 768px) {
+      margin-block-start: -13rem;
+    }
+
+    // Mobile
     @media (max-width: 480px) {
-      margin-block-start: 1.5rem;
+      margin-block-start: -5rem;
     }
   }
 
@@ -189,18 +232,27 @@
     width: 100%;
     height: auto;
     display: block;
-    // Subtle greenish tint on image only — section bg stays white
     filter: saturate(1.1) hue-rotate(15deg) brightness(1.03);
 
-    // Limit image height on tablet/mobile so it doesn't dominate
+    // Large tablet ≤1024px
     @media (max-width: 1024px) {
-      max-height: 320px;
+      max-height: 520px;
       object-fit: cover;
-      object-position: center top;
+      object-position: center 15%;
     }
 
+    // Tablet ≤768px
+    @media (max-width: 768px) {
+      max-height: 460px;
+      object-fit: cover;
+      object-position: center 15%;
+    }
+
+    // Mobile
     @media (max-width: 480px) {
-      max-height: 220px;
+      max-height: 240px;
+      object-fit: cover;
+      object-position: center 20%;
     }
   }
 
@@ -209,6 +261,8 @@
     position: absolute;
     inset: 0;
     z-index: 2;
+
+    // Desktop: deep fade — image sits behind cards
     background: linear-gradient(
       to bottom,
       #ffffff                      0%,
@@ -217,12 +271,22 @@
       rgba(255, 255, 255, 0.0)     48%
     );
 
-    // On tablet/mobile the image is below cards — fade only the very top edge
+    // Large tablet ≤1024px: fade only the very top so image body stays visible
     @media (max-width: 1024px) {
       background: linear-gradient(
         to bottom,
         #ffffff                      0%,
-        rgba(255, 255, 255, 0.60)    10%,
+        rgba(255, 255, 255, 0.85)    12%,
+        rgba(255, 255, 255, 0.0)     28%
+      );
+    }
+
+    // Tablet ≤768px: same shallow fade
+    @media (max-width: 768px) {
+      background: linear-gradient(
+        to bottom,
+        #ffffff                      0%,
+        rgba(255, 255, 255, 0.80)    10%,
         rgba(255, 255, 255, 0.0)     25%
       );
     }
