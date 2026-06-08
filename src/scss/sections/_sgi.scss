@@ -4,8 +4,22 @@
 // ──────────────────────────────────────────────────────────────────────────
 
 .sgi {
-  padding: 100px 0 280px;
-  background: #fff;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 9;
+  margin-block-start: -2px;
+  padding-block-start: 40px; // ← add this
+   &::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: #ffffff;
+    z-index: 1;
+    pointer-events: none;
+  }
 
   &__container {
     max-width: 960px;
@@ -34,7 +48,7 @@
     font-size: clamp(28px, 3.6vw, 42px);
     font-weight: 800;
     line-height: 1.18;
-    color: #0f2b20;
+    color: #1E5B4D;
     letter-spacing: -0.5px;
     margin-bottom: 18px;
   }
@@ -43,24 +57,24 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 1.7;
-    color: #4a6358;
+    color: #3c4943;
     max-width: 340px;
     margin-bottom: 0;
   }
 
-  &__image-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+&__image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 
-    img {
-      width: 100%;
-      max-width: 500px;
-      height: auto;
-      object-fit: contain;
-      display: block;
-    }
+  img {
+    width: 100%;
+    max-width: 640px;  // ← was 500px
+    height: auto;
+    object-fit: contain;
+    display: block;
   }
+}
 
   // ── Staggered 3-column grid ───────────────────────────────────────────
   &__grid {
@@ -81,7 +95,7 @@
 
   &__col--1 { margin-top: 0; }
   &__col--2 { margin-top: 80px; }
-  &__col--3 { margin-top: 140px; }
+  &__col--3 { margin-top: 180px; }
 
   @media (max-width: 860px) {
     &__col--1,
@@ -103,8 +117,8 @@
     &--dark {
       background: #1E5B4D;
 
-      .sgi__card-icon       { background: rgba(255,255,255,0.12); }
-      .sgi__card-icon svg   { stroke: #6fdbac; }
+      .sgi__card-icon { background: rgb(255, 255, 255); }
+      .sgi__card-icon svg   { stroke: #285d46; }
       .sgi__card-stat       { color: #fff; }
       .sgi__card-stat-label { color: rgba(255,255,255,0.5); }
       .sgi__card-title      { color: #fff; }
@@ -118,8 +132,8 @@
     &--darkest {
       background: #1E5B4D;
 
-      .sgi__card-icon       { background: rgba(255,255,255,0.10); }
-      .sgi__card-icon svg   { stroke: #6fdbac; }
+      .sgi__card-icon { background: rgb(255, 255, 255); }
+      .sgi__card-icon svg   { stroke: #285d46; }
       .sgi__card-stat       { color: #fff; }
       .sgi__card-stat-label { color: rgba(255,255,255,0.5); }
       .sgi__card-title      { color: #fff; }
