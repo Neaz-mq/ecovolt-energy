@@ -106,9 +106,9 @@
 
   // ── Single card ───────────────────────────────────────────────────────────
   &__stat-card {
-    background-color: #eef2f0;
+    background-color: #f7f7f7;
     border: 1px solid #e2ebe6;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     padding: clamp(1.5rem, 3vw, 2rem) clamp(1.25rem, 2.5vw, 1.5rem); // ← slightly tighter inline padding
     text-align: left;
 

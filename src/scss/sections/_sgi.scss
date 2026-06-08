@@ -72,7 +72,7 @@
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 22px;
     align-items: start;
 
     @media (max-width: 860px) { grid-template-columns: repeat(2, 1fr); }
@@ -98,11 +98,11 @@
 
   // ── Base card ─────────────────────────────────────────────────────────
   &__card {
-    border-radius: 20px;
-    padding: 24px 22px;
+    border-radius: 1.5rem;
+    padding: 28px;
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 12px;
 
     // ── EQUAL SIZE ────────────────────────────────────────────────────
     // flex: 1 makes every card in the same column stretch to fill equally.
@@ -117,7 +117,7 @@
     overflow: hidden;
 
     &--dark {
-      background: #1a4a38;
+      background: #1E5B4D;
 
       .sgi__card-icon       { background: rgba(255,255,255,0.12); }
       .sgi__card-icon svg   { stroke: #6fdbac; }
@@ -132,7 +132,7 @@
     }
 
     &--darkest {
-      background: #0f2b20;
+      background: #1E5B4D;
 
       .sgi__card-icon       { background: rgba(255,255,255,0.10); }
       .sgi__card-icon svg   { stroke: #6fdbac; }
@@ -147,7 +147,7 @@
     }
 
     &--light {
-      background: #fff;
+      background: #f7f7f7;
       border: 1.5px solid #d5ebe3;
 
       .sgi__card-icon       { background: #e2f2ec; }
@@ -192,8 +192,8 @@
 
   &__card-stat {
     display: block;
-    font-size: 30px;
-    font-weight: 800;
+    font-size: 24px;
+    font-weight: 700;
     letter-spacing: -0.5px;
     line-height: 1;
 
