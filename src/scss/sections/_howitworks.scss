@@ -1,0 +1,261 @@
+/* ============================================
+   ECOVOLT — HOW IT WORKS SECTION
+   File: src/scss/sections/_howitworks.css
+   ============================================ */
+
+/* ── Section wrapper ─────────────────────────────────────────────────── */
+.hiw {
+  background-color: #ffffff;
+  position: relative;
+  z-index: 9;
+  margin-block-start: -2px;
+  padding: 100px 0 120px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .hiw {
+    padding: 72px 0 88px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hiw {
+    padding: 56px 0 64px;
+  }
+}
+
+/* ── Subtle radial bg glow ──────────────────────────────────────────── */
+.hiw::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -35%);
+  width: 600px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(136, 196, 153, 0.12) 0%,
+    rgba(30, 91, 77, 0.06) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Container ──────────────────────────────────────────────────────── */
+.hiw__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .hiw__container {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hiw__container {
+    padding: 0 16px;
+  }
+}
+
+/* ── Header ─────────────────────────────────────────────────────────── */
+.hiw__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  .hiw__header {
+    margin-bottom: 40px;
+  }
+}
+
+.hiw__title {
+  font-size: clamp(34px, 4.2vw, 54px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.5px;
+  color: #0f2b20;
+  margin: 0 0 20px;
+}
+
+.hiw__title span {
+  color: #88c499;
+  font-weight: 800;
+}
+
+.hiw__subtitle {
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: 400;
+  color: #6b7c74;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ── Diagram wrap ───────────────────────────────────────────────────── */
+.hiw__diagram-wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* ── SVG ────────────────────────────────────────────────────────────── */
+.hiw__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* ── Core spinning ring animation ──────────────────────────────────── */
+.hiw__core-spin {
+  transform-origin: 640px 270px;
+  animation: hiwCoreRingSpin 18s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hiw__core-spin {
+    animation: none;
+  }
+}
+
+/* ── Labels grid — 5 columns aligned under SVG circles ─────────────── */
+/*
+  SVG viewBox = 1280px wide.
+  Circle centres (as % of 1280):
+    Capture    cx=110   → 8.59%
+    Store      cx=330   → 25.78%
+    AI CORE    cx=640   → 50%
+    Optimize   cx=950   → 74.22%
+    Distribute cx=1170  → 91.41%
+
+  We use a 5-column grid where each column is centred at the
+  corresponding circle's x position using the same proportions.
+  grid-template-columns uses fr units proportional to the gaps:
+    col1 centre=110, col2 centre=330 → gap=220
+    col2 centre=330, col3 centre=640 → gap=310
+    col3 centre=640, col4 centre=950 → gap=310
+    col4 centre=950, col5 centre=1170→ gap=220
+
+  Columns are centred at those positions using:
+    left edge of grid = 0  (mapped to cx=0 in SVG)
+    right edge        = 100% (mapped to cx=1280)
+
+  We set the grid to span the same width as the SVG (100%) and
+  use column sizes that mirror the circle-centre spacing.
+  Each column gets "width" = gap to next centre × 2, halved for the
+  last column; effectively we make 5 proportional columns.
+
+  Simplest approach: use percentage-based absolute positioning or
+  a CSS grid with the exact same proportional column widths.
+*/
+.hiw__labels {
+  display: grid;
+  /* Column widths proportional to circle-centre spacing in the SVG (1280px wide):
+     110, 330, 640, 950, 1170
+     We derive track sizes so each cell centre falls on those positions.
+     Track sizes (distances between centres):
+       110 | 220 | 310 | 310 | 220 | 110  (padding left/right = half first/last gap)
+     So grid-template-columns: [pad-left] col1 [gap] col2 [gap] col3 [gap] col4 [gap] col5 [pad-right]
+     Using fr that mirror those spacings: */
+  grid-template-columns:
+    /* col1 width = 2×110 = 220 → 220/1280 */
+    calc(220 / 1280 * 100%)
+    /* col2 width = (110+330)/2×2 ... easier: equal split of gap */
+    /* Centres: 110, 330, 640, 950, 1170
+       Col widths (centre-to-centre, split at midpoints):
+         col1: 0 to midpoint(110,330)=220  → 220px
+         col2: 220 to midpoint(330,640)=485 → 265px
+         col3: 485 to midpoint(640,950)=795 → 310px
+         col4: 795 to midpoint(950,1170)=1060 → 265px
+         col5: 1060 to 1280 → 220px
+       Total: 220+265+310+265+220 = 1280 ✓ */
+    calc(265 / 1280 * 100%)
+    calc(310 / 1280 * 100%)
+    calc(265 / 1280 * 100%)
+    calc(220 / 1280 * 100%);
+  width: 100%;
+  margin-top: 0;
+  padding: 0;
+}
+
+.hiw__label-item {
+  text-align: center;
+  padding: 20px 8px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hiw__label-item--core {
+  padding-top: 20px;
+}
+
+.hiw__step-label {
+  font-size: clamp(15px, 1.4vw, 19px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 8px;
+  letter-spacing: -0.2px;
+}
+
+.hiw__step-desc {
+  font-size: clamp(12px, 0.9vw, 13px);
+  font-weight: 400;
+  color: #6b7c74;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 160px;
+}
+
+.hiw__core-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4a7a6a;
+  margin: 0;
+}
+
+/* ── Mobile: stack vertically ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hiw__diagram-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .hiw__svg {
+    min-width: 700px;
+  }
+
+  .hiw__labels {
+    min-width: 700px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hiw__svg {
+    min-width: 600px;
+  }
+
+  .hiw__labels {
+    min-width: 600px;
+  }
+}
+
+/* ════════════════════════════════════════════
+   KEYFRAMES
+   ════════════════════════════════════════════ */
+
+@keyframes hiwCoreRingSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
