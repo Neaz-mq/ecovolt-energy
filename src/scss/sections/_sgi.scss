@@ -31,18 +31,18 @@
   }
 
   // ── Top row: heading | image ──────────────────────────────────────────
-  &__top {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: flex-start;
-    margin-bottom: 40px;
+ &__top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center; // ← was flex-start, centers image vertically with heading
+  margin-bottom: 40px;
 
-    @media (max-width: 860px) {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
+}
 
   &__title {
     font-size: clamp(28px, 3.6vw, 42px);
@@ -65,14 +65,23 @@
 &__image-wrap {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  margin: -40px -60px -40px 0; // ← bleeds the image beyond its grid cell
 
   img {
-    width: 100%;
-    max-width: 640px;  // ← was 500px
+    width: 100%;          // ← overflows its column intentionally
+    max-width: 700px;     // ← was 640px
     height: auto;
     object-fit: contain;
     display: block;
+  }
+
+  @media (max-width: 860px) {
+    margin: 0;
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
   }
 }
 
