@@ -1,0 +1,256 @@
+// ── _sgi.scss ─────────────────────────────────────────────────────────────
+// AI-Powered Smart Grid Intelligence — staggered column layout
+// Place in: src/scss/sections/_sgi.scss
+// ──────────────────────────────────────────────────────────────────────────
+
+.sgi {
+  padding: 100px 0 280px;
+  background: #fff;
+
+  &__container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px;
+
+    @media (max-width: 768px) { padding: 0 24px; }
+    @media (max-width: 480px) { padding: 0 16px; }
+  }
+
+  // ── Top row: heading | image ──────────────────────────────────────────
+  &__top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: flex-start;
+    margin-bottom: 56px;
+
+    @media (max-width: 860px) {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+
+  &__title {
+    font-size: clamp(28px, 3.6vw, 42px);
+    font-weight: 800;
+    line-height: 1.18;
+    color: #0f2b20;
+    letter-spacing: -0.5px;
+    margin-bottom: 18px;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.7;
+    color: #4a6358;
+    max-width: 340px;
+    margin-bottom: 24px;
+  }
+
+  &__connector {
+    display: block;
+    width: 200px;
+    height: auto;
+  }
+
+  &__image-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+  }
+
+  // ── Staggered 3-column grid ───────────────────────────────────────────
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: start;
+
+    @media (max-width: 860px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 520px) { grid-template-columns: 1fr; }
+  }
+
+  // Each col is a flex container — cards inside share equal height via align-items stretch
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__col--1 { margin-top: 0; }
+  &__col--2 { margin-top: 80px; }
+  &__col--3 { margin-top: 140px; }
+
+  @media (max-width: 860px) {
+    &__col--1,
+    &__col--2,
+    &__col--3 { margin-top: 0; }
+  }
+
+  // ── Base card ─────────────────────────────────────────────────────────
+  &__card {
+    border-radius: 20px;
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+
+    // ── EQUAL SIZE ────────────────────────────────────────────────────
+    // flex: 1 makes every card in the same column stretch to fill equally.
+    // min-height prevents the card from ever being shorter than its content.
+    // The tallest card in each column sets the height — no clipping ever.
+    flex: 1;
+    min-height: 0; // needed for flex children to shrink properly
+
+    // ── OVERFLOW SAFETY ───────────────────────────────────────────────
+    // If content somehow exceeds the card, it scrolls inside rather than
+    // visually breaking out of the border-radius.
+    overflow: hidden;
+
+    &--dark {
+      background: #1a4a38;
+
+      .sgi__card-icon       { background: rgba(255,255,255,0.12); }
+      .sgi__card-icon svg   { stroke: #6fdbac; }
+      .sgi__card-stat       { color: #fff; }
+      .sgi__card-stat-label { color: rgba(255,255,255,0.5); }
+      .sgi__card-title      { color: #fff; }
+      .sgi__card-desc       { color: rgba(255,255,255,0.65); }
+      .sgi__card-list li    { color: rgba(255,255,255,0.85); }
+      .sgi__card-list li::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.25' stroke='%236fdbac' stroke-width='1.5' fill='none'/%3E%3Cpolyline points='5,8.5 7,10.5 11,6' stroke='%236fdbac' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      }
+    }
+
+    &--darkest {
+      background: #0f2b20;
+
+      .sgi__card-icon       { background: rgba(255,255,255,0.10); }
+      .sgi__card-icon svg   { stroke: #6fdbac; }
+      .sgi__card-stat       { color: #fff; }
+      .sgi__card-stat-label { color: rgba(255,255,255,0.5); }
+      .sgi__card-title      { color: #fff; }
+      .sgi__card-desc       { color: rgba(255,255,255,0.65); }
+      .sgi__card-list li    { color: rgba(255,255,255,0.85); }
+      .sgi__card-list li::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.25' stroke='%236fdbac' stroke-width='1.5' fill='none'/%3E%3Cpolyline points='5,8.5 7,10.5 11,6' stroke='%236fdbac' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      }
+    }
+
+    &--light {
+      background: #fff;
+      border: 1.5px solid #d5ebe3;
+
+      .sgi__card-icon       { background: #e2f2ec; }
+      .sgi__card-icon svg   { stroke: #1a4a38; }
+      .sgi__card-stat       { color: #0f2b20; }
+      .sgi__card-stat-label { color: #7a9990; }
+      .sgi__card-title      { color: #0f2b20; }
+      .sgi__card-desc       { color: #4a6358; }
+      .sgi__card-list li    { color: #4a6358; }
+      .sgi__card-list li::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.25' stroke='%231a4a38' stroke-width='1.5' fill='none'/%3E%3Cpolyline points='5,8.5 7,10.5 11,6' stroke='%231a4a38' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+      }
+    }
+  }
+
+  // ── Card internals ───────────────────────────────────────────────────
+  &__card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    flex-shrink: 0; // never compress the top row
+  }
+
+  &__card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+    }
+  }
+
+  &__card-stat-wrap { text-align: right; }
+
+  &__card-stat {
+    display: block;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1;
+
+    &--sm { font-size: 22px; }
+  }
+
+  &__card-stat-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-top: 3px;
+  }
+
+  &__card-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  &__card-desc {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  &__card-list {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      line-height: 1.3;
+
+      &::before {
+        content: '';
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+  }
+}
