@@ -121,82 +121,77 @@
   animation: hiwCoreRingSpin 18s linear infinite;
 }
 
+/* ── Connector chevron animations ──────────────────────────────────── */
+.hiw__chevron-1 {
+  animation: chevronPulse 1.8s ease-in-out infinite;
+}
+
+.hiw__chevron-2 {
+  animation: chevronPulse 1.8s ease-in-out infinite 0.2s;
+}
+
+.hiw__chevron-3 {
+  animation: chevronPulse 1.8s ease-in-out infinite 0.4s;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hiw__core-spin {
+  .hiw__core-spin,
+  .hiw__chevron-1,
+  .hiw__chevron-2,
+  .hiw__chevron-3 {
     animation: none;
   }
 }
 
-/* ── Labels grid — 5 columns aligned under SVG circles ─────────────── */
-/*
-  SVG viewBox = 1280px wide.
-  Circle centres (as % of 1280):
-    Capture    cx=110   → 8.59%
-    Store      cx=330   → 25.78%
-    AI CORE    cx=640   → 50%
-    Optimize   cx=950   → 74.22%
-    Distribute cx=1170  → 91.41%
-
-  We use a 5-column grid where each column is centred at the
-  corresponding circle's x position using the same proportions.
-  grid-template-columns uses fr units proportional to the gaps:
-    col1 centre=110, col2 centre=330 → gap=220
-    col2 centre=330, col3 centre=640 → gap=310
-    col3 centre=640, col4 centre=950 → gap=310
-    col4 centre=950, col5 centre=1170→ gap=220
-
-  Columns are centred at those positions using:
-    left edge of grid = 0  (mapped to cx=0 in SVG)
-    right edge        = 100% (mapped to cx=1280)
-
-  We set the grid to span the same width as the SVG (100%) and
-  use column sizes that mirror the circle-centre spacing.
-  Each column gets "width" = gap to next centre × 2, halved for the
-  last column; effectively we make 5 proportional columns.
-
-  Simplest approach: use percentage-based absolute positioning or
-  a CSS grid with the exact same proportional column widths.
-*/
+/* ── Labels — absolutely positioned, each centered on its circle cx ──
+   SVG viewBox 0 0 1280 500
+   Capture   cx=110  → 110/1280 =  8.59%
+   Store     cx=330  → 330/1280 = 25.78%
+   AI Core   cx=640  → 640/1280 = 50.00%
+   Optimize  cx=950  → 950/1280 = 74.22%
+   Distribute cx=1170 → 1170/1280 = 91.41%
+   ────────────────────────────────────────────────────────────────────── */
 .hiw__labels {
-  display: grid;
-  /* Column widths proportional to circle-centre spacing in the SVG (1280px wide):
-     110, 330, 640, 950, 1170
-     We derive track sizes so each cell centre falls on those positions.
-     Track sizes (distances between centres):
-       110 | 220 | 310 | 310 | 220 | 110  (padding left/right = half first/last gap)
-     So grid-template-columns: [pad-left] col1 [gap] col2 [gap] col3 [gap] col4 [gap] col5 [pad-right]
-     Using fr that mirror those spacings: */
-  grid-template-columns:
-    /* col1 width = 2×110 = 220 → 220/1280 */
-    calc(220 / 1280 * 100%)
-    /* col2 width = (110+330)/2×2 ... easier: equal split of gap */
-    /* Centres: 110, 330, 640, 950, 1170
-       Col widths (centre-to-centre, split at midpoints):
-         col1: 0 to midpoint(110,330)=220  → 220px
-         col2: 220 to midpoint(330,640)=485 → 265px
-         col3: 485 to midpoint(640,950)=795 → 310px
-         col4: 795 to midpoint(950,1170)=1060 → 265px
-         col5: 1060 to 1280 → 220px
-       Total: 220+265+310+265+220 = 1280 ✓ */
-    calc(265 / 1280 * 100%)
-    calc(310 / 1280 * 100%)
-    calc(265 / 1280 * 100%)
-    calc(220 / 1280 * 100%);
+  position: relative;
   width: 100%;
-  margin-top: 0;
-  padding: 0;
+  height: 160px;
+  margin-top: -130px;
+  z-index: 2;
 }
 
 .hiw__label-item {
+  position: absolute;
+  transform: translateX(-50%);
   text-align: center;
-  padding: 20px 8px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 20px;
+  width: 200px;
+}
+
+.hiw__label-item:nth-child(1) {
+  left: 8.59%;
+}
+
+.hiw__label-item:nth-child(2) {
+  left: 25.78%;
+}
+
+.hiw__label-item:nth-child(3) {
+  left: 50%;
+}
+
+.hiw__label-item:nth-child(4) {
+  left: 74.22%;
+}
+
+.hiw__label-item:nth-child(5) {
+  left: 91.41%;
 }
 
 .hiw__label-item--core {
-  padding-top: 20px;
+  padding-top: 80px;
 }
 
 .hiw__step-label {
@@ -225,7 +220,7 @@
   margin: 0;
 }
 
-/* ── Mobile: stack vertically ───────────────────────────────────────── */
+/* ── Mobile: horizontal scroll ─────────────────────────────────────── */
 @media (max-width: 768px) {
   .hiw__diagram-wrap {
     overflow-x: auto;
@@ -238,6 +233,8 @@
 
   .hiw__labels {
     min-width: 700px;
+    margin-top: -90px;
+    height: 140px;
   }
 }
 
@@ -248,6 +245,8 @@
 
   .hiw__labels {
     min-width: 600px;
+    margin-top: -70px;
+    height: 130px;
   }
 }
 
@@ -256,6 +255,25 @@
    ════════════════════════════════════════════ */
 
 @keyframes hiwCoreRingSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes chevronPulse {
+  0% {
+    opacity: 0.15;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+  100% {
+    opacity: 0.15;
+    transform: translateX(0);
+  }
 }

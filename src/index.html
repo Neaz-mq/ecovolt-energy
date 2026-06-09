@@ -1429,7 +1429,7 @@
                 x1="950"
                 y1="111"
                 x2="950"
-                y2="188"
+                y2="174"
                 stroke="#C8960A"
                 stroke-width="1.5"
                 stroke-dasharray="4 5"
@@ -1460,7 +1460,7 @@
                 x1="1170"
                 y1="111"
                 x2="1170"
-                y2="188"
+                y2="174"
                 stroke="#a8cde0"
                 stroke-width="1.5"
                 stroke-dasharray="4 5"
@@ -1518,9 +1518,7 @@
                 fill="none"
               />
 
-              <!-- AI CORE rings
-       r=196 → reduced to r=160 to close the gap left by removing r=168
-       r=148 dashed stays the same → gap is now only 12px (tight, matching reference) -->
+              <!-- AI CORE rings -->
               <circle
                 cx="640"
                 cy="270"
@@ -1529,7 +1527,6 @@
                 stroke-width="1.2"
                 fill="none"
               />
-              <!-- r=168 removed -->
               <circle
                 cx="640"
                 cy="270"
@@ -1552,52 +1549,71 @@
               />
               <circle cx="640" cy="270" r="78" fill="rgba(220,242,228,.92)" />
 
-              <!-- OUTER RING dots — repositioned to r=160 -->
-              <!-- TOP ~5°: x=640+160*sin(5°)=654, y=270-160*cos(5°)=111 -->
+              <!-- OUTER RING dots -->
               <circle cx="645" cy="111" r="6" fill="#88C499" opacity=".78" />
-              <!-- TOP-RIGHT ~42°: x=640+160*sin(42°)=747, y=270-160*cos(42°)=151 -->
               <circle cx="747" cy="151" r="4.5" fill="#88C499" opacity=".62" />
-              <!-- RIGHT ~90°: x=640+160=800, y=270 -->
               <circle cx="797" cy="300" r="4.5" fill="#4a8fd4" opacity=".82" />
-              <!-- BOTTOM-RIGHT ~138°: x=640+160*sin(138°)=747, y=270+160*cos(42°)=389 -->
               <circle cx="747" cy="389" r="4.5" fill="#C8960A" opacity=".90" />
-              <!-- BOTTOM ~175°: x=640+160*sin(175°)=654, y=270+160*cos(5°)=429 -->
               <circle cx="605" cy="426" r="4" fill="#88C499" opacity=".82" />
-              <!-- LEFT ~258°: x=640+160*sin(258°)=483, y=270-160*cos(258°)=303 -->
               <circle cx="500" cy="350" r="5" fill="#e8b84b" opacity=".58" />
 
-              <!-- INNER DOTS — between r=148 dashed and r=160 outer (tight zone) -->
-              <!-- Top-left ~330°: x=640+154*sin(330°)=563, y=270-154*cos(330°)=137 -->
+              <!-- INNER DOTS -->
               <circle cx="496" cy="200" r="5" fill="#88C499" opacity=".62" />
-              <!-- Top-right ~30°: x=640+154*sin(30°)=717, y=270-154*cos(30°)=137 -->
               <circle cx="705" cy="145" r="3.5" fill="#4a8fd4" opacity=".50" />
-              <!-- Left inner ~285°: x=640+153*sin(285°)=492, y=270-153*cos(285°)=310 -->
               <circle cx="504" cy="310" r="4.5" fill="#88C499" opacity=".52" />
-              <!-- Bottom-left ~210°: x=640+154*sin(210°)=563, y=270+154*cos(30°)=403 -->
-
-              <!-- Bottom-right ~155°: x=640+154*sin(155°)=705, y=270+154*cos(25°)=410 -->
               <circle cx="670" cy="410" r="5" fill="#4a8fd4" opacity=".72" />
-              <!-- Right inner ~65°: x=640+153*sin(65°)=779, y=270-153*cos(65°)=205 -->
               <circle cx="765" cy="205" r="4" fill="#C8960A" opacity=".68" />
 
-              <!-- Optimize ring -->
+              <!-- Optimize rings -->
               <circle
                 cx="950"
                 cy="270"
-                r="82"
-                stroke="rgba(244,208,63,.85)"
-                stroke-width="1.5"
-                fill="rgba(244,208,63,.04)"
+                r="96"
+                stroke="rgba(244,208,63,.25)"
+                stroke-width="1.2"
+                fill="none"
+              />
+              <circle
+                cx="950"
+                cy="270"
+                r="75"
+                stroke="#C8960A"
+                stroke-width="2"
+                fill="#ffffff"
+              />
+              <circle
+                cx="950"
+                cy="270"
+                r="36"
+                stroke="rgba(244,208,63,.5)"
+                stroke-width="1.2"
+                fill="none"
               />
 
-              <!-- Distribute ring -->
+              <!-- Distribute rings -->
               <circle
                 cx="1170"
                 cy="270"
-                r="82"
-                stroke="rgba(46,134,193,.38)"
-                stroke-width="1.5"
-                fill="rgba(46,134,193,.04)"
+                r="96"
+                stroke="rgba(46,134,193,.25)"
+                stroke-width="1.2"
+                fill="none"
+              />
+              <circle
+                cx="1170"
+                cy="270"
+                r="75"
+                stroke="#2E86C1"
+                stroke-width="2"
+                fill="#ffffff"
+              />
+              <circle
+                cx="1170"
+                cy="270"
+                r="36"
+                stroke="rgba(46,134,193,.5)"
+                stroke-width="1.2"
+                fill="none"
               />
 
               <!-- ── ICONS ──────────────────────────────────────────────── -->
@@ -1868,55 +1884,211 @@
 
               <!-- Connector 1: Capture → Store -->
               <path
-                d="M185 270 C190 262, 196 278, 202 270 C208 262, 214 278, 220 270 C226 262, 232 278, 238 270 C244 262, 249 278, 255 270"
+                d="M185 270 C200 248, 218 292, 235 270 C242 248, 252 292, 250 272"
                 stroke="#1E5B4D"
-                stroke-width="1.6"
-                opacity=".55"
+                stroke-width="1"
+                opacity=".5"
+                fill="none"
+              />
+              <path
+                class="hiw__chevron-1"
+                d="M203 246 L209 252 L203 258"
+                stroke="#88C499"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".9"
+              />
+              <path
+                class="hiw__chevron-2"
+                d="M211 246 L217 252 L211 258"
+                stroke="#88C499"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".9"
+              />
+              <path
+                class="hiw__chevron-3"
+                d="M219 246 L225 252 L219 258"
+                stroke="#88C499"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".9"
               />
               <circle
-                cx="248"
-                cy="270"
+                cx="250"
+                cy="272"
                 r="5"
                 stroke="#1E5B4D"
-                stroke-width="1.5"
+                stroke-width="1"
                 fill="#ffffff"
               />
 
               <!-- Connector 2: Store → Core -->
               <path
-                d="M405 270 C415 260, 425 280, 435 270 C445 260, 455 280, 465 270 C475 260, 485 280, 495 270 C502 262, 508 278, 512 270"
+                d="M405 270 C425 248, 440 292, 460 270"
                 stroke="#1E5B4D"
-                stroke-width="1.8"
-                opacity=".65"
+                stroke-width="1"
+                opacity=".55"
+                fill="none"
+              />
+              <path
+                class="hiw__chevron-1"
+                d="M438 246 L445 252 L438 258"
+                stroke="#1E5B4D"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".85"
+              />
+              <path
+                class="hiw__chevron-2"
+                d="M447 246 L454 252 L447 258"
+                stroke="#1E5B4D"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".85"
+              />
+              <path
+                class="hiw__chevron-3"
+                d="M456 246 L463 252 L456 258"
+                stroke="#1E5B4D"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".85"
+              />
+              <path
+                d="M460 270 C475 248, 490 292, 510 270"
+                stroke="#1E5B4D"
+                stroke-width="1"
+                opacity=".55"
+                fill="none"
               />
               <circle
                 cx="505"
-                cy="270"
+                cy="272"
                 r="5.5"
                 stroke="#1E5B4D"
-                stroke-width="1.5"
+                stroke-width="1"
                 fill="#ffffff"
               />
 
               <!-- Connector 3: Core → Optimize -->
               <path
-                d="M768 270 C778 261, 788 279, 798 270 C808 261, 818 279, 828 270 C838 261, 848 279, 858 270 C862 265, 868 270, 868 270"
+                d="M768 270 C788 250, 803 290, 823 270"
                 stroke="#C8960A"
-                stroke-width="1.6"
-                opacity=".55"
+                stroke-width="1"
+                opacity=".5"
+                fill="none"
               />
-              <circle cx="863" cy="270" r="5.5" fill="#ffffff" stroke="#C8960A" opacity=".88" />
+              <path
+                class="hiw__chevron-1"
+                d="M810 246 L817 252 L810 258"
+                stroke="#C8960A"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".9"
+              />
+              <path
+                class="hiw__chevron-2"
+                d="M819 246 L826 252 L819 258"
+                stroke="#C8960A"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".9"
+              />
+              <path
+                class="hiw__chevron-3"
+                d="M828 246 L835 252 L828 258"
+                stroke="#C8960A"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".9"
+              />
+              <path
+                d="M823 270 C838 250, 853 290, 868 270"
+                stroke="#C8960A"
+                stroke-width="1"
+                opacity=".5"
+                fill="none"
+              />
+              <circle
+                cx="868"
+                cy="270"
+                r="5.5"
+                fill="#ffffff"
+                stroke="#C8960A"
+                stroke-width="1"
+                opacity=".88"
+              />
 
               <!-- Connector 4: Optimize → Distribute -->
               <path
-                d="M1032 270 C1037 261, 1043 279, 1048 270 C1053 261, 1059 279, 1064 270 C1068 263, 1074 270, 1082 270"
+                d="M1026 270 C1038 248, 1054 292, 1068 270 C1075 248, 1088 292, 1089 273"
                 stroke="#2E86C1"
-                stroke-width="1.5"
+                stroke-width="1"
                 opacity=".5"
+                fill="none"
               />
-              <circle cx="1082" cy="268" r="6" stroke="#4a8fd4" fill="#ffffff" opacity=".90" />
+              <path
+                class="hiw__chevron-1"
+                d="M1044 246 L1050 252 L1044 258"
+                stroke="#2E86C1"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".9"
+              />
+              <path
+                class="hiw__chevron-2"
+                d="M1053 246 L1059 252 L1053 258"
+                stroke="#2E86C1"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".9"
+              />
+              <path
+                class="hiw__chevron-3"
+                d="M1062 246 L1068 252 L1062 258"
+                stroke="#2E86C1"
+                stroke-width="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+                opacity=".9"
+              />
+              <circle
+                cx="1089"
+                cy="273"
+                r="5.5"
+                stroke="#2E86C1"
+                stroke-width="1"
+                fill="#ffffff"
+                opacity=".90"
+              />
             </svg>
-            <!-- STEP LABELS — 5-column grid aligned under each circle -->
+            <!-- ↑ SVG closes HERE — before the HTML labels div ↑ -->
+
+            <!-- STEP LABELS -->
             <div class="hiw__labels">
               <div class="hiw__label-item">
                 <p class="hiw__step-label" style="color: #1e5b4d">Capture</p>
