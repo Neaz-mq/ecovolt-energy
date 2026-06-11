@@ -1,0 +1,274 @@
+/* ============================================================
+   MEASURABLE SECTION — "Measurable Impact"
+   src/scss/sections/_measurable.scss
+   ============================================================ */
+
+.measurable {
+  position: relative;
+  background: #ffffff;
+  padding: 80px 0;
+}
+
+.measurable__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: stretch;
+}
+
+/* ── LEFT ──────────────────────────────────────────────────── */
+.measurable__left {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.measurable__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.measurable__title {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #1E5B4D;
+  margin: 0;
+}
+
+.measurable__title-accent {
+  color: #88C499;
+}
+
+.measurable__intro {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #6b7280;
+  margin: 0;
+  max-width: 460px;
+}
+
+/* ── Stats grid ────────────────────────────────────────────── */
+.measurable__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.measurable__stat {
+  background: #f5f6f7;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &--accent {
+    background: #c9e4d2;
+  }
+}
+
+.measurable__stat-num {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #1E5B4D;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.measurable__stat-unit {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1E5B4D;
+  vertical-align: super;
+}
+
+.measurable__stat-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2d2d2d;
+  margin: 4px 0 0;
+}
+
+.measurable__stat-desc {
+  font-size: 0.82rem;
+  color: #8b8f8c;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── RIGHT ─────────────────────────────────────────────────── */
+.measurable__right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.measurable__globe {
+  flex: 1;
+  background: #1E5B4D;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  padding: 36px;
+}
+
+.measurable__globe-img {
+  width: 100%;
+  height: 100%;
+  max-width: 480px;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: screen;
+  filter: invert(1) brightness(2.5);
+}
+
+.measurable__quote {
+  background: #f0f1f2;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+}
+
+.measurable__quote-mark {
+  flex-shrink: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #a9c8b4;
+  font-style: italic;
+}
+
+.measurable__quote-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1E5B4D;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+.measurable__footer {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  background: #f5f6f7;
+  border-radius: 20px;
+  margin-top: 32px;
+  padding: 24px 40px;
+
+  // remove the outer max-width/padding double-application
+  width: calc(100% - 80px);
+  max-width: 1120px;
+}
+
+.measurable__footer-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.measurable__footer-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #dceee2;
+  color: #1E5B4D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.measurable__footer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.measurable__footer-num {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1E5B4D;
+  line-height: 1.1;
+}
+
+.measurable__footer-label {
+  font-size: 0.8rem;
+  color: #8b8f8c;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .measurable__container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 0 28px;
+  }
+
+  .measurable__right {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .measurable {
+    padding: 48px 0;
+  }
+
+  .measurable__container {
+    padding: 0 20px;
+    gap: 24px;
+  }
+
+  .measurable__title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  .measurable__stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .measurable__stat {
+    padding: 16px;
+  }
+
+  .measurable__stat-num {
+    font-size: 1.4rem;
+  }
+
+  .measurable__globe {
+    min-height: 220px;
+  }
+
+  .measurable__quote {
+    padding: 16px;
+  }
+
+  .measurable__footer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 20px;
+    margin: 24px 20px 0;
+    width: auto;
+  }
+}
