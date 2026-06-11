@@ -1,0 +1,218 @@
+/* ============================================================
+   ENERGY SECTION — "Designed for Modern Energy Needs"
+   src/scss/_energy.scss
+   ============================================================ */
+
+.energy {
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+  padding: 80px 0;
+  color: #ffffff;
+}
+
+/* ── Background ────────────────────────────────────────────── */
+.energy__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.energy__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+.energy__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(5, 15, 10, 0.92) 0%,
+    rgba(5, 15, 10, 0.82) 38%,
+    rgba(5, 15, 10, 0.45) 65%,
+    rgba(5, 15, 10, 0.10) 100%
+  );
+}
+
+/* ── Layout container ──────────────────────────────────────── */
+.energy__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+/* ── LEFT: copy ────────────────────────────────────────────── */
+.energy__left {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.energy__title {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.18;
+  color: #ffffff;
+  margin: 0;
+}
+
+.energy__title-accent {
+  color: #88C499;
+}
+
+.energy__desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  max-width: 460px;
+}
+
+/* ── Checklist ─────────────────────────────────────────────── */
+.energy__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.energy__list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.energy__list-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #88C499;
+}
+
+/* ── Stat badges ───────────────────────────────────────────── */
+.energy__badges {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.energy__badge {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+  padding: 18px 20px;
+
+  /* dark glass fill */
+  background: rgba(10, 18, 12, 0.55);
+
+  border-radius: 16px;
+  border: 1px solid rgba(237, 237, 237, 0.18);
+
+  text-align: left;
+}
+
+.energy__badge-num {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #88C499;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.energy__badge-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ── RIGHT: product image ──────────────────────────────────── */
+.energy__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.energy__product-img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.55));
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .energy__container {
+    gap: 36px;
+    padding: 0 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .energy {
+    padding: 60px 0 40px;
+  }
+
+  .energy__bg-overlay {
+    background: rgba(5, 15, 10, 0.88);
+  }
+
+  .energy__container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .energy__title {
+    font-size: clamp(1.7rem, 6vw, 2.2rem);
+  }
+
+  .energy__right {
+    order: -1;
+  }
+
+  .energy__product-img {
+    max-width: 100%;
+  }
+
+  .energy__badges {
+    gap: 8px;
+  }
+
+  .energy__badge {
+    padding: 12px 14px;
+  }
+
+  .energy__badge-num {
+    font-size: 1.3rem;
+  }
+
+  .energy__badge-label {
+    white-space: normal;
+    font-size: 0.65rem;
+  }
+}
