@@ -12,10 +12,14 @@
   overflow: hidden;
 }
 @media (max-width: 768px) {
-  .hiw { padding: 72px 0 88px; }
+  .hiw {
+    padding: 72px 0 88px;
+  }
 }
 @media (max-width: 480px) {
-  .hiw { padding: 56px 0 64px; }
+  .hiw {
+    padding: 56px 0 64px;
+  }
 }
 
 .hiw::before {
@@ -45,10 +49,14 @@
   z-index: 1;
 }
 @media (max-width: 768px) {
-  .hiw__container { padding: 0 24px; }
+  .hiw__container {
+    padding: 0 24px;
+  }
 }
 @media (max-width: 480px) {
-  .hiw__container { padding: 0 16px; }
+  .hiw__container {
+    padding: 0 16px;
+  }
 }
 
 .hiw__header {
@@ -56,7 +64,9 @@
   margin-bottom: 60px;
 }
 @media (max-width: 768px) {
-  .hiw__header { margin-bottom: 40px; }
+  .hiw__header {
+    margin-bottom: 40px;
+  }
 }
 
 .hiw__title {
@@ -101,15 +111,23 @@
   transform-origin: 640px 270px;
   animation: hiwCoreRingSpin 18s linear infinite;
 }
-.hiw__chevron-1 { animation: chevronPulse 1.8s ease-in-out infinite; }
-.hiw__chevron-2 { animation: chevronPulse 1.8s ease-in-out infinite 0.2s; }
-.hiw__chevron-3 { animation: chevronPulse 1.8s ease-in-out infinite 0.4s; }
+.hiw__chevron-1 {
+  animation: chevronPulse 1.8s ease-in-out infinite;
+}
+.hiw__chevron-2 {
+  animation: chevronPulse 1.8s ease-in-out infinite 0.2s;
+}
+.hiw__chevron-3 {
+  animation: chevronPulse 1.8s ease-in-out infinite 0.4s;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .hiw__core-spin,
   .hiw__chevron-1,
   .hiw__chevron-2,
-  .hiw__chevron-3 { animation: none; }
+  .hiw__chevron-3 {
+    animation: none;
+  }
 }
 
 .hiw__labels {
@@ -120,7 +138,9 @@
   min-height: 160px;
 }
 @media (min-width: 1200px) {
-  .hiw__labels { margin-top: -125px; }
+  .hiw__labels {
+    margin-top: -125px;
+  }
 }
 
 .hiw__label-item {
@@ -131,19 +151,35 @@
   flex-direction: column;
   align-items: center;
   padding-top: 24px;
-  width: 200px;
+  width: clamp(
+    100px,
+    16vw,
+    200px
+  ); /* scales with viewport to prevent overlap */
 }
-.hiw__label-item:nth-child(1) { left: 8.59%;  }
-.hiw__label-item:nth-child(2) { left: 25.78%; }
-.hiw__label-item:nth-child(3) { left: 50%;    }
-.hiw__label-item:nth-child(4) { left: 74.22%; }
-.hiw__label-item:nth-child(5) { left: 91.41%; }
+.hiw__label-item:nth-child(1) {
+  left: 8.59%;
+}
+.hiw__label-item:nth-child(2) {
+  left: 25.78%;
+}
+.hiw__label-item:nth-child(3) {
+  left: 50%;
+}
+.hiw__label-item:nth-child(4) {
+  left: 74.22%;
+}
+.hiw__label-item:nth-child(5) {
+  left: 91.41%;
+}
 
 .hiw__label-item--core {
   padding-top: clamp(52px, calc(24px + 5vw), 88px);
 }
 @media (min-width: 1200px) {
-  .hiw__label-item--core { padding-top: 84px; }
+  .hiw__label-item--core {
+    padding-top: 84px;
+  }
 }
 
 .hiw__step-label {
@@ -160,7 +196,11 @@
   color: #6b7c74;
   line-height: 1.65;
   margin: 0;
-  max-width: 160px;
+  max-width: clamp(
+    80px,
+    13vw,
+    160px
+  ); /* scales with viewport to prevent overlap */
 }
 
 .hiw__core-label {
@@ -173,28 +213,10 @@
 }
 
 @media (max-width: 860px) {
-  .hiw__label-item {
-    width: clamp(100px, 18vw, 180px);
-    padding-top: 18px;
-  }
-  .hiw__label-item--core {
-    padding-top: clamp(44px, calc(18px + 5vw), 80px);
-  }
-  .hiw__step-label { font-size: clamp(12px, 1.6vw, 16px); }
-  .hiw__step-desc  { font-size: clamp(10px, 1.1vw, 13px); max-width: 130px; }
-}
-@media (max-width: 768px) {
-  .hiw__label-item { width: clamp(90px, 16vw, 150px); }
-  .hiw__step-desc  { max-width: 110px; }
-  .hiw__label-item--core {
-    padding-top: clamp(40px, calc(18px + 5vw), 72px);
+  .hiw__diagram-wrap {
+    display: none;
   }
 }
-
-@media (max-width: 640px) {
-  .hiw__diagram-wrap { display: none; }
-}
-
 
 /* ══════════════════════════════════════════════
    MOBILE VERTICAL STEPPER
@@ -204,8 +226,7 @@
   display: none;
 }
 
-@media (max-width: 640px) {
-
+@media (max-width: 860px) {
   .hiw__stepper {
     display: flex;
     flex-direction: column;
@@ -213,17 +234,6 @@
   }
 
   /* ── Step groups that carry the connecting line ── */
-  /*
-     The line is centered on the LEFT column (width: 64px),
-     so its horizontal center = 32px from the left edge of the group.
-     We use left: 31.5px (half of 1.5px line = 0.75px nudge) → effectively 32px center.
-
-     top: 14px  → starts at center of the number badge (badge is 28px tall, 14px = midpoint)
-     bottom: 46px → stops at center of the LAST icon circle
-                    (icon is 64px + 8px gap below badge = 72px block;
-                     last step has padding-bottom:0 so bottom of group = bottom of icon.
-                     Icon center from bottom = 32px. Add 14px half-badge safety = 46px)
-  */
   .hiw__steps-top {
     display: flex;
     flex-direction: column;
@@ -233,20 +243,15 @@
     content: "";
     position: absolute;
     left: 31.5px;
-    top: 14px;      /* center of step-1 number badge */
-    bottom: 32px;   /* center of step-2 icon circle from bottom */
+    top: 14px; /* center of step-1 number badge */
+    bottom: 32px; /* center of step-2 icon circle from bottom */
     width: 1.5px;
     background: linear-gradient(to bottom, #88c499 0%, #1e5b4d 100%);
     opacity: 0.4;
     z-index: 0;
   }
 
-  /*
-     Bridge line: from bottom of .hiw__steps-top → top of .hiw__steps-bottom
-     We put this on the AI Core card itself using ::before and ::after.
-     ::before  = line from top of card up to meet step-2 icon
-     ::after   = line from bottom of card down to meet step-3 badge
-  */
+  /* Bridge lines on the AI Core card */
   .hiw__step-core-card {
     position: relative;
   }
@@ -255,7 +260,7 @@
     content: "";
     position: absolute;
     left: 31.5px;
-    top: -8px;     /* reaches back up into the gap above the card */
+    top: -8px;
     height: 48px;
     width: 1.5px;
     background: #1e5b4d;
@@ -267,7 +272,7 @@
     content: "";
     position: absolute;
     left: 31.5px;
-    bottom: -8px;  /* reaches down into the gap below the card */
+    bottom: -8px;
     height: 8px;
     width: 1.5px;
     background: #c8960a;
@@ -280,14 +285,35 @@
     flex-direction: column;
     position: relative;
   }
+
+  /* Main line: from step-3 badge down to just above step-4 icon */
   .hiw__steps-bottom::before {
     content: "";
     position: absolute;
     left: 31.5px;
-    top: 28px;      /* center of step-3 number badge */
-    bottom: 24px;   /* center of step-4 icon from bottom */
+    top: 28px; /* center of step-3 number badge */
+    bottom: 92px; /* stops before step-4 icon top */
     width: 1.5px;
     background: linear-gradient(to bottom, #c8960a 0%, #2e86c1 100%);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  /* ── FIX: short stub line connecting step-3 icon bottom → step-4 badge ──
+     Sits between the bottom of the step-3 icon and the top of step-4 badge.
+     step-4 row height from bottom:
+       icon = 64px, gap = 8px, badge = 28px → badge center from bottom = 64px + 8px + 14px = 86px
+     We start the stub at bottom: 64px (top of step-4 icon) and
+     give it enough height to bridge the gap up to where ::before ends.
+  */
+  .hiw__steps-bottom::after {
+    content: "";
+    position: absolute;
+    left: 31.5px;
+    bottom: 64px; /* sits just above the step-4 icon top edge */
+    height: 28px; /* bridges gap between ::before end and step-4 icon */
+    width: 1.5px;
+    background: #2e86c1;
     opacity: 0.4;
     z-index: 0;
   }
@@ -301,7 +327,9 @@
     z-index: 1;
     padding: 0 0 28px;
   }
-  .hiw__step:last-child { padding-bottom: 0; }
+  .hiw__step:last-child {
+    padding-bottom: 0;
+  }
 
   /* ── Left column ── */
   .hiw__step-left {
@@ -326,11 +354,11 @@
     font-weight: 700;
     flex-shrink: 0;
     position: relative;
-    z-index: 3;           /* above line */
+    z-index: 3;
     background: #fff;
   }
 
-  /* Icon circle — must be above the line (z-index > line's z-index:0) */
+  /* Icon circle */
   .hiw__step-icon {
     width: 64px;
     height: 64px;
@@ -341,7 +369,7 @@
     justify-content: center;
     flex-shrink: 0;
     position: relative;
-    z-index: 3;           /* above the pseudo-element line (z-index:0) */
+    z-index: 3;
   }
 
   /* Outer faint ring */
@@ -429,7 +457,9 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  .hiw__step-core-content { flex: 1; }
+  .hiw__step-core-content {
+    flex: 1;
+  }
 
   .hiw__step-core-eyebrow {
     font-size: 11px;
@@ -472,7 +502,137 @@
   }
 }
 
-@media (max-width: 480px) {
+/* ══════════════════════════════════════════════
+   TABLET LAYOUT: 641px–860px
+   Flow: Steps 1&2 (left) → AI CORE (center) → Steps 3&4 (right)
+   ══════════════════════════════════════════════ */
+@media (max-width: 860px) and (min-width: 768px) {
+  .hiw__stepper {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto;
+    align-items: center;
+    column-gap: 0;
+    padding: 0 8px;
+  }
+
+  /* Left column: steps 1 & 2 */
+  .hiw__steps-top {
+    grid-column: 1;
+    grid-row: 1;
+    padding-right: 16px;
+    border-right: 1.5px solid rgba(30, 91, 77, 0.15);
+  }
+
+  /* Center: AI Core card */
+  .hiw__step-core-card {
+    grid-column: 2;
+    grid-row: 1;
+    flex-direction: column;
+    text-align: center;
+    width: 160px;
+    margin: 0 8px;
+    padding: 24px 16px;
+    border-radius: 20px;
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .hiw__step-core-icon {
+    margin: 0 auto 12px;
+  }
+
+  .hiw__step-core-content {
+    flex: unset;
+  }
+
+  /* Right column: steps 3 & 4 */
+  .hiw__steps-bottom {
+    grid-column: 3;
+    grid-row: 1;
+    padding-left: 16px;
+    border-left: 1.5px solid rgba(200, 150, 10, 0.2);
+  }
+
+  /* Hide bridge lines — card is now center column */
+  .hiw__step-core-card::before,
+  .hiw__step-core-card::after {
+    display: none;
+  }
+
+  /* Icon sizes */
+  .hiw__step-icon {
+    width: 60px;
+    height: 60px;
+  }
+  .hiw__step-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+  .hiw__step-core-icon {
+    width: 68px;
+    height: 68px;
+  }
+  .hiw__step-core-title {
+    font-size: 15px;
+  }
+  .hiw__step-core-eyebrow {
+    font-size: 10px;
+  }
+  .hiw__step-core-desc {
+    font-size: 12px;
+  }
+
+  /* Line adjustments for 60px icons:
+     left = 30px (center of 60px icon within 64px column)
+     ::before bottom = 88px → stops just where ::after begins
+     ::after  bottom = 60px → sits flush on top of step-4 icon */
+  .hiw__steps-bottom::before {
+    left: 48px;
+    bottom: 95px;
+  }
+  .hiw__steps-bottom::after {
+    left: 48px;
+    bottom: 40px;
+    height: 28px;
+  }
+
+  /* Also fix top group line center for 60px icons */
+  .hiw__steps-top::before {
+    left: 30px;
+    bottom: 30px;
+  }
+}
+
+/* ── Large mobile: 577px–640px — icons 60px ── */
+@media (max-width: 767px) and (min-width: 577px) {
+  .hiw__step-icon {
+    width: 60px;
+    height: 60px;
+  }
+  .hiw__step-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+  .hiw__step-core-icon {
+    width: 68px;
+    height: 68px;
+  }
+  .hiw__step-core-title {
+    font-size: 17px;
+  }
+  /* icon=60px → ::before stops at 88px, ::after starts at 60px */
+  .hiw__steps-bottom::before {
+    bottom: 95px;
+  }
+  .hiw__steps-bottom::after {
+    bottom: 40px;
+    height: 28px;
+  }
+}
+
+/* ── Mobile: ≤576px — compact 56px icons ── */
+@media (max-width: 576px) {
   .hiw__step-icon {
     width: 56px;
     height: 56px;
@@ -485,20 +645,42 @@
     width: 64px;
     height: 64px;
   }
-  .hiw__step-core-title { font-size: 16px; }
+  .hiw__step-core-title {
+    font-size: 16px;
+  }
+  /* icon=56px → ::before stops at 84px, ::after starts at 56px */
+  .hiw__steps-bottom::before {
+    bottom: 92px;
+  }
+  .hiw__steps-bottom::after {
+    bottom: 36px;
+    height: 28px;
+  }
 }
-
 
 /* ════════════════════════════════════════════
    KEYFRAMES
    ════════════════════════════════════════════ */
 @keyframes hiwCoreRingSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes chevronPulse {
-  0%   { opacity: 0.15; transform: translateX(0); }
-  50%  { opacity: 1;    transform: translateX(4px); }
-  100% { opacity: 0.15; transform: translateX(0); }
+  0% {
+    opacity: 0.15;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+  100% {
+    opacity: 0.15;
+    transform: translateX(0);
+  }
 }
