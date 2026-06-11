@@ -255,8 +255,8 @@
     content: "";
     position: absolute;
     left: 31.5px;
-    top: -28px;     /* reaches back up into the gap above the card */
-    height: 28px;
+    top: -8px;     /* reaches back up into the gap above the card */
+    height: 48px;
     width: 1.5px;
     background: #1e5b4d;
     opacity: 0.35;
@@ -267,8 +267,8 @@
     content: "";
     position: absolute;
     left: 31.5px;
-    bottom: -28px;  /* reaches down into the gap below the card */
-    height: 28px;
+    bottom: -8px;  /* reaches down into the gap below the card */
+    height: 8px;
     width: 1.5px;
     background: #c8960a;
     opacity: 0.35;
@@ -284,8 +284,8 @@
     content: "";
     position: absolute;
     left: 31.5px;
-    top: 14px;      /* center of step-3 number badge */
-    bottom: 32px;   /* center of step-4 icon from bottom */
+    top: 28px;      /* center of step-3 number badge */
+    bottom: 24px;   /* center of step-4 icon from bottom */
     width: 1.5px;
     background: linear-gradient(to bottom, #c8960a 0%, #2e86c1 100%);
     opacity: 0.4;
