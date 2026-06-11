@@ -81,13 +81,15 @@
   margin: 0 auto;
 }
 
-/* ── Diagram wrap ────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════
+   DESKTOP DIAGRAM (SVG + labels)
+   ══════════════════════════════════════════════ */
+
 .hiw__diagram-wrap {
   position: relative;
   width: 100%;
 }
 
-/* ── SVG ─────────────────────────────────────────────────────────────── */
 .hiw__svg {
   width: 100%;
   height: auto;
@@ -95,7 +97,6 @@
   overflow: visible;
 }
 
-/* ── Animations ──────────────────────────────────────────────────────── */
 .hiw__core-spin {
   transform-origin: 640px 270px;
   animation: hiwCoreRingSpin 18s linear infinite;
@@ -111,21 +112,6 @@
   .hiw__chevron-3 { animation: none; }
 }
 
-/* ── Labels ──────────────────────────────────────────────────────────────
-   SVG viewBox: 0 0 1280 500   →  aspect ratio = 500/1280 = 0.390625
-   Circle bottom edge = (270 + 96) / 500 = 73.2% of SVG height.
-   Remaining SVG height below circles = 26.8% of SVG height.
-   26.8% of SVG height = 26.8% × 39.0625% of container width = 10.47vw.
-   So margin-top = -10.47vw (negative = pull UP into that remaining space).
-
-   Container has 80px total horizontal padding, so:
-   At 1280px viewport: usable = 1200px → SVG height = 468.75px → pull = 125.6px ✓
-   At  900px viewport: usable =  820px → SVG height = 320.3px  → pull =  85.8px ✓
-   At  600px viewport: usable =  552px → SVG height = 215.6px  → pull =  57.8px ✓
-
-   Left positions = cx / 1280:
-     Capture    8.59% | Store 25.78% | Core 50% | Optimize 74.22% | Dist 91.41%
-   ─────────────────────────────────────────────────────────────────────────────── */
 .hiw__labels {
   position: relative;
   width: 100%;
@@ -133,8 +119,6 @@
   z-index: 2;
   min-height: 160px;
 }
-
-/* Guard: never pull more than -125px (max container) or less than -40px */
 @media (min-width: 1200px) {
   .hiw__labels { margin-top: -125px; }
 }
@@ -149,15 +133,12 @@
   padding-top: 24px;
   width: 200px;
 }
-
 .hiw__label-item:nth-child(1) { left: 8.59%;  }
 .hiw__label-item:nth-child(2) { left: 25.78%; }
 .hiw__label-item:nth-child(3) { left: 50%;    }
 .hiw__label-item:nth-child(4) { left: 74.22%; }
 .hiw__label-item:nth-child(5) { left: 91.41%; }
 
-/* AI CORE: centre circle r=160 vs normal r=96. Extra depth = 64/500 = 12.8% of SVG.
-   Extra padding-top needed = 12.8% × 39.0625% × 100vw = 5vw */
 .hiw__label-item--core {
   padding-top: clamp(52px, calc(24px + 5vw), 88px);
 }
@@ -191,111 +172,322 @@
   margin: 0;
 }
 
-/* ── Responsive breakpoints ──────────────────────────────────────────────
-   STRATEGY:
-   - Above 600px: SVG scales naturally (width:100%), labels use vw math above.
-     No scroll needed — the diagram fits the screen.
-   - Below 600px: SVG too small to be legible at natural scale.
-     Lock to 560px min-width and scroll horizontally.
-     Use fixed px margin-top derived from fixed SVG height.
-
-   At 560px SVG width: height = 560 × 0.390625 = 218.75px
-   Circle bottom = 218.75 × 73.2% = 160.1px from top
-   Remaining below = 218.75 - 160.1 = 58.6px → margin-top: -59px
-
-   At 480px SVG width: height = 480 × 0.390625 = 187.5px
-   Circle bottom = 187.5 × 73.2% = 137.25px
-   Remaining = 187.5 - 137.25 = 50.25px → margin-top: -50px
-   ─────────────────────────────────────────────────────────────────────── */
-
-/* Tablet 600–860px: SVG scales naturally, no scroll, labels use vw math.
-   Just tighten label widths so text doesn't overflow into neighbours. */
 @media (max-width: 860px) {
   .hiw__label-item {
     width: clamp(100px, 18vw, 180px);
     padding-top: 18px;
   }
-
-  .hiw__step-label  { font-size: clamp(12px, 1.6vw, 16px); }
-  .hiw__step-desc   { font-size: clamp(10px, 1.1vw, 13px); max-width: 130px; }
-}
-
-@media (max-width: 768px) {
-  .hiw__label-item  { width: clamp(90px, 16vw, 150px); }
-  .hiw__step-desc   { max-width: 110px; }
-}
-
-/* Small mobile: lock SVG width, enable horizontal scroll */
-@media (max-width: 600px) {
-  .hiw__diagram-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    /* Nudge left so left edge aligns with container */
-    margin-inline: -24px;
-    padding-inline: 24px;
-    /* Extra right padding so last node isn't edge-clipped */
-    padding-right: 32px;
-    width: calc(100% + 48px);
-  }
-  .hiw__diagram-wrap::-webkit-scrollbar { display: none; }
-
-  .hiw__svg {
-    width: 560px;
-    min-width: 560px;
-    display: block;
-  }
-
-  .hiw__labels {
-    width: 560px;
-    min-width: 560px;
-    /* Fixed: remaining SVG height below circles at 560px width = 58.6px */
-    margin-top: -59px;
-    min-height: 120px;
-  }
-
-  .hiw__label-item {
-    width: 110px;
-    padding-top: 16px;
-  }
-
   .hiw__label-item--core {
-    padding-top: 44px;
+    padding-top: clamp(44px, calc(18px + 5vw), 80px);
+  }
+  .hiw__step-label { font-size: clamp(12px, 1.6vw, 16px); }
+  .hiw__step-desc  { font-size: clamp(10px, 1.1vw, 13px); max-width: 130px; }
+}
+@media (max-width: 768px) {
+  .hiw__label-item { width: clamp(90px, 16vw, 150px); }
+  .hiw__step-desc  { max-width: 110px; }
+  .hiw__label-item--core {
+    padding-top: clamp(40px, calc(18px + 5vw), 72px);
+  }
+}
+
+@media (max-width: 640px) {
+  .hiw__diagram-wrap { display: none; }
+}
+
+
+/* ══════════════════════════════════════════════
+   MOBILE VERTICAL STEPPER
+   ══════════════════════════════════════════════ */
+
+.hiw__stepper {
+  display: none;
+}
+
+@media (max-width: 640px) {
+
+  .hiw__stepper {
+    display: flex;
+    flex-direction: column;
+    padding: 0 4px;
   }
 
-  .hiw__step-label  { font-size: 12px; }
-  .hiw__step-desc   { font-size: 10px; max-width: 100px; }
-  .hiw__core-label  { font-size: 11px; }
+  /* ── Step groups that carry the connecting line ── */
+  /*
+     The line is centered on the LEFT column (width: 64px),
+     so its horizontal center = 32px from the left edge of the group.
+     We use left: 31.5px (half of 1.5px line = 0.75px nudge) → effectively 32px center.
+
+     top: 14px  → starts at center of the number badge (badge is 28px tall, 14px = midpoint)
+     bottom: 46px → stops at center of the LAST icon circle
+                    (icon is 64px + 8px gap below badge = 72px block;
+                     last step has padding-bottom:0 so bottom of group = bottom of icon.
+                     Icon center from bottom = 32px. Add 14px half-badge safety = 46px)
+  */
+  .hiw__steps-top {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .hiw__steps-top::before {
+    content: "";
+    position: absolute;
+    left: 31.5px;
+    top: 14px;      /* center of step-1 number badge */
+    bottom: 32px;   /* center of step-2 icon circle from bottom */
+    width: 1.5px;
+    background: linear-gradient(to bottom, #88c499 0%, #1e5b4d 100%);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  /*
+     Bridge line: from bottom of .hiw__steps-top → top of .hiw__steps-bottom
+     We put this on the AI Core card itself using ::before and ::after.
+     ::before  = line from top of card up to meet step-2 icon
+     ::after   = line from bottom of card down to meet step-3 badge
+  */
+  .hiw__step-core-card {
+    position: relative;
+  }
+  /* Line from Store icon down into top of core card */
+  .hiw__step-core-card::before {
+    content: "";
+    position: absolute;
+    left: 31.5px;
+    top: -28px;     /* reaches back up into the gap above the card */
+    height: 28px;
+    width: 1.5px;
+    background: #1e5b4d;
+    opacity: 0.35;
+    z-index: 0;
+  }
+  /* Line from bottom of core card down to Optimize badge */
+  .hiw__step-core-card::after {
+    content: "";
+    position: absolute;
+    left: 31.5px;
+    bottom: -28px;  /* reaches down into the gap below the card */
+    height: 28px;
+    width: 1.5px;
+    background: #c8960a;
+    opacity: 0.35;
+    z-index: 0;
+  }
+
+  .hiw__steps-bottom {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .hiw__steps-bottom::before {
+    content: "";
+    position: absolute;
+    left: 31.5px;
+    top: 14px;      /* center of step-3 number badge */
+    bottom: 32px;   /* center of step-4 icon from bottom */
+    width: 1.5px;
+    background: linear-gradient(to bottom, #c8960a 0%, #2e86c1 100%);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  /* ── Each step row ── */
+  .hiw__step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+    padding: 0 0 28px;
+  }
+  .hiw__step:last-child { padding-bottom: 0; }
+
+  /* ── Left column ── */
+  .hiw__step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 64px;
+    gap: 8px;
+  }
+
+  /* Number badge */
+  .hiw__step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Manrope, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 3;           /* above line */
+    background: #fff;
+  }
+
+  /* Icon circle — must be above the line (z-index > line's z-index:0) */
+  .hiw__step-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 3;           /* above the pseudo-element line (z-index:0) */
+  }
+
+  /* Outer faint ring */
+  .hiw__step-icon::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(136, 196, 153, 0.3);
+    z-index: 1;
+  }
+
+  .hiw__step-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* ── Right column ── */
+  .hiw__step-right {
+    flex: 1;
+    padding-top: 4px;
+  }
+  .hiw__step-right .hiw__step-label {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 6px;
+    letter-spacing: -0.2px;
+  }
+  .hiw__step-right .hiw__step-desc {
+    font-size: 13px;
+    color: #6b7c74;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  /* ── Step colours ── */
+  .hiw__step--capture .hiw__step-num {
+    border: 1.5px solid #88c499;
+    color: #5db87a;
+  }
+  .hiw__step--capture .hiw__step-icon {
+    border: 1.8px solid #88c499;
+  }
+
+  .hiw__step--store .hiw__step-num {
+    border: 1.5px solid #1e5b4d;
+    color: #1e5b4d;
+  }
+  .hiw__step--store .hiw__step-icon {
+    border: 2px solid #1e5b4d;
+  }
+
+  /* AI Core card */
+  .hiw__step-core-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: linear-gradient(135deg, #1e5b4d 0%, #2d7a62 100%);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 8px 0;
+    z-index: 1;
+  }
+
+  .hiw__step-core-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(220, 242, 228, 0.92);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .hiw__step-core-icon::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .hiw__step-core-content { flex: 1; }
+
+  .hiw__step-core-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 2px;
+  }
+  .hiw__step-core-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 6px;
+    letter-spacing: -0.3px;
+  }
+  .hiw__step-core-desc {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .hiw__step--optimize .hiw__step-num {
+    border: 1.5px solid #e8c040;
+    color: #b8860b;
+    background: rgba(244, 208, 63, 0.06);
+  }
+  .hiw__step--optimize .hiw__step-icon {
+    border: 2px solid #c8960a;
+  }
+
+  .hiw__step--distribute .hiw__step-num {
+    border: 1.5px solid #89c0e0;
+    color: #2e86c1;
+    background: rgba(46, 134, 193, 0.06);
+  }
+  .hiw__step--distribute .hiw__step-icon {
+    border: 2px solid #2e86c1;
+  }
 }
 
 @media (max-width: 480px) {
-  .hiw__diagram-wrap {
-    margin-inline: -16px;
-    padding-inline: 16px;
-    width: calc(100% + 32px);
+  .hiw__step-icon {
+    width: 56px;
+    height: 56px;
   }
-
-  .hiw__svg {
-    width: 480px;
-    min-width: 480px;
+  .hiw__step-icon svg {
+    width: 24px;
+    height: 24px;
   }
-
-  .hiw__labels {
-    width: 480px;
-    min-width: 480px;
-    margin-top: -50px;
-    min-height: 110px;
+  .hiw__step-core-icon {
+    width: 64px;
+    height: 64px;
   }
-
-  .hiw__label-item {
-    width: 96px;
-    padding-top: 14px;
-  }
-
-  .hiw__label-item--core { padding-top: 38px; }
-  .hiw__step-label  { font-size: 11px; }
-  .hiw__step-desc   { font-size: 9.5px; max-width: 88px; }
+  .hiw__step-core-title { font-size: 16px; }
 }
+
 
 /* ════════════════════════════════════════════
    KEYFRAMES
