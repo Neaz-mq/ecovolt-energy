@@ -24,6 +24,7 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
+  height: 100%; // take full stretched height of the grid row
 }
 
 .measurable__header {
@@ -34,7 +35,7 @@
 
 .measurable__title {
   font-size: clamp(2rem, 3.2vw, 2.75rem);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.15;
   color: #1E5B4D;
   margin: 0;
@@ -47,24 +48,27 @@
 .measurable__intro {
   font-size: 1rem;
   line-height: 1.7;
-  color: #6b7280;
+  color: #434750;
   margin: 0;
-  max-width: 460px;
+  max-width: 440px;
 }
 
 /* ── Stats grid ────────────────────────────────────────────── */
 .measurable__stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr); 
   gap: 16px;
+  flex: 1; 
 }
 
 .measurable__stat {
   background: #f5f6f7;
   border-radius: 16px;
-  padding: 24px;
+  padding: 36px;
   display: flex;
   flex-direction: column;
+  justify-content: center; 
   gap: 6px;
 
   &--accent {
@@ -96,7 +100,7 @@
 
 .measurable__stat-desc {
   font-size: 0.82rem;
-  color: #8b8f8c;
+  color: #2d2d2d;
   line-height: 1.5;
   margin: 0;
 }
