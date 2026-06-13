@@ -1,0 +1,377 @@
+/* ============================================================
+   COMPARISON SECTION — "Why EcoVolt Leads the Future"
+   src/scss/sections/_comparison.scss
+   ============================================================ */
+
+.comparison {
+  position: relative;
+  background: #ffffff;
+  padding: 80px 0;
+}
+
+.comparison [data-anim] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.comparison__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ── HEADER ────────────────────────────────────────────────── */
+.comparison__header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comparison__title {
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #1e5b4d;
+  margin: 0;
+}
+
+.comparison__title-accent {
+  color: #88c499;
+}
+
+.comparison__subtitle {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #5a5a5a;
+  margin: 0;
+}
+
+/* ── CONTENT GRID ──────────────────────────────────────────── */
+.comparison__content {
+  display: grid;
+  grid-template-columns: 2.3fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+/* ── LEFT: TABLE ───────────────────────────────────────────── */
+.comparison__left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.comparison__table-wrap {
+  background: #f5f6f7;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.comparison__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison__th {
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1e5b4d;
+  padding: 20px 28px;
+  background: #e9ecea;
+
+  &--feature {
+    width: 42%;
+  }
+
+  &--ecovolt,
+  &--traditional {
+    text-align: center;
+    width: 29%;
+  }
+}
+
+.comparison__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 18px;
+  border-radius: 999px;
+  background: #c9e4d2;
+  color: #1e5b4d;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.comparison__row {
+  border-top: 1px solid #e6e8e9;
+
+  &:nth-child(even) {
+    background: #fafbfb;
+  }
+}
+
+.comparison__feature {
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #2d2d2d;
+  padding: 18px 28px;
+}
+
+.comparison__cell {
+  text-align: center;
+  padding: 18px 28px;
+}
+
+.comparison__icon {
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* ── NOTE ──────────────────────────────────────────────────── */
+.comparison__note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f0f1f2;
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+
+.comparison__note-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #1e5b4d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.comparison__note-text {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #2d2d2d;
+  margin: 0;
+}
+
+/* ── RIGHT: HIGHLIGHTS CARD ────────────────────────────────── */
+.comparison__right {
+  display: flex;
+  min-width: 0;
+}
+
+.comparison__highlights {
+  list-style: none;
+  margin: 0;
+  padding: 32px 28px;
+  background: #1e5b4d;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  flex: 1;
+}
+
+.comparison__highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.comparison__highlight-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.comparison__highlight-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.comparison__highlight-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.comparison__highlight-desc {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════ */
+
+/* ── Medium desktops ───────────────────────────────────────── */
+@media (max-width: 1280px) {
+  .comparison__th {
+    padding: 18px 22px;
+  }
+
+  .comparison__feature,
+  .comparison__cell {
+    padding: 16px 22px;
+  }
+}
+
+/* ── Large tablets / stack layout ─────────────────────────── */
+@media (max-width: 1024px) {
+  .comparison {
+    padding: 64px 0;
+  }
+
+  .comparison__container {
+    padding: 0 28px;
+  }
+
+  .comparison__content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .comparison__highlights {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ── Small tablets / large phones ─────────────────────────── */
+@media (max-width: 768px) {
+  .comparison {
+    padding: 48px 0;
+  }
+
+  .comparison__container {
+    padding: 0 20px;
+  }
+
+  .comparison__header {
+    margin-bottom: 32px;
+    gap: 10px;
+  }
+
+  .comparison__title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  .comparison__subtitle {
+    font-size: 0.9rem;
+  }
+
+  .comparison__th {
+    padding: 14px 14px;
+    font-size: 0.7rem;
+  }
+
+  .comparison__feature,
+  .comparison__cell {
+    padding: 14px;
+    font-size: 0.85rem;
+  }
+
+  .comparison__th--feature {
+    width: 46%;
+  }
+
+  .comparison__icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .comparison__note {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .comparison__highlights {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 20px;
+  }
+}
+
+/* ── Small phones ──────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .comparison__th--ecovolt,
+  .comparison__th--traditional {
+    font-size: 0.6rem;
+    letter-spacing: 0.03em;
+  }
+
+  .comparison__th--feature {
+    width: 40%;
+  }
+
+  .comparison__feature {
+    font-size: 0.8rem;
+    padding: 12px 10px;
+  }
+
+  .comparison__cell {
+    padding: 12px 8px;
+  }
+
+  .comparison__icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .comparison__badge {
+    padding: 4px 12px;
+    font-size: 0.68rem;
+  }
+
+  .comparison__highlight-title {
+    font-size: 0.92rem;
+  }
+
+  .comparison__highlight-desc {
+    font-size: 0.8rem;
+  }
+}

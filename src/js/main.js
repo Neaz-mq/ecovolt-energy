@@ -7,12 +7,14 @@ import { initSmartGrid } from './modules/smartgrid.js'
 import { initImpact }   from './modules/impact.js'
 import { initSgi } from './modules/sgi.js'
 import { initMeasurable } from './modules/measurable.js';
+import { initComparison } from './modules/comparison.js';
 
-initNavbar()
-initHero()
-initMission()
-initPartners()
-initSmartGrid()
-initImpact()
-initSgi()
-initMeasurable()
+initNavbar();
+initHero();
+initMission();
+initPartners();
+initSmartGrid();
+initImpact();
+initSgi();
+initMeasurable();
+initComparison();
