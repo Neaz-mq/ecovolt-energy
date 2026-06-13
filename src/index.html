@@ -2656,6 +2656,7 @@
 
         <!-- BOTTOM ROW -->
         <div class="measurable__footer-wrap">
+          <!-- ── Desktop static footer (hidden on tablet/mobile via CSS) ── -->
           <div
             class="measurable__footer"
             role="list"
@@ -2726,9 +2727,106 @@
             </div>
           </div>
           <!-- /measurable__footer -->
+
+          <!-- ── Mobile / Tablet swiper slider (shown via CSS ≤1024px) ── -->
+          <div
+            class="measurable__footer-slider"
+            aria-label="Performance metrics"
+            role="region"
+          >
+            <div class="measurable__slider-track" id="metricsTrack">
+              <!-- Card 1: 24/7 -->
+              <div class="measurable__slide-card">
+                <span class="measurable__slide-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                  </svg>
+                </span>
+                <div class="measurable__slide-body">
+                  <strong class="measurable__slide-num">24/7</strong>
+                  <span class="measurable__slide-label"
+                    >Real-time monitoring</span
+                  >
+                </div>
+              </div>
+
+              <!-- Card 2: 98% -->
+              <div class="measurable__slide-card">
+                <span class="measurable__slide-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="M9 12l2 2 4-4" />
+                  </svg>
+                </span>
+                <div class="measurable__slide-body">
+                  <strong class="measurable__slide-num">98%</strong>
+                  <span class="measurable__slide-label">System uptime</span>
+                </div>
+              </div>
+
+              <!-- Card 3: <100ms -->
+              <div class="measurable__slide-card">
+                <span class="measurable__slide-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+                  </svg>
+                </span>
+                <div class="measurable__slide-body">
+                  <strong class="measurable__slide-num">&lt;100ms</strong>
+                  <span class="measurable__slide-label">Response time</span>
+                </div>
+              </div>
+            </div>
+            <!-- /measurable__slider-track -->
+
+            <!-- Dot indicators -->
+            <div
+              class="measurable__slider-dots"
+              id="metricsDots"
+              aria-hidden="true"
+            >
+              <button
+                class="measurable__dot measurable__dot--active"
+                data-index="0"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                class="measurable__dot"
+                data-index="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                class="measurable__dot"
+                data-index="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+          </div>
+          <!-- /measurable__footer-slider -->
         </div>
         <!-- /measurable__footer-wrap -->
-        <!-- /measurable__footer -->
       </section>
       <!-- /measurable -->
     </main>
