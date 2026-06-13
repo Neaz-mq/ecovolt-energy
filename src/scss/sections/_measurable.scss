@@ -57,9 +57,9 @@
 .measurable__stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr); 
+  grid-template-rows: repeat(2, 1fr);
   gap: 16px;
-  flex: 1; 
+  flex: 1;
 }
 
 .measurable__stat {
@@ -68,7 +68,7 @@
   padding: 36px;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: flex-start; // changed from center
   gap: 6px;
 
   &--accent {
@@ -162,27 +162,31 @@
 }
 
 /* ── FOOTER ────────────────────────────────────────────────── */
-.measurable__footer {
+.measurable__footer-wrap {
   max-width: 1200px;
   margin: 32px auto 0;
   padding: 0 40px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: 1.85fr 1fr;
+  gap: 64px;
+}
+
+.measurable__footer {
+  grid-column: 1 / 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px; // minimum gap if space-between can't fully separate them
   background: #f5f6f7;
   border-radius: 20px;
-  margin-top: 32px;
-  padding: 24px 40px;
-
-  // remove the outer max-width/padding double-application
-  width: calc(100% - 80px);
-  max-width: 1120px;
+  padding: 24px 32px;
 }
 
 .measurable__footer-item {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-shrink: 0; // prevent items from squishing unevenly
 }
 
 .measurable__footer-icon {
@@ -217,7 +221,7 @@
 
 .measurable__footer-label {
   font-size: 0.8rem;
-  color: #8b8f8c;
+  color: #5a5a5a;
 }
 
 /* ── Responsive ────────────────────────────────────────────── */
@@ -230,6 +234,11 @@
 
   .measurable__right {
     order: -1;
+  }
+
+  .measurable__footer-wrap {
+    grid-template-columns: 1fr;
+    padding: 0 28px;
   }
 }
 
@@ -268,11 +277,15 @@
     padding: 16px;
   }
 
+  .measurable__footer-wrap {
+    padding: 0 20px;
+    margin-top: 24px;
+  }
+
   .measurable__footer {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 16px;
     padding: 20px;
-    margin: 24px 20px 0;
-    width: auto;
   }
 }
