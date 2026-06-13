@@ -427,6 +427,17 @@
     justify-content: center;
     gap: 20px 32px;
   }
+
+  /* FIX: in stacked layout, flex:1 has nothing to grow against,
+     so the globe falls back to the image's intrinsic (near-square)
+     ratio and becomes way too tall. Lock it to an aspect-ratio
+     instead so it scales with the container width. */
+  .measurable__globe {
+    flex: none;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    width: 100%;
+  }
 }
 
 /* ── Small tablets / large phones — 529px to 768px ─────────── */
@@ -469,8 +480,11 @@
     font-size: 0.75rem;
   }
 
+  /* FIX: slightly taller ratio + remove old fixed min-height,
+     which was fighting with aspect-ratio */
   .measurable__globe {
-    min-height: 220px;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
     padding: 24px;
   }
 
@@ -588,8 +602,10 @@
     font-size: 0.85rem;
   }
 
+  /* FIX: nearly square ratio on small phones, drop fixed min-height */
   .measurable__globe {
-    min-height: 180px;
+    aspect-ratio: 1 / 1;
+    min-height: 0;
     padding: 18px;
     border-radius: 18px;
   }
@@ -671,5 +687,4 @@
   .measurable__slide-label {
     font-size: 0.7rem;
   }
-
 }
