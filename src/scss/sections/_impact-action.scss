@@ -7,7 +7,7 @@
   background-color: #1e5b4d;
   position: relative;
   z-index: 10;
-  padding: 80px 0;
+  padding: 48px 0;        /* ← reduced from 80px — was too tall */
   overflow: hidden;
 }
 
@@ -64,6 +64,9 @@
   flex: 1;
   min-width: 0;
   position: relative;
+  /* Pull the SVG flush — it has built-in viewBox padding */
+  margin-top: -8px;
+  margin-bottom: -8px;
 }
 
 .impact-action__svg {
@@ -90,13 +93,13 @@
 
 @media (max-width: 860px) {
   .impact-action {
-    padding: 60px 0;
+    padding: 44px 0;      /* ← reduced from 60px */
   }
 
   .impact-action__container {
     flex-direction: column;
     align-items: flex-start;
-    gap: 36px;
+    gap: 32px;
     padding: 0 28px;
   }
 
@@ -107,17 +110,19 @@
 
   .impact-action__center {
     width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
 @media (max-width: 640px) {
   .impact-action {
-    padding: 52px 0;
+    padding: 36px 0;      /* ← reduced from 52px */
   }
 
   .impact-action__container {
     padding: 0 20px;
-    gap: 28px;
+    gap: 24px;
   }
 }
 
