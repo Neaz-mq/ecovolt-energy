@@ -1,0 +1,128 @@
+/* ============================================================
+   IMPACT IN ACTION SECTION
+   src/scss/sections/_impact-action.scss
+   ============================================================ */
+
+.impact-action {
+  background-color: #1e5b4d;
+  position: relative;
+  z-index: 10;
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+/* ── Decorative dots layer ─────────────────────────────────── */
+.impact-action__dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Container ─────────────────────────────────────────────── */
+.impact-action__container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 52px;
+}
+
+/* ── LEFT: Heading block ───────────────────────────────────── */
+.impact-action__left {
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.impact-action__title {
+  font-size: clamp(2.4rem, 3.8vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.08;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.impact-action__title-accent {
+  color: #88c499;
+}
+
+.impact-action__tagline {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.42);
+  margin: 0;
+}
+
+/* ── CENTER: SVG diagram ───────────────────────────────────── */
+.impact-action__center {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.impact-action__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px) {
+  .impact-action__container {
+    gap: 36px;
+    padding: 0 28px;
+  }
+
+  .impact-action__left {
+    flex: 0 0 195px;
+  }
+}
+
+@media (max-width: 860px) {
+  .impact-action {
+    padding: 60px 0;
+  }
+
+  .impact-action__container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
+    padding: 0 28px;
+  }
+
+  .impact-action__left {
+    flex: none;
+    width: 100%;
+  }
+
+  .impact-action__center {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .impact-action {
+    padding: 52px 0;
+  }
+
+  .impact-action__container {
+    padding: 0 20px;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 420px) {
+  .impact-action__title {
+    font-size: clamp(2rem, 9vw, 2.4rem);
+  }
+}

@@ -3286,6 +3286,492 @@
         <!-- /comparison__container -->
       </section>
       <!-- /comparison -->
+      <!-- ── Impact in Action ─────────────────────────────────────────────── -->
+      <section
+        class="impact-action"
+        id="impact-action"
+        aria-labelledby="impact-action-title"
+      >
+        <!-- Decorative background dots -->
+        <div class="impact-action__dots" aria-hidden="true">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 1440 400"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <circle cx="80" cy="60" r="2" fill="#88C499" opacity="0.35" />
+            <circle cx="200" cy="140" r="1.5" fill="#88C499" opacity="0.25" />
+            <circle cx="1360" cy="80" r="2" fill="#88C499" opacity="0.30" />
+            <circle cx="1280" cy="200" r="1.5" fill="#88C499" opacity="0.20" />
+            <circle cx="60" cy="320" r="2" fill="#88C499" opacity="0.20" />
+            <circle cx="1400" cy="340" r="1.5" fill="#88C499" opacity="0.25" />
+          </svg>
+        </div>
+
+        <div class="impact-action__container">
+          <!-- LEFT: Heading + tagline -->
+          <div class="impact-action__left">
+            <h2 class="impact-action__title" id="impact-action-title">
+              Impact<br />
+              <span class="impact-action__title-accent">in Action</span>
+            </h2>
+            <p class="impact-action__tagline">
+              Delivering tangible results today<br />
+              for a better tomorrow.
+            </p>
+          </div>
+
+          <!-- CENTER: SVG diagram with orb + icon + connectors -->
+          <div class="impact-action__center">
+            <svg
+              class="impact-action__svg"
+              viewBox="0 0 640 260"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <defs>
+                <!-- ── Gradient connector lines ── -->
+                <linearGradient
+                  id="ia-gl-tl"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stop-color="#88c499" stop-opacity="0.06" />
+                  <stop
+                    offset="100%"
+                    stop-color="#88c499"
+                    stop-opacity="0.55"
+                  />
+                </linearGradient>
+                <linearGradient
+                  id="ia-gl-bl"
+                  x1="0%"
+                  y1="100%"
+                  x2="100%"
+                  y2="0%"
+                >
+                  <stop offset="0%" stop-color="#88c499" stop-opacity="0.06" />
+                  <stop
+                    offset="100%"
+                    stop-color="#88c499"
+                    stop-opacity="0.55"
+                  />
+                </linearGradient>
+                <linearGradient
+                  id="ia-gl-tr"
+                  x1="100%"
+                  y1="0%"
+                  x2="0%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stop-color="#88c499" stop-opacity="0.06" />
+                  <stop
+                    offset="100%"
+                    stop-color="#88c499"
+                    stop-opacity="0.55"
+                  />
+                </linearGradient>
+                <linearGradient
+                  id="ia-gl-br"
+                  x1="100%"
+                  y1="100%"
+                  x2="0%"
+                  y2="0%"
+                >
+                  <stop offset="0%" stop-color="#88c499" stop-opacity="0.06" />
+                  <stop
+                    offset="100%"
+                    stop-color="#88c499"
+                    stop-opacity="0.55"
+                  />
+                </linearGradient>
+
+                <!-- ── Orb ambient glow ── -->
+                <radialGradient id="ia-orb-glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#88c499" stop-opacity="0.18" />
+                  <stop offset="100%" stop-color="#88c499" stop-opacity="0" />
+                </radialGradient>
+
+                <!-- ── Orb core subtle gradient for depth ── -->
+                <radialGradient id="ia-orb-core" cx="38%" cy="35%" r="60%">
+                  <stop offset="0%" stop-color="#a8d9b8" />
+                  <stop offset="100%" stop-color="#6db88a" />
+                </radialGradient>
+
+                <!-- ── Anchor dot glow ── -->
+                <radialGradient id="ia-dot-glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#88c499" stop-opacity="0.55" />
+                  <stop offset="100%" stop-color="#88c499" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+
+              <!-- ═══════════════════════════════════════════════
+             ORB
+        ═══════════════════════════════════════════════ -->
+
+              <!-- Ambient glow halo -->
+              <circle cx="320" cy="130" r="100" fill="url(#ia-orb-glow)" />
+              <!-- Outer ring -->
+              <circle
+                cx="320"
+                cy="130"
+                r="80"
+                fill="none"
+                stroke="rgba(136,196,153,0.18)"
+                stroke-width="1"
+              />
+              <!-- Dashed middle ring -->
+              <circle
+                cx="320"
+                cy="130"
+                r="66"
+                fill="none"
+                stroke="rgba(136,196,153,0.12)"
+                stroke-width="0.8"
+                stroke-dasharray="3 7"
+              />
+              <!-- Core orb -->
+              <circle cx="320" cy="130" r="54" fill="url(#ia-orb-core)" />
+
+              <!-- ═══════════════════════════════════════════════
+             ICON INSIDE ORB — Clean Energy (bolt + sun + leaf)
+        ═══════════════════════════════════════════════ -->
+
+              <!-- Sun rays radiating from top of bolt -->
+              <g
+                stroke="#1e5b4d"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                opacity="0.5"
+              >
+                <line x1="320" y1="97" x2="320" y2="92" />
+                <line x1="336" y1="102" x2="339" y2="98" />
+                <line x1="343" y1="117" x2="348" y2="116" />
+                <line x1="304" y1="102" x2="301" y2="98" />
+                <line x1="297" y1="117" x2="292" y2="116" />
+              </g>
+
+              <!-- Lightning bolt — primary clean energy icon -->
+              <path
+                d="M326 106 L312 129 L321 129 L314 156 L334 125 L323 125 Z"
+                fill="#1e5b4d"
+                opacity="0.82"
+              />
+
+              <!-- Leaf accent — sustainability symbol -->
+              <path
+                d="M334 144 Q344 136 342 125 Q331 128 328 139 Q329 142 334 144 Z"
+                fill="#1e5b4d"
+                opacity="0.38"
+              />
+
+              <!-- ECO badge pill at bottom of orb -->
+              <rect
+                x="305"
+                y="166"
+                width="30"
+                height="14"
+                rx="7"
+                fill="rgba(30,91,77,0.38)"
+                stroke="rgba(136,196,153,0.42)"
+                stroke-width="1"
+              />
+              <text
+                x="320"
+                y="176.5"
+                text-anchor="middle"
+                font-family="inherit"
+                font-size="7"
+                font-weight="700"
+                fill="#1e5b4d"
+                opacity="0.9"
+                letter-spacing="0.06em"
+              >
+                ECO
+              </text>
+
+              <!-- ═══════════════════════════════════════════════
+             DIAGONAL CONNECTOR LINES
+        ═══════════════════════════════════════════════ -->
+
+              <!-- Top-left    (Lower Emissions)        → orb -->
+              <line
+                x1="206"
+                y1="62"
+                x2="271"
+                y2="97"
+                stroke="url(#ia-gl-tl)"
+                stroke-width="1.2"
+              />
+              <!-- Bottom-left (Smarter Operations)     → orb -->
+              <line
+                x1="206"
+                y1="198"
+                x2="271"
+                y2="163"
+                stroke="url(#ia-gl-bl)"
+                stroke-width="1.2"
+              />
+              <!-- Top-right   (Reliable Energy)        → orb -->
+              <line
+                x1="434"
+                y1="62"
+                x2="369"
+                y2="97"
+                stroke="url(#ia-gl-tr)"
+                stroke-width="1.2"
+              />
+              <!-- Bottom-right (Sustainable Communities) → orb -->
+              <line
+                x1="434"
+                y1="198"
+                x2="369"
+                y2="163"
+                stroke="url(#ia-gl-br)"
+                stroke-width="1.2"
+              />
+
+              <!-- ═══════════════════════════════════════════════
+             ORB-EDGE DOTS (where lines meet orb ring)
+        ═══════════════════════════════════════════════ -->
+
+              <circle
+                cx="271"
+                cy="97"
+                r="4.5"
+                fill="rgba(136,196,153,0.18)"
+                stroke="rgba(136,196,153,0.65)"
+                stroke-width="1.3"
+              />
+              <circle
+                cx="271"
+                cy="163"
+                r="4.5"
+                fill="rgba(136,196,153,0.18)"
+                stroke="rgba(136,196,153,0.65)"
+                stroke-width="1.3"
+              />
+              <circle
+                cx="369"
+                cy="97"
+                r="4.5"
+                fill="rgba(136,196,153,0.18)"
+                stroke="rgba(136,196,153,0.65)"
+                stroke-width="1.3"
+              />
+              <circle
+                cx="369"
+                cy="163"
+                r="4.5"
+                fill="rgba(136,196,153,0.18)"
+                stroke="rgba(136,196,153,0.65)"
+                stroke-width="1.3"
+              />
+
+              <!-- Inner fill for orb-edge dots -->
+              <circle cx="271" cy="97" r="2" fill="#88c499" opacity="0.8" />
+              <circle cx="271" cy="163" r="2" fill="#88c499" opacity="0.8" />
+              <circle cx="369" cy="97" r="2" fill="#88c499" opacity="0.8" />
+              <circle cx="369" cy="163" r="2" fill="#88c499" opacity="0.8" />
+
+              <!-- ═══════════════════════════════════════════════
+             TEXT-ANCHOR DOTS (glow halo + ring + core)
+        ═══════════════════════════════════════════════ -->
+
+              <!-- Glow halos -->
+              <circle cx="206" cy="62" r="11" fill="url(#ia-dot-glow)" />
+              <circle cx="206" cy="198" r="11" fill="url(#ia-dot-glow)" />
+              <circle cx="434" cy="62" r="11" fill="url(#ia-dot-glow)" />
+              <circle cx="434" cy="198" r="11" fill="url(#ia-dot-glow)" />
+
+              <!-- Ringed circles -->
+              <circle
+                cx="206"
+                cy="62"
+                r="5"
+                fill="rgba(136,196,153,0.15)"
+                stroke="rgba(136,196,153,0.58)"
+                stroke-width="1.3"
+              />
+              <circle
+                cx="206"
+                cy="198"
+                r="5"
+                fill="rgba(136,196,153,0.15)"
+                stroke="rgba(136,196,153,0.58)"
+                stroke-width="1.3"
+              />
+              <circle
+                cx="434"
+                cy="62"
+                r="5"
+                fill="rgba(136,196,153,0.15)"
+                stroke="rgba(136,196,153,0.58)"
+                stroke-width="1.3"
+              />
+              <circle
+                cx="434"
+                cy="198"
+                r="5"
+                fill="rgba(136,196,153,0.15)"
+                stroke="rgba(136,196,153,0.58)"
+                stroke-width="1.3"
+              />
+
+              <!-- Solid green cores -->
+              <circle cx="206" cy="62" r="2.2" fill="#88c499" />
+              <circle cx="206" cy="198" r="2.2" fill="#88c499" />
+              <circle cx="434" cy="62" r="2.2" fill="#88c499" />
+              <circle cx="434" cy="198" r="2.2" fill="#88c499" />
+
+              <!-- ═══════════════════════════════════════════════
+             LEFT TEXT — right-aligned
+        ═══════════════════════════════════════════════ -->
+
+              <!-- Lower Emissions -->
+              <text
+                x="193"
+                y="38"
+                text-anchor="end"
+                font-family="inherit"
+                font-size="13.5"
+                font-weight="700"
+                fill="#ffffff"
+              >
+                Lower Emissions
+              </text>
+              <text
+                x="193"
+                y="54"
+                text-anchor="end"
+                font-family="inherit"
+                font-size="10.5"
+                fill="rgba(255,255,255,0.45)"
+              >
+                Significant CO₂ reduction
+              </text>
+              <text
+                x="193"
+                y="67"
+                text-anchor="end"
+                font-family="inherit"
+                font-size="10.5"
+                fill="rgba(255,255,255,0.45)"
+              >
+                across operations.
+              </text>
+
+              <!-- Smarter Operations -->
+              <text
+                x="193"
+                y="178"
+                text-anchor="end"
+                font-family="inherit"
+                font-size="13.5"
+                font-weight="700"
+                fill="#ffffff"
+              >
+                Smarter Operations
+              </text>
+              <text
+                x="193"
+                y="194"
+                text-anchor="end"
+                font-family="inherit"
+                font-size="10.5"
+                fill="rgba(255,255,255,0.45)"
+              >
+                AI-powered automation reduces
+              </text>
+              <text
+                x="193"
+                y="207"
+                text-anchor="end"
+                font-family="inherit"
+                font-size="10.5"
+                fill="rgba(255,255,255,0.45)"
+              >
+                downtime and maximizes output.
+              </text>
+
+              <!-- ═══════════════════════════════════════════════
+             RIGHT TEXT — left-aligned
+        ═══════════════════════════════════════════════ -->
+
+              <!-- Reliable Energy -->
+              <text
+                x="447"
+                y="38"
+                text-anchor="start"
+                font-family="inherit"
+                font-size="13.5"
+                font-weight="700"
+                fill="#ffffff"
+              >
+                Reliable Energy
+              </text>
+              <text
+                x="447"
+                y="54"
+                text-anchor="start"
+                font-family="inherit"
+                font-size="10.5"
+                fill="rgba(255,255,255,0.45)"
+              >
+                Consistent, clean power
+              </text>
+              <text
+                x="447"
+                y="67"
+                text-anchor="start"
+                font-family="inherit"
+                font-size="10.5"
+                fill="rgba(255,255,255,0.45)"
+              >
+                when it matters most.
+              </text>
+
+              <!-- Sustainable Communities -->
+              <text
+                x="447"
+                y="178"
+                text-anchor="start"
+                font-family="inherit"
+                font-size="13.5"
+                font-weight="700"
+                fill="#ffffff"
+              >
+                Sustainable Communities
+              </text>
+              <text
+                x="447"
+                y="194"
+                text-anchor="start"
+                font-family="inherit"
+                font-size="10.5"
+                fill="rgba(255,255,255,0.45)"
+              >
+                Empowering communities
+              </text>
+              <text
+                x="447"
+                y="207"
+                text-anchor="start"
+                font-family="inherit"
+                font-size="10.5"
+                fill="rgba(255,255,255,0.45)"
+              >
+                with green energy.
+              </text>
+            </svg>
+          </div>
+        </div>
+      </section>
+      <!-- /impact-action -->
     </main>
 
     <script type="module" src="/js/main.js"></script>
