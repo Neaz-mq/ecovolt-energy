@@ -361,7 +361,7 @@
 /* ── Tablets — stack layout ────────────────────────────────── */
 @media (max-width: 860px) {
   .comparison {
-    padding: 56px 0;
+    padding: 40px 0;
   }
 
   .comparison__container {
@@ -422,7 +422,8 @@
 /* ── Small tablets / large phones ─────────────────────────── */
 @media (max-width: 640px) {
   .comparison {
-    padding: 48px 0;
+    padding: 0 0 40px;
+    margin-block-start: 0;
   }
 
   .comparison__container {
@@ -430,8 +431,9 @@
   }
 
   .comparison__header {
-    margin-bottom: 32px;
-    gap: 10px;
+    margin-bottom: 20px;
+    padding-top: 32px;
+    gap: 8px;
   }
 
   .comparison__title {
