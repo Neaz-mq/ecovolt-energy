@@ -57,6 +57,8 @@
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.78);
   margin: 0;
+  max-width: 240px;
+  white-space: normal;
 }
 
 /* ── CENTER: SVG diagram ───────────────────────────────────── */
@@ -78,6 +80,11 @@
   min-height: 280px;
 }
 
+/* ── Mobile card grid (hidden on desktop/tablet) ───────────── */
+.impact-action__mobile-grid {
+  display: none;
+}
+
 /* ── Ray blink animation ───────────────────────────────────── */
 @keyframes ray-blink {
   0%, 100% { opacity: 0.6; }
@@ -87,8 +94,6 @@
 .ia-ray-1 { animation: ray-blink 2s ease-in-out infinite 0.0s; }
 .ia-ray-2 { animation: ray-blink 2s ease-in-out infinite 0.4s; }
 .ia-ray-3 { animation: ray-blink 2s ease-in-out infinite 0.8s; }
-.ia-ray-4 { animation: ray-blink 2s ease-in-out infinite 1.2s; }
-.ia-ray-5 { animation: ray-blink 2s ease-in-out infinite 1.6s; }
 
 /* ══════════════════════════════════════════════════════════════
    RESPONSIVE
@@ -101,56 +106,153 @@
   }
 
   .impact-action__left {
-    flex: 0 0 195px;
+    flex: 0 0 220px;
+  }
+
+  .impact-action__tagline {
+    max-width: 220px;
   }
 }
 
 @media (max-width: 860px) {
   .impact-action {
-    padding: 44px 0;
+    padding: 56px 0;
   }
 
   .impact-action__container {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
-    padding: 0 28px;
+    align-items: center;
+    gap: 40px;
+    padding: 0 32px;
   }
 
   .impact-action__left {
     flex: none;
     width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .impact-action__title {
+    font-size: clamp(2.6rem, 6vw, 3.2rem);
+  }
+
+  .impact-action__tagline {
+    max-width: 360px;
+    text-align: center;
+  }
+
+  .impact-action__left::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #88c499, transparent);
+    border-radius: 2px;
+    margin-top: 4px;
   }
 
   .impact-action__center {
     width: 100%;
-    align-items: unset;
+    max-width: 680px;
+    align-items: center;
     overflow: visible;
     padding-top: 0;
   }
 
   .impact-action__svg {
-    min-height: 240px;
+    min-height: 260px;
   }
 }
 
-@media (max-width: 640px) {
+/* ── Mobile: swap SVG for card grid ───────────────────────── */
+@media (max-width: 580px) {
   .impact-action {
-    padding: 36px 0;
+    padding: 52px 0;
   }
 
   .impact-action__container {
     padding: 0 20px;
-    gap: 24px;
+    gap: 36px;
+  }
+
+  .impact-action__left {
+    gap: 10px;
+  }
+
+  .impact-action__title {
+    font-size: clamp(2.2rem, 8vw, 2.8rem);
+  }
+
+  .impact-action__tagline {
+    max-width: 300px;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  /* Hide SVG on mobile */
+  .impact-action__center {
+    display: none;
+  }
+
+  /* Show card grid */
+  .impact-action__mobile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .impact-action__card {
+    background: rgba(136, 196, 153, 0.07);
+    border: 1px solid rgba(136, 196, 153, 0.16);
+    border-radius: 16px;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: background 0.25s ease, border-color 0.25s ease;
+
+    &:hover {
+      background: rgba(136, 196, 153, 0.13);
+      border-color: rgba(136, 196, 153, 0.30);
+    }
+  }
+
+  .impact-action__card-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(136, 196, 153, 0.12);
+    border: 1px solid rgba(136, 196, 153, 0.30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .impact-action__card-title {
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .impact-action__card-desc {
+    font-size: 0.76rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.52);
+    margin: 0;
   }
 }
 
-@media (max-width: 420px) {
-  .impact-action__title {
-    font-size: clamp(2rem, 9vw, 2.4rem);
+@media (max-width: 360px) {
+  .impact-action__mobile-grid {
+    grid-template-columns: 1fr;
   }
 
-  .impact-action__svg {
-    min-height: 200px;
+  .impact-action__card {
+    padding: 16px 14px;
   }
 }

@@ -3318,10 +3318,11 @@
               <span class="impact-action__title-accent">in Action</span>
             </h2>
             <p class="impact-action__tagline">
-              Delivering tangible results today<br />
-              for a better tomorrow.
+              Delivering tangible results today for a better tomorrow.
             </p>
           </div>
+
+          <!-- CENTER: SVG diagram (hidden on mobile) -->
           <div class="impact-action__center">
             <svg
               class="impact-action__svg"
@@ -3423,21 +3424,17 @@
 
               <!-- Sun rays — 3 top rays only -->
               <g stroke="#88c499" stroke-width="1.5" stroke-linecap="round">
-                <!-- Top (12 o'clock) -->
                 <line class="ia-ray-1" x1="400" y1="100" x2="400" y2="93" />
-                <!-- Top-right (~1:30) -->
                 <line class="ia-ray-2" x1="418" y1="107" x2="424" y2="101" />
-                <!-- Top-left (~10:30) -->
                 <line class="ia-ray-3" x1="382" y1="107" x2="376" y2="101" />
               </g>
 
-              <!-- Lightning bolt — centered at (400,145), bbox y=123..167 -->
+              <!-- Lightning bolt -->
               <path
                 d="M401 123 L390 145 L399 145 L399 167 L412 140 L403 140 Z"
                 fill="#1e5b4d"
                 opacity="0.85"
               />
-
               <path
                 d="M410 166 Q418 159 416 150 Q407 152 405 162 Q406 165 410 166 Z"
                 fill="#1e5b4d"
@@ -3521,7 +3518,6 @@
               <circle cx="258" cy="210" r="10" fill="url(#ia-dot-glow)" />
               <circle cx="542" cy="72" r="10" fill="url(#ia-dot-glow)" />
               <circle cx="542" cy="210" r="10" fill="url(#ia-dot-glow)" />
-
               <circle
                 cx="258"
                 cy="72"
@@ -3554,7 +3550,6 @@
                 stroke="rgba(136,196,153,0.58)"
                 stroke-width="1.2"
               />
-
               <circle cx="258" cy="72" r="2" fill="#88c499" />
               <circle cx="258" cy="210" r="2" fill="#88c499" />
               <circle cx="542" cy="72" r="2" fill="#88c499" />
@@ -3592,7 +3587,6 @@
               >
                 across operations.
               </text>
-
               <text
                 x="243"
                 y="192"
@@ -3657,7 +3651,6 @@
               >
                 when it matters most.
               </text>
-
               <text
                 x="557"
                 y="192"
@@ -3690,6 +3683,105 @@
                 with green energy.
               </text>
             </svg>
+          </div>
+
+          <!-- MOBILE CARD GRID (visible only ≤580px, hidden on tablet/desktop) -->
+          <div class="impact-action__mobile-grid" aria-hidden="true">
+            <div class="impact-action__card">
+              <div class="impact-action__card-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2L8 9H4L9 14L7 21L12 17L17 21L15 14L20 9H16L12 2Z"
+                    fill="#88c499"
+                    opacity="0.9"
+                  />
+                </svg>
+              </div>
+              <p class="impact-action__card-title">Lower Emissions</p>
+              <p class="impact-action__card-desc">
+                Significant CO₂ reduction across operations.
+              </p>
+            </div>
+            <div class="impact-action__card">
+              <div class="impact-action__card-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13 2L4 14H11L9 22L20 10H13L13 2Z"
+                    fill="#88c499"
+                    opacity="0.9"
+                  />
+                </svg>
+              </div>
+              <p class="impact-action__card-title">Reliable Energy</p>
+              <p class="impact-action__card-desc">
+                Consistent, clean power when it matters most.
+              </p>
+            </div>
+            <div class="impact-action__card">
+              <div class="impact-action__card-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle cx="12" cy="12" r="3" fill="#88c499" opacity="0.9" />
+                  <path
+                    d="M12 1V4M12 20V23M4.22 4.22L6.34 6.34M17.66 17.66L19.78 19.78M1 12H4M20 12H23M4.22 19.78L6.34 17.66M17.66 6.34L19.78 4.22"
+                    stroke="#88c499"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    opacity="0.9"
+                  />
+                </svg>
+              </div>
+              <p class="impact-action__card-title">Smarter Operations</p>
+              <p class="impact-action__card-desc">
+                AI-powered automation reduces downtime and maximizes output.
+              </p>
+            </div>
+            <div class="impact-action__card">
+              <div class="impact-action__card-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="#88c499"
+                    stroke-width="2"
+                    opacity="0.9"
+                  />
+                  <path
+                    d="M8 12C8 12 9 15 12 15C15 15 16 12 16 12"
+                    stroke="#88c499"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    opacity="0.9"
+                  />
+                </svg>
+              </div>
+              <p class="impact-action__card-title">Sustainable Communities</p>
+              <p class="impact-action__card-desc">
+                Empowering communities with green energy.
+              </p>
+            </div>
           </div>
         </div>
       </section>
