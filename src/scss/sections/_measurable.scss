@@ -4,9 +4,24 @@
    ============================================================ */
 
 .measurable {
+ background-color: #ffffff;
   position: relative;
-  background: #ffffff;
+  margin-block-start: -2px;
   padding: 80px 0;
+  z-index: 11;
+
+  // ── Cover subpixel seam from smartgrid wave ───────────────────────────
+  &::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: #ffffff;
+    z-index: 1;
+    pointer-events: none;
+   
 }
 
 .measurable__container {
@@ -688,3 +703,4 @@
     font-size: 0.7rem;
   }
 }
+ }
