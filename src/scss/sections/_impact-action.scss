@@ -7,7 +7,7 @@
   background-color: #1e5b4d;
   position: relative;
   z-index: 10;
-  padding: 48px 0;        /* ← reduced from 80px — was too tall */
+  padding: 48px 0;
   overflow: hidden;
 }
 
@@ -28,7 +28,7 @@
   padding: 0 40px;
   display: flex;
   align-items: center;
-  gap: 52px;
+  gap: 100px;
 }
 
 /* ── LEFT: Heading block ───────────────────────────────────── */
@@ -42,7 +42,7 @@
 .impact-action__title {
   font-size: clamp(2.4rem, 3.8vw, 3.2rem);
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.28;
   color: #ffffff;
   margin: 0;
   letter-spacing: -0.02em;
@@ -53,9 +53,9 @@
 }
 
 .impact-action__tagline {
-  font-size: 0.85rem;
+  font-size: 0.90rem;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.42);
+  color: rgba(255, 255, 255, 0.78);
   margin: 0;
 }
 
@@ -64,9 +64,10 @@
   flex: 1;
   min-width: 0;
   position: relative;
-  /* Pull the SVG flush — it has built-in viewBox padding */
-  margin-top: -8px;
-  margin-bottom: -8px;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  padding-top: 32px;
 }
 
 .impact-action__svg {
@@ -74,7 +75,20 @@
   width: 100%;
   height: auto;
   overflow: visible;
+  min-height: 280px;
 }
+
+/* ── Ray blink animation ───────────────────────────────────── */
+@keyframes ray-blink {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 0.08; }
+}
+
+.ia-ray-1 { animation: ray-blink 2s ease-in-out infinite 0.0s; }
+.ia-ray-2 { animation: ray-blink 2s ease-in-out infinite 0.4s; }
+.ia-ray-3 { animation: ray-blink 2s ease-in-out infinite 0.8s; }
+.ia-ray-4 { animation: ray-blink 2s ease-in-out infinite 1.2s; }
+.ia-ray-5 { animation: ray-blink 2s ease-in-out infinite 1.6s; }
 
 /* ══════════════════════════════════════════════════════════════
    RESPONSIVE
@@ -82,7 +96,7 @@
 
 @media (max-width: 1100px) {
   .impact-action__container {
-    gap: 36px;
+    gap: 64px;
     padding: 0 28px;
   }
 
@@ -93,7 +107,7 @@
 
 @media (max-width: 860px) {
   .impact-action {
-    padding: 44px 0;      /* ← reduced from 60px */
+    padding: 44px 0;
   }
 
   .impact-action__container {
@@ -110,14 +124,19 @@
 
   .impact-action__center {
     width: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
+    align-items: unset;
+    overflow: visible;
+    padding-top: 0;
+  }
+
+  .impact-action__svg {
+    min-height: 240px;
   }
 }
 
 @media (max-width: 640px) {
   .impact-action {
-    padding: 36px 0;      /* ← reduced from 52px */
+    padding: 36px 0;
   }
 
   .impact-action__container {
@@ -129,5 +148,9 @@
 @media (max-width: 420px) {
   .impact-action__title {
     font-size: clamp(2rem, 9vw, 2.4rem);
+  }
+
+  .impact-action__svg {
+    min-height: 200px;
   }
 }
