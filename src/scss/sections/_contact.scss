@@ -10,7 +10,6 @@
   margin-block-start: -4px;
   padding: 80px 0 88px;
 
-  // ── Cover subpixel seam from section above ────────────────────────────
   &::before {
     content: "";
     position: absolute;
@@ -156,7 +155,7 @@
 
 /* ── RIGHT column ──────────────────────────────────────────── */
 .contact__right {
-  /* aligns with left column top */
+  /* nothing extra needed */
 }
 
 /* ── Form card ─────────────────────────────────────────────── */
@@ -168,6 +167,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  /* KEY FIX: do NOT set overflow:hidden — it creates a stacking context
+     that traps the dropdown panel inside the card bounds */
   overflow: visible;
 }
 
@@ -190,6 +191,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  /* must also be visible so the panel isn't clipped */
   overflow: visible;
 }
 
@@ -199,6 +201,8 @@
   position: relative;
 }
 
+/* KEY FIX: the select wrapper needs a high z-index and overflow:visible
+   so the panel floats above everything including the footer */
 .contact__field--select {
   position: relative;
   overflow: visible;
@@ -270,7 +274,8 @@
     border-color 0.2s ease,
     background-color 0.2s ease;
   position: relative;
-  z-index: 1;
+  /* KEY FIX: z-index on the trigger itself so it layers above siblings */
+  z-index: 2;
   box-sizing: border-box;
 }
 
@@ -282,6 +287,12 @@
 .contact__dropdown.open {
   border-color: #88c499;
   background-color: #ffffff;
+}
+
+/* when open, raise the trigger so the panel attaches cleanly below it */
+.contact__dropdown.open {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .contact__dropdown-label {
@@ -311,22 +322,28 @@
 
 /* ── Custom dropdown panel ─────────────────────────────────── */
 .contact__dropdown-panel {
-  position: absolute;
-  top: calc(100% + 8px);
+  /* JS sets position:fixed + top/left/width at runtime via positionPanel()
+     so the panel escapes every stacking context and always floats above
+     the footer regardless of section z-index values */
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
-  z-index: 9999;
+  width: 300px;
+  z-index: 99999;
   background: #ffffff;
   border: 1.5px solid #e8ece9;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(30, 91, 77, 0.12);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.07),
+    0 10px 32px -4px rgba(30, 91, 77, 0.14);
   opacity: 0;
-  transform: translateY(-8px) scale(0.98);
+  transform: translateY(-6px) scale(0.98);
+  transform-origin: top center;
   pointer-events: none;
   transition:
-    opacity 0.2s ease,
-    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 0.18s ease,
+    transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contact__dropdown-panel.open {
@@ -564,7 +581,6 @@
     max-width: 100%;
   }
 
-  /* ── Offer ── */
   .contact__offer {
     max-width: 100%;
     align-items: flex-start;
@@ -609,7 +625,6 @@
     height: 15px;
   }
 
-  /* ── Trusted ── */
   .contact__trusted {
     align-items: flex-start;
   }
@@ -641,7 +656,6 @@
     height: 20px;
   }
 
-  /* ── Form card ── */
   .contact__form-card {
     padding: 24px 20px;
     border-radius: 20px;
@@ -667,7 +681,6 @@
     font-size: 0.875rem;
   }
 
-  /* Button keeps same #88c499 green as desktop */
   .contact__btn {
     padding: 14px 20px;
     font-size: 0.9375rem;

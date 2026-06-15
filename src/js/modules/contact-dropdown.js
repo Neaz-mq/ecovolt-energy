@@ -1,45 +1,97 @@
 export function initContact() {
-  const dropdown = document.getElementById('contactDropdown');
-  const dropdownPanel = document.getElementById('contactDropdownPanel');
-  const dropdownLabel = document.getElementById('contactDropdownLabel');
-  const nativeSelect = document.querySelector('.contact__select-hidden');
+  const dropdown   = document.getElementById('contactDropdown');
+  const panel      = document.getElementById('contactDropdownPanel');
+  const label      = document.getElementById('contactDropdownLabel');
+  const nativeSelect = document.getElementById('contact-interest');
 
-  if (!dropdown || !dropdownPanel) return;
+  if (!dropdown || !panel) return;
 
-  const openDropdown = () => {
+  // ── Position the panel via fixed coords so it escapes every stacking context
+  function positionPanel() {
+    const rect = dropdown.getBoundingClientRect();
+    panel.style.position = 'fixed';
+    panel.style.top      = (rect.bottom + 6) + 'px';
+    panel.style.left     = rect.left + 'px';
+    panel.style.width    = rect.width + 'px';
+    panel.style.right    = 'auto';
+  }
+
+  function openDropdown() {
+    positionPanel();
     dropdown.classList.add('open');
-    dropdownPanel.classList.add('open');
     dropdown.setAttribute('aria-expanded', 'true');
-  };
-  const closeDropdown = () => {
+    panel.classList.add('open');
+  }
+
+  function closeDropdown() {
     dropdown.classList.remove('open');
-    dropdownPanel.classList.remove('open');
     dropdown.setAttribute('aria-expanded', 'false');
-  };
+    panel.classList.remove('open');
+  }
 
-  dropdown.addEventListener('click', () =>
-    dropdownPanel.classList.contains('open') ? closeDropdown() : openDropdown()
-  );
+  function toggleDropdown() {
+    if (dropdown.classList.contains('open')) {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
+  }
 
-  dropdownPanel.querySelectorAll('.contact__dropdown-option').forEach(opt => {
-    opt.addEventListener('click', () => {
-      dropdownPanel.querySelectorAll('.contact__dropdown-option').forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected');
-      const value = opt.dataset.value;
-      const text = opt.querySelector('.contact__dropdown-opt-label').textContent;
-      dropdownLabel.innerHTML = `<span class="contact__dropdown-tag">${text}</span>`;
+  // ── Toggle on click
+  dropdown.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleDropdown();
+  });
+
+  // ── Keyboard support
+  dropdown.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleDropdown();
+    }
+    if (e.key === 'Escape') closeDropdown();
+  });
+
+  // ── Option selection
+  panel.querySelectorAll('.contact__dropdown-option').forEach((option) => {
+    option.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      // deselect all
+      panel.querySelectorAll('.contact__dropdown-option').forEach((o) => {
+        o.classList.remove('selected');
+      });
+
+      // select clicked
+      option.classList.add('selected');
+
+      const value    = option.dataset.value;
+      const text     = option.querySelector('.contact__dropdown-opt-label').textContent;
+
+      // update label
+      label.textContent = text;
       dropdown.classList.add('has-value');
+
+      // sync native select for form submission
       if (nativeSelect) nativeSelect.value = value;
+
       closeDropdown();
     });
   });
 
-  document.addEventListener('click', e => {
-    if (!dropdown.closest('.contact__field--select').contains(e.target)) closeDropdown();
+  // ── Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target) && !panel.contains(e.target)) {
+      closeDropdown();
+    }
   });
 
-  dropdown.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDropdown(); }
-    if (e.key === 'Escape') closeDropdown();
-  });
+  // ── Reposition on scroll/resize so it tracks the trigger
+  window.addEventListener('scroll', () => {
+    if (dropdown.classList.contains('open')) positionPanel();
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (dropdown.classList.contains('open')) positionPanel();
+  }, { passive: true });
 }
