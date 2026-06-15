@@ -3798,7 +3798,9 @@
           </header>
 
           <!-- Stat cards -->
+
           <div class="momentum__stats" role="list" aria-label="Key results">
+            <!-- Card 1: Projects -->
             <article class="momentum__stat-card" role="listitem">
               <div class="momentum__stat-icon" aria-hidden="true">
                 <svg
@@ -3851,6 +3853,7 @@
               </div>
             </article>
 
+            <!-- Card 2: CO₂ Reduced -->
             <article class="momentum__stat-card" role="listitem">
               <div class="momentum__stat-icon" aria-hidden="true">
                 <svg
@@ -3858,51 +3861,43 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <rect
-                    x="2"
-                    y="7"
-                    width="4"
-                    height="10"
-                    rx="1"
+                  <!-- Cloud -->
+                  <path
+                    d="M6 19a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 16.5 12H17a3 3 0 0 1 0 6H6z"
                     stroke="#88C499"
                     stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   />
-                  <rect
-                    x="8"
-                    y="4"
-                    width="4"
-                    height="13"
-                    rx="1"
-                    stroke="#88C499"
-                    stroke-width="1.6"
-                  />
-                  <rect
-                    x="14"
-                    y="2"
-                    width="4"
-                    height="15"
-                    rx="1"
-                    stroke="#88C499"
-                    stroke-width="1.6"
-                  />
+                  <!-- Down arrow = reduction -->
                   <line
-                    x1="2"
-                    y1="20"
-                    x2="20"
-                    y2="20"
+                    x1="12"
+                    y1="9"
+                    x2="12"
+                    y2="4"
                     stroke="#88C499"
                     stroke-width="1.6"
                     stroke-linecap="round"
                   />
+                  <polyline
+                    points="9,6.5 12,4 15,6.5"
+                    stroke="#88C499"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
               </div>
               <div class="momentum__stat-body">
-                <strong class="momentum__stat-num">2.5M+ Tons CO2</strong>
+                <strong class="momentum__stat-num"
+                  >2.5M+ Tons CO<sub>2</sub></strong
+                >
                 <span class="momentum__stat-label">Reduced</span>
                 <p class="momentum__stat-desc">Creating cleaner tomorrow</p>
               </div>
             </article>
 
+            <!-- Card 3: Partners -->
             <article class="momentum__stat-card" role="listitem">
               <div class="momentum__stat-icon" aria-hidden="true">
                 <svg
@@ -3910,38 +3905,36 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <rect
-                    x="2"
-                    y="7"
-                    width="4"
-                    height="10"
-                    rx="1"
+                  <!-- Globe -->
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
                     stroke="#88C499"
                     stroke-width="1.6"
                   />
-                  <rect
-                    x="8"
-                    y="4"
-                    width="4"
-                    height="13"
-                    rx="1"
-                    stroke="#88C499"
-                    stroke-width="1.6"
-                  />
-                  <rect
-                    x="14"
-                    y="2"
-                    width="4"
-                    height="15"
-                    rx="1"
+                  <ellipse
+                    cx="12"
+                    cy="12"
+                    rx="3.5"
+                    ry="9"
                     stroke="#88C499"
                     stroke-width="1.6"
                   />
                   <line
-                    x1="2"
-                    y1="20"
-                    x2="20"
-                    y2="20"
+                    x1="3"
+                    y1="9"
+                    x2="21"
+                    y2="9"
+                    stroke="#88C499"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                  <line
+                    x1="3"
+                    y1="15"
+                    x2="21"
+                    y2="15"
                     stroke="#88C499"
                     stroke-width="1.6"
                     stroke-linecap="round"
@@ -3957,6 +3950,7 @@
               </div>
             </article>
 
+            <!-- Card 4: 24/7 Support -->
             <article class="momentum__stat-card" role="listitem">
               <div class="momentum__stat-icon" aria-hidden="true">
                 <svg
@@ -3964,42 +3958,32 @@
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <rect
-                    x="2"
-                    y="7"
-                    width="4"
-                    height="10"
-                    rx="1"
-                    stroke="#88C499"
-                    stroke-width="1.6"
-                  />
-                  <rect
-                    x="8"
-                    y="4"
-                    width="4"
-                    height="13"
-                    rx="1"
-                    stroke="#88C499"
-                    stroke-width="1.6"
-                  />
-                  <rect
-                    x="14"
-                    y="2"
-                    width="4"
-                    height="15"
-                    rx="1"
-                    stroke="#88C499"
-                    stroke-width="1.6"
-                  />
-                  <line
-                    x1="2"
-                    y1="20"
-                    x2="20"
-                    y2="20"
+                  <!-- Headset -->
+                  <path
+                    d="M5 9a7 7 0 0 1 14 0"
                     stroke="#88C499"
                     stroke-width="1.6"
                     stroke-linecap="round"
                   />
+                  <path
+                    d="M3 14a2 2 0 0 1 2-2h1v4H5a2 2 0 0 1-2-2z"
+                    stroke="#88C499"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M18 12h1a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-1v-4z"
+                    stroke="#88C499"
+                    stroke-width="1.6"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M19 16v1a3 3 0 0 1-3 3h-3"
+                    stroke="#88C499"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                  <circle cx="13" cy="20" r="1" fill="#88C499" />
                 </svg>
               </div>
               <div class="momentum__stat-body">
@@ -4015,30 +3999,63 @@
           <div class="momentum__testimonial">
             <!-- Left: quote content -->
             <div class="momentum__testimonial-left">
-              <div class="momentum__quote-mark" aria-hidden="true">
-                <svg
-                  width="40"
-                  height="36"
-                  viewBox="0 0 40 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <polygon
-                    points="0,0 14,0 11,32 3,32"
-                    fill="rgba(136,196,153,0.55)"
-                  />
-                  <polygon
-                    points="22,0 36,0 33,32 25,32"
-                    fill="rgba(136,196,153,0.55)"
-                  />
-                </svg>
+              <div class="momentum__quote-icon-row">
+                <div class="momentum__quote-mark" aria-hidden="true">
+                  &#8220;
+                </div>
+                <blockquote class="momentum__quote-text">
+                  EcoVolt is not just a solution. It's a partnership for a
+                  sustainable future.
+                </blockquote>
               </div>
-              <blockquote class="momentum__quote-text">
-                EcoVolt is not just a solution. It's a partnership for a
-                sustainable future.
-              </blockquote>
               <div class="momentum__author">
-                <div class="momentum__author-avatar" aria-hidden="true"></div>
+                <div class="momentum__author-avatar" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="rgba(136,196,153,0.90)"
+                      stroke-width="1.6"
+                    />
+                    <path
+                      d="M3 9h18"
+                      stroke="rgba(136,196,153,0.90)"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    />
+                    <rect
+                      x="7"
+                      y="13"
+                      width="3"
+                      height="3"
+                      rx="0.5"
+                      fill="rgba(136,196,153,0.90)"
+                    />
+                    <rect
+                      x="14"
+                      y="13"
+                      width="3"
+                      height="3"
+                      rx="0.5"
+                      fill="rgba(136,196,153,0.90)"
+                    />
+                    <rect
+                      x="10.5"
+                      y="13"
+                      width="3"
+                      height="5"
+                      rx="0.5"
+                      fill="rgba(136,196,153,0.90)"
+                    />
+                  </svg>
+                </div>
                 <div class="momentum__author-info">
                   <strong class="momentum__author-name"
                     >Energy Solutions Corp</strong
@@ -4056,8 +4073,8 @@
                 class="momentum__illustration"
                 loading="lazy"
                 decoding="async"
-                width="480"
-                height="280"
+                width="520"
+                height="340"
               />
             </div>
           </div>
