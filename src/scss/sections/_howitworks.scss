@@ -4,13 +4,24 @@
    ============================================ */
 
 .hiw {
-  background-color: #ffffff;
+ background-color: #ffffff;
   position: relative;
   z-index: 10;
   margin-block-start: -2px;
-  padding: 100px 0 120px;
-  padding-block-start: 40px;
-}
+  padding: 48px 0;
+
+  // ── Cover subpixel seam from smartgrid wave ───────────────────────────
+  &::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: #ffffff;
+    z-index: 1;
+    pointer-events: none;
+  }
 @media (max-width: 768px) {
   .hiw {
     padding: 72px 0 88px;
@@ -683,4 +694,5 @@
     opacity: 0.15;
     transform: translateX(0);
   }
+}
 }
