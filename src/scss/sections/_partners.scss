@@ -7,7 +7,7 @@
   padding: 68px 0 32px;
   overflow: hidden;
   position: relative;
-  z-index: 10; // above mission (z-index:6) and smartgrid (z-index:7)
+  z-index: 9; // above mission (z-index:6) and smartgrid (z-index:7)
   margin: 0;
 
   // ── Cover any subpixel gap from smartgrid wave ────────────────────────
