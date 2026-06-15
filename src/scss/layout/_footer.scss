@@ -17,13 +17,13 @@
   // ── Top row: brand + nav ───────────────────────────────────────────────────
   &__top {
     display: grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 200px 1fr;
     gap: 48px;
     align-items: start;
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 0;
     }
   }
 
@@ -31,8 +31,16 @@
   &__brand {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding-top: 0;
+    gap: 16px;
+
+    @media (max-width: 960px) {
+      align-items: center;
+      text-align: center;
+      padding-bottom: 32px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #1e3028;
+      gap: 12px;
+    }
   }
 
   &__logo-link {
@@ -56,17 +64,28 @@
     line-height: 1.7;
     color: #7a8f85;
     margin: 0;
+    max-width: 200px;
+
+    @media (max-width: 960px) {
+      max-width: 300px;
+      font-size: 0.9375rem;
+    }
   }
 
   // ── Nav grid ───────────────────────────────────────────────────────────────
+  // desktop:  4 equal cols
+  // tablet:   brand row + nav row with 4 cols (nav takes full width)
+  // mid:      2 x 2 grid
+  // mobile:   2 x 2 grid, tighter
   &__nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    gap: 24px 32px;
+    align-items: start;
 
-    @media (max-width: 700px) {
+    @media (max-width: 640px) {
       grid-template-columns: repeat(2, 1fr);
-      gap: 28px 24px;
+      gap: 28px 20px;
     }
   }
 
@@ -75,9 +94,9 @@
     font-size: 0.9375rem;
     font-weight: 600;
     color: #e4ede8;
-    margin: 0 0 18px;
+    margin: 0 0 16px;
     letter-spacing: 0.01em;
-    line-height: 40px;   // matches footer__logo-img height so they sit level
+    line-height: 40px;
   }
 
   &__links {
@@ -108,9 +127,7 @@
     &:focus-visible {
       color: #88c499;
 
-      svg {
-        color: #88c499;
-      }
+      svg { color: #88c499; }
     }
 
     &:focus-visible {
@@ -121,6 +138,12 @@
   }
 
   // ── Newsletter column ──────────────────────────────────────────────────────
+  &__col--newsletter {
+    @media (max-width: 640px) {
+      grid-column: 1 / -1;
+    }
+  }
+
   &__newsletter-label {
     font-size: 0.8125rem;
     color: #7a8f85;
@@ -161,13 +184,9 @@
     outline: none;
     transition: border-color 0.2s ease;
 
-    &::placeholder {
-      color: #4a5e52;
-    }
+    &::placeholder { color: #4a5e52; }
 
-    &:focus {
-      border-color: #88c499;
-    }
+    &:focus { border-color: #88c499; }
   }
 
   &__newsletter-btn {
@@ -199,6 +218,10 @@
   &__socials {
     display: flex;
     gap: 10px;
+
+    @media (max-width: 960px) {
+      justify-content: center;
+    }
   }
 
   &__social-btn {
@@ -243,8 +266,9 @@
 
     @media (max-width: 480px) {
       flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
     }
   }
 
@@ -267,9 +291,7 @@
     transition: color 0.2s ease;
 
     &:hover,
-    &:focus-visible {
-      color: #88c499;
-    }
+    &:focus-visible { color: #88c499; }
 
     &:focus-visible {
       outline: 2px solid #88c499;
