@@ -8,6 +8,7 @@ import { initImpact }   from './modules/impact.js'
 import { initSgi } from './modules/sgi.js'
 import { initMeasurable } from './modules/measurable.js';
 import { initComparison } from './modules/comparison.js';
+import { initContact } from './modules/contact-dropdown.js'
 
 initNavbar();
 initHero();
@@ -18,3 +19,4 @@ initImpact();
 initSgi();
 initMeasurable();
 initComparison();
+initContact();
