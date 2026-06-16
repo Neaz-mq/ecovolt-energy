@@ -12,15 +12,27 @@
     max-width: 1200px;
     margin-inline: auto;
     padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+
+     // ── 1024px device ──
+  @media (max-width: 1024px) and (min-width: 961px) {
+    padding-inline: 3.2rem;
+  }
+      // ── Tablet only: fixed horizontal padding ──
+  @media (max-width: 960px) and (min-width: 641px) {
+    padding-inline: 2.5rem;
+  }
+
+ 
   }
 
   // ── Top row: brand + nav ───────────────────────────────────────────────────
   &__top {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 220px 1fr;
     gap: 48px;
     align-items: start;
 
+    // ── Tablet: brand full-width top, nav below ──
     @media (max-width: 960px) {
       grid-template-columns: 1fr;
       gap: 0;
@@ -33,19 +45,33 @@
     flex-direction: column;
     gap: 16px;
 
-    @media (max-width: 960px) {
+    // ── Tablet: horizontal row — logo left, tagline right ──
+    @media (max-width: 960px) and (min-width: 641px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      padding-bottom: 28px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid #1e3028;
+      gap: 24px;
+    }
+
+    // ── Mobile: centered stack ──
+    @media (max-width: 640px) {
       align-items: center;
       text-align: center;
-      padding-bottom: 32px;
-      margin-bottom: 32px;
+      padding-bottom: 28px;
+      margin-bottom: 28px;
       border-bottom: 1px solid #1e3028;
-      gap: 12px;
+      gap: 10px;
     }
   }
 
   &__logo-link {
     display: inline-block;
     line-height: 0;
+    flex-shrink: 0;
 
     &:focus-visible {
       outline: 2px solid #88c499;
@@ -66,23 +92,34 @@
     margin: 0;
     max-width: 200px;
 
-    @media (max-width: 960px) {
-      max-width: 300px;
-      font-size: 0.9375rem;
+    // ── Tablet: tagline sits right of logo ──
+    @media (max-width: 960px) and (min-width: 641px) {
+      max-width: 260px;
+      font-size: 0.875rem;
+      text-align: right;
+    }
+
+    @media (max-width: 640px) {
+      max-width: 280px;
+      font-size: 0.9rem;
+      text-align: center;
     }
   }
 
   // ── Nav grid ───────────────────────────────────────────────────────────────
-  // desktop:  4 equal cols
-  // tablet:   brand row + nav row with 4 cols (nav takes full width)
-  // mid:      2 x 2 grid
-  // mobile:   2 x 2 grid, tighter
   &__nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px 32px;
     align-items: start;
 
+    // ── Tablet: 2x2 grid — much more breathing room ──
+    @media (max-width: 960px) and (min-width: 641px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px 40px;
+    }
+
+    // ── Mobile: 2x2 tighter ──
     @media (max-width: 640px) {
       grid-template-columns: repeat(2, 1fr);
       gap: 28px 20px;
@@ -92,11 +129,19 @@
   // ── Nav column ─────────────────────────────────────────────────────────────
   &__col-title {
     font-size: 0.9375rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #e4ede8;
-    margin: 0 0 16px;
-    letter-spacing: 0.01em;
-    line-height: 40px;
+    margin: 0 0 14px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    line-height: 1;
+
+    // ── Tablet: give title more bottom space ──
+    @media (max-width: 960px) and (min-width: 641px) {
+      margin-bottom: 18px;
+      font-size: 0.8125rem;
+    }
   }
 
   &__links {
@@ -106,6 +151,10 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    @media (max-width: 960px) and (min-width: 641px) {
+      gap: 12px;
+    }
   }
 
   &__link {
@@ -126,7 +175,6 @@
     &:hover,
     &:focus-visible {
       color: #88c499;
-
       svg { color: #88c499; }
     }
 
@@ -135,12 +183,40 @@
       outline-offset: 2px;
       border-radius: 2px;
     }
+
+    // ── Tablet: slightly larger touch targets ──
+    @media (max-width: 960px) and (min-width: 641px) {
+      font-size: 0.9375rem;
+    }
   }
 
   // ── Newsletter column ──────────────────────────────────────────────────────
   &__col--newsletter {
+    // ── Tablet: newsletter takes full row at bottom of 2x2 ──
+    @media (max-width: 960px) and (min-width: 641px) {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 40px;
+      align-items: start;
+      padding-top: 8px;
+      border-top: 1px solid #1e3028;
+    }
+
     @media (max-width: 640px) {
       grid-column: 1 / -1;
+    }
+  }
+
+  // ── Tablet: newsletter title spans col 1 ──
+  &__col--newsletter &__col-title {
+    @media (max-width: 960px) and (min-width: 641px) {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      margin-bottom: 0;
+      white-space: nowrap;
     }
   }
 
@@ -148,13 +224,28 @@
     font-size: 0.8125rem;
     color: #7a8f85;
     margin: 0 0 12px;
+
+    @media (max-width: 960px) and (min-width: 641px) {
+      grid-column: 2;
+      grid-row: 1;
+      margin-bottom: 10px;
+      align-self: end;
+    }
   }
 
   &__newsletter-form {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+
+    // ── Tablet: form in col 2 row 2 ──
+    @media (max-width: 960px) and (min-width: 641px) {
+      grid-column: 2;
+      grid-row: 2;
+      margin-bottom: 0;
+      max-width: 360px;
+    }
 
     label.sr-only,
     .sr-only {
@@ -185,7 +276,6 @@
     transition: border-color 0.2s ease;
 
     &::placeholder { color: #4a5e52; }
-
     &:focus { border-color: #88c499; }
   }
 
@@ -219,7 +309,15 @@
     display: flex;
     gap: 10px;
 
-    @media (max-width: 960px) {
+    // ── Tablet: socials sit in col 1 row 2 ──
+    @media (max-width: 960px) and (min-width: 641px) {
+      grid-column: 1;
+      grid-row: 2;
+      align-self: center;
+      padding-top: 12px;
+    }
+
+    @media (max-width: 640px) {
       justify-content: center;
     }
   }
@@ -253,6 +351,10 @@
     height: 1px;
     background: #1e3028;
     margin-block: 40px;
+
+    @media (max-width: 960px) and (min-width: 641px) {
+      margin-block: 32px;
+    }
   }
 
   // ── Bottom row ─────────────────────────────────────────────────────────────

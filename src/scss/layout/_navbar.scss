@@ -103,16 +103,16 @@
         height: 38px;
       }
       @include respond(lg) {
-        height: 36px;
+        height: 40px;
       }
       @include respond(md) {
-        height: 32px;
+        height: 40px;
       }
       @include respond(sm) {
-        height: 32px;
+        height: 36px;
       }
       @include respond(xs) {
-        height: 28px;
+        height: 34px;
       }
 
       &:hover {
