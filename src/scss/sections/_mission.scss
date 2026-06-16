@@ -48,6 +48,10 @@
     gap: $sp-12;
     padding-bottom: $sp-16;
 
+    @include lg {
+      gap: $sp-10;
+      padding-bottom: $sp-14;
+    }
     @include md {
       gap: $sp-10;
       padding-bottom: $sp-14;
@@ -123,6 +127,10 @@
     align-items: center;
     gap: $sp-5;
 
+    @include lg {
+      max-width: 640px;
+      gap: $sp-4;
+    }
     @include sm {
       gap: $sp-4;
       padding: 0 $sp-4;
@@ -142,6 +150,9 @@
     letter-spacing: $ls-tight;
     margin: 0;
 
+    @include lg {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+    }
     @include sm {
       font-size: clamp(2rem, 8vw, 2.8rem);
     }
@@ -154,6 +165,9 @@
     max-width: 680px;
     margin: 0;
 
+    @include lg {
+      font-size: $fz-sm;
+    }
     @include sm {
       font-size: $fz-sm;
       max-width: 100%;
@@ -181,10 +195,14 @@
     margin: 0 auto;
 
     @include lg {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 100%;
+      gap: $sp-4;
+    }
+    @include md {
       grid-template-columns: repeat(2, 1fr);
       max-width: 600px;
     }
-
     @include sm {
       display: flex;
       flex-direction: row;
@@ -306,18 +324,10 @@
       opacity: 1;
     }
 
-    &:nth-child(1)::before {
-      animation-delay: 0s;
-    }
-    &:nth-child(2)::before {
-      animation-delay: -2s;
-    }
-    &:nth-child(3)::before {
-      animation-delay: -4s;
-    }
-    &:nth-child(4)::before {
-      animation-delay: -6s;
-    }
+    &:nth-child(1)::before { animation-delay: 0s; }
+    &:nth-child(2)::before { animation-delay: -2s; }
+    &:nth-child(3)::before { animation-delay: -4s; }
+    &:nth-child(4)::before { animation-delay: -6s; }
 
     @include reduced-motion {
       &::before {
@@ -339,6 +349,12 @@
 
     &:hover {
       transform: translateY(-4px);
+    }
+
+    // ── lg: tighter card ──────────────────
+    @include lg {
+      padding: $sp-8 $sp-4 $sp-8;
+      gap: $sp-4;
     }
 
     // ── Accessible — #1E5B4D ──────────────
@@ -420,9 +436,19 @@
       height: 22px;
     }
 
+    @include lg {
+      width: 40px;
+      height: 40px;
+
+      svg {
+        width: 17px;
+        height: 17px;
+      }
+    }
     @include sm {
       width: 40px;
       height: 40px;
+
       svg {
         width: 17px;
         height: 17px;
@@ -437,6 +463,9 @@
     gap: $sp-2;
     align-items: center;
 
+    @include lg {
+      gap: $sp-2;
+    }
     @include sm {
       gap: $sp-1;
     }
@@ -446,9 +475,11 @@
     font-size: $fz-xl;
     font-weight: $fw-bold;
     letter-spacing: $ls-tight;
-
     @include transition(color);
 
+    @include lg {
+      font-size: $fz-lg;
+    }
     @include sm {
       font-size: $fz-lg;
     }
@@ -461,6 +492,11 @@
     font-weight: $fw-medium;
     max-width: 160px;
 
+    @include lg {
+      font-size: $fz-sm;
+      line-height: 1.6;
+      max-width: 140px;
+    }
     @include sm {
       font-size: $fz-xs;
       max-width: 180px;
@@ -579,9 +615,6 @@
   to   { transform: rotate(360deg); }
 }
 
-// Renamed from missionCardsMarquee — offset is now exact pixel width of one
-// set (set by JS), so the CSS loop reset lands invisibly on the same visual
-// position → no gap, no jump, infinite seamless scroll.
 @keyframes missionMarquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(var(--marquee-offset, -50%)); }
