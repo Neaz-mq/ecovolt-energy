@@ -457,6 +457,24 @@
       min-height: 0;
       width: 100%;
     }
+
+    .measurable__quote-mark {
+      flex-shrink: 0;
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      color: #a9c8b4;
+      font-style: italic;
+      margin-top: 16px;
+    }
+
+    .measurable__quote-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1e5b4d;
+      line-height: 1.5;
+      margin-top: -4px;
+    }
   }
 
   /* ── Small tablets / large phones — 529px to 768px ─────────── */
