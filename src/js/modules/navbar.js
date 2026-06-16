@@ -51,8 +51,10 @@ export function initNavbar() {
   const sections = document.querySelectorAll('section[id]')
   const navLinks = document.querySelectorAll('.navbar__links a')
 
+  // Sections that should clear all active states (hero/home area)
+  const noActiveIds = new Set(['home', 'mission'])
+
   const aliases = {
-    'mission'      : '#technology',
     'partners'     : '#technology',
     'measurable'   : '#impact',
     'energy'       : '#solutions',
@@ -96,7 +98,14 @@ export function initNavbar() {
         }
       })
 
+      // Nothing visible — do nothing
       if (!activeId || maxRatio === 0) return
+
+      // Hero/home is most visible — clear all active states
+      if (noActiveIds.has(activeId)) {
+        navLinks.forEach((l) => l.classList.remove('is-active'))
+        return
+      }
 
       const active = resolveLink(activeId)
       if (!active) return
