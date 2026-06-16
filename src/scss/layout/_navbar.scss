@@ -50,7 +50,7 @@
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding-block: $sp-6 $sp-5;               // 24px 20px
+    padding-block: $sp-6 $sp-5;
     @include transition(padding-block, $dur-base);
 
     @include respond(lg) {
@@ -68,7 +68,6 @@
 
 
   // ── Logo ──────────────────────────────────
-  // Logo stays at its natural alignment — no extra offset.
   &__logo {
     display: flex;
     align-items: center;
@@ -84,11 +83,12 @@
       object-fit: contain;
       @include transition(opacity);
 
-      @include respond(xl) { height: 46px; }
-      @include respond(lg) { height: 36px; }
-      @include respond(md) { height: 32px; }
-      @include respond(sm) { height: 32px; }
-      @include respond(xs) { height: 28px; }
+      @include respond(xl)  { height: 46px; }
+      @media (max-width: 1100px) { height: 38px; }
+      @include respond(lg)  { height: 36px; }
+      @include respond(md)  { height: 32px; }
+      @include respond(sm)  { height: 32px; }
+      @include respond(xs)  { height: 28px; }
 
       &:hover { opacity: 0.85; }
     }
@@ -96,9 +96,6 @@
 
 
   // ── Nav Links ─────────────────────────────
-  // padding-top nudges links down on desktop only.
-  // Removed on lg and below (mobile/tablet) so
-  // the hamburger row stays vertically centred.
   &__links {
     display: flex;
     align-items: center;
@@ -113,13 +110,18 @@
       opacity    $dur-fast $ease-out,
       visibility $dur-fast $ease-out;
 
-    // ── Desktop-only top offset ────────────
     padding-top: 10px;
 
-    // Remove offset on scrolled state so links
-    // re-centre with the tighter navbar height
     .navbar.scrolled & {
       padding-top: 0;
+    }
+
+    @media (max-width: 1280px) {
+      gap: clamp(14px, 1.8vw, 28px);
+    }
+
+    @media (max-width: 1100px) {
+      gap: clamp(20px, 1.2vw, 18px);
     }
 
     @include respond(lg) {
@@ -136,6 +138,14 @@
       position: relative;
       padding-bottom: 2px;
       letter-spacing: $ls-normal;
+
+      @media (max-width: 1280px) {
+        font-size: 0.875rem;
+      }
+
+      @media (max-width: 1100px) {
+        font-size: 0.8125rem;
+      }
 
       @include focus-ring($clr-warning, 4px);
 
@@ -165,8 +175,6 @@
 
 
   // ── CTA Actions ───────────────────────────
-  // Same top offset as __links so button stays
-  // visually aligned with the nav items.
   &__actions {
     display: flex;
     align-items: center;
@@ -178,7 +186,6 @@
       opacity    $dur-fast $ease-out,
       visibility $dur-fast $ease-out;
 
-    // ── Desktop-only top offset ────────────
     padding-top: 10px;
 
     .navbar.scrolled & {
@@ -206,6 +213,16 @@
         background $dur-base $ease-out,
         color      $dur-base $ease-out,
         box-shadow $dur-base $ease-out;
+
+      @media (max-width: 1280px) {
+        font-size: 0.8125rem;
+        padding: 8px 20px;
+      }
+
+      @media (max-width: 1100px) {
+        font-size: 0.75rem;
+        padding: 7px 16px;
+      }
 
       &:hover {
         background: color-mix(in srgb, $clr-warning 92%, #000);
@@ -375,6 +392,7 @@
       &:nth-child(2) { transition-delay: 0.14s; }
       &:nth-child(3) { transition-delay: 0.20s; }
       &:nth-child(4) { transition-delay: 0.26s; }
+      &:nth-child(5) { transition-delay: 0.32s; }
     }
 
     &-num {
