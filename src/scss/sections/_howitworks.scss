@@ -8,7 +8,7 @@
   position: relative;
   z-index: 10;
   margin-block-start: -2px;
-  padding: 88px 0;
+  padding: 60px 0;
   scroll-margin-top: 50px;
 
   // ── Cover subpixel seam from smartgrid wave ───────────────────────────
@@ -62,7 +62,7 @@
 }
 @media (max-width: 768px) {
   .hiw__container {
-    padding: 0 24px;
+    padding: 0 28px;
   }
 }
 @media (max-width: 480px) {
