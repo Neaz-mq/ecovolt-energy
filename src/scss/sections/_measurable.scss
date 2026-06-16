@@ -4,7 +4,7 @@
    ============================================================ */
 
 .measurable {
- background-color: #ffffff;
+  background-color: #ffffff;
   position: relative;
   margin-block-start: -2px;
   padding: 88px 0;
@@ -21,686 +21,690 @@
     background: #ffffff;
     z-index: 1;
     pointer-events: none;
-   
-}
-
-.measurable__container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: stretch;
-}
-
-/* ── LEFT ──────────────────────────────────────────────────── */
-.measurable__left {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  min-width: 0;
-}
-
-.measurable__right {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  min-width: 0;
-}
-
-.measurable__header {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.measurable__title {
-  font-size: clamp(2rem, 3.2vw, 2.75rem);
-  font-weight: 700;
-  line-height: 1.15;
-  color: #1e5b4d;
-  margin: 0;
-}
-
-.measurable__title-accent {
-  color: #88c499;
-}
-
-.measurable__intro {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #434750;
-  margin: 0;
-  max-width: 440px;
-}
-
-/* ── Stats grid ────────────────────────────────────────────── */
-.measurable__stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  align-content: stretch;
-  align-items: stretch;
-  gap: 16px;
-  flex: 1;
-}
-
-.measurable__stat {
-  background: #f5f6f7;
-  border-radius: 16px;
-  padding: 36px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 6px;
-  min-height: 140px;
-
-  &--accent {
-    background: #c9e4d2;
   }
-}
 
-.measurable__stat-num {
-  font-size: 1.9rem;
-  font-weight: 800;
-  color: #1e5b4d;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.measurable__stat-unit {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #1e5b4d;
-  vertical-align: super;
-}
-
-.measurable__stat-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #2d2d2d;
-  margin: 4px 0 0;
-}
-
-.measurable__stat-desc {
-  font-size: 0.82rem;
-  color: #2d2d2d;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* ── RIGHT ─────────────────────────────────────────────────── */
-.measurable__globe {
-  flex: 1;
-  background: #1e5b4d;
-  border-radius: 24px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 0;
-  padding: 8px;
-}
-
-.measurable__globe-img {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  mix-blend-mode: screen;
-  filter: invert(1) brightness(2.5);
-}
-
-.measurable__quote {
-  background: #f0f1f2;
-  border-radius: 16px;
-  padding: 20px 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin: 0;
-}
-
-.measurable__quote-mark {
-  flex-shrink: 0;
-  font-size: 2.5rem;
-  font-weight: 800;
-  line-height: 1;
-  color: #a9c8b4;
-  font-style: italic;
-}
-
-.measurable__quote-text {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #1e5b4d;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* ── FOOTER ────────────────────────────────────────────────── */
-.measurable__footer-wrap {
-  max-width: 1200px;
-  margin: 32px auto 0;
-  padding: 0 40px;
-  display: grid;
-  grid-template-columns: 2.3fr 1fr;
-  gap: 64px;
-}
-
-.measurable__footer {
-  grid-column: 1 / 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  background: #f5f6f7;
-  border-radius: 20px;
-  padding: 24px 32px;
-}
-
-.measurable__footer-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-shrink: 0;
-}
-
-.measurable__footer-icon {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #dceee2;
-  color: #1e5b4d;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  svg {
-    width: 20px;
-    height: 20px;
+  .measurable__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: stretch;
   }
-}
 
-.measurable__footer-body {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.measurable__footer-num {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #1e5b4d;
-  line-height: 1.1;
-}
-
-.measurable__footer-label {
-  font-size: 0.8rem;
-  color: #5a5a5a;
-  white-space: nowrap;
-}
-
-/* ── SWIPER (mobile & tablet only) ────────────────────────── */
-.measurable__footer-slider {
-  display: none;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  position: relative;
-  box-sizing: border-box;
-}
-
-.measurable__slider-track {
-  display: flex;
-  width: 100%;
-  gap: 14px;
-  box-sizing: border-box;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform;
-  cursor: grab;
-
-  &:active {
-    cursor: grabbing;
+  /* ── LEFT ──────────────────────────────────────────────────── */
+  .measurable__left {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    min-width: 0;
   }
-}
 
-.measurable__slide-card {
-  flex: 0 0 calc(50% - 7px);
-  min-width: 0;
-  box-sizing: border-box;
-  background: #f5f6f7;
-  border-radius: 20px;
-  padding: 24px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  box-shadow: 0 2px 12px rgba(30, 91, 77, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  user-select: none;
-
-  &:active {
-    transform: scale(0.98);
-    box-shadow: 0 1px 6px rgba(30, 91, 77, 0.1);
+  .measurable__right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
   }
-}
 
-.measurable__slide-icon {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #dceee2;
-  color: #1e5b4d;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  svg {
-    width: 22px;
-    height: 22px;
+  .measurable__header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
-}
 
-.measurable__slide-body {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  min-width: 0;
-}
-
-.measurable__slide-num {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #1e5b4d;
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.measurable__slide-label {
-  font-size: 0.78rem;
-  color: #5a5a5a;
-  line-height: 1.4;
-}
-
-/* Dots indicator */
-.measurable__slider-dots {
-  display: none;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 16px;
-}
-
-.measurable__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #c5d9ce;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: width 0.3s ease, background 0.3s ease;
-
-  &--active {
-    width: 20px;
-    border-radius: 4px;
-    background: #1e5b4d;
+  .measurable__title {
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #1e5b4d;
+    margin: 0;
   }
-}
 
-/* ══════════════════════════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════════════════════════ */
+  .measurable__title-accent {
+    color: #88c499;
+  }
 
-/* ── Medium desktops ───────────────────────────────────────── */
-@media (max-width: 1280px) {
+  .measurable__intro {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #434750;
+    margin: 0;
+    max-width: 440px;
+  }
+
+  /* ── Stats grid ────────────────────────────────────────────── */
+  .measurable__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    align-content: stretch;
+    align-items: stretch;
+    gap: 16px;
+    flex: 1;
+  }
+
   .measurable__stat {
-    padding: 24px;
+    background: #f5f6f7;
+    border-radius: 16px;
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 6px;
+    min-height: 140px;
+
+    &--accent {
+      background: #c9e4d2;
+    }
   }
 
   .measurable__stat-num {
-    font-size: 1.6rem;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #1e5b4d;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .measurable__stat-unit {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e5b4d;
+    vertical-align: super;
   }
 
   .measurable__stat-title {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2d2d2d;
+    margin: 4px 0 0;
   }
 
   .measurable__stat-desc {
-    font-size: 0.78rem;
+    font-size: 0.82rem;
+    color: #2d2d2d;
+    line-height: 1.5;
+    margin: 0;
   }
-}
 
-/* ── Large tablets ─────────────────────────────────────────── */
-@media (max-width: 1199px) {
+  /* ── RIGHT ─────────────────────────────────────────────────── */
+  .measurable__globe {
+    flex: 1;
+    background: #1e5b4d;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    padding: 8px;
+  }
+
+  .measurable__globe-img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    mix-blend-mode: screen;
+    filter: invert(1) brightness(2.5);
+  }
+
+  .measurable__quote {
+    background: #f0f1f2;
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+  }
+
+  .measurable__quote-mark {
+    flex-shrink: 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #a9c8b4;
+    font-style: italic;
+  }
+
+  .measurable__quote-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1e5b4d;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ── FOOTER ────────────────────────────────────────────────── */
   .measurable__footer-wrap {
-    grid-template-columns: 1.4fr 1fr;
-    gap: 32px;
+    max-width: 1200px;
+    margin: 32px auto 0;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 2.3fr 1fr;
+    gap: 64px;
   }
 
   .measurable__footer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px 24px;
-    padding: 20px 24px;
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    background: #f5f6f7;
+    border-radius: 20px;
+    padding: 24px 32px;
   }
 
   .measurable__footer-item {
-    flex-shrink: 1;
-    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
   }
 
   .measurable__footer-icon {
     flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #dceee2;
+    color: #1e5b4d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   .measurable__footer-body {
-    min-width: 0;
-  }
-
-  .measurable__footer-label {
-    white-space: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 
   .measurable__footer-num {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1e5b4d;
+    line-height: 1.1;
+  }
+
+  .measurable__footer-label {
+    font-size: 0.8rem;
+    color: #5a5a5a;
     white-space: nowrap;
   }
-}
 
-/* ── Tablets — stack layout, activate slider ───────────────── */
-@media (max-width: 1024px) {
-  .measurable__container {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 0 28px;
-  }
-
-  .measurable__footer-wrap {
-    grid-template-columns: 1fr;
-    padding: 0 28px;
-    gap: 0;
-  }
-
-  .measurable__header {
-    align-items: center;
-    text-align: center;
-  }
-
-  .measurable__intro {
-    max-width: 520px;
-    margin: 0 auto;
-  }
-
-  .measurable__footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px 32px;
-  }
-
-  /* FIX: in stacked layout, flex:1 has nothing to grow against,
-     so the globe falls back to the image's intrinsic (near-square)
-     ratio and becomes way too tall. Lock it to an aspect-ratio
-     instead so it scales with the container width. */
-  .measurable__globe {
-    flex: none;
-    aspect-ratio: 16 / 9;
-    min-height: 0;
-    width: 100%;
-  }
-}
-
-/* ── Small tablets / large phones — 529px to 768px ─────────── */
-@media (max-width: 768px) {
-  .measurable {
-    padding: 48px 0;
-  }
-
-  .measurable__container {
-    padding: 0 20px;
-    gap: 24px;
-  }
-
-  .measurable__title {
-    font-size: clamp(1.6rem, 7vw, 2.2rem);
-  }
-
-  .measurable__intro {
-    max-width: 100%;
-  }
-
-  .measurable__stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .measurable__stat {
-    padding: 16px;
-  }
-
-  .measurable__stat-num {
-    font-size: 1.4rem;
-  }
-
-  .measurable__stat-title {
-    font-size: 0.85rem;
-  }
-
-  .measurable__stat-desc {
-    font-size: 0.75rem;
-  }
-
-  /* FIX: slightly taller ratio + remove old fixed min-height,
-     which was fighting with aspect-ratio */
-  .measurable__globe {
-    aspect-ratio: 4 / 3;
-    min-height: 0;
-    padding: 24px;
-  }
-
-  .measurable__quote {
-    padding: 16px;
-  }
-
-  .measurable__quote-text {
-    font-size: 0.8rem;
-  }
-
-  .measurable__footer-wrap {
-    padding: 0 20px;
-    margin-top: 24px;
-  }
-
-  /* Hide static footer, show slider — mobile only */
-  .measurable__footer {
-    display: none;
-  }
-
+  /* ── SWIPER (mobile & tablet only) ────────────────────────── */
   .measurable__footer-slider {
-    display: block;
+    display: none;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
   }
 
-  .measurable__slider-dots {
+  .measurable__slider-track {
     display: flex;
+    width: 100%;
+    gap: 14px;
+    box-sizing: border-box;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
   }
 
-  /* One card at a time */
   .measurable__slide-card {
-    flex: 0 0 100%;
+    flex: 0 0 calc(50% - 7px);
+    min-width: 0;
+    box-sizing: border-box;
+    background: #f5f6f7;
+    border-radius: 20px;
+    padding: 24px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 2px 12px rgba(30, 91, 77, 0.06);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+    user-select: none;
+
+    &:active {
+      transform: scale(0.98);
+      box-shadow: 0 1px 6px rgba(30, 91, 77, 0.1);
+    }
+  }
+
+  .measurable__slide-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #dceee2;
+    color: #1e5b4d;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    text-align: center;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
   }
 
   .measurable__slide-body {
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
   }
 
   .measurable__slide-num {
-    font-size: 1.35rem;
-  }
-
-  .measurable__slide-label {
-    font-size: 0.75rem;
-  }
-}
-
-/* ── Medium phones — 480px to 560px ───────────────────────── */
-@media (max-width: 560px) {
-  .measurable__footer-wrap {
-    padding: 0 16px;
-  }
-
-  .measurable__slide-card {
-    flex: 0 0 100%;
-    padding: 20px 14px;
-    gap: 10px;
-  }
-
-  .measurable__slide-icon {
-    width: 42px;
-    height: 42px;
-
-    svg {
-      width: 18px;
-      height: 18px;
-    }
-  }
-
-  .measurable__slide-num {
-    font-size: 1.25rem;
-  }
-
-  .measurable__slide-label {
-    font-size: 0.72rem;
-  }
-}
-
-/* ── Small phones — below 480px ────────────────────────────── */
-@media (max-width: 480px) {
-  .measurable {
-    padding: 36px 0;
-  }
-
-  .measurable__container {
-    padding: 0 16px;
-    gap: 20px;
-  }
-
-  .measurable__title {
-    font-size: 1.6rem;
-  }
-
-  .measurable__intro {
-    font-size: 0.9rem;
-  }
-
-  .measurable__stats {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    gap: 10px;
-  }
-
-  .measurable__stat {
-    padding: 18px;
-  }
-
-  .measurable__stat-num {
     font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e5b4d;
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 
-  .measurable__stat-unit {
-    font-size: 0.85rem;
-  }
-
-  /* FIX: nearly square ratio on small phones, drop fixed min-height */
-  .measurable__globe {
-    aspect-ratio: 1 / 1;
-    min-height: 0;
-    padding: 18px;
-    border-radius: 18px;
-  }
-
-  .measurable__quote {
-    padding: 14px;
-    gap: 10px;
-    border-radius: 12px;
-  }
-
-  .measurable__quote-mark {
-    font-size: 1.8rem;
-  }
-
-  .measurable__quote-text {
+  .measurable__slide-label {
     font-size: 0.78rem;
+    color: #5a5a5a;
+    line-height: 1.4;
   }
 
-  .measurable__footer-wrap {
-    padding: 0 16px;
-    margin-top: 20px;
-  }
-
-  /* Single full-width card, one at a time on small phones */
-  .measurable__slide-card {
-    flex: 0 0 100%;
-    padding: 18px 14px;
-  }
-
+  /* Dots indicator */
   .measurable__slider-dots {
-    margin-top: 18px;
-    gap: 8px;
+    display: none;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 16px;
   }
 
   .measurable__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #c5d9ce;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition:
+      width 0.3s ease,
+      background 0.3s ease;
+
     &--active {
-      width: 22px;
+      width: 20px;
+      border-radius: 4px;
+      background: #1e5b4d;
     }
   }
 
-  .measurable__footer {
-    border-radius: 16px;
-    padding: 16px;
-    gap: 14px;
-  }
+  /* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════ */
 
-  .measurable__footer-icon {
-    width: 36px;
-    height: 36px;
+  /* ── Medium desktops ───────────────────────────────────────── */
+  @media (max-width: 1280px) {
+    .measurable__stat {
+      padding: 24px;
+    }
 
-    svg {
-      width: 16px;
-      height: 16px;
+    .measurable__stat-num {
+      font-size: 1.6rem;
+    }
+
+    .measurable__stat-title {
+      font-size: 0.9rem;
+    }
+
+    .measurable__stat-desc {
+      font-size: 0.78rem;
     }
   }
 
-  .measurable__footer-num {
-    font-size: 1.1rem;
-  }
+  /* ── Large tablets ─────────────────────────────────────────── */
+  @media (max-width: 1199px) {
+    .measurable__footer-wrap {
+      grid-template-columns: 1.4fr 1fr;
+      gap: 32px;
+    }
 
-  .measurable__footer-label {
-    font-size: 0.75rem;
-  }
+    .measurable__footer {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 24px;
+      padding: 20px 24px;
+    }
 
-  .measurable__slide-icon {
-    width: 38px;
-    height: 38px;
+    .measurable__footer-item {
+      flex-shrink: 1;
+      min-width: 0;
+    }
 
-    svg {
-      width: 16px;
-      height: 16px;
+    .measurable__footer-icon {
+      flex-shrink: 0;
+    }
+
+    .measurable__footer-body {
+      min-width: 0;
+    }
+
+    .measurable__footer-label {
+      white-space: normal;
+    }
+
+    .measurable__footer-num {
+      white-space: nowrap;
     }
   }
 
-  .measurable__slide-num {
-    font-size: 1.2rem;
+  /* ── Tablets — stack layout, activate slider ───────────────── */
+  @media (max-width: 1024px) {
+    .measurable__container {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 0 48px;
+    }
+
+    .measurable__footer-wrap {
+      grid-template-columns: 1fr;
+      padding: 0 48px;
+      gap: 0;
+    }
+
+    .measurable__header {
+      align-items: center;
+      text-align: center;
+    }
+
+    .measurable__intro {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .measurable__footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px 32px;
+    }
+
+    /* FIX: in stacked layout, flex:1 has nothing to grow against,
+     so the globe falls back to the image's intrinsic (near-square)
+     ratio and becomes way too tall. Lock it to an aspect-ratio
+     instead so it scales with the container width. */
+    .measurable__globe {
+      flex: none;
+      aspect-ratio: 21 / 9; /* was 16 / 9 — much shorter */
+      max-height: 360px; /* hard cap so it never grows too tall */
+      min-height: 0;
+      width: 100%;
+    }
   }
 
-  .measurable__slide-label {
-    font-size: 0.7rem;
+  /* ── Small tablets / large phones — 529px to 768px ─────────── */
+  @media (max-width: 768px) {
+    .measurable {
+      padding: 48px 0;
+    }
+
+    .measurable__container {
+      padding: 0 20px;
+      gap: 24px;
+    }
+
+    .measurable__title {
+      font-size: clamp(1.6rem, 7vw, 2.2rem);
+    }
+
+    .measurable__intro {
+      max-width: 100%;
+    }
+
+    .measurable__stats {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .measurable__stat {
+      padding: 16px;
+    }
+
+    .measurable__stat-num {
+      font-size: 1.4rem;
+    }
+
+    .measurable__stat-title {
+      font-size: 0.85rem;
+    }
+
+    .measurable__stat-desc {
+      font-size: 0.75rem;
+    }
+
+    /* FIX: slightly taller ratio + remove old fixed min-height,
+     which was fighting with aspect-ratio */
+    .measurable__globe {
+      aspect-ratio: 4 / 3;
+      min-height: 0;
+      padding: 24px;
+    }
+
+    .measurable__quote {
+      padding: 16px;
+    }
+
+    .measurable__quote-text {
+      font-size: 0.8rem;
+    }
+
+    .measurable__footer-wrap {
+      padding: 0 20px;
+      margin-top: 24px;
+    }
+
+    /* Hide static footer, show slider — mobile only */
+    .measurable__footer {
+      display: none;
+    }
+
+    .measurable__footer-slider {
+      display: block;
+    }
+
+    .measurable__slider-dots {
+      display: flex;
+    }
+
+    /* One card at a time */
+    .measurable__slide-card {
+      flex: 0 0 100%;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .measurable__slide-body {
+      align-items: center;
+    }
+
+    .measurable__slide-num {
+      font-size: 1.35rem;
+    }
+
+    .measurable__slide-label {
+      font-size: 0.75rem;
+    }
+  }
+
+  /* ── Medium phones — 480px to 560px ───────────────────────── */
+  @media (max-width: 560px) {
+    .measurable__footer-wrap {
+      padding: 0 16px;
+    }
+
+    .measurable__slide-card {
+      flex: 0 0 100%;
+      padding: 20px 14px;
+      gap: 10px;
+    }
+
+    .measurable__slide-icon {
+      width: 42px;
+      height: 42px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    .measurable__slide-num {
+      font-size: 1.25rem;
+    }
+
+    .measurable__slide-label {
+      font-size: 0.72rem;
+    }
+  }
+
+  /* ── Small phones — below 480px ────────────────────────────── */
+  @media (max-width: 480px) {
+    .measurable {
+      padding: 36px 0;
+    }
+
+    .measurable__container {
+      padding: 0 16px;
+      gap: 20px;
+    }
+
+    .measurable__title {
+      font-size: 1.6rem;
+    }
+
+    .measurable__intro {
+      font-size: 0.9rem;
+    }
+
+    .measurable__stats {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+      gap: 10px;
+    }
+
+    .measurable__stat {
+      padding: 18px;
+    }
+
+    .measurable__stat-num {
+      font-size: 1.5rem;
+    }
+
+    .measurable__stat-unit {
+      font-size: 0.85rem;
+    }
+
+    /* FIX: nearly square ratio on small phones, drop fixed min-height */
+    .measurable__globe {
+      aspect-ratio: 1 / 1;
+      min-height: 0;
+      padding: 18px;
+      border-radius: 18px;
+    }
+
+    .measurable__quote {
+      padding: 14px;
+      gap: 10px;
+      border-radius: 12px;
+    }
+
+    .measurable__quote-mark {
+      font-size: 1.8rem;
+    }
+
+    .measurable__quote-text {
+      font-size: 0.78rem;
+    }
+
+    .measurable__footer-wrap {
+      padding: 0 16px;
+      margin-top: 20px;
+    }
+
+    /* Single full-width card, one at a time on small phones */
+    .measurable__slide-card {
+      flex: 0 0 100%;
+      padding: 18px 14px;
+    }
+
+    .measurable__slider-dots {
+      margin-top: 18px;
+      gap: 8px;
+    }
+
+    .measurable__dot {
+      &--active {
+        width: 22px;
+      }
+    }
+
+    .measurable__footer {
+      border-radius: 16px;
+      padding: 16px;
+      gap: 14px;
+    }
+
+    .measurable__footer-icon {
+      width: 36px;
+      height: 36px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .measurable__footer-num {
+      font-size: 1.1rem;
+    }
+
+    .measurable__footer-label {
+      font-size: 0.75rem;
+    }
+
+    .measurable__slide-icon {
+      width: 38px;
+      height: 38px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .measurable__slide-num {
+      font-size: 1.2rem;
+    }
+
+    .measurable__slide-label {
+      font-size: 0.7rem;
+    }
   }
 }
- }
