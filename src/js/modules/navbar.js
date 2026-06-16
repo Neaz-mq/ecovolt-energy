@@ -28,12 +28,10 @@ export function initNavbar() {
     document.body.style.overflow = open ? 'hidden' : ''
   }
 
-  // Hamburger click
   hamburger?.addEventListener('click', () => {
     toggleMenu(!hamburger.classList.contains('is-open'))
   })
 
-  // ESC key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && mobileMenu?.classList.contains('is-open')) {
       toggleMenu(false)
@@ -41,13 +39,76 @@ export function initNavbar() {
     }
   })
 
-  // Click backdrop (outside menu panel) to close
   mobileMenu?.addEventListener('click', (e) => {
     if (e.target === mobileMenu) toggleMenu(false)
   })
 
-  // Nav links close menu on click
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => toggleMenu(false))
   })
+
+  // ── Active link highlight on scroll ──────
+  const sections = document.querySelectorAll('section[id]')
+  const navLinks = document.querySelectorAll('.navbar__links a')
+
+  const aliases = {
+    'mission'      : '#technology',
+    'partners'     : '#technology',
+    'measurable'   : '#impact',
+    'energy'       : '#solutions',
+    'momentum'     : '#impact',
+    'impact-action': '#impact',
+    'sgi'          : '#solutions',
+    'contact'      : '#impact',
+  }
+
+  const resolveLink = (id) => {
+    const direct = [...navLinks].find(
+      (l) => l.getAttribute('href') === `#${id}`
+    )
+    if (direct) return direct
+    const fallback = aliases[id]
+    return fallback
+      ? [...navLinks].find((l) => l.getAttribute('href') === fallback)
+      : null
+  }
+
+  // ── Track intersection ratios, activate the MOST visible section ──
+  const visibilityMap = new Map()
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        visibilityMap.set(
+          entry.target.getAttribute('id'),
+          entry.intersectionRatio
+        )
+      })
+
+      // Find the section with the highest visibility ratio
+      let maxRatio = 0
+      let activeId = null
+
+      visibilityMap.forEach((ratio, id) => {
+        if (ratio > maxRatio) {
+          maxRatio = ratio
+          activeId = id
+        }
+      })
+
+      if (!activeId || maxRatio === 0) return
+
+      const active = resolveLink(activeId)
+      if (!active) return
+
+      navLinks.forEach((l) => l.classList.remove('is-active'))
+      active.classList.add('is-active')
+    },
+    {
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+      rootMargin: '-72px 0px 0px 0px',
+    }
+  )
+
+  sections.forEach((s) => sectionObserver.observe(s))
 }
