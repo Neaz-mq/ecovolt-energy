@@ -400,7 +400,7 @@
       justify-content: center;
       width: 44px;
       height: 44px;
-      background: transparent;
+      background: #8277773f;
       border: none;
       cursor: pointer;
       color: $clr-warning;
@@ -453,7 +453,7 @@
 
         &::after {
           content: "→";
-          font-size: $fz-base;
+          font-size: $fz-md;
           color: $clr-muted-light;
           margin-left: auto;
           transition:
