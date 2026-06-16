@@ -54,15 +54,7 @@ export function initNavbar() {
   // Sections that should clear all active states (hero/home area)
   const noActiveIds = new Set(['home', 'mission'])
 
-  const aliases = {
-    'partners'     : '#technology',
-    'measurable'   : '#impact',
-    'energy'       : '#solutions',
-    'momentum'     : '#impact',
-    'impact-action': '#impact',
-    'sgi'          : '#solutions',
-    'contact'      : '#impact',
-  }
+ 
 
   const resolveLink = (id) => {
     const direct = [...navLinks].find(
