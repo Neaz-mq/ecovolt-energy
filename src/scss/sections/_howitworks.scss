@@ -1,10 +1,10 @@
 /* ============================================
    ECOVOLT — HOW IT WORKS SECTION
-   File: src/scss/sections/_howitworks.css
+   File: src/scss/sections/_howitworks.scss
    ============================================ */
 
 .hiw {
- background-color: #ffffff;
+  background-color: #ffffff;
   position: relative;
   z-index: 10;
   margin-block-start: -2px;
@@ -23,6 +23,8 @@
     z-index: 1;
     pointer-events: none;
   }
+}
+
 @media (max-width: 768px) {
   .hiw {
     padding: 72px 0 88px;
@@ -103,6 +105,15 @@
   margin: 0 auto;
 }
 
+/* ── FIX: subtitle 2-line on mobile ── */
+@media (max-width: 480px) {
+  .hiw__subtitle {
+    font-size: 14px;
+    max-width: 100%;
+    padding-inline: 12px;
+  }
+}
+
 /* ══════════════════════════════════════════════
    DESKTOP DIAGRAM (SVG + labels)
    ══════════════════════════════════════════════ */
@@ -163,11 +174,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 24px;
-  width: clamp(
-    100px,
-    16vw,
-    200px
-  ); /* scales with viewport to prevent overlap */
+  width: clamp(100px, 16vw, 200px);
 }
 .hiw__label-item:nth-child(1) {
   left: 8.59%;
@@ -208,11 +215,7 @@
   color: #6b7c74;
   line-height: 1.65;
   margin: 0;
-  max-width: clamp(
-    80px,
-    13vw,
-    160px
-  ); /* scales with viewport to prevent overlap */
+  max-width: clamp(80px, 13vw, 160px);
 }
 
 .hiw__core-label {
@@ -255,8 +258,8 @@
     content: "";
     position: absolute;
     left: 31.5px;
-    top: 14px; /* center of step-1 number badge */
-    bottom: 32px; /* center of step-2 icon circle from bottom */
+    top: 14px;
+    bottom: 32px;
     width: 1.5px;
     background: linear-gradient(to bottom, #88c499 0%, #1e5b4d 100%);
     opacity: 0.4;
@@ -267,7 +270,6 @@
   .hiw__step-core-card {
     position: relative;
   }
-  /* Line from Store icon down into top of core card */
   .hiw__step-core-card::before {
     content: "";
     position: absolute;
@@ -279,7 +281,6 @@
     opacity: 0.35;
     z-index: 0;
   }
-  /* Line from bottom of core card down to Optimize badge */
   .hiw__step-core-card::after {
     content: "";
     position: absolute;
@@ -298,32 +299,24 @@
     position: relative;
   }
 
-  /* Main line: from step-3 badge down to just above step-4 icon */
   .hiw__steps-bottom::before {
     content: "";
     position: absolute;
     left: 31.5px;
-    top: 28px; /* center of step-3 number badge */
-    bottom: 92px; /* stops before step-4 icon top */
+    top: 28px;
+    bottom: 92px;
     width: 1.5px;
     background: linear-gradient(to bottom, #c8960a 0%, #2e86c1 100%);
     opacity: 0.4;
     z-index: 0;
   }
 
-  /* ── FIX: short stub line connecting step-3 icon bottom → step-4 badge ──
-     Sits between the bottom of the step-3 icon and the top of step-4 badge.
-     step-4 row height from bottom:
-       icon = 64px, gap = 8px, badge = 28px → badge center from bottom = 64px + 8px + 14px = 86px
-     We start the stub at bottom: 64px (top of step-4 icon) and
-     give it enough height to bridge the gap up to where ::before ends.
-  */
   .hiw__steps-bottom::after {
     content: "";
     position: absolute;
     left: 31.5px;
-    bottom: 64px; /* sits just above the step-4 icon top edge */
-    height: 28px; /* bridges gap between ::before end and step-4 icon */
+    bottom: 64px;
+    height: 28px;
     width: 1.5px;
     background: #2e86c1;
     opacity: 0.4;
@@ -384,7 +377,6 @@
     z-index: 3;
   }
 
-  /* Outer faint ring */
   .hiw__step-icon::before {
     content: "";
     position: absolute;
@@ -516,7 +508,6 @@
 
 /* ══════════════════════════════════════════════
    TABLET LAYOUT: 641px–860px
-   Flow: Steps 1&2 (left) → AI CORE (center) → Steps 3&4 (right)
    ══════════════════════════════════════════════ */
 @media (max-width: 860px) and (min-width: 768px) {
   .hiw__stepper {
@@ -528,7 +519,6 @@
     padding: 0 8px;
   }
 
-  /* Left column: steps 1 & 2 */
   .hiw__steps-top {
     grid-column: 1;
     grid-row: 1;
@@ -536,7 +526,6 @@
     border-right: 1.5px solid rgba(30, 91, 77, 0.15);
   }
 
-  /* Center: AI Core card */
   .hiw__step-core-card {
     grid-column: 2;
     grid-row: 1;
@@ -558,7 +547,6 @@
     flex: unset;
   }
 
-  /* Right column: steps 3 & 4 */
   .hiw__steps-bottom {
     grid-column: 3;
     grid-row: 1;
@@ -566,13 +554,11 @@
     border-left: 1.5px solid rgba(200, 150, 10, 0.2);
   }
 
-  /* Hide bridge lines — card is now center column */
   .hiw__step-core-card::before,
   .hiw__step-core-card::after {
     display: none;
   }
 
-  /* Icon sizes */
   .hiw__step-icon {
     width: 60px;
     height: 60px;
@@ -595,10 +581,6 @@
     font-size: 12px;
   }
 
-  /* Line adjustments for 60px icons:
-     left = 30px (center of 60px icon within 64px column)
-     ::before bottom = 88px → stops just where ::after begins
-     ::after  bottom = 60px → sits flush on top of step-4 icon */
   .hiw__steps-bottom::before {
     left: 48px;
     bottom: 95px;
@@ -609,14 +591,13 @@
     height: 28px;
   }
 
-  /* Also fix top group line center for 60px icons */
   .hiw__steps-top::before {
     left: 30px;
     bottom: 30px;
   }
 }
 
-/* ── Large mobile: 577px–640px — icons 60px ── */
+/* ── Large mobile: 577px–640px ── */
 @media (max-width: 767px) and (min-width: 577px) {
   .hiw__step-icon {
     width: 60px;
@@ -633,7 +614,6 @@
   .hiw__step-core-title {
     font-size: 17px;
   }
-  /* icon=60px → ::before stops at 88px, ::after starts at 60px */
   .hiw__steps-bottom::before {
     bottom: 95px;
   }
@@ -643,7 +623,7 @@
   }
 }
 
-/* ── Mobile: ≤576px — compact 56px icons ── */
+/* ── Mobile: ≤576px ── */
 @media (max-width: 576px) {
   .hiw__step-icon {
     width: 56px;
@@ -660,7 +640,6 @@
   .hiw__step-core-title {
     font-size: 16px;
   }
-  /* icon=56px → ::before stops at 84px, ::after starts at 56px */
   .hiw__steps-bottom::before {
     bottom: 92px;
   }
@@ -695,5 +674,4 @@
     opacity: 0.15;
     transform: translateX(0);
   }
-}
 }
