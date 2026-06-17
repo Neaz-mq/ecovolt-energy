@@ -566,7 +566,7 @@
 /* ── Mobile ─────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .contact {
-    padding: 40px 0 52px;
+    padding: 16px 0 52px; /* was 40px 0 52px */
   }
 
   .contact__container {

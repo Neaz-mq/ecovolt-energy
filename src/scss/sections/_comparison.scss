@@ -423,7 +423,7 @@
 /* ── Small tablets / large phones ─────────────────────────── */
 @media (max-width: 640px) {
   .comparison {
-    padding: 0 0 40px;
+    padding: 0 0 24px;
     margin-block-start: 0;
   }
 
@@ -433,7 +433,7 @@
 
   .comparison__header {
     margin-bottom: 20px;
-    padding-top: 32px;
+    padding-top: 12px;
     gap: 8px;
   }
 
@@ -446,18 +446,23 @@
     font-size: 0.85rem;
   }
 
+  .comparison__table-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
   .comparison__th {
-    padding: 12px 12px;
+    padding: 12px 14px;
     font-size: 0.68rem;
   }
 
   .comparison__feature {
-    padding: 12px 12px;
+    padding: 12px 14px;
     font-size: 0.85rem;
   }
 
   .comparison__cell {
-    padding: 12px 0;
+    padding: 12px 8px; /* was 12px 0 — fixes right-side imbalance */
   }
 
   .comparison__th--traditional {

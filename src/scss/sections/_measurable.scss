@@ -605,7 +605,7 @@
   /* ── Small phones — below 480px ────────────────────────────── */
   @media (max-width: 480px) {
     .measurable {
-      padding: 36px 0;
+      padding: 26px 0;
     }
 
     .measurable__container {
@@ -655,17 +655,17 @@
 
     .measurable__quote-mark {
       font-size: 1.8rem;
+      margin-top: -10px;
     }
 
     .measurable__quote-text {
       font-size: 0.78rem;
     }
 
-    .measurable__footer-wrap {
-      padding: 0 16px;
-      margin-top: 20px;
-    }
-
+   .measurable__footer-wrap {
+  padding: 0 16px;
+  margin-top: 8px; /* was 20px */
+}
     /* Single full-width card, one at a time on small phones */
     .measurable__slide-card {
       flex: 0 0 100%;
@@ -673,7 +673,7 @@
     }
 
     .measurable__slider-dots {
-      margin-top: 18px;
+      margin-top: 24px;
       gap: 8px;
     }
 
