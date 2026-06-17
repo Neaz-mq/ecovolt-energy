@@ -53,8 +53,8 @@
       padding-bottom: $sp-14;
     }
     @include md {
-      gap: $sp-10;
-      padding-bottom: $sp-14;
+      gap: $sp-8;
+      padding-bottom: $sp-8;
     }
     @include sm {
       gap: $sp-8;
@@ -194,6 +194,11 @@
     max-width: 1200px;
     margin: 0 auto;
 
+    // ✦ FIX: Hide marquee clones at desktop & tablet — only needed for sm marquee
+    .mission__card[data-clone] {
+      display: none;
+    }
+
     @include lg {
       grid-template-columns: repeat(4, 1fr);
       max-width: 100%;
@@ -201,7 +206,8 @@
     }
     @include md {
       grid-template-columns: repeat(2, 1fr);
-      max-width: 600px;
+      max-width: 560px;
+      gap: $sp-4;
     }
     @include sm {
       display: flex;
@@ -215,6 +221,11 @@
       animation: missionMarquee 22s linear infinite;
       will-change: transform;
 
+      // ✦ FIX: Re-show clones inside sm — marquee needs them
+      .mission__card[data-clone] {
+        display: flex;
+      }
+
       &:hover {
         animation-play-state: paused;
       }
@@ -227,6 +238,11 @@
         padding: $sp-1 $sp-4;
         scroll-snap-type: x mandatory;
         scrollbar-width: none;
+
+        // ✦ FIX: Hide clones in reduced-motion — marquee disabled, clones not needed
+        .mission__card[data-clone] {
+          display: none;
+        }
 
         &::-webkit-scrollbar {
           display: none;
@@ -353,6 +369,12 @@
 
     // ── lg: tighter card ──────────────────
     @include lg {
+      padding: $sp-8 $sp-4 $sp-8;
+      gap: $sp-4;
+    }
+
+    // ── md: tighter card ──────────────────
+    @include md {
       padding: $sp-8 $sp-4 $sp-8;
       gap: $sp-4;
     }
@@ -533,6 +555,10 @@
     @include reduced-motion {
       transform: none;
       transition: opacity $dur-base $ease-out;
+    }
+
+    @include md {
+      padding: $sp-14 $sp-6 clamp(130px, 11vw, 180px);
     }
 
     @include sm {
