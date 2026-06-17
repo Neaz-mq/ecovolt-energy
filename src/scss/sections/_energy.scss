@@ -212,7 +212,7 @@
 /* ── Mobile ─────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .energy {
-    padding: 48px 0 48px;
+    padding: 28px 0 38px;
   }
 
   .energy__bg-overlay {
@@ -222,7 +222,7 @@
   .energy__container {
     grid-template-columns: 1fr;
     gap: 28px;
-    padding: 0 20px;
+    padding: 0 40px;
   }
 
   .energy__left {
