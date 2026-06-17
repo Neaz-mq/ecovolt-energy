@@ -11,7 +11,7 @@
   padding: 60px 0;
   scroll-margin-top: 50px;
 
-  // ── Cover subpixel seam from smartgrid wave ───────────────────────────
+  /* ── Cover subpixel seam from smartgrid wave ── */
   &::before {
     content: "";
     position: absolute;
@@ -105,12 +105,24 @@
   margin: 0 auto;
 }
 
-/* ── FIX: subtitle 2-line on mobile ── */
+/* ── subtitle responsive ── */
 @media (max-width: 480px) {
   .hiw__subtitle {
-    font-size: 14px;
+    font-size: 15px;
     max-width: 100%;
     padding-inline: 12px;
+    text-wrap: balance;
+  }
+}
+
+/* ✦ FIX: force 2-line on small mobile — was wrapping to 3 lines at 412px */
+@media (max-width: 430px) {
+  .hiw__subtitle {
+    font-size: 14px;
+    max-width: 290px;
+    padding-inline: 0;
+    line-height: 1.6;
+    text-wrap: balance;
   }
 }
 
@@ -176,21 +188,11 @@
   padding-top: 24px;
   width: clamp(100px, 16vw, 200px);
 }
-.hiw__label-item:nth-child(1) {
-  left: 8.59%;
-}
-.hiw__label-item:nth-child(2) {
-  left: 25.78%;
-}
-.hiw__label-item:nth-child(3) {
-  left: 50%;
-}
-.hiw__label-item:nth-child(4) {
-  left: 74.22%;
-}
-.hiw__label-item:nth-child(5) {
-  left: 91.41%;
-}
+.hiw__label-item:nth-child(1) { left: 8.59%; }
+.hiw__label-item:nth-child(2) { left: 25.78%; }
+.hiw__label-item:nth-child(3) { left: 50%; }
+.hiw__label-item:nth-child(4) { left: 74.22%; }
+.hiw__label-item:nth-child(5) { left: 91.41%; }
 
 .hiw__label-item--core {
   padding-top: clamp(52px, calc(24px + 5vw), 88px);
@@ -248,7 +250,6 @@
     padding: 0 4px;
   }
 
-  /* ── Step groups that carry the connecting line ── */
   .hiw__steps-top {
     display: flex;
     flex-direction: column;
@@ -266,7 +267,6 @@
     z-index: 0;
   }
 
-  /* Bridge lines on the AI Core card */
   .hiw__step-core-card {
     position: relative;
   }
@@ -298,7 +298,6 @@
     flex-direction: column;
     position: relative;
   }
-
   .hiw__steps-bottom::before {
     content: "";
     position: absolute;
@@ -310,7 +309,6 @@
     opacity: 0.4;
     z-index: 0;
   }
-
   .hiw__steps-bottom::after {
     content: "";
     position: absolute;
@@ -323,7 +321,6 @@
     z-index: 0;
   }
 
-  /* ── Each step row ── */
   .hiw__step {
     display: flex;
     align-items: flex-start;
@@ -336,7 +333,6 @@
     padding-bottom: 0;
   }
 
-  /* ── Left column ── */
   .hiw__step-left {
     display: flex;
     flex-direction: column;
@@ -346,7 +342,6 @@
     gap: 8px;
   }
 
-  /* Number badge */
   .hiw__step-num {
     width: 28px;
     height: 28px;
@@ -363,7 +358,6 @@
     background: #fff;
   }
 
-  /* Icon circle */
   .hiw__step-icon {
     width: 64px;
     height: 64px;
@@ -376,7 +370,6 @@
     position: relative;
     z-index: 3;
   }
-
   .hiw__step-icon::before {
     content: "";
     position: absolute;
@@ -385,13 +378,11 @@
     border: 1px solid rgba(136, 196, 153, 0.3);
     z-index: 1;
   }
-
   .hiw__step-icon svg {
     width: 28px;
     height: 28px;
   }
 
-  /* ── Right column ── */
   .hiw__step-right {
     flex: 1;
     padding-top: 4px;
@@ -411,7 +402,6 @@
     max-width: 100%;
   }
 
-  /* ── Step colours ── */
   .hiw__step--capture .hiw__step-num {
     border: 1.5px solid #88c499;
     color: #5db87a;
@@ -419,7 +409,6 @@
   .hiw__step--capture .hiw__step-icon {
     border: 1.8px solid #88c499;
   }
-
   .hiw__step--store .hiw__step-num {
     border: 1.5px solid #1e5b4d;
     color: #1e5b4d;
@@ -428,7 +417,6 @@
     border: 2px solid #1e5b4d;
   }
 
-  /* AI Core card */
   .hiw__step-core-card {
     display: flex;
     align-items: center;
@@ -439,7 +427,6 @@
     margin: 8px 0;
     z-index: 1;
   }
-
   .hiw__step-core-icon {
     width: 72px;
     height: 72px;
@@ -460,11 +447,9 @@
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
-
   .hiw__step-core-content {
     flex: 1;
   }
-
   .hiw__step-core-eyebrow {
     font-size: 11px;
     font-weight: 700;
@@ -495,7 +480,6 @@
   .hiw__step--optimize .hiw__step-icon {
     border: 2px solid #c8960a;
   }
-
   .hiw__step--distribute .hiw__step-num {
     border: 1.5px solid #89c0e0;
     color: #2e86c1;
@@ -518,14 +502,12 @@
     column-gap: 0;
     padding: 0 8px;
   }
-
   .hiw__steps-top {
     grid-column: 1;
     grid-row: 1;
     padding-right: 16px;
     border-right: 1.5px solid rgba(30, 91, 77, 0.15);
   }
-
   .hiw__step-core-card {
     grid-column: 2;
     grid-row: 1;
@@ -538,27 +520,22 @@
     align-self: stretch;
     justify-content: center;
   }
-
   .hiw__step-core-icon {
     margin: 0 auto 12px;
   }
-
   .hiw__step-core-content {
     flex: unset;
   }
-
   .hiw__steps-bottom {
     grid-column: 3;
     grid-row: 1;
     padding-left: 16px;
     border-left: 1.5px solid rgba(200, 150, 10, 0.2);
   }
-
   .hiw__step-core-card::before,
   .hiw__step-core-card::after {
     display: none;
   }
-
   .hiw__step-icon {
     width: 60px;
     height: 60px;
@@ -580,7 +557,6 @@
   .hiw__step-core-desc {
     font-size: 12px;
   }
-
   .hiw__steps-bottom::before {
     left: 48px;
     bottom: 95px;
@@ -590,14 +566,13 @@
     bottom: 40px;
     height: 28px;
   }
-
   .hiw__steps-top::before {
     left: 30px;
     bottom: 30px;
   }
 }
 
-/* ── Large mobile: 577px–640px ── */
+/* ── Large mobile: 577px–767px ── */
 @media (max-width: 767px) and (min-width: 577px) {
   .hiw__step-icon {
     width: 60px;
@@ -653,25 +628,12 @@
    KEYFRAMES
    ════════════════════════════════════════════ */
 @keyframes hiwCoreRingSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 @keyframes chevronPulse {
-  0% {
-    opacity: 0.15;
-    transform: translateX(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(4px);
-  }
-  100% {
-    opacity: 0.15;
-    transform: translateX(0);
-  }
+  0%   { opacity: 0.15; transform: translateX(0); }
+  50%  { opacity: 1;    transform: translateX(4px); }
+  100% { opacity: 0.15; transform: translateX(0); }
 }
