@@ -24,9 +24,9 @@
   }
 
   .measurable__container {
-    max-width: 1200px;
+    max-width: 1250px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 60px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
@@ -183,9 +183,9 @@
 
   /* ── FOOTER ────────────────────────────────────────────────── */
   .measurable__footer-wrap {
-    max-width: 1200px;
+    max-width: 1250px;
     margin: 32px auto 0;
-    padding: 0 40px;
+    padding: 0 60px;
     display: grid;
     grid-template-columns: 2.3fr 1fr;
     gap: 64px;
@@ -362,6 +362,15 @@
 
   /* ── Medium desktops ───────────────────────────────────────── */
   @media (max-width: 1280px) {
+
+     .measurable__container {
+    margin: 0 auto;
+    padding: 0 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: stretch;
+  }
     .measurable__stat {
       padding: 24px;
     }
@@ -377,6 +386,14 @@
     .measurable__stat-desc {
       font-size: 0.78rem;
     }
+
+    .measurable__footer-wrap {
+    margin: 32px auto 0;
+    padding: 0 60px;
+    display: grid;
+    grid-template-columns: 2.3fr 1fr;
+    gap: 64px;
+  }
   }
 
   /* ── Large tablets ─────────────────────────────────────────── */
@@ -484,7 +501,7 @@
     }
 
     .measurable__container {
-      padding: 0 20px;
+      padding: 0 44px;
       gap: 24px;
     }
 
@@ -534,7 +551,7 @@
     }
 
     .measurable__footer-wrap {
-      padding: 0 20px;
+      padding: 0 44px;
       margin-top: 24px;
     }
 
@@ -573,8 +590,12 @@
 
   /* ── Medium phones — 480px to 560px ───────────────────────── */
   @media (max-width: 560px) {
+    .measurable__container {
+      padding: 0 32px;
+    }
+
     .measurable__footer-wrap {
-      padding: 0 16px;
+      padding: 0 32px;
     }
 
     .measurable__slide-card {
@@ -609,7 +630,7 @@
     }
 
     .measurable__container {
-      padding: 0 16px;
+      padding: 0 20px;
       gap: 20px;
     }
 
@@ -663,7 +684,7 @@
     }
 
     .measurable__footer-wrap {
-      padding: 0 16px;
+      padding: 0 20px;
       margin-top: 8px; /* was 20px */
     }
     /* Single full-width card, one at a time on small phones */
