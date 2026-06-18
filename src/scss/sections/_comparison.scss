@@ -22,6 +22,7 @@
     z-index: 1;
     pointer-events: none;
   }
+
 }
 
 .comparison [data-anim] {
@@ -36,9 +37,9 @@
 }
 
 .comparison__container {
-  max-width: 1200px;
+  max-width: 1250px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 60px;
 }
 
 /* ── HEADER ────────────────────────────────────────────────── */
@@ -91,7 +92,7 @@
 .comparison__table-wrap {
   background: #f5f6f7;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: hidden; /* clean on 320px+ — no scroll needed */
 }
 
 .comparison__table {
@@ -366,7 +367,7 @@
   }
 
   .comparison__container {
-    padding: 0 24px;
+    padding: 0 44px;
   }
 
   .comparison__title {
@@ -421,14 +422,13 @@
 }
 
 /* ── Small tablets / large phones ─────────────────────────── */
-@media (max-width: 640px) {
+@media (max-width: 560px) {
   .comparison {
     padding: 0 0 24px;
-    margin-block-start: 0;
   }
 
   .comparison__container {
-    padding: 0 20px;
+    padding: 0 32px;
   }
 
   .comparison__header {
@@ -462,7 +462,7 @@
   }
 
   .comparison__cell {
-    padding: 12px 8px; /* was 12px 0 — fixes right-side imbalance */
+    padding: 12px 8px;
   }
 
   .comparison__th--traditional {
@@ -502,6 +502,10 @@
 
 /* ── Small phones ──────────────────────────────────────────── */
 @media (max-width: 480px) {
+  .comparison__container {
+    padding: 0 20px;
+  }
+
   .comparison__th--ecovolt,
   .comparison__th--traditional {
     font-size: 0.6rem;
@@ -552,5 +556,47 @@
 
   .comparison__highlight-desc {
     font-size: 0.78rem;
+  }
+}
+
+/* ── Ultra-small phones — below 320px only ─────────────────
+   320px and above looks great with the existing layout.
+   Below 320px the table has no room to breathe, so we switch
+   the wrapper to overflow-x: auto and give the table a hard
+   min-width so it scrolls rather than clips or wraps badly.
+   Everything else stays identical to the 480px block above.
+─────────────────────────────────────────────────────────── */
+@media (max-width: 319px) {
+  .comparison__container {
+    padding: 0 12px;
+  }
+
+  /* Let the table scroll horizontally — only on truly tiny screens */
+  .comparison__table-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    /* Thin, subtle scrollbar so it looks intentional */
+    scrollbar-width: thin;
+    scrollbar-color: #c9e4d2 transparent;
+
+    &::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #c9e4d2;
+      border-radius: 999px;
+    }
+  }
+
+  /* Hard floor so table never collapses — wrapper scrolls instead */
+  .comparison__table {
+    min-width: 280px;
   }
 }
