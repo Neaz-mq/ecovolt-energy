@@ -390,6 +390,15 @@
       font-size: 0.78rem;
     }
 
+    /* FIX: at this width the right column is wide enough that the quote
+       text was collapsing to a single line, which threw off vertical
+       alignment with the quote mark. Cap the width so it wraps to two
+       lines, matching the desktop look (verified: 400px wraps to
+       "...we create / measurable impact for a sustainable tomorrow."). */
+    .measurable__quote-text {
+      max-width: 400px;
+    }
+
     .measurable__footer-wrap {
     margin: 32px auto 0;
     padding: 0 60px;
@@ -478,7 +487,13 @@
       width: 100%;
     }
 
+    /* In the stacked single-column layout the right column becomes
+       full page width, so the text was collapsing to a single line
+       again (same issue as the 1280px breakpoint, different cause).
+       Cap it so it still wraps to two lines like desktop — verified
+       across 768px–1024px range. */
     .measurable__quote-text {
+      max-width: 500px;
       font-size: 0.85rem;
       font-weight: 600;
       color: #1e5b4d;
@@ -670,7 +685,7 @@
     .measurable__quote-mark {
       font-size: 1.8rem;
       /* 👉 ADJUST HERE (small phones, max-width: 480px): increase to move glyph down, decrease to move up */
-      top: 0px;
+      top: -3px;
     }
 
     .measurable__quote-text {
