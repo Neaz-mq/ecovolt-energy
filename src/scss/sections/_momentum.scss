@@ -18,17 +18,17 @@
     left: 0;
     width: 100%;
     height: 16px;
-   background: #f4f6f4;
+    background: #f4f6f4;
     z-index: 1;
     pointer-events: none;
   }
-
+}
 
 /* ── Container ─────────────────────────────────────────────── */
 .momentum__container {
-  max-width: 1200px;
+  max-width: 1250px;  /* FIX: was 1200px — now matches comparison/impact-action */
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 60px;    /* FIX: was 40px — now matches comparison/impact-action base */
   display: flex;
   flex-direction: column;
   gap: 52px;
@@ -40,7 +40,8 @@
 }
 
 .momentum__title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 4vw, 3rem); /* FIX: min was 2rem — too large on 320–400px;
+                                           1.5rem floor keeps it readable without crowding */
   font-weight: 800;
   line-height: 1.2;
   color: #1e5b4d;
@@ -242,12 +243,15 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — padding schedule mirrors comparison exactly:
+   base 60px → ≤1024px 48px → ≤860px 44px
+             → ≤560px 32px  → ≤480px 20px → ≤319px 12px
 ══════════════════════════════════════════════════════════════ */
 
-@media (max-width: 1100px) {
+/* ── Large tablets (≤1024px) ──────────────────────────────── */
+@media (max-width: 1024px) {
   .momentum__container {
-    padding: 0 48px;
+    padding: 0 48px; /* FIX: was ≤1100px 48px — moved to ≤1024px to match comparison */
     gap: 40px;
   }
 
@@ -269,12 +273,14 @@
   }
 }
 
+/* ── Tablets (≤860px) ─────────────────────────────────────── */
 @media (max-width: 860px) {
   .momentum {
     padding: 60px 0 72px;
   }
 
   .momentum__container {
+    padding: 0 44px; /* FIX: matches comparison/impact-action ≤860px padding */
     gap: 36px;
   }
 
@@ -306,15 +312,19 @@
   }
 }
 
-/* ── Mobile ─────────────────────────────────────────────────── */
+/* ── Large phones (≤640px) ────────────────────────────────── */
 @media (max-width: 640px) {
   .momentum {
     padding: 48px 0 56px;
   }
 
   .momentum__container {
-    padding: 0 16px;
+    padding: 0 32px; /* FIX: was 16px — now matches comparison ≤560px → 32px */
     gap: 24px;
+  }
+
+  .momentum__title {
+    font-size: clamp(1.4rem, 6vw, 1.9rem);
   }
 
   .momentum__stats {
@@ -432,7 +442,23 @@
   }
 }
 
+/* ── Small phones (≤480px) ─────────────────────────────────── */
+@media (max-width: 480px) {
+  .momentum__container {
+    padding: 0 20px; /* matches comparison/impact-action ≤480px padding */
+  }
+
+  .momentum__title {
+    font-size: clamp(1.3rem, 7vw, 1.6rem);
+  }
+}
+
+/* ── Single-column stats (≤400px) ─────────────────────────── */
 @media (max-width: 400px) {
+  .momentum__container {
+    padding: 0 20px; /* already set at 480px, explicit for clarity */
+  }
+
   .momentum__stats {
     grid-template-columns: 1fr;
   }
@@ -442,4 +468,10 @@
     align-items: flex-start;
   }
 }
+
+/* ── Ultra-small phones (≤319px) ──────────────────────────── */
+@media (max-width: 319px) {
+  .momentum__container {
+    padding: 0 12px; /* matches comparison/impact-action ≤319px padding */
+  }
 }
