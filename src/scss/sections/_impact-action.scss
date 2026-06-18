@@ -23,9 +23,9 @@
 .impact-action__container {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: 1250px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 60px; /* matches comparison base */
   display: flex;
   align-items: center;
   gap: 100px;
@@ -96,13 +96,18 @@
 .ia-ray-3 { animation: ray-blink 2s ease-in-out infinite 0.8s; }
 
 /* ══════════════════════════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — padding schedule mirrors comparison exactly:
+   base 60px → ≤1024px 48px → ≤860px 44px
+             → ≤580px 32px  → ≤480px 20px → ≤319px 12px
 ══════════════════════════════════════════════════════════════ */
 
-@media (max-width: 1100px) {
+/* ── Large tablets (≤1024px) — FIX: was ≤1100px causing mismatch
+   between 1025px–1100px where comparison held 60px but
+   impact-action had already dropped to 48px ──────────────── */
+@media (max-width: 1024px) {
   .impact-action__container {
     gap: 64px;
-    padding: 0 48px;
+    padding: 0 48px; /* matches comparison's ≤1024px padding */
   }
 
   .impact-action__left {
@@ -114,6 +119,7 @@
   }
 }
 
+/* ── Tablets — stack layout (≤860px) ──────────────────────── */
 @media (max-width: 860px) {
   .impact-action {
     padding: 56px 0;
@@ -123,7 +129,7 @@
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    padding: 0 32px;
+    padding: 0 44px; /* matches comparison's ≤860px padding */
   }
 
   .impact-action__left {
@@ -165,14 +171,14 @@
   }
 }
 
-/* ── Mobile: swap SVG for card grid ───────────────────────── */
+/* ── Mobile: swap SVG for card grid (≤580px) ──────────────── */
 @media (max-width: 580px) {
   .impact-action {
     padding: 52px 0;
   }
 
   .impact-action__container {
-    padding: 0 20px;
+    padding: 0 32px; /* matches comparison's ≤560px padding */
     gap: 36px;
   }
 
@@ -247,6 +253,14 @@
   }
 }
 
+/* ── Small phones (≤480px) ─────────────────────────────────── */
+@media (max-width: 480px) {
+  .impact-action__container {
+    padding: 0 20px; /* matches comparison's ≤480px padding */
+  }
+}
+
+/* ── Single-column card grid (≤360px) ─────────────────────── */
 @media (max-width: 360px) {
   .impact-action__mobile-grid {
     grid-template-columns: 1fr;
@@ -254,5 +268,12 @@
 
   .impact-action__card {
     padding: 16px 14px;
+  }
+}
+
+/* ── Ultra-small phones (≤319px) ──────────────────────────── */
+@media (max-width: 319px) {
+  .impact-action__container {
+    padding: 0 12px; /* matches comparison's ≤319px padding */
   }
 }
