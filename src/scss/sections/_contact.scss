@@ -26,9 +26,9 @@
 
 /* ── Container ─────────────────────────────────────────────── */
 .contact__container {
-  max-width: 1200px;
+  max-width: 1250px;  /* FIX: was 1200px — matches comparison/impact-action/momentum */
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 60px;    /* FIX: was 40px — matches shared padding schedule */
   display: flex;
   flex-direction: column;
   gap: 52px;
@@ -168,8 +168,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /* KEY FIX: do NOT set overflow:hidden — it creates a stacking context
-     that traps the dropdown panel inside the card bounds */
   overflow: visible;
 }
 
@@ -192,7 +190,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  /* must also be visible so the panel isn't clipped */
   overflow: visible;
 }
 
@@ -202,8 +199,6 @@
   position: relative;
 }
 
-/* KEY FIX: the select wrapper needs a high z-index and overflow:visible
-   so the panel floats above everything including the footer */
 .contact__field--select {
   position: relative;
   overflow: visible;
@@ -275,7 +270,6 @@
     border-color 0.2s ease,
     background-color 0.2s ease;
   position: relative;
-  /* KEY FIX: z-index on the trigger itself so it layers above siblings */
   z-index: 2;
   box-sizing: border-box;
 }
@@ -290,7 +284,6 @@
   background-color: #ffffff;
 }
 
-/* when open, raise the trigger so the panel attaches cleanly below it */
 .contact__dropdown.open {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -323,9 +316,6 @@
 
 /* ── Custom dropdown panel ─────────────────────────────────── */
 .contact__dropdown-panel {
-  /* JS sets position:fixed + top/left/width at runtime via positionPanel()
-     so the panel escapes every stacking context and always floats above
-     the footer regardless of section z-index values */
   position: fixed;
   top: 0;
   left: 0;
@@ -470,12 +460,15 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — padding schedule mirrors comparison/momentum:
+   base 60px → ≤1024px 48px → ≤860px 44px
+             → ≤640px 32px  → ≤480px 20px → ≤319px 12px
 ══════════════════════════════════════════════════════════════ */
 
-@media (max-width: 1100px) {
+/* ── Large tablets (≤1024px) ──────────────────────────────── */
+@media (max-width: 1024px) {
   .contact__container {
-    padding: 0 48px;
+    padding: 0 48px; /* FIX: was ≤1100px — moved to ≤1024px to match schedule */
     gap: 40px;
   }
 
@@ -484,7 +477,7 @@
   }
 }
 
-/* ── Tablet ─────────────────────────────────────────────────── */
+/* ── Tablets (≤860px) ─────────────────────────────────────── */
 @media (max-width: 860px) {
   .contact {
     padding: 60px 0 72px;
@@ -492,7 +485,7 @@
 
   .contact__container {
     gap: 36px;
-    padding: 0 48px;
+    padding: 0 44px; /* FIX: was 48px — now matches schedule */
   }
 
   .contact__body {
@@ -563,19 +556,19 @@
   }
 }
 
-/* ── Mobile ─────────────────────────────────────────────────── */
+/* ── Large phones (≤640px) ────────────────────────────────── */
 @media (max-width: 640px) {
   .contact {
-    padding: 16px 0 52px; /* was 40px 0 52px */
+    padding: 16px 0 52px;
   }
 
   .contact__container {
-    padding: 0 20px;
+    padding: 0 32px; /* FIX: was 20px — now matches schedule ≤640px → 32px */
     gap: 28px;
   }
 
   .contact__title {
-    font-size: 1.75rem;
+    font-size: clamp(1.4rem, 6vw, 1.9rem); /* FIX: matches momentum small-screen sizing */
   }
 
   .contact__right {
@@ -710,13 +703,31 @@
   }
 }
 
-/* ── Very small screens ─────────────────────────────────────── */
+/* ── Small phones (≤480px) ─────────────────────────────────── */
+@media (max-width: 480px) {
+  .contact__container {
+    padding: 0 20px; /* matches schedule ≤480px → 20px */
+  }
+
+  .contact__title {
+    font-size: clamp(1.3rem, 7vw, 1.6rem);
+  }
+}
+
+/* ── Very small screens (≤380px) ──────────────────────────── */
 @media (max-width: 380px) {
   .contact__container {
-    padding: 0 16px;
+    padding: 0 20px; /* keep 20px — 380px is above the 319px floor */
   }
 
   .contact__offer-list {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── Ultra-small phones (≤319px) ──────────────────────────── */
+@media (max-width: 319px) {
+  .contact__container {
+    padding: 0 12px; /* matches schedule ≤319px → 12px */
   }
 }
