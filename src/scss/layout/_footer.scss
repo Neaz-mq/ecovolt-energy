@@ -8,21 +8,32 @@
   padding-top: 64px;
 
   // ── Container ──────────────────────────────────────────────────────────────
+  // Padding schedule mirrors contact/comparison/impact-action/momentum:
+  // base 60px → ≤1024px 48px → ≤860px 44px → ≤640px 32px → ≤480px 20px → ≤319px 12px
   &__container {
-    max-width: 1200px;
+    max-width: 1250px; // FIX: was 1200px — matches contact/comparison/impact-action/momentum
     margin-inline: auto;
-    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+    padding-inline: 60px; // FIX: was clamp(1.25rem, 4vw, 2.5rem)
 
-     // ── 1024px device ──
-  @media (max-width: 1024px) and (min-width: 961px) {
-    padding-inline: 3.2rem;
-  }
-      // ── Tablet only: fixed horizontal padding ──
-  @media (max-width: 960px) and (min-width: 641px) {
-    padding-inline: 2.5rem;
-  }
+    @media (max-width: 1024px) {
+      padding-inline: 48px; // FIX: replaces old 1024px–961px range rule (3.2rem)
+    }
 
- 
+    @media (max-width: 860px) {
+      padding-inline: 44px; // FIX: new step, matches shared schedule
+    }
+
+    @media (max-width: 640px) {
+      padding-inline: 32px; // FIX: replaces old 960px–641px range rule (2.5rem)
+    }
+
+    @media (max-width: 480px) {
+      padding-inline: 20px; // FIX: new step, matches shared schedule
+    }
+
+    @media (max-width: 319px) {
+      padding-inline: 12px; // FIX: new step, matches shared schedule
+    }
   }
 
   // ── Top row: brand + nav ───────────────────────────────────────────────────
@@ -127,6 +138,16 @@
   }
 
   // ── Nav column ─────────────────────────────────────────────────────────────
+  &__col {
+    // Nudge headings down so "SOLUTIONS / COMPANY / ..." align with the EcoVolt
+    // wordmark next to the logo icon, instead of sitting flush with the icon's top.
+    // Only needed when nav sits beside the brand block — tablet/mobile stack
+    // brand above nav, so no offset is needed there.
+    @media (min-width: 961px) {
+      margin-top: 26px;
+    }
+  }
+
   &__col-title {
     font-size: 0.9375rem;
     font-weight: 700;
@@ -175,7 +196,9 @@
     &:hover,
     &:focus-visible {
       color: #88c499;
-      svg { color: #88c499; }
+      svg {
+        color: #88c499;
+      }
     }
 
     &:focus-visible {
@@ -275,8 +298,12 @@
     outline: none;
     transition: border-color 0.2s ease;
 
-    &::placeholder { color: #4a5e52; }
-    &:focus { border-color: #88c499; }
+    &::placeholder {
+      color: #4a5e52;
+    }
+    &:focus {
+      border-color: #88c499;
+    }
   }
 
   &__newsletter-btn {
@@ -291,7 +318,9 @@
     border-radius: 6px;
     color: #0d1a14;
     cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
 
     &:hover {
       background: #6db887;
@@ -333,7 +362,9 @@
     border: 1px solid #2a3d30;
     color: #88c499;
     text-decoration: none;
-    transition: background 0.2s ease, border-color 0.2s ease;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
 
     &:hover {
       background: #243d2e;
@@ -393,7 +424,9 @@
     transition: color 0.2s ease;
 
     &:hover,
-    &:focus-visible { color: #88c499; }
+    &:focus-visible {
+      color: #88c499;
+    }
 
     &:focus-visible {
       outline: 2px solid #88c499;
