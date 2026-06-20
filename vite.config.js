@@ -2,9 +2,9 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
+  base: './',                              // ← ADD THIS LINE — fixes file:// + relative hosting
   root: 'src',
   publicDir: resolve(__dirname, 'public'),
-
   build: {
     outDir: '../dist',
     emptyOutDir: true,
@@ -33,7 +33,6 @@ export default defineConfig({
       },
     },
   },
-
   css: {
     preprocessorOptions: {
       scss: {
@@ -41,13 +40,11 @@ export default defineConfig({
       },
     },
   },
-
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
     },
   },
-
   server: {
     port: 5173,
     open: false,
