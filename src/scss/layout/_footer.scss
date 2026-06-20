@@ -9,7 +9,7 @@
 
   // ── Top accent bar (mobile only) ───────────────────────────────────────────
 
- 
+
 
   // ── Container ──────────────────────────────────────────────────────────────
   &__container {
@@ -120,16 +120,20 @@
   }
 
   // ── Nav grid ───────────────────────────────────────────────────────────────
+  // Desktop: 4 even columns (Solutions / Company / Resources / Newsletter)
+  // Tablet:  3 even columns for the link groups, newsletter block drops to
+  //          its own full-width row underneath (see &__col--newsletter)
+  // Mobile:  2-col grid, Resources/Newsletter span full width
   &__nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px 32px;
     align-items: start;
 
-    // ── Tablet: 2x2 grid ──
+    // ── Tablet: 3 even columns, newsletter wraps to its own row below ──
     @media (max-width: 960px) and (min-width: 641px) {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 32px 40px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px 32px;
     }
 
     // ── Mobile: 2-col grid, orphan cols go full-width ──
@@ -271,15 +275,24 @@
   }
 
   // ── Newsletter column ──────────────────────────────────────────────────────
+  // FIX: previously used an `auto 1fr` sub-grid that left the social icons
+  // and the form visually disconnected, and combined with the old 2-col
+  // nav grid it produced an empty gap next to "Resources" on tablet.
+  // Now the newsletter block always spans the full nav row, and internally
+  // uses a clean, fixed-width label column + flexible content column:
+  //   [ STAY CONNECTED ]   [ Subscribe to our newsletter ]
+  //   [ social icons   ]   [ email input + submit button ]
   &__col--newsletter {
     @media (max-width: 960px) and (min-width: 641px) {
       grid-column: 1 / -1;
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: minmax(150px, 200px) 1fr;
       grid-template-rows: auto auto;
-      column-gap: 40px;
+      column-gap: 32px;
+      row-gap: 14px;
       align-items: start;
-      padding-top: 8px;
+      margin-top: 32px;
+      padding-top: 28px;
       border-top: 1px solid #1e3028;
     }
 
@@ -301,12 +314,12 @@
     }
   }
 
-  // ── Tablet: newsletter title in col 1 ──
+  // ── Tablet: newsletter title sits top-left, above the social icons ──
   &__col--newsletter &__col-title {
     @media (max-width: 960px) and (min-width: 641px) {
       grid-column: 1;
       grid-row: 1;
-      align-self: center;
+      align-self: start;
       margin-bottom: 0;
       white-space: nowrap;
     }
@@ -322,14 +335,14 @@
 
   &__newsletter-label {
     font-size: 0.8125rem;
-    color: #4a6b5a;
+    color: #578c70;
     margin: 0 0 12px;
 
     @media (max-width: 960px) and (min-width: 641px) {
       grid-column: 2;
       grid-row: 1;
-      margin-bottom: 10px;
-      align-self: end;
+      align-self: start;
+      margin-bottom: 0;
     }
 
     @media (max-width: 640px) {
@@ -350,7 +363,7 @@
       grid-column: 2;
       grid-row: 2;
       margin-bottom: 0;
-      max-width: 360px;
+      max-width: 420px;
     }
 
     @media (max-width: 640px) {
@@ -432,8 +445,8 @@
     @media (max-width: 960px) and (min-width: 641px) {
       grid-column: 1;
       grid-row: 2;
-      align-self: center;
-      padding-top: 12px;
+      align-self: start;
+      padding-top: 0;
     }
 
     @media (max-width: 640px) {
@@ -504,7 +517,7 @@
 
   &__copy {
     font-size: 0.8125rem;
-    color: #2e4538;
+    color: #578c70;
     margin: 0;
   }
 
@@ -516,7 +529,7 @@
 
   &__legal-link {
     font-size: 0.8125rem;
-    color: #2e4538;
+    color: #578c70;
     text-decoration: none;
     transition: color 0.2s ease;
 
