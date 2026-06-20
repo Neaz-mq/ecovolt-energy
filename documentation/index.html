@@ -2,42 +2,119 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<title>EcoVolt - Documentation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EcoVolt — Documentation</title>
 <style>
-  body { font-family: sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 20px; color: #222; line-height: 1.7; }
-  h1 { color: #0a1a0d; } h2 { color: #1a4a2e; border-bottom: 2px solid #b8f53d; padding-bottom: 8px; }
-  code { background: #f4f4f4; padding: 2px 8px; border-radius: 4px; font-size: .9em; }
-  table { width: 100%; border-collapse: collapse; } td,th { padding: 10px; border: 1px solid #ddd; text-align: left; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; color: #222; line-height: 1.7; }
+  h1 { color: #0a1a0d; margin-bottom: 4px; }
+  .subtitle { color: #5a5a5a; margin-top: 0; margin-bottom: 36px; }
+  h2 { color: #1a4a2e; border-bottom: 2px solid #88c499; padding-bottom: 8px; margin-top: 48px; }
+  h3 { color: #1a4a2e; margin-top: 28px; }
+  code { background: #f4f4f4; padding: 2px 8px; border-radius: 4px; font-size: .9em; color: #1a4a2e; }
+  pre { background: #f4f4f4; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-size: .9em; }
+  pre code { background: none; padding: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+  td, th { padding: 10px; border: 1px solid #ddd; text-align: left; vertical-align: top; }
+  th { background: #f4f4f4; }
+  .note { background: #fff8e1; border-left: 4px solid #f4d03f; padding: 14px 18px; border-radius: 4px; margin: 20px 0; }
+  .note strong { color: #8a6d00; }
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  a { color: #1a4a2e; }
 </style>
 </head>
 <body>
-<h1>EcoVolt — Documentation v1.0</h1>
-<p>Thank you for purchasing EcoVolt Clean Energy Landing Page Template.</p>
 
-<h2>Getting Started</h2>
-<p>Open <code>dist/index.html</code> directly in your browser — no build tools required.</p>
-<p>For customization with source files, install Node.js then run:</p>
-<code>npm install</code> → <code>npm run dev</code>
+<h1>EcoVolt — Documentation</h1>
+<p class="subtitle">Version 1.0 · Clean Energy Landing Page Template</p>
 
-<h2>File Structure</h2>
-<pre>
-dist/          → Ready-to-use compiled files
-src/           → Source files (SCSS + JS)
-documentation/ → This file
-</pre>
+<p>Thank you for purchasing EcoVolt. This guide covers how to view, customize, and deploy the template.</p>
 
-<h2>Credits & Fonts</h2>
+<h2>1. Viewing the Template</h2>
+
+<div class="note">
+  <strong>Important:</strong> Do not open <code>index.html</code> by double-clicking it from your file explorer.
+  Modern browsers block local files (<code>file://</code>) from loading stylesheets, scripts, and fonts for
+  security reasons. The page will appear blank or unstyled if viewed this way. This applies to virtually
+  all modern web templates, not just this one.
+</div>
+
+<p>Use one of these methods instead:</p>
+
+<h3>Option A — VS Code Live Server (easiest)</h3>
+<ol>
+  <li>Install the <strong>"Live Server"</strong> extension in VS Code</li>
+  <li>Right-click <code>dist/index.html</code></li>
+  <li>Select <strong>"Open with Live Server"</strong></li>
+</ol>
+
+<h3>Option B — Local server (XAMPP / WAMP / MAMP)</h3>
+<ol>
+  <li>Copy the <code>dist</code> folder into your <code>htdocs</code> (or <code>www</code>) directory</li>
+  <li>Start Apache from your control panel</li>
+  <li>Visit <code>http://localhost/dist/</code> in your browser</li>
+</ol>
+
+<h3>Option C — Upload to live hosting</h3>
+<p>Once uploaded to any web host, the template works normally — this restriction only applies to local file viewing.</p>
+
+<h2>2. File Structure</h2>
+<pre><code>dist/             → Ready-to-use compiled files (upload this to your host)
+  ├─ index.html
+  ├─ assets/
+  │   ├─ css/      → Compiled stylesheet
+  │   ├─ js/       → Compiled scripts
+  │   ├─ fonts/    → Inter font files
+  │   └─ images/   → Template images
+  ├─ favicon files, logo.svg, site.webmanifest
+
+src/              → Editable source files (SCSS + JS modules)
+documentation/    → This file</code></pre>
+
+<h2>3. Customizing the Template</h2>
+
+<h3>Editing text and images</h3>
+<p>All content lives directly in <code>dist/index.html</code> (or <code>src/index.html</code> if editing source).
+Open it in any text editor and replace the placeholder text, then swap image files inside
+<code>assets/images/</code> with your own — keep the same filenames to avoid editing the HTML, or update the
+<code>src</code> paths if you rename them.</p>
+
+<h3>Editing colors and design tokens</h3>
+<p>If you're working from the source files, all colors, spacing, and typography values are centralized in:</p>
+<pre><code>src/scss/abstracts/_variables.scss</code></pre>
+<p>Change a value once here and it updates everywhere it's used across the template.</p>
+
+<h3>Working with source files (optional)</h3>
+<p>If you want to edit the SCSS or JavaScript source rather than the compiled <code>dist</code> output, you'll need
+<a href="https://nodejs.org" target="_blank">Node.js</a> installed. Then, from the project root:</p>
+<pre><code>npm install
+npm run dev      # starts a local dev server with live reload
+npm run build    # produces an updated dist/ folder when you're done</code></pre>
+
+<h2>4. Credits &amp; Licenses</h2>
+<p>This template uses the following third-party resources:</p>
 <table>
   <tr><th>Item</th><th>License</th><th>Source</th></tr>
-  <tr><td>Inter Font</td><td>SIL Open Font License 1.1</td><td>https://rsms.me/inter</td></tr>
-  <tr><td>GSAP</td><td>GSAP Standard License</td><td>https://gsap.com</td></tr>
-  <tr><td>Bootstrap 5</td><td>MIT</td><td>https://getbootstrap.com</td></tr>
-  <tr><td>Swiper.js</td><td>MIT</td><td>https://swiperjs.com</td></tr>
-  <tr><td>AOS</td><td>MIT</td><td>https://michalsnik.github.io/aos</td></tr>
-  <tr><td>Lenis</td><td>MIT</td><td>https://lenis.studiofreight.com</td></tr>
+  <tr>
+    <td>Inter Font</td>
+    <td>SIL Open Font License 1.1</td>
+    <td><a href="https://rsms.me/inter" target="_blank">rsms.me/inter</a></td>
+  </tr>
 </table>
+<p>All other code (HTML, CSS, JavaScript) is custom-built for this template.</p>
 
-<h2>Support</h2>
-<p>For support, contact via your ThemeForest purchase page.</p>
+<div class="note">
+  <strong>Note on images:</strong> Replace the placeholder images included in <code>assets/images/</code>
+  with your own licensed images before using this template in a live project, unless you have
+  confirmed redistribution rights for the included files.
+</div>
+
+<h2>5. Browser Support</h2>
+<p>Tested and supported on the latest versions of Chrome, Firefox, Safari, and Edge.</p>
+
+<h2>6. Support</h2>
+<p>For questions or support requests, please contact us via your ThemeForest purchase page (Comments tab),
+or through your item's support page on Envato.</p>
+
 </body>
 </html>

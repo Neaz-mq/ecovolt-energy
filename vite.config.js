@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
-  base: './',                              // ← ADD THIS LINE — fixes file:// + relative hosting
+  base: './',
   root: 'src',
   publicDir: resolve(__dirname, 'public'),
   build: {
