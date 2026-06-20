@@ -79,6 +79,8 @@
       crossorigin="anonymous"
     />
 
+    <link rel="stylesheet" href="/scss/main.scss" />
+
     <!-- ── FOUC prevention ───────────────────────────────────────────────
          Hides navbar and children before JS runs.
          JS adds .is-ready which restores visibility.
@@ -140,12 +142,10 @@
 
         <ul class="navbar__links" role="list">
           <li><a href="#technology">Technology</a></li>
-           <li><a href="#impact">Impact</a></li>
-            <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#solutions">Solutions</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#comparison">Comparison</a></li>
-         
-         
         </ul>
 
         <div class="navbar__actions">
@@ -165,73 +165,91 @@
       </div>
     </nav>
 
-  <!-- ── Mobile menu ───────────────────────────────────────────────── -->
-<div
-  class="navbar__mobile"
-  id="mobile-menu"
-  role="navigation"
-  aria-label="Mobile navigation"
->
-  <!-- Header row: logo + close — mirrors navbar__container padding exactly -->
-  <div class="navbar__mobile-header">
-    <a href="#home" class="navbar__logo" aria-label="EcoVolt – Go to homepage">
-      <img
-        src="/logo.svg"
-        alt="EcoVolt Energy"
-        class="navbar__logo-img"
-        width="140"
-        height="40"
-        loading="eager"
-        decoding="async"
-      />
-    </a>
-    <button
-      class="navbar__mobile-close"
-      aria-label="Close navigation menu"
+    <!-- ── Mobile menu ───────────────────────────────────────────────── -->
+    <div
+      class="navbar__mobile"
+      id="mobile-menu"
+      role="navigation"
+      aria-label="Mobile navigation"
     >
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    </button>
-  </div>
+      <!-- Header row: logo + close — mirrors navbar__container padding exactly -->
+      <div class="navbar__mobile-header">
+        <a
+          href="#home"
+          class="navbar__logo"
+          aria-label="EcoVolt – Go to homepage"
+        >
+          <img
+            src="/logo.svg"
+            alt="EcoVolt Energy"
+            class="navbar__logo-img"
+            width="140"
+            height="40"
+            loading="eager"
+            decoding="async"
+          />
+        </a>
+        <button class="navbar__mobile-close" aria-label="Close navigation menu">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
 
-  <nav class="navbar__mobile-nav">
-    <a href="#technology">
-      <span class="navbar__mobile-num" aria-hidden="true">01</span>
-      <span class="navbar__mobile-text">Technology</span>
-    </a>
-    <a href="#impact">
-      <span class="navbar__mobile-num" aria-hidden="true">02</span>
-      <span class="navbar__mobile-text">Impact</span>
-    </a>
-    <a href="#solutions">
-      <span class="navbar__mobile-num" aria-hidden="true">03</span>
-      <span class="navbar__mobile-text">Solutions</span>
-    </a>
-    <a href="#how-it-works">
-      <span class="navbar__mobile-num" aria-hidden="true">04</span>
-      <span class="navbar__mobile-text">How It Works</span>
-    </a>
-    <a href="#comparison">
-      <span class="navbar__mobile-num" aria-hidden="true">05</span>
-      <span class="navbar__mobile-text">Comparison</span>
-    </a>
-  </nav>
+      <nav class="navbar__mobile-nav">
+        <a href="#technology">
+          <span class="navbar__mobile-num" aria-hidden="true">01</span>
+          <span class="navbar__mobile-text">Technology</span>
+        </a>
+        <a href="#impact">
+          <span class="navbar__mobile-num" aria-hidden="true">02</span>
+          <span class="navbar__mobile-text">Impact</span>
+        </a>
+        <a href="#solutions">
+          <span class="navbar__mobile-num" aria-hidden="true">03</span>
+          <span class="navbar__mobile-text">Solutions</span>
+        </a>
+        <a href="#how-it-works">
+          <span class="navbar__mobile-num" aria-hidden="true">04</span>
+          <span class="navbar__mobile-text">How It Works</span>
+        </a>
+        <a href="#comparison">
+          <span class="navbar__mobile-num" aria-hidden="true">05</span>
+          <span class="navbar__mobile-text">Comparison</span>
+        </a>
+      </nav>
 
-  <div class="navbar__mobile-footer">
-    <a href="#contact" class="btn btn--primary">
-      Get Started
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-        stroke-linejoin="round" aria-hidden="true" focusable="false">
-        <path d="M5 12h14M12 5l7 7-7 7" />
-      </svg>
-    </a>
-  </div>
-</div>
+      <div class="navbar__mobile-footer">
+        <a href="#contact" class="btn btn--primary">
+          Get Started
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
 
     <!-- ── Main content ──────────────────────────────────────────────────
          id="main-content" matches skip-link href="#main-content".
