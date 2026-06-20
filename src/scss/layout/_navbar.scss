@@ -11,11 +11,12 @@
   opacity: 0;
   visibility: hidden;
   background: transparent;
+  border-bottom: 1px solid transparent; // ← ADD THIS (always present, invisible)
   transition:
     opacity $dur-fast $ease-out,
     visibility $dur-fast $ease-out,
     background $dur-slow $ease-in-out,
-    border-color $dur-slow $ease-in-out,
+    border-color $dur-slow $ease-in-out, // ← already here, now it'll actually work
     box-shadow $dur-slow $ease-in-out;
 
   // ── Scrolled state ────────────────────────
@@ -23,7 +24,7 @@
     background: rgba($clr-bg, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid $clr-border-white;
+    border-bottom-color: $clr-border-white; // ← CHANGE: only transition the color, not add the border
     box-shadow: $shadow-lg;
   }
 
