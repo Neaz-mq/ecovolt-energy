@@ -5,10 +5,11 @@
 .partners {
   background: #ffffff;
   padding: 68px 0 32px;
+  margin: 0;                 // keep this
+  margin-top: -4px;          // ← add AFTER margin: 0 so it wins
   overflow: hidden;
   position: relative;
-  z-index: 6; // above mission (z-index:6) and smartgrid (z-index:7)
-  margin: 0;
+  z-index: 6;
 
   // ── Cover any subpixel gap from smartgrid wave ────────────────────────
   &::before {

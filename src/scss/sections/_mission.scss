@@ -340,10 +340,18 @@
       opacity: 1;
     }
 
-    &:nth-child(1)::before { animation-delay: 0s; }
-    &:nth-child(2)::before { animation-delay: -2s; }
-    &:nth-child(3)::before { animation-delay: -4s; }
-    &:nth-child(4)::before { animation-delay: -6s; }
+    &:nth-child(1)::before {
+      animation-delay: 0s;
+    }
+    &:nth-child(2)::before {
+      animation-delay: -2s;
+    }
+    &:nth-child(3)::before {
+      animation-delay: -4s;
+    }
+    &:nth-child(4)::before {
+      animation-delay: -6s;
+    }
 
     @include reduced-motion {
       &::before {
@@ -543,9 +551,6 @@
     z-index: 4;
     opacity: 0;
     transform: translateY(20px);
-    transition:
-      opacity 0.8s $ease-out 0.2s,
-      transform 0.8s $ease-out 0.2s;
 
     &.is-visible {
       opacity: 1;
@@ -637,11 +642,19 @@
 
 // ── Keyframes ────────────────────────────────────────────────────────────
 @keyframes missionBeamRotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes missionMarquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(var(--marquee-offset, -50%)); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--marquee-offset, -50%));
+  }
 }
