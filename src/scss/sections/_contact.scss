@@ -21,9 +21,9 @@
 
 /* ── Container ─────────────────────────────────────────────── */
 .contact__container {
-  max-width: 1250px; 
+  max-width: 1250px;
   margin: 0 auto;
-  padding: 0 60px; 
+  padding: 0 60px;
   display: flex;
   flex-direction: column;
   gap: 52px;
@@ -477,7 +477,7 @@
 /* ── Large tablets (≤1024px) ──────────────────────────────── */
 @media (max-width: 1024px) {
   .contact__container {
-    padding: 0 48px; 
+    padding: 0 48px;
     gap: 40px;
   }
 
@@ -494,7 +494,7 @@
 
   .contact__container {
     gap: 36px;
-    padding: 0 44px; 
+    padding: 0 44px;
   }
 
   .contact__body {
@@ -572,16 +572,12 @@
   }
 
   .contact__container {
-    padding: 0 32px; 
+    padding: 0 32px;
     gap: 28px;
   }
 
   .contact__title {
-    font-size: clamp(
-      1.4rem,
-      6vw,
-      1.9rem
-    ); 
+    font-size: clamp(1.4rem, 6vw, 1.9rem);
   }
 
   .contact__right {
@@ -719,7 +715,7 @@
 /* ── Small phones (≤480px) ─────────────────────────────────── */
 @media (max-width: 480px) {
   .contact__container {
-    padding: 0 20px; 
+    padding: 0 20px;
   }
 
   .contact__title {
@@ -730,7 +726,7 @@
 /* ── Very small screens (≤380px) ──────────────────────────── */
 @media (max-width: 380px) {
   .contact__container {
-    padding: 0 20px; 
+    padding: 0 20px;
   }
 
   .contact__offer-list {
@@ -741,6 +737,6 @@
 /* ── Ultra-small phones (≤319px) ──────────────────────────── */
 @media (max-width: 319px) {
   .contact__container {
-    padding: 0 12px; 
+    padding: 0 12px;
   }
 }
