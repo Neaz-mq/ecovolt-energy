@@ -104,13 +104,34 @@ export function initHero() {
 
 
 // ── Stats Slider ──────────────────────────────────────────────────────────
+//
+// Instead of hardcoding a pixel breakpoint in JS (which can drift out of
+// sync with whatever px value the SCSS `sm` / `md` / `lg` mixins actually
+// use), this reads the *real* computed layout: the SCSS only switches
+// `.hero__stats` to `overflow-x: auto` inside the mobile (`sm`) breakpoint.
+// So we just ask the browser "is that true right now?" — this is always
+// correct no matter what the breakpoint's exact pixel value is, and stays
+// correct even if that value changes later in the SCSS.
+//
 function initStatsSlider() {
   const stats = document.querySelector('.hero__stats')
   if (!stats) return
-  if (window.innerWidth > 640) return
 
   const cards = Array.from(stats.querySelectorAll('.hero__stat-card'))
   if (cards.length < 2) return
+
+  let dotsWrap = null
+  let dots     = []
+  let current  = 0
+  let paused   = false
+  let ticker   = null
+  let rafId    = null
+  let active   = false
+
+  function isSliderModeOn() {
+    // True only when the SCSS mobile rules are actually in effect.
+    return window.getComputedStyle(stats).overflowX === 'auto'
+  }
 
   function sizeCards() {
     const w = stats.clientWidth
@@ -120,28 +141,37 @@ function initStatsSlider() {
     })
   }
 
-  sizeCards()
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 640) sizeCards()
-  }, { passive: true })
+  function clearCardSizing() {
+    cards.forEach(card => {
+      card.style.width    = ''
+      card.style.minWidth = ''
+    })
+  }
 
-  const dotsWrap = document.createElement('div')
-  dotsWrap.className = 'hero__stats-dots'
-  dotsWrap.setAttribute('aria-hidden', 'true')
+  function buildDots() {
+    if (dotsWrap) return
 
-  const dots = cards.map((_, i) => {
-    const dot = document.createElement('span')
-    dot.className = 'hero__stats-dot' + (i === 0 ? ' is-active' : '')
-    dotsWrap.appendChild(dot)
-    return dot
-  })
+    dotsWrap = document.createElement('div')
+    dotsWrap.className = 'hero__stats-dots'
+    dotsWrap.setAttribute('aria-hidden', 'true')
 
-  stats.insertAdjacentElement('afterend', dotsWrap)
+    dots = cards.map((_, i) => {
+      const dot = document.createElement('span')
+      dot.className = 'hero__stats-dot' + (i === 0 ? ' is-active' : '')
+      dotsWrap.appendChild(dot)
+      return dot
+    })
 
-  let current = 0
-  let paused  = false
-  let ticker  = null
-  let rafId   = null
+    stats.insertAdjacentElement('afterend', dotsWrap)
+  }
+
+  function removeDots() {
+    if (dotsWrap) {
+      dotsWrap.remove()
+      dotsWrap = null
+      dots = []
+    }
+  }
 
   function goTo(index) {
     current = (index + cards.length) % cards.length
@@ -154,7 +184,10 @@ function initStatsSlider() {
     ticker = setInterval(() => { if (!paused) goTo(current + 1) }, 2800)
   }
 
-  startTicker()
+  function stopTicker() {
+    clearInterval(ticker)
+    ticker = null
+  }
 
   function onScroll() {
     cancelAnimationFrame(rafId)
@@ -168,23 +201,82 @@ function initStatsSlider() {
     })
   }
 
-  stats.addEventListener('scroll', onScroll, { passive: true })
-
-  stats.addEventListener('touchstart', () => {
+  function onTouchStart() {
     paused = true
-    clearInterval(ticker)
-  }, { passive: true })
+    stopTicker()
+  }
 
-  stats.addEventListener('touchend', () => {
+  function onTouchEnd() {
     setTimeout(() => { paused = false; startTicker() }, 1200)
-  }, { passive: true })
+  }
 
-  document.addEventListener('visibilitychange', () => {
+  function onVisibilityChange() {
     if (document.hidden) {
       paused = true
     } else {
       paused = false
-      startTicker()
+      if (active) startTicker()
     }
-  })
+  }
+
+  function enableSlider() {
+    if (active) return
+    active = true
+
+    // Wait for layout to fully settle before measuring width —
+    // fixes dots/sizing being wrong on first paint.
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        if (!active) return
+        sizeCards()
+        buildDots()
+        current = 0
+        startTicker()
+
+        stats.addEventListener('scroll', onScroll, { passive: true })
+        stats.addEventListener('touchstart', onTouchStart, { passive: true })
+        stats.addEventListener('touchend', onTouchEnd, { passive: true })
+        document.addEventListener('visibilitychange', onVisibilityChange)
+      }, 50)
+    })
+  }
+
+  function disableSlider() {
+    if (!active) return
+    active = false
+
+    stopTicker()
+    removeDots()
+    clearCardSizing()
+
+    stats.removeEventListener('scroll', onScroll)
+    stats.removeEventListener('touchstart', onTouchStart)
+    stats.removeEventListener('touchend', onTouchEnd)
+    document.removeEventListener('visibilitychange', onVisibilityChange)
+  }
+
+  function evaluate() {
+    if (isSliderModeOn()) {
+      enableSlider()
+      if (active) sizeCards() // keep width correct as viewport changes
+    } else {
+      disableSlider()
+    }
+  }
+
+  // ── Initial check ──────────────────────────────────────────────────
+  evaluate()
+
+  // ── Re-check on resize — works for ANY breakpoint value, since we
+  //    read the real computed CSS instead of comparing to a fixed px
+  window.addEventListener('resize', evaluate, { passive: true })
+
+  // ── Re-measure if the container's own box size changes for any
+  //    other reason (font load, orientation change, etc.)
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(() => {
+      if (active) sizeCards()
+    })
+    ro.observe(stats)
+  }
 }

@@ -86,8 +86,7 @@
 
     @include lg {
       grid-template-columns: 1fr;
-      padding-top: clamp(80px, 10vw, 100px);  
-      padding-top: 10px;
+      padding-top: clamp(80px, 10vw, 100px);
       padding-bottom: $sp-14;
       min-height: auto;
       gap: $sp-10;
