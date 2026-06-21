@@ -1,8 +1,9 @@
 export function initContact() {
-  const dropdown   = document.getElementById('contactDropdown');
-  const panel      = document.getElementById('contactDropdownPanel');
-  const label      = document.getElementById('contactDropdownLabel');
-  const nativeSelect = document.getElementById('contact-interest');
+  const dropdown      = document.getElementById('contactDropdown');
+  const panel         = document.getElementById('contactDropdownPanel');
+  const label         = document.getElementById('contactDropdownLabel');
+  const nativeSelect  = document.getElementById('contact-interest');
+  const form          = document.querySelector('.contact__form');
 
   if (!dropdown || !panel) return;
 
@@ -56,25 +57,19 @@ export function initContact() {
   panel.querySelectorAll('.contact__dropdown-option').forEach((option) => {
     option.addEventListener('click', (e) => {
       e.stopPropagation();
-
       // deselect all
       panel.querySelectorAll('.contact__dropdown-option').forEach((o) => {
         o.classList.remove('selected');
       });
-
       // select clicked
       option.classList.add('selected');
-
-      const value    = option.dataset.value;
-      const text     = option.querySelector('.contact__dropdown-opt-label').textContent;
-
+      const value = option.dataset.value;
+      const text  = option.querySelector('.contact__dropdown-opt-label').textContent;
       // update label
       label.textContent = text;
       dropdown.classList.add('has-value');
-
       // sync native select for form submission
       if (nativeSelect) nativeSelect.value = value;
-
       closeDropdown();
     });
   });
@@ -94,4 +89,63 @@ export function initContact() {
   window.addEventListener('resize', () => {
     if (dropdown.classList.contains('open')) positionPanel();
   }, { passive: true });
+
+  // ── Form submit: stop page reload, show success message
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // simple required-field check since the form has novalidate
+      const nameInput  = form.querySelector('#contact-name');
+      const emailInput = form.querySelector('#contact-email');
+      let valid = true;
+
+      [nameInput, emailInput].forEach((input) => {
+        if (input && !input.value.trim()) {
+          input.style.borderColor = '#e15555';
+          valid = false;
+        } else if (input) {
+          input.style.borderColor = '';
+        }
+      });
+
+      if (nativeSelect && !nativeSelect.value) {
+        dropdown.style.borderColor = '#e15555';
+        valid = false;
+      } else if (dropdown) {
+        dropdown.style.borderColor = '';
+      }
+
+      if (!valid) return;
+
+      showSuccessMessage();
+      form.reset();
+      label.textContent = "I'm interested in ..";
+      dropdown.classList.remove('has-value');
+      panel.querySelectorAll('.contact__dropdown-option').forEach((o) => {
+        o.classList.remove('selected');
+      });
+    });
+  }
+
+  function showSuccessMessage() {
+    // avoid stacking duplicate messages on repeat submits
+    const existing = form.querySelector('.contact__success-msg');
+    if (existing) existing.remove();
+
+    const msg = document.createElement('p');
+    msg.className = 'contact__success-msg';
+    msg.setAttribute('role', 'status');
+    msg.textContent = "Thank you! We'll be in touch shortly.";
+    form.appendChild(msg);
+
+    setTimeout(() => {
+      msg.classList.add('is-visible');
+    }, 10);
+
+    setTimeout(() => {
+      msg.classList.remove('is-visible');
+      setTimeout(() => msg.remove(), 300);
+    }, 4000);
+  }
 }

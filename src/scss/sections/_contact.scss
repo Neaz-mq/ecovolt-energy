@@ -459,6 +459,25 @@
   outline-offset: 3px;
 }
 
+.contact__success-msg {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e5b4d;
+  background-color: rgba(136, 196, 153, 0.15);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ══════════════════════════════════════════════════════════════
    RESPONSIVE — padding schedule mirrors comparison/momentum:
    base 60px → ≤1024px 48px → ≤860px 44px

@@ -1,8 +1,3 @@
-/* ============================================================
-   COMPARISON SECTION — "Why EcoVolt Leads the Future"
-   src/scss/sections/_comparison.scss
-   ============================================================ */
-
 .comparison {
   background-color: #ffffff;
   position: relative;
@@ -92,7 +87,7 @@
 .comparison__table-wrap {
   background: #f5f6f7;
   border-radius: 20px;
-  overflow: hidden; /* clean on 320px+ — no scroll needed */
+  overflow: hidden; 
 }
 
 .comparison__table {
@@ -559,13 +554,8 @@
   }
 }
 
-/* ── Ultra-small phones — below 320px only ─────────────────
-   320px and above looks great with the existing layout.
-   Below 320px the table has no room to breathe, so we switch
-   the wrapper to overflow-x: auto and give the table a hard
-   min-width so it scrolls rather than clips or wraps badly.
-   Everything else stays identical to the 480px block above.
-─────────────────────────────────────────────────────────── */
+/* ── Ultra-small phones — below 320px only ───────────────── */
+  
 @media (max-width: 319px) {
   .comparison__container {
     padding: 0 12px;
