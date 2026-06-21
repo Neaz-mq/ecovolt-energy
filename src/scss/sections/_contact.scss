@@ -1,8 +1,3 @@
-/* ============================================================
-   CONTACT SECTION — LET'S BUILD THE FUTURE TOGETHER
-   src/scss/sections/_contact.scss
-   ============================================================ */
-
 .contact {
   background-color: #f4f6f4;
   position: relative;
@@ -26,9 +21,9 @@
 
 /* ── Container ─────────────────────────────────────────────── */
 .contact__container {
-  max-width: 1250px;  /* FIX: was 1200px — matches comparison/impact-action/momentum */
+  max-width: 1250px; 
   margin: 0 auto;
-  padding: 0 60px;    /* FIX: was 40px — matches shared padding schedule */
+  padding: 0 60px; 
   display: flex;
   flex-direction: column;
   gap: 52px;
@@ -152,11 +147,6 @@
 .contact__trusted-logo svg {
   width: 18px;
   height: 18px;
-}
-
-/* ── RIGHT column ──────────────────────────────────────────── */
-.contact__right {
-  /* nothing extra needed */
 }
 
 /* ── Form card ─────────────────────────────────────────────── */
@@ -470,7 +460,9 @@
   text-align: center;
   opacity: 0;
   transform: translateY(-6px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 
   &.is-visible {
     opacity: 1;
@@ -480,14 +472,12 @@
 
 /* ══════════════════════════════════════════════════════════════
    RESPONSIVE — padding schedule mirrors comparison/momentum:
-   base 60px → ≤1024px 48px → ≤860px 44px
-             → ≤640px 32px  → ≤480px 20px → ≤319px 12px
 ══════════════════════════════════════════════════════════════ */
 
 /* ── Large tablets (≤1024px) ──────────────────────────────── */
 @media (max-width: 1024px) {
   .contact__container {
-    padding: 0 48px; /* FIX: was ≤1100px — moved to ≤1024px to match schedule */
+    padding: 0 48px; 
     gap: 40px;
   }
 
@@ -504,7 +494,7 @@
 
   .contact__container {
     gap: 36px;
-    padding: 0 44px; /* FIX: was 48px — now matches schedule */
+    padding: 0 44px; 
   }
 
   .contact__body {
@@ -582,12 +572,16 @@
   }
 
   .contact__container {
-    padding: 0 32px; /* FIX: was 20px — now matches schedule ≤640px → 32px */
+    padding: 0 32px; 
     gap: 28px;
   }
 
   .contact__title {
-    font-size: clamp(1.4rem, 6vw, 1.9rem); /* FIX: matches momentum small-screen sizing */
+    font-size: clamp(
+      1.4rem,
+      6vw,
+      1.9rem
+    ); 
   }
 
   .contact__right {
@@ -725,7 +719,7 @@
 /* ── Small phones (≤480px) ─────────────────────────────────── */
 @media (max-width: 480px) {
   .contact__container {
-    padding: 0 20px; /* matches schedule ≤480px → 20px */
+    padding: 0 20px; 
   }
 
   .contact__title {
@@ -736,7 +730,7 @@
 /* ── Very small screens (≤380px) ──────────────────────────── */
 @media (max-width: 380px) {
   .contact__container {
-    padding: 0 20px; /* keep 20px — 380px is above the 319px floor */
+    padding: 0 20px; 
   }
 
   .contact__offer-list {
@@ -747,6 +741,6 @@
 /* ── Ultra-small phones (≤319px) ──────────────────────────── */
 @media (max-width: 319px) {
   .contact__container {
-    padding: 0 12px; /* matches schedule ≤319px → 12px */
+    padding: 0 12px; 
   }
 }

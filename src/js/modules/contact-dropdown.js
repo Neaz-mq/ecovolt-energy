@@ -95,7 +95,7 @@ export function initContact() {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // simple required-field check since the form has novalidate
+      // simple required-field check since the form has no validate
       const nameInput  = form.querySelector('#contact-name');
       const emailInput = form.querySelector('#contact-email');
       let valid = true;
