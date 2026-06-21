@@ -1,8 +1,3 @@
-/* ============================================================
-   COMPARISON SECTION — fade-in on scroll
-   src/js/modules/comparison.js
-   ============================================================ */
-
 export function initComparison() {
   const targets = document.querySelectorAll(
     '.comparison [data-anim]'
