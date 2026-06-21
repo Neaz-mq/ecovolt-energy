@@ -1,8 +1,3 @@
-/* ============================================================
-   ENERGY SECTION — "Designed for Modern Energy Needs"
-   src/scss/_energy.scss
-   ============================================================ */
-
 .energy {
   position: relative;
   overflow: hidden;
@@ -142,22 +137,6 @@
   white-space: nowrap;
 }
 
-/* ── RIGHT: product image ──────────────────────────────────── */
-.energy__right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.energy__product-img {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.55));
-}
-
 /* ════════════════════════════════════════════
    RESPONSIVE
    ════════════════════════════════════════════ */
@@ -169,15 +148,15 @@
   }
 
   .energy__container {
-    grid-template-columns: 1fr;   /* ✦ single column */
+    grid-template-columns: 1fr;   
     gap: 36px;
     padding: 0 44px;
-    text-align: left;             /* ✦ left-align like desktop */
+    text-align: left;             
   }
 
   .energy__left {
     gap: 24px;
-    align-items: flex-start;      /* ✦ left-align */
+    align-items: flex-start;      
   }
 
   .energy__title {
@@ -191,16 +170,6 @@
   .energy__list {
     align-items: flex-start;
     width: 100%;
-    margin: 0;
-  }
-
-  .energy__right {
-    order: -1;                    /* ✦ image on top */
-    justify-content: flex-start;
-  }
-
-  .energy__product-img {
-    max-width: 100%;
     margin: 0;
   }
 
@@ -230,12 +199,12 @@
     grid-template-columns: 1fr;
     gap: 28px;
     padding: 0 44px;
-    text-align: left;             /* ✦ left-align all content */
+    text-align: left;             
   }
 
   .energy__left {
     gap: 20px;
-    align-items: flex-start;      /* ✦ left-align */
+    align-items: flex-start;      
   }
 
   .energy__title {
@@ -266,15 +235,6 @@
     height: 16px;
   }
 
-  .energy__right {
-    order: -1;                    /* ✦ image on top */
-    justify-content: flex-start;
-  }
-
-  .energy__product-img {
-    max-width: 100%;
-  }
-
   .energy__badges {
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
@@ -284,7 +244,7 @@
   .energy__badge {
     padding: 14px 12px;
     border-radius: 12px;
-    align-items: flex-start;      /* ✦ left-align */
+    align-items: flex-start;      
     text-align: left;
     gap: 6px;
   }
