@@ -73,15 +73,14 @@ export function initNavbar() {
   // Sections that should clear all active states (hero/home area)
   const noActiveIds = new Set(["home", "mission"]);
 
+  // Only matches sections that have a corresponding nav link
+  // (e.g. technology, impact, solutions, how-it-works, comparison).
+  // Sections without a nav link (energy, measurable, impact-action,
+  // momentum, contact) simply won't highlight anything — no error.
   const resolveLink = (id) => {
-    const direct = [...navLinks].find(
+    return [...navLinks].find(
       (l) => l.getAttribute("href") === `#${id}`,
     );
-    if (direct) return direct;
-    const fallback = aliases[id];
-    return fallback
-      ? [...navLinks].find((l) => l.getAttribute("href") === fallback)
-      : null;
   };
 
   // ── Track intersection ratios, activate the MOST visible section ──
