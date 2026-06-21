@@ -10,10 +10,7 @@
     <meta name="author" content="Prographr" />
     <meta name="theme-color" content="#050f0a" />
 
-    <!-- ── Canonical ──────────────────────────────────────────────────────
-         TF: canonical required on all HTML templates.
-         Buyer replaces with their live domain before deployment.
-    ─────────────────────────────────────────────────────────────────── -->
+    <!-- ── Canonical ────────────────────────────────────────────────────── -->
     <link rel="canonical" href="https://yourdomain.com/" />
 
     <!-- ── Open Graph ────────────────────────────────────────────────── -->
@@ -45,11 +42,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- ── Critical resource preloads ───────────────────────────────────
-         Order matters: hero image first (LCP), then fonts.
-         TF: hero bg was missing — browser couldn't discover it until CSS
-         parsed, hurting LCP score. Lighthouse flags this directly.
-    ─────────────────────────────────────────────────────────────────── -->
+    <!-- ── Critical resource preloads ─────────────────────────────────── -->
     <link
       rel="preload"
       as="image"
@@ -81,11 +74,6 @@
 
     <link rel="stylesheet" href="/scss/main.scss" />
 
-    <!-- ── FOUC prevention ───────────────────────────────────────────────
-         Hides navbar and children before JS runs.
-         JS adds .is-ready which restores visibility.
-         noscript block below reverses this for no-JS environments.
-    ─────────────────────────────────────────────────────────────────── -->
     <style>
       .navbar,
       .navbar__mobile,
@@ -112,12 +100,8 @@
       </style>
     </noscript>
 
-    <!-- ── Skip navigation ───────────────────────────────────────────────
-         TF Accessibility Standard: must be the very first focusable element.
-         CSS (.skip-link) was defined but this element was missing from HTML.
-         Screen readers and keyboard users require it to skip the navbar.
-         Renders visually only on :focus — invisible otherwise.
-    ─────────────────────────────────────────────────────────────────── -->
+    <!-- ── Skip navigation ─────────────────────────────────────────────── -->
+  
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <!-- ── Navbar ────────────────────────────────────────────────────── -->
@@ -251,12 +235,7 @@
       </div>
     </div>
 
-    <!-- ── Main content ──────────────────────────────────────────────────
-         id="main-content" matches skip-link href="#main-content".
-         Was id="home" — skip-link target and section anchor are now separate:
-           skip-link → #main-content (accessibility target, on <main>)
-           logo href  → #home        (scroll target, on <section>)
-    ─────────────────────────────────────────────────────────────────── -->
+    <!-- ── Main content ────────────────────────────────────────────────── -->
     <main id="main-content">
       <!-- ── Hero ──────────────────────────────────────────────────── -->
       <section class="hero" id="home" aria-label="Hero">
@@ -1124,7 +1103,6 @@
             >
               <!-- ── Col 1 ── -->
               <div class="sgi__col sgi__col--1">
-                <!-- ① AI Grid Optimization — dark -->
                 <article class="sgi__card sgi__card--dark" role="listitem">
                   <div class="sgi__card-top">
                     <div class="sgi__card-icon" aria-hidden="true">
@@ -1159,7 +1137,6 @@
                   </ul>
                 </article>
 
-                <!-- ④ Carbon Tracking — light -->
                 <article class="sgi__card sgi__card--light" role="listitem">
                   <div class="sgi__card-top">
                     <div class="sgi__card-icon" aria-hidden="true">
@@ -1195,7 +1172,6 @@
 
               <!-- ── Col 2 ── -->
               <div class="sgi__col sgi__col--2">
-                <!-- ② Renewable Forecasting — light -->
                 <article class="sgi__card sgi__card--light" role="listitem">
                   <div class="sgi__card-top">
                     <div class="sgi__card-icon" aria-hidden="true">
@@ -1234,7 +1210,6 @@
                   </ul>
                 </article>
 
-                <!-- ⑤ Battery Intelligence — darkest -->
                 <article class="sgi__card sgi__card--darkest" role="listitem">
                   <div class="sgi__card-top">
                     <div class="sgi__card-icon" aria-hidden="true">
@@ -1270,7 +1245,6 @@
 
               <!-- ── Col 3 ── -->
               <div class="sgi__col sgi__col--3">
-                <!-- ③ Smart Distribution — dark -->
                 <article class="sgi__card sgi__card--dark" role="listitem">
                   <div class="sgi__card-top">
                     <div class="sgi__card-icon" aria-hidden="true">
@@ -1302,7 +1276,6 @@
                   </ul>
                 </article>
 
-                <!-- ⑥ Real-Time Analytics — light -->
                 <article class="sgi__card sgi__card--light" role="listitem">
                   <div class="sgi__card-top">
                     <div class="sgi__card-icon" aria-hidden="true">
@@ -1358,7 +1331,7 @@
             </p>
           </header>
 
-          <!-- ── DESKTOP DIAGRAM (hidden on mobile ≤640px via CSS) ── -->
+          <!-- ── DESKTOP DIAGRAM ── -->
           <div
             class="hiw__diagram-wrap"
             role="img"
@@ -2871,6 +2844,7 @@
         <!-- /measurable__footer-wrap -->
       </section>
       <!-- /measurable -->
+
       <!-- ── Comparison ────────────────────────────────────────────── -->
       <section
         class="comparison"
@@ -3328,6 +3302,7 @@
         <!-- /comparison__container -->
       </section>
       <!-- /comparison -->
+       
       <!-- ── Impact in Action ─────────────────────────────────────────────── -->
       <section
         class="impact-action"
