@@ -12,6 +12,7 @@ export function initSgi() {
   function teardown() {
     grid.querySelectorAll('[data-sgi-clone]').forEach(el => el.remove())
     grid.style.removeProperty('--sgi-marquee-offset')
+    grid.style.animationPlayState = ''
   }
 
   function setupMarquee() {
@@ -35,15 +36,30 @@ export function initSgi() {
     }))
   }
 
+  // ── Touch pause/resume — mirrors the CSS :hover pause for touch devices,
+  //    so a finger resting on a card stops the scroll long enough to read it.
+  function onTouchStart() {
+    if (!mq.matches) return
+    grid.style.animationPlayState = 'paused'
+  }
+
+  function onTouchEnd() {
+    if (!mq.matches) return
+    grid.style.animationPlayState = 'running'
+  }
+
+  grid.addEventListener('touchstart', onTouchStart, { passive: true })
+  grid.addEventListener('touchend', onTouchEnd, { passive: true })
+  grid.addEventListener('touchcancel', onTouchEnd, { passive: true })
+
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer)
     resizeTimer = setTimeout(setupMarquee, 150)
   }, { passive: true })
 
-  mq.addEventListener('change', () => {
-    setupMarquee()
-    if (!mq.matches) teardown()
-  })
+  // setupMarquee() already calls teardown() internally and returns early
+  // when !mq.matches, so no separate teardown() call is needed here.
+  mq.addEventListener('change', setupMarquee)
 
   setupMarquee()
 }
