@@ -3,11 +3,9 @@
 // =========================================================================
 
 export function initMission() {
-
   // ── Card & quote entrance animations ─────────────────────────────────
   const cards = document.querySelectorAll('.mission__card')
   const quote = document.querySelector('.mission__quote')
-
   if (!cards.length && !quote) return
 
   const observer = new IntersectionObserver((entries) => {
@@ -33,6 +31,7 @@ export function initMission() {
     track.querySelectorAll('[data-clone]').forEach(el => el.remove())
     track.style.removeProperty('--marquee-offset')
     track.style.animation = ''
+    track.style.animationPlayState = ''
   }
 
   function setupMarquee() {
@@ -57,6 +56,22 @@ export function initMission() {
       track.style.setProperty('--marquee-offset', `-${setWidth}px`)
     }))
   }
+
+  // ── Touch pause/resume — mirrors the CSS :hover pause for touch devices,
+  //    so a finger resting on a card stops the scroll long enough to read it.
+  function onTouchStart() {
+    if (!mq.matches) return
+    track.style.animationPlayState = 'paused'
+  }
+
+  function onTouchEnd() {
+    if (!mq.matches) return
+    track.style.animationPlayState = 'running'
+  }
+
+  track.addEventListener('touchstart', onTouchStart, { passive: true })
+  track.addEventListener('touchend', onTouchEnd, { passive: true })
+  track.addEventListener('touchcancel', onTouchEnd, { passive: true })
 
   window.addEventListener('resize', () => {
     if (!mq.matches) return
