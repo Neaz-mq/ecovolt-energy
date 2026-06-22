@@ -4,21 +4,21 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export function initImpact() {
-  const cards = document.querySelectorAll('.impact__stat-card');
+  const cards = document.querySelectorAll(".impact__stat-card");
   if (!cards.length) return;
 
   // ── Scroll-triggered entrance ─────────────────────────────────────────
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
+            entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
     cards.forEach((card) => observer.observe(card));
   }
@@ -27,63 +27,89 @@ export function initImpact() {
   initImpactSlider();
 }
 
-
+// ─────────────────────────────────────────────────────────────────────────────
+// Breakpoint detection reads the *real* computed layout (overflow-x: auto on
+// .impact__stats, which only the CSS's max-width: 640px rule sets) instead of
+// comparing window.innerWidth to a hardcoded number. This keeps JS and CSS
+// always in sync — and never drifts if the CSS breakpoint value changes later.
+// ─────────────────────────────────────────────────────────────────────────────
 function initImpactSlider() {
-  const stats = document.querySelector('.impact__stats');
+  const stats = document.querySelector(".impact__stats");
   if (!stats) return;
-  if (window.innerWidth > 640) return;
 
-  const cards = Array.from(stats.querySelectorAll('.impact__stat-card'));
+  const cards = Array.from(stats.querySelectorAll(".impact__stat-card"));
   if (cards.length < 2) return;
 
-  // Size each card to full wrapper width
+  let dotsWrap = null;
+  let dots = [];
+  let current = 0;
+  let paused = false;
+  let ticker = null;
+  let rafId = null;
+  let active = false;
+
+  function isSliderModeOn() {
+    return window.getComputedStyle(stats).overflowX === "auto";
+  }
+
   function sizeCards() {
     const w = stats.clientWidth;
-    cards.forEach(card => {
-      card.style.width    = w + 'px';
-      card.style.minWidth = w + 'px';
+    cards.forEach((card) => {
+      card.style.width = w + "px";
+      card.style.minWidth = w + "px";
     });
   }
 
-  sizeCards();
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 640) sizeCards();
-  }, { passive: true });
+  function clearCardSizing() {
+    cards.forEach((card) => {
+      card.style.width = "";
+      card.style.minWidth = "";
+    });
+  }
 
-  // ── Build dot indicators ──────────────────────────────────────────────
-  const dotsWrap = document.createElement('div');
-  dotsWrap.className = 'impact__stats-dots';
-  dotsWrap.setAttribute('aria-hidden', 'true');
+  function buildDots() {
+    if (dotsWrap) return;
 
-  const dots = cards.map((_, i) => {
-    const dot = document.createElement('span');
-    dot.className = 'impact__stats-dot' + (i === 0 ? ' is-active' : '');
-    dotsWrap.appendChild(dot);
-    return dot;
-  });
+    dotsWrap = document.createElement("div");
+    dotsWrap.className = "impact__stats-dots";
+    dotsWrap.setAttribute("aria-hidden", "true");
 
-  stats.insertAdjacentElement('afterend', dotsWrap);
+    dots = cards.map((_, i) => {
+      const dot = document.createElement("span");
+      dot.className = "impact__stats-dot" + (i === 0 ? " is-active" : "");
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
 
-  // ── Ticker logic ──────────────────────────────────────────────────────
-  let current = 0;
-  let paused  = false;
-  let ticker  = null;
-  let rafId   = null;
+    stats.insertAdjacentElement("afterend", dotsWrap);
+  }
+
+  function removeDots() {
+    if (dotsWrap) {
+      dotsWrap.remove();
+      dotsWrap = null;
+      dots = [];
+    }
+  }
 
   function goTo(index) {
     current = (index + cards.length) % cards.length;
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
-    stats.scrollTo({ left: current * stats.clientWidth, behavior: 'smooth' });
+    dots.forEach((d, i) => d.classList.toggle("is-active", i === current));
+    stats.scrollTo({ left: current * stats.clientWidth, behavior: "smooth" });
   }
 
   function startTicker() {
     clearInterval(ticker);
-    ticker = setInterval(() => { if (!paused) goTo(current + 1); }, 2800);
+    ticker = setInterval(() => {
+      if (!paused) goTo(current + 1);
+    }, 2800);
   }
 
-  startTicker();
+  function stopTicker() {
+    clearInterval(ticker);
+    ticker = null;
+  }
 
-  // Sync dots on manual scroll
   function onScroll() {
     cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(() => {
@@ -91,30 +117,89 @@ function initImpactSlider() {
       const clamped = Math.max(0, Math.min(snapped, cards.length - 1));
       if (clamped !== current) {
         current = clamped;
-        dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+        dots.forEach((d, i) => d.classList.toggle("is-active", i === current));
       }
     });
   }
 
-  stats.addEventListener('scroll', onScroll, { passive: true });
-
-  // Pause on touch
-  stats.addEventListener('touchstart', () => {
+  function onTouchStart() {
     paused = true;
-    clearInterval(ticker);
-  }, { passive: true });
+    stopTicker();
+  }
 
-  stats.addEventListener('touchend', () => {
-    setTimeout(() => { paused = false; startTicker(); }, 1200);
-  }, { passive: true });
+  function onTouchEnd() {
+    setTimeout(() => {
+      paused = false;
+      startTicker();
+    }, 1200);
+  }
 
-  // Pause when tab hidden
-  document.addEventListener('visibilitychange', () => {
+  function onVisibilityChange() {
     if (document.hidden) {
       paused = true;
     } else {
       paused = false;
-      startTicker();
+      if (active) startTicker();
     }
-  });
+  }
+
+  function enableSlider() {
+    if (active) return;
+    active = true;
+
+    // Wait for layout to fully settle before measuring width —
+    // fixes dots/sizing being invisible on first paint.
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        if (!active) return;
+        sizeCards();
+        buildDots();
+        current = 0;
+        startTicker();
+
+        stats.addEventListener("scroll", onScroll, { passive: true });
+        stats.addEventListener("touchstart", onTouchStart, { passive: true });
+        stats.addEventListener("touchend", onTouchEnd, { passive: true });
+        document.addEventListener("visibilitychange", onVisibilityChange);
+      }, 50);
+    });
+  }
+
+  function disableSlider() {
+    if (!active) return;
+    active = false;
+
+    stopTicker();
+    removeDots();
+    clearCardSizing();
+
+    stats.removeEventListener("scroll", onScroll);
+    stats.removeEventListener("touchstart", onTouchStart);
+    stats.removeEventListener("touchend", onTouchEnd);
+    document.removeEventListener("visibilitychange", onVisibilityChange);
+  }
+
+  function evaluate() {
+    if (isSliderModeOn()) {
+      enableSlider();
+      if (active) sizeCards(); // keep width correct as viewport changes
+    } else {
+      disableSlider();
+    }
+  }
+
+  // ── Initial check ──────────────────────────────────────────────────
+  evaluate();
+
+  // ── Re-check on resize — correct for any breakpoint value ──────────
+  window.addEventListener("resize", evaluate, { passive: true });
+
+  // ── Re-measure if the container's own box size changes for any
+  //    other reason (font load, orientation change, etc.)
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(() => {
+      if (active) sizeCards();
+    });
+    ro.observe(stats);
+  }
 }
