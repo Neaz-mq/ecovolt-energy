@@ -1,0 +1,70 @@
+EcoVolt — Clean Energy HTML Template
+Copyright (c) 2025 Prographr
+
+This item is licensed under the Envato Regular License or Extended License,
+depending on the license purchased by the buyer on ThemeForest.
+
+-----------------------------------------------------------------------------
+REGULAR LICENSE
+-----------------------------------------------------------------------------
+
+Under the Regular License, you may use this item in ONE end product which
+end users are NOT charged for. You may not resell or redistribute this item
+or its source files — even if modified — as a standalone file or template.
+
+For full terms, see: https://themeforest.net/licenses/standard_terms
+
+-----------------------------------------------------------------------------
+EXTENDED LICENSE
+-----------------------------------------------------------------------------
+
+Under the Extended License, you may use this item in ONE end product which
+end users ARE charged for. You may not resell or redistribute this item or
+its source files as a standalone file or template.
+
+For full terms, see: https://themeforest.net/licenses/standard_terms
+
+-----------------------------------------------------------------------------
+THIRD-PARTY ASSETS INCLUDED IN THIS TEMPLATE
+-----------------------------------------------------------------------------
+
+1. Inter Typeface
+   Author : Rasmus Andersson
+   License: SIL Open Font License 1.1
+   Source : https://rsms.me/inter
+   License file included at: HTML/assets/fonts/inter/LICENSE.txt
+
+2. Section Images
+   Type   : AI-generated (OpenAI DALL·E / GPT-4o)
+   License: Commercial use permitted under OpenAI Terms of Use
+   Source : https://openai.com/policies/terms-of-use
+   Note   : Images are AI-generated originals. Buyer may use them in
+            end products under the terms of the purchased Envato license.
+
+3. Vite (build tool — source files only, not shipped to end users)
+   License: MIT
+   Source : https://vitejs.dev
+
+4. Sass / Dart Sass (build tool — source files only, not shipped to end users)
+   License: MIT
+   Source : https://sass-lang.com
+
+-----------------------------------------------------------------------------
+WHAT YOU CAN DO
+-----------------------------------------------------------------------------
+
+- Use the compiled HTML/CSS/JS in a single client or personal project
+- Modify the source files (SCSS, JS, HTML) for your own use
+- Use placeholder images included in the template in your end product
+
+-----------------------------------------------------------------------------
+WHAT YOU CANNOT DO
+-----------------------------------------------------------------------------
+
+- Resell, sublicense, or redistribute this template or its source files
+- Claim authorship or original creation of this template
+- Use this template to create a competing product for sale on any marketplace
+
+-----------------------------------------------------------------------------
+
+For support, please use the Comments section on the ThemeForest item page.

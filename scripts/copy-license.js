@@ -10,6 +10,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 
+// --- 1. Inter font license ---
 const src = resolve(root, "src/assets/fonts/inter/LICENSE.txt");
 const destDir = resolve(root, "dist/assets/fonts/inter");
 const dest = resolve(destDir, "LICENSE.txt");
@@ -29,4 +30,18 @@ if (!existsSync(destDir)) {
 copyFileSync(src, dest);
 console.log(
   `[copy-license] Copied Inter LICENSE.txt -> dist/assets/fonts/inter/LICENSE.txt`,
+);
+
+// --- 2. Item buyer license (ThemeForest requirement) ---
+const itemLicenseSrc = resolve(root, "LICENSE.txt");
+const itemLicenseDest = resolve(root, "dist/LICENSE.txt");
+
+if (!existsSync(itemLicenseSrc)) {
+  console.error(`[copy-license] Item LICENSE.txt not found at repo root: ${itemLicenseSrc}`);
+  process.exit(1);
+}
+
+copyFileSync(itemLicenseSrc, itemLicenseDest);
+console.log(
+  `[copy-license] Copied item LICENSE.txt -> dist/LICENSE.txt`,
 );
