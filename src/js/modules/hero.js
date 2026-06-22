@@ -54,6 +54,10 @@ export function initHero() {
   }
 
   // ── Counter animation ─────────────────────────────────────────────────
+  // The HTML default text is always the final value (e.g. "95%", "250K+",
+  // "1.2M kg") so the page looks correct before JS fires or on slow
+  // connections. runCounter() resets to 0 right before animating so the
+  // count-up still plays when the element enters the viewport.
   const counterEls = document.querySelectorAll('[data-counter]')
 
   if (counterEls.length) {
@@ -65,6 +69,8 @@ export function initHero() {
 
       if (isNaN(target)) return
 
+      // Reset to zero right before animating — HTML default is the final
+      // value so the stat is always readable before JS runs.
       el.textContent = isFloat ? '0.0' + suffix : '0' + suffix
 
       let count = 0
@@ -88,6 +94,9 @@ export function initHero() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
+            // Guard: skip if already animated (e.g. viewport resize re-fires)
+            if (entry.target.dataset.counterDone) return
+            entry.target.dataset.counterDone = '1'
             runCounter(entry.target)
             observer.unobserve(entry.target)
           }
