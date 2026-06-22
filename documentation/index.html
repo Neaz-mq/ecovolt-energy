@@ -18,6 +18,8 @@
   th { background: #f4f4f4; }
   .note { background: #fff8e1; border-left: 4px solid #f4d03f; padding: 14px 18px; border-radius: 4px; margin: 20px 0; }
   .note strong { color: #8a6d00; }
+  .note-green { background: #f0faf3; border-left: 4px solid #88c499; padding: 14px 18px; border-radius: 4px; margin: 20px 0; }
+  .note-green strong { color: #1a4a2e; }
   ul, ol { padding-left: 22px; }
   li { margin-bottom: 6px; }
   a { color: #1a4a2e; }
@@ -46,8 +48,6 @@
   appear blank or unstyled if viewed this way. Use one of the methods below instead.
 </div>
 
-<p>Use one of these methods instead:</p>
-
 <h3>Option A — VS Code Live Server (easiest)</h3>
 <ol>
   <li>Install the <strong>"Live Server"</strong> extension in VS Code</li>
@@ -68,67 +68,154 @@
 <h2>2. File Structure</h2>
 <pre><code>HTML/             → Ready-to-use compiled files (upload this to your host)
   ├─ index.html
+  ├─ LICENSE.txt
   ├─ assets/
   │   ├─ css/      → Compiled stylesheet
   │   ├─ js/       → Compiled scripts
-  │   ├─ fonts/    → Inter font files
-  │   └─ images/   → Template images
-  ├─ favicon files, logo.svg, site.webmanifest
+  │   ├─ fonts/    → Inter font files + LICENSE.txt
+  │   └─ images/   → Template images (sections/)
+  ├─ favicon files, logo.svg, og-image.webp, site.webmanifest
 
 SourceFiles/      → Editable source files (SCSS + JS modules)
-documentation/    → This file</code></pre>
+  ├─ src/
+  │   ├─ index.html
+  │   ├─ scss/
+  │   │   ├─ abstracts/   → _variables.scss, _mixins.scss
+  │   │   ├─ base/        → _reset.scss, _fonts.scss, _typography.scss
+  │   │   ├─ components/  → _buttons.scss
+  │   │   ├─ layout/      → _navbar.scss, _footer.scss
+  │   │   └─ sections/    → one file per section
+  │   ├─ js/modules/      → one JS module per section
+  │   └─ assets/          → fonts, icons, images
+  ├─ package.json
+  └─ vite.config.js
+
+Documentation/    → This file</code></pre>
 
 <h2>3. Customizing the Template</h2>
 
 <h3>Editing text and images</h3>
-<p>All content lives directly in <code>HTML/index.html</code> (or <code>SourceFiles/index.html</code> if editing source).
-Open it in any text editor and replace the placeholder text, then swap image files inside
-<code>assets/images/</code> with your own — keep the same filenames to avoid editing the HTML, or update the
+<p>All content lives directly in <code>HTML/index.html</code> (or <code>SourceFiles/src/index.html</code> if editing source).
+Open it in any text editor and replace the placeholder text. To swap images, replace the files inside
+<code>assets/images/sections/</code> with your own — keep the same filenames to avoid editing the HTML, or update the
 <code>src</code> paths if you rename them.</p>
 
-<h3>Editing colors and design tokens</h3>
-<p>If you're working from the source files, all colors, spacing, and typography values are centralized in:</p>
-<pre><code>SourceFiles/scss/abstracts/_variables.scss</code></pre>
-<p>Change a value once here and it updates everywhere it's used across the template.</p>
+<h3>Editing colors</h3>
+<p>All colors are defined in one file:</p>
+<pre><code>SourceFiles/src/scss/abstracts/_variables.scss</code></pre>
+<p>The key tokens are:</p>
+<pre><code>$clr-primary:  #b8f53d;              // Accent green — buttons, highlights
+$clr-bg:       #050f0a;              // Page background
+$clr-white:    #f2f7f0;              // Headings / primary text
+$clr-muted:    rgba(178,210,190,.60); // Body / secondary text</code></pre>
+<p>Change a value once and it updates everywhere across the template.</p>
+
+<h3>Editing typography</h3>
+<p>The template uses <strong>Inter</strong>, self-hosted with no Google Fonts dependency.
+Font files are in <code>assets/fonts/inter/</code>. To use a different font, update
+<code>src/scss/base/_fonts.scss</code> and replace the <code>.woff2</code> files.</p>
+
+<h3>Replacing the logo and favicon</h3>
+<p>Replace these files in the <code>HTML/</code> folder (or <code>public/</code> in the source):</p>
+<table>
+  <tr><th>File</th><th>Used for</th></tr>
+  <tr><td><code>logo.svg</code></td><td>Navbar and footer logo</td></tr>
+  <tr><td><code>favicon-icon.svg</code></td><td>Browser tab (modern browsers)</td></tr>
+  <tr><td><code>favicon.ico</code></td><td>Legacy browser fallback</td></tr>
+  <tr><td><code>favicon-96x96.png</code></td><td>Standard favicon</td></tr>
+  <tr><td><code>apple-touch-icon.png</code></td><td>iOS home screen icon</td></tr>
+  <tr><td><code>web-app-manifest-192x192.png</code> / <code>512x512.png</code></td><td>PWA manifest icons</td></tr>
+</table>
+<p>Tip: Use <a href="https://realfavicongenerator.net" target="_blank">realfavicongenerator.net</a> to generate a full favicon set from a single image.</p>
+
+<h3>Editing navigation links</h3>
+<p>Edit the <code>.navbar__links</code> list inside <code>index.html</code> to update menu items and anchor targets.</p>
 
 <h3>Working with source files (optional)</h3>
-<p>If you want to edit the SCSS or JavaScript source rather than the compiled <code>HTML</code> output, you'll need
-<a href="https://nodejs.org" target="_blank">Node.js</a> installed. Then, from the project root:</p>
+<p>If you want to edit the SCSS or JavaScript source rather than the compiled output, you'll need
+<a href="https://nodejs.org" target="_blank">Node.js</a> (any recent LTS version) installed. Then from the <code>SourceFiles/</code> folder:</p>
 <pre><code>npm install
 npm run dev      # starts a local dev server with live reload
-npm run build    # produces an updated HTML/ folder when you're done</code></pre>
+npm run build    # compiles everything into the HTML/ output folder</code></pre>
 
-<h2>4. Credits &amp; Licenses</h2>
-<p>This template uses the following third-party resources:</p>
+<h2>4. Template Sections</h2>
 <table>
-  <tr><th>Item</th><th>License</th><th>Source</th></tr>
+  <tr><th>Section</th><th>SCSS File</th><th>JS Module</th></tr>
+  <tr><td>Navbar</td><td>layout/_navbar.scss</td><td>modules/navbar.js</td></tr>
+  <tr><td>Hero</td><td>sections/_hero.scss</td><td>modules/hero.js</td></tr>
+  <tr><td>Mission</td><td>sections/_mission.scss</td><td>modules/mission.js</td></tr>
+  <tr><td>Strategic Partners</td><td>sections/_partners.scss</td><td>modules/partners.js</td></tr>
+  <tr><td>SmartGrid</td><td>sections/_smartgrid.scss</td><td>modules/smartgrid.js</td></tr>
+  <tr><td>Impact (stats)</td><td>sections/_impact.scss</td><td>modules/impact.js</td></tr>
+  <tr><td>Smart Grid Intelligence</td><td>sections/_sgi.scss</td><td>modules/sgi.js</td></tr>
+  <tr><td>How It Works</td><td>sections/_howitworks.scss</td><td>—</td></tr>
+  <tr><td>Energy</td><td>sections/_energy.scss</td><td>—</td></tr>
+  <tr><td>Measurable Impact</td><td>sections/_measurable.scss</td><td>modules/measurable.js</td></tr>
+  <tr><td>Comparison</td><td>sections/_comparison.scss</td><td>modules/comparison.js</td></tr>
+  <tr><td>Impact in Action</td><td>sections/_impact-action.scss</td><td>—</td></tr>
+  <tr><td>Momentum</td><td>sections/_momentum.scss</td><td>—</td></tr>
+  <tr><td>Contact</td><td>sections/_contact.scss</td><td>modules/contact-dropdown.js</td></tr>
+  <tr><td>Footer</td><td>layout/_footer.scss</td><td>modules/footer.js</td></tr>
+</table>
+
+<h2>5. Credits &amp; Licenses</h2>
+<p>This template uses the following third-party resources. All assets are cleared for commercial use and redistribution under an Envato license.</p>
+
+<table>
+  <tr><th>Item</th><th>Type</th><th>License</th><th>Source</th></tr>
   <tr>
     <td>Inter Font</td>
-    <td>SIL Open Font License 1.1</td>
+    <td>Typeface</td>
+    <td>SIL Open Font License 1.1<br><small>License file: <code>HTML/assets/fonts/inter/LICENSE.txt</code></small></td>
     <td><a href="https://rsms.me/inter" target="_blank">rsms.me/inter</a></td>
   </tr>
+  <tr>
+    <td>Section images<br><small>(hero-bg.webp, smartgrid.webp, ecovolt.webp, energy.webp, global.webp, leads.webp, momentum.webp)</small></td>
+    <td>AI-generated images</td>
+    <td>
+      Commercial use permitted, including redistribution in paid templates, under the
+      <a href="https://openai.com/policies/terms-of-use" target="_blank">OpenAI Terms of Use</a>.
+      Images are AI-generated originals — no photographer or artist attribution required.
+    </td>
+    <td><a href="https://openai.com/policies/terms-of-use" target="_blank">openai.com/policies/terms-of-use</a></td>
+  </tr>
+  <tr>
+    <td>Vite</td>
+    <td>Build tool (source files only — not shipped to end users)</td>
+    <td>MIT License</td>
+    <td><a href="https://vitejs.dev" target="_blank">vitejs.dev</a></td>
+  </tr>
+  <tr>
+    <td>Sass / Dart Sass</td>
+    <td>CSS preprocessor (source files only — not shipped to end users)</td>
+    <td>MIT License</td>
+    <td><a href="https://sass-lang.com" target="_blank">sass-lang.com</a></td>
+  </tr>
 </table>
-<p>All other code (HTML, CSS, JavaScript) is custom-built for this template.</p>
 
-<div class="note">
-  <strong>Note on images:</strong> The images included in
-  <code>assets/images/</code> are for <strong>demonstration purposes only</strong>
-  and are <strong>not licensed for redistribution</strong>. You must replace them
-  with your own licensed images before using this template in a live project.
-  Free image sources include
-  <a href="https://unsplash.com" target="_blank">Unsplash</a>,
-  <a href="https://www.pexels.com" target="_blank">Pexels</a>, and
-  <a href="https://pixabay.com" target="_blank">Pixabay</a>.
+<div class="note-green">
+  <strong>Note on using the included images:</strong> The section images bundled in
+  <code>assets/images/sections/</code> are AI-generated originals created for this template.
+  They are licensed for commercial use under the OpenAI Terms of Use and may be used in your
+  end product under the terms of your purchased Envato license. You are also free to replace
+  them with your own images at any time.
 </div>
 
-<h2>5. Browser Support</h2>
+<h2>6. Browser Support</h2>
 <p>Tested and supported on the latest versions of Chrome, Firefox, Safari, and Edge.</p>
+<table>
+  <tr><th>Browser</th><th>Support</th></tr>
+  <tr><td>Chrome (latest)</td><td>✔ Full support</td></tr>
+  <tr><td>Firefox (latest)</td><td>✔ Full support</td></tr>
+  <tr><td>Safari (latest)</td><td>✔ Full support</td></tr>
+  <tr><td>Edge (latest)</td><td>✔ Full support</td></tr>
+</table>
 
-<h2>6. Support</h2>
-<p>For questions or support requests, please contact us via your ThemeForest purchase page (Comments tab),
-or through your item's support page on Envato.</p>
+<h2>7. Support</h2>
+<p>For questions or support requests, please use the <strong>Comments tab</strong> on the ThemeForest item page,
+or contact us through the item's support page on Envato. We aim to respond within 24–48 hours on business days.</p>
 
-<h2>7. Changelog</h2>
+<h2>8. Changelog</h2>
 <table>
   <tr>
     <th>Version</th>
@@ -138,7 +225,7 @@ or through your item's support page on Envato.</p>
   <tr>
     <td>1.0.0</td>
     <td>June 2026</td>
-    <td>Initial release</td>
+    <td>Initial release — 15 sections, fully responsive, vanilla JS, self-hosted Inter font, Vite build system.</td>
   </tr>
 </table>
 
