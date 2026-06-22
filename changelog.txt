@@ -1,0 +1,22 @@
+EcoVolt — Clean Energy HTML Template
+Changelog
+================================================================================
+
+Version 1.0.0 — June 2026
+--------------------------------------------------------------------------------
+Initial release.
+
+- 15 fully responsive sections: Navbar, Hero, Mission, Strategic Partners,
+  SmartGrid, Impact, Smart Grid Intelligence, How It Works, Energy,
+  Measurable Impact, Comparison, Impact in Action, Momentum, Contact, Footer
+- Vanilla JS only — no framework or animation library dependencies
+- CSS scroll and entrance animations with prefers-reduced-motion support
+- Self-hosted Inter font — no external requests at runtime
+- SCSS source files with BEM methodology
+- Vite-powered build system (source files included)
+- Cross-browser tested: Chrome, Firefox, Safari, Edge (latest versions)
+- Fully accessible: skip link, ARIA landmarks, semantic HTML, keyboard nav
+- Mobile, tablet, and desktop responsive layouts
+
+================================================================================
+For support, use the Comments tab on the ThemeForest item page.
