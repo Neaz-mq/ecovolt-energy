@@ -6,13 +6,13 @@
 export function initMeasurable() {
   const track  = document.getElementById('metricsTrack');
   const dotsEl = document.getElementById('metricsDots');
-
   if (!track || !dotsEl) return;
 
   const dots    = Array.from(dotsEl.querySelectorAll('.measurable__dot'));
   const cards   = Array.from(track.querySelectorAll('.measurable__slide-card'));
-  let current   = 0;
-  let startX    = 0;
+
+  let current    = 0;
+  let startX     = 0;
   let isDragging = false;
   let dragDelta  = 0;
 
@@ -71,7 +71,7 @@ export function initMeasurable() {
 
   /* ── Touch events ── */
   track.addEventListener('touchstart', e => {
-    startX    = e.touches[0].clientX;
+    startX     = e.touches[0].clientX;
     isDragging = true;
     dragDelta  = 0;
     stopAutoplay();
@@ -85,32 +85,11 @@ export function initMeasurable() {
   track.addEventListener('touchend', () => {
     if (!isDragging) return;
     isDragging = false;
+
     if      (dragDelta < -50) goTo(current + 1);
     else if (dragDelta >  50) goTo(current - 1);
     else                      goTo(current);
-    startAutoplay();
-  });
 
-  /* ── Mouse drag (desktop testing) ── */
-  track.addEventListener('mousedown', e => {
-    startX    = e.clientX;
-    isDragging = true;
-    dragDelta  = 0;
-    stopAutoplay();
-    e.preventDefault();
-  });
-
-  window.addEventListener('mousemove', e => {
-    if (!isDragging) return;
-    dragDelta = e.clientX - startX;
-  });
-
-  window.addEventListener('mouseup', () => {
-    if (!isDragging) return;
-    isDragging = false;
-    if      (dragDelta < -50) goTo(current + 1);
-    else if (dragDelta >  50) goTo(current - 1);
-    else                      goTo(current);
     startAutoplay();
   });
 
