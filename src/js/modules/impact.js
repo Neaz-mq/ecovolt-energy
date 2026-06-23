@@ -1,8 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// impact.js
-// Scroll-triggered entrance + mobile slider (mirrors hero stats slider).
-// ─────────────────────────────────────────────────────────────────────────────
-
 export function initImpact() {
   const cards = document.querySelectorAll(".impact__stat-card");
   if (!cards.length) return;
@@ -27,12 +22,6 @@ export function initImpact() {
   initImpactSlider();
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Breakpoint detection reads the *real* computed layout (overflow-x: auto on
-// .impact__stats, which only the CSS's max-width: 640px rule sets) instead of
-// comparing window.innerWidth to a hardcoded number. This keeps JS and CSS
-// always in sync — and never drifts if the CSS breakpoint value changes later.
-// ─────────────────────────────────────────────────────────────────────────────
 function initImpactSlider() {
   const stats = document.querySelector(".impact__stats");
   if (!stats) return;
@@ -147,8 +136,6 @@ function initImpactSlider() {
     if (active) return;
     active = true;
 
-    // Wait for layout to fully settle before measuring width —
-    // fixes dots/sizing being invisible on first paint.
     requestAnimationFrame(() => {
       setTimeout(() => {
         if (!active) return;
@@ -182,7 +169,7 @@ function initImpactSlider() {
   function evaluate() {
     if (isSliderModeOn()) {
       enableSlider();
-      if (active) sizeCards(); // keep width correct as viewport changes
+      if (active) sizeCards(); 
     } else {
       disableSlider();
     }
@@ -190,12 +177,9 @@ function initImpactSlider() {
 
   // ── Initial check ──────────────────────────────────────────────────
   evaluate();
-
-  // ── Re-check on resize — correct for any breakpoint value ──────────
+  
   window.addEventListener("resize", evaluate, { passive: true });
-
-  // ── Re-measure if the container's own box size changes for any
-  //    other reason (font load, orientation change, etc.)
+ 
   if (window.ResizeObserver) {
     const ro = new ResizeObserver(() => {
       if (active) sizeCards();
