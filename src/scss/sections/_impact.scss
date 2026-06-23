@@ -1,9 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// _impact.scss
-// "The Planet Needs Smarter Energy Solutions" — stat cards section
-// White background, 3-col stat cards + mobile slider (mirrors hero stats).
-// ─────────────────────────────────────────────────────────────────────────────
-
 .impact {
   background-color: #ffffff;
   position: relative;
@@ -64,14 +58,14 @@
     line-height: 1.7;
     font-weight: 500;
     color: #1e5b4d;
-    max-width: 42rem; // ← controls 2-line wrap
+    max-width: 42rem; 
     margin-inline: auto;
-    text-align: center; // ← centered like image 2
+    text-align: center; 
 
     @media (max-width: 680px) {
       font-size: 1rem;
       max-width: 100%;
-      text-align: center; // ← stay centered on mobile too
+      text-align: center; 
     }
   }
 
@@ -80,8 +74,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(0.5rem, 2.5vw, 1rem);
-    max-width: 45rem; // ← narrows grid so each card ~240px wide
-    margin-inline: auto; // ← keeps grid centered
+    max-width: 45rem; 
+    margin-inline: auto; 
 
     @media (max-width: 640px) {
       display: flex;
@@ -94,7 +88,7 @@
       gap: 0;
       padding: 0;
       width: 100%;
-      max-width: 100%; // ← full width on mobile
+      max-width: 100%; 
       margin-inline: 0;
       -webkit-mask-image: none;
       mask-image: none;
@@ -110,7 +104,7 @@
     background-color: #f7f7f7;
     border: 1px solid #e2ebe6;
     border-radius: 1.5rem;
-    padding: clamp(1.5rem, 3vw, 2rem) clamp(1.25rem, 2.5vw, 1.5rem); // ← slightly tighter inline padding
+    padding: clamp(1.5rem, 3vw, 2rem) clamp(1.25rem, 2.5vw, 1.5rem); 
     text-align: left;
 
     opacity: 0;
@@ -170,7 +164,7 @@
     color: #3a4a42;
     font-weight: 500;
     margin: 0;
-    max-width: 10rem; // ← was 10rem, bump to fit "come from energy" on line 3
+    max-width: 10rem; 
 
     @media (max-width: 480px) {
       font-size: 0.9375rem;
