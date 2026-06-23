@@ -1,14 +1,9 @@
-// =========================================================================
-// ECOVOLT — FOOTER JAVASCRIPT
-// =========================================================================
-
 export function initFooter() {
   const yearEl = document.getElementById('footer-year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // ── Newsletter form: stop page reload, validate, show success message ──
   const form = document.querySelector('.footer__newsletter-form');
   if (!form) return;
 
@@ -17,7 +12,6 @@ export function initFooter() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // simple required/format check since the form has novalidate
     let valid = true;
 
     if (emailInput) {
