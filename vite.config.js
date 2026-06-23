@@ -33,13 +33,6 @@ export default defineConfig({
       },
     },
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        silenceDeprecations: ['import', 'legacy-js-api', 'global-builtin'],
-      },
-    },
-  },
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

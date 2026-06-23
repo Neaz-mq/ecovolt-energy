@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 // ── Respond mixin ─────────────────────────────
 @mixin respond($bp) {
   @if      $bp == xs  { @media (max-width: #{$bp-xs})  { @content; } }

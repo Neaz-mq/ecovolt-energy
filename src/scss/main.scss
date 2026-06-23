@@ -1,25 +1,22 @@
-@import 'abstracts/variables';
-@import 'abstracts/mixins';
+@use 'base/fonts';
+@use 'base/reset';
+@use 'base/typography';
 
-@import 'base/fonts';
-@import 'base/reset';
-@import 'base/typography';
+@use 'layout/navbar';
+@use 'layout/footer';
 
-@import 'layout/navbar';
-@import 'layout/footer';
+@use 'components/buttons';
 
-@import 'components/buttons';
-
-@import 'sections/hero';
-@import 'sections/mission';
-@import 'sections/partners';
-@import 'sections/smartgrid';
-@import 'sections/impact';
-@import 'sections/sgi';
-@import 'sections/howitworks';
-@import 'sections/energy';
-@import 'sections/measurable';
-@import 'sections/comparison';
-@import 'sections/impact-action';
-@import 'sections/momentum';
-@import 'sections/contact';
+@use 'sections/hero';
+@use 'sections/mission';
+@use 'sections/partners';
+@use 'sections/smartgrid';
+@use 'sections/impact';
+@use 'sections/sgi';
+@use 'sections/howitworks';
+@use 'sections/energy';
+@use 'sections/measurable';
+@use 'sections/comparison';
+@use 'sections/impact-action';
+@use 'sections/momentum';
+@use 'sections/contact';
