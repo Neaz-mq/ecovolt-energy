@@ -90,7 +90,7 @@ export function initContact() {
     if (dropdown.classList.contains('open')) positionPanel();
   }, { passive: true });
 
-  // ── Form submit: stop page reload, show success message
+  
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
