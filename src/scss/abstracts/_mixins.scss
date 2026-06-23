@@ -1,8 +1,3 @@
-// ============================================
-// ECOVOLT — MIXINS
-// ThemeForest Standard v1.0
-// ============================================
-
 // ── Respond mixin ─────────────────────────────
 @mixin respond($bp) {
   @if      $bp == xs  { @media (max-width: #{$bp-xs})  { @content; } }
@@ -79,7 +74,6 @@
   }
 }
 
-
 // ── Section spacing ───────────────────────────
 @mixin section-space {
   padding-block: $section-pad-y;
@@ -89,7 +83,6 @@
   @include sm { padding-block: $sp-16; }
   @include xs { padding-block: $sp-12; }
 }
-
 
 // ── Flex helpers ──────────────────────────────
 @mixin flex-center {
@@ -174,12 +167,10 @@
   }
 }
 
-
 // ── Lime glow ─────────────────────────────────
 @mixin lime-glow($size: 30px, $opacity: 0.35) {
   box-shadow: 0 0 $size rgba(184, 245, 61, $opacity);
 }
-
 
 // ── Focus visible ─────────────────────────────
 @mixin focus-ring($color: $clr-primary, $offset: 3px) {
@@ -189,7 +180,6 @@
     border-radius: $radius-sm;
   }
 }
-
 
 // ── Truncate text ─────────────────────────────
 @mixin truncate($lines: 1) {
@@ -214,7 +204,6 @@
   background-size: 60px 60px;
 }
 
-
 // ── Visually hidden ───────────────────────────
 @mixin visually-hidden {
   position: absolute;
@@ -228,14 +217,12 @@
   border: 0;
 }
 
-
 // ── Reduced motion wrapper ────────────────────
 @mixin reduced-motion {
   @media (prefers-reduced-motion: reduce) {
     @content;
   }
 }
-
 
 // ── Transition shorthand ──────────────────────
 @mixin transition($props: all, $dur: $dur-base, $ease: $ease-out) {
