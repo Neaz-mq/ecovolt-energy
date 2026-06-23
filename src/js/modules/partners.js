@@ -1,7 +1,3 @@
-// ============================================
-// PARTNERS — Infinite marquee strip
-// ============================================
-
 export function initPartners() {
   const track = document.querySelector('.partners__track')
   if (!track) return

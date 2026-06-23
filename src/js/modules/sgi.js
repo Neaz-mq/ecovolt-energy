@@ -1,7 +1,3 @@
-// ── sgi.js ────────────────────────────────────────────────────────────────
-// Mobile marquee for SGI cards — mirrors initMission() pattern exactly
-// ──────────────────────────────────────────────────────────────────────────
-
 export function initSgi() {
   const grid = document.querySelector('.sgi__grid')
   if (!grid) return
@@ -19,7 +15,6 @@ export function initSgi() {
     teardown()
     if (!mq.matches) return
 
-    // Clone the 3 col wrappers → [col1 col2 col3] [col1' col2' col3']
     const originals = [...grid.querySelectorAll('.sgi__col:not([data-sgi-clone])')]
     originals.forEach(col => {
       const clone = col.cloneNode(true)
@@ -36,8 +31,6 @@ export function initSgi() {
     }))
   }
 
-  // ── Touch pause/resume — mirrors the CSS :hover pause for touch devices,
-  //    so a finger resting on a card stops the scroll long enough to read it.
   function onTouchStart() {
     if (!mq.matches) return
     grid.style.animationPlayState = 'paused'
@@ -57,8 +50,7 @@ export function initSgi() {
     resizeTimer = setTimeout(setupMarquee, 150)
   }, { passive: true })
 
-  // setupMarquee() already calls teardown() internally and returns early
-  // when !mq.matches, so no separate teardown() call is needed here.
+  
   mq.addEventListener('change', setupMarquee)
 
   setupMarquee()
