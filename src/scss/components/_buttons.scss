@@ -1,7 +1,3 @@
-// ============================================
-// ECOVOLT — BUTTONS
-// ============================================
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -33,7 +29,7 @@
 
   // Primary
   &--primary {
-    background: $clr-warning; // ← was $clr-primary
+    background: $clr-warning; 
     color: #1e5b4d;
 
     &:hover {
@@ -43,7 +39,7 @@
         #000
       ); // ← was $clr-primary-dark
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba($clr-warning, 0.35); // ← was lime-glow
+      box-shadow: 0 8px 32px rgba($clr-warning, 0.35);
     }
 
     &:active {
@@ -55,10 +51,10 @@
   &--ghost {
     background: transparent;
     color: $clr-white;
-    border: 1px solid rgba(255, 255, 255, 0.55); // ← change this line
+    border: 1px solid rgba(255, 255, 255, 0.55); 
 
     &:hover {
-      border-color: rgba(255, 255, 255, 0.85); // ← and this line
+      border-color: rgba(255, 255, 255, 0.85); 
       background: rgba(255, 255, 255, 0.05);
     }
   }

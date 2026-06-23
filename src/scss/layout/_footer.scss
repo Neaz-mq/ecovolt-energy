@@ -1,15 +1,7 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// _footer.scss  —  src/scss/layout/_footer.scss
-// ─────────────────────────────────────────────────────────────────────────────
-
 .footer {
   background-color: #000000;
   color: #a8b8b0;
   padding-top: 64px;
-
-  // ── Top accent bar (mobile only) ───────────────────────────────────────────
-
-
 
   // ── Container ──────────────────────────────────────────────────────────────
   &__container {
@@ -120,23 +112,17 @@
   }
 
   // ── Nav grid ───────────────────────────────────────────────────────────────
-  // Desktop: 4 even columns (Solutions / Company / Resources / Newsletter)
-  // Tablet:  3 even columns for the link groups, newsletter block drops to
-  //          its own full-width row underneath (see &__col--newsletter)
-  // Mobile:  2-col grid, Resources/Newsletter span full width
   &__nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px 32px;
     align-items: start;
 
-    // ── Tablet: 3 even columns, newsletter wraps to its own row below ──
     @media (max-width: 960px) and (min-width: 641px) {
       grid-template-columns: repeat(3, 1fr);
       gap: 36px 32px;
     }
 
-    // ── Mobile: 2-col grid, orphan cols go full-width ──
     @media (max-width: 640px) {
       grid-template-columns: 1fr 1fr;
       gap: 0;
@@ -153,20 +139,16 @@
     // ── Mobile column layout ──
     @media (max-width: 640px) {
       padding-bottom: 24px;
-
-      // Solutions (1st) — left cell, border on right
+    
       &:nth-child(1) {
         padding-right: 20px;
         border-right: 1px solid #1e3028;
       }
-
-      // Company (2nd) — right cell
+  
       &:nth-child(2) {
         padding-left: 20px;
       }
 
-      // Resources (3rd) — FIX: span full width, links go horizontal
-      // prevents the empty right-cell gap seen in screenshot
       &:nth-child(3) {
         grid-column: 1 / -1;
         border-right: none;
@@ -275,13 +257,6 @@
   }
 
   // ── Newsletter column ──────────────────────────────────────────────────────
-  // FIX: previously used an `auto 1fr` sub-grid that left the social icons
-  // and the form visually disconnected, and combined with the old 2-col
-  // nav grid it produced an empty gap next to "Resources" on tablet.
-  // Now the newsletter block always spans the full nav row, and internally
-  // uses a clean, fixed-width label column + flexible content column:
-  //   [ STAY CONNECTED ]   [ Subscribe to our newsletter ]
-  //   [ social icons   ]   [ email input + submit button ]
   &__col--newsletter {
     @media (max-width: 960px) and (min-width: 641px) {
       grid-column: 1 / -1;
@@ -298,7 +273,7 @@
 
     // ── Mobile: full-width, overrides nth-child col rules ──
     @media (max-width: 640px) {
-      grid-column: 1 / -1 !important; // override nth-child specificity
+      grid-column: 1 / -1 !important; 
       border-right: none !important;
       padding-right: 0 !important;
       padding-left: 0 !important;
@@ -388,8 +363,6 @@
   }
 
   // ── Newsletter success message ──────────────────────────────────────────
-  // Shown by footer.js after a valid email is submitted; mirrors the
-  // contact form's success-message treatment (fade in, auto-dismiss).
   &__newsletter-success {
     font-size: 0.8125rem;
     font-weight: 600;
