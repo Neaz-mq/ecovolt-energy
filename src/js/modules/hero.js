@@ -1,7 +1,3 @@
-// =========================================================================
-// ECOVOLT — HERO JAVASCRIPT
-// =========================================================================
-
 export function initHero() {
   const ANIM_KEYS = ['hero-title', 'hero-actions', 'hero-desc']
 
@@ -54,10 +50,7 @@ export function initHero() {
   }
 
   // ── Counter animation ─────────────────────────────────────────────────
-  // The HTML default text is always the final value (e.g. "95%", "250K+",
-  // "1.2M kg") so the page looks correct before JS fires or on slow
-  // connections. runCounter() resets to 0 right before animating so the
-  // count-up still plays when the element enters the viewport.
+ 
   const counterEls = document.querySelectorAll('[data-counter]')
 
   if (counterEls.length) {
@@ -69,8 +62,6 @@ export function initHero() {
 
       if (isNaN(target)) return
 
-      // Reset to zero right before animating — HTML default is the final
-      // value so the stat is always readable before JS runs.
       el.textContent = isFloat ? '0.0' + suffix : '0' + suffix
 
       let count = 0
@@ -94,7 +85,6 @@ export function initHero() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // Guard: skip if already animated (e.g. viewport resize re-fires)
             if (entry.target.dataset.counterDone) return
             entry.target.dataset.counterDone = '1'
             runCounter(entry.target)
@@ -111,17 +101,8 @@ export function initHero() {
   initStatsSlider()
 }
 
+// ── Stats Slider ────────────────────────────────────────────────────────── 
 
-// ── Stats Slider ──────────────────────────────────────────────────────────
-//
-// Instead of hardcoding a pixel breakpoint in JS (which can drift out of
-// sync with whatever px value the SCSS `sm` / `md` / `lg` mixins actually
-// use), this reads the *real* computed layout: the SCSS only switches
-// `.hero__stats` to `overflow-x: auto` inside the mobile (`sm`) breakpoint.
-// So we just ask the browser "is that true right now?" — this is always
-// correct no matter what the breakpoint's exact pixel value is, and stays
-// correct even if that value changes later in the SCSS.
-//
 function initStatsSlider() {
   const stats = document.querySelector('.hero__stats')
   if (!stats) return
@@ -138,7 +119,6 @@ function initStatsSlider() {
   let active   = false
 
   function isSliderModeOn() {
-    // True only when the SCSS mobile rules are actually in effect.
     return window.getComputedStyle(stats).overflowX === 'auto'
   }
 
@@ -232,8 +212,6 @@ function initStatsSlider() {
     if (active) return
     active = true
 
-    // Wait for layout to fully settle before measuring width —
-    // fixes dots/sizing being wrong on first paint.
     requestAnimationFrame(() => {
       setTimeout(() => {
         if (!active) return
@@ -267,7 +245,7 @@ function initStatsSlider() {
   function evaluate() {
     if (isSliderModeOn()) {
       enableSlider()
-      if (active) sizeCards() // keep width correct as viewport changes
+      if (active) sizeCards() 
     } else {
       disableSlider()
     }
@@ -276,12 +254,8 @@ function initStatsSlider() {
   // ── Initial check ──────────────────────────────────────────────────
   evaluate()
 
-  // ── Re-check on resize — works for ANY breakpoint value, since we
-  //    read the real computed CSS instead of comparing to a fixed px
   window.addEventListener('resize', evaluate, { passive: true })
 
-  // ── Re-measure if the container's own box size changes for any
-  //    other reason (font load, orientation change, etc.)
   if (window.ResizeObserver) {
     const ro = new ResizeObserver(() => {
       if (active) sizeCards()
