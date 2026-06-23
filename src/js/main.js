@@ -10,6 +10,14 @@ import { initComparison } from './modules/comparison.js'
 import { initContact }   from './modules/contact-dropdown.js'
 import { initFooter }    from './modules/footer.js'
 
+let ogUrlTag = document.querySelector('meta[property="og:url"]');
+if (!ogUrlTag) {
+  ogUrlTag = document.createElement('meta');
+  ogUrlTag.setAttribute('property', 'og:url');
+  document.head.appendChild(ogUrlTag);
+}
+ogUrlTag.setAttribute('content', window.location.href);
+
 initNavbar();
 initHero();
 initMission();
