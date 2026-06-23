@@ -1,8 +1,3 @@
-/* ============================================================
-   MEASURABLE SECTION — Metrics Swiper
-   src/js/modules/measurable.js
-   ============================================================ */
-
 export function initMeasurable() {
   const track  = document.getElementById('metricsTrack');
   const dotsEl = document.getElementById('metricsDots');
@@ -22,7 +17,7 @@ export function initMeasurable() {
   /* ── Compute translateX offset for a given slide index ── */
   function getOffset(index) {
     if (!cards[index]) return 0;
-    const gap = 14; // matches CSS gap: 14px
+    const gap = 14; 
     return cards
       .slice(0, index)
       .reduce((sum, card) => sum + card.offsetWidth + gap, 0);
