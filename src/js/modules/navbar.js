@@ -1,21 +1,15 @@
-// ============================================
-// ECOVOLT — NAVBAR
-// ============================================
-
 export function initNavbar() {
   const navbar = document.querySelector(".navbar");
   const hamburger = document.querySelector(".navbar__hamburger");
   const mobileMenu = document.querySelector(".navbar__mobile");
-  const mobileClose = document.querySelector(".navbar__mobile-close"); // ← NEW
+  const mobileClose = document.querySelector(".navbar__mobile-close");
 
   if (!navbar) return;
 
-  // ── Show navbar after first paint (FOUC prevention) ──
   requestAnimationFrame(() => {
     navbar.classList.add("is-ready");
   });
 
-  // ── Scroll: add .scrolled after 50px ──────
   window.addEventListener(
     "scroll",
     () => {
@@ -28,7 +22,7 @@ export function initNavbar() {
   const toggleMenu = (open) => {
     hamburger?.classList.toggle("is-open", open);
     mobileMenu?.classList.toggle("is-open", open);
-    navbar.classList.toggle("menu-open", open); // ← ADD: hides real navbar when menu opens
+    navbar.classList.toggle("menu-open", open);
     hamburger?.setAttribute("aria-expanded", String(open));
     hamburger?.setAttribute(
       "aria-label",
@@ -45,7 +39,7 @@ export function initNavbar() {
   // ── NEW: mobile header close button ──────
   mobileClose?.addEventListener("click", () => {
     toggleMenu(false);
-    hamburger?.focus(); // return focus to hamburger for accessibility
+    hamburger?.focus();
   });
 
   // Escape key closes menu
@@ -70,7 +64,6 @@ export function initNavbar() {
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".navbar__links a");
 
-  // Sections that should clear all active states (hero/home area)
   const noActiveIds = new Set(["home", "mission"]);
 
   // Only matches sections that have a corresponding nav link
@@ -78,9 +71,7 @@ export function initNavbar() {
   // Sections without a nav link (energy, measurable, impact-action,
   // momentum, contact) simply won't highlight anything — no error.
   const resolveLink = (id) => {
-    return [...navLinks].find(
-      (l) => l.getAttribute("href") === `#${id}`,
-    );
+    return [...navLinks].find((l) => l.getAttribute("href") === `#${id}`);
   };
 
   // ── Track intersection ratios, activate the MOST visible section ──
@@ -109,7 +100,6 @@ export function initNavbar() {
       // Nothing visible — do nothing
       if (!activeId || maxRatio === 0) return;
 
-      // Hero/home is most visible — clear all active states
       if (noActiveIds.has(activeId)) {
         navLinks.forEach((l) => l.classList.remove("is-active"));
         return;

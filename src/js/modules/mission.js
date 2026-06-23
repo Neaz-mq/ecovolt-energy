@@ -1,7 +1,3 @@
-// =========================================================================
-// ECOVOLT — MISSION JAVASCRIPT
-// =========================================================================
-
 export function initMission() {
   // ── Card & quote entrance animations ─────────────────────────────────
   const cards = document.querySelectorAll('.mission__card')
@@ -37,8 +33,6 @@ export function initMission() {
   function setupMarquee() {
     teardown()
     if (!mq.matches) return
-
-    // Clone originals once → gives us [A B C D] [A' B' C' D']
     const originals = [...track.querySelectorAll('.mission__card:not([data-clone])')]
     originals.forEach(card => {
       const clone = card.cloneNode(true)
@@ -57,8 +51,6 @@ export function initMission() {
     }))
   }
 
-  // ── Touch pause/resume — mirrors the CSS :hover pause for touch devices,
-  //    so a finger resting on a card stops the scroll long enough to read it.
   function onTouchStart() {
     if (!mq.matches) return
     track.style.animationPlayState = 'paused'
