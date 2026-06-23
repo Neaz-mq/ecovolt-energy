@@ -90,7 +90,6 @@
       }
     </style>
 
-    <!-- ── No-JS fallback (must be in <head> for <style> to be valid) ── -->
     <noscript>
       <style>
         .navbar,
@@ -292,7 +291,6 @@
           </div>
 
           <!-- ── Stat cards ─────────────────────────────────────────── -->
-          <!-- FIX: added role="region" to allow aria-label on div -->
           <div
             class="hero__stats"
             data-anim="hero-stats"
@@ -440,7 +438,6 @@
             </p>
           </header>
 
-          <!-- FIX: changed <article role="listitem"> to <li>, parent div to <ul> -->
           <ul class="mission__cards" aria-label="Mission values">
             <li class="mission__card" data-color="green">
               <div class="mission__card-icon" aria-hidden="true">
@@ -655,7 +652,6 @@
             </p>
           </header>
 
-          <!-- FIX: changed <article role="listitem"> to <li>, parent div to <ul> -->
           <ul class="smartgrid__cards" aria-label="SmartGrid features">
             <li class="smartgrid__card" data-color="dark">
               <div class="smartgrid__card-icon" aria-hidden="true">
@@ -769,7 +765,6 @@
             </p>
           </header>
 
-          <!-- FIX: changed <article role="listitem"> to <li>, parent div to <ul> -->
           <ul class="impact__stats" aria-label="Energy crisis statistics">
             <li class="impact__stat-card">
               <strong class="impact__stat-num">73%</strong>
@@ -818,7 +813,6 @@
           <!-- /sgi__top -->
 
           <div class="sgi__grid-wrapper">
-            <!-- FIX: changed <article role="listitem"> to <li>, parent div to <ul> -->
             <ul class="sgi__grid" aria-label="SmartGrid intelligence features">
               <!-- ── Col 1 ── -->
               <li class="sgi__col sgi__col--1">
@@ -1144,7 +1138,6 @@
           <!-- /hiw__diagram-wrap -->
 
           <!-- ── MOBILE VERTICAL STEPPER ── -->
-          <!-- FIX: added role="region" to allow aria-label on div -->
           <div class="hiw__stepper" role="region" aria-label="How it works steps">
             <div class="hiw__steps-top">
               <div class="hiw__step hiw__step--capture">
@@ -1273,7 +1266,6 @@
               industrial environments.
             </p>
 
-            <!-- FIX: removed role="list" (redundant on ul) -->
             <ul class="energy__list">
               <li class="energy__list-item">
                 <span class="energy__list-icon" aria-hidden="true">
@@ -1322,7 +1314,6 @@
               </li>
             </ul>
 
-            <!-- FIX: added role="region" to allow aria-label on div -->
             <div class="energy__badges" role="region" aria-label="Key metrics">
               <div class="energy__badge">
                 <strong class="energy__badge-num">98%</strong>
@@ -1358,7 +1349,6 @@
               </p>
             </header>
 
-            <!-- FIX: changed <article role="listitem"> to <li>, parent div to <ul> -->
             <ul class="measurable__stats" aria-label="Impact statistics">
               <li class="measurable__stat">
                 <strong class="measurable__stat-num">
@@ -1535,7 +1525,6 @@
                     <tr class="comparison__row">
                       <th class="comparison__feature" scope="row">AI Optimization</th>
                       <td class="comparison__cell">
-                        <!-- FIX: added role="img" to allow aria-label on span -->
                         <span class="comparison__icon comparison__icon--yes" role="img" aria-label="Yes">
                           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                             <circle cx="12" cy="12" r="10" fill="#88C499" />
@@ -1647,7 +1636,6 @@
             <!-- /comparison__left -->
 
             <div class="comparison__right" data-anim="comparison-right">
-              <!-- FIX: moved <img> outside <ul> — img not allowed as direct child of ul -->
               <div class="comparison__highlights-wrapper" style="position:relative;">
                 <img
                   src="/assets/images/sections/leads.webp"
@@ -1655,7 +1643,6 @@
                   class="comparison__highlights-deco"
                   aria-hidden="true"
                 >
-                <!-- FIX: removed role="list" (redundant on ul), removed role="listitem" from li -->
                 <ul class="comparison__highlights" aria-label="Why EcoVolt leads">
                   <li class="comparison__highlight">
                     <span class="comparison__highlight-icon" aria-hidden="true">
@@ -1880,7 +1867,6 @@
             </h2>
           </header>
 
-          <!-- FIX: changed <article role="listitem"> to <li>, parent div to <ul> -->
           <ul class="momentum__stats" aria-label="Key results">
             <li class="momentum__stat-card">
               <div class="momentum__stat-icon" aria-hidden="true">
@@ -2050,7 +2036,7 @@
 
               <div class="contact__trusted">
                 <p class="contact__trusted-heading">Trusted by</p>
-                <!-- FIX: added role="region" to allow aria-label on div -->
+        
                 <div class="contact__trusted-logos" role="region" aria-label="Trusted partner logos">
                   <div class="contact__trusted-logo" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2135,7 +2121,6 @@
                   <div class="contact__field contact__field--select">
                     <label for="contact-interest" class="contact__label sr-only">I'm interested in</label>
 
-                    <!-- FIX: added a non-empty label to the placeholder option -->
                     <select
                       id="contact-interest"
                       name="interest"
@@ -2331,7 +2316,6 @@
                   </button>
                 </form>
 
-                <!-- FIX: added role="navigation" to allow aria-label on div -->
                 <div class="footer__socials" role="navigation" aria-label="Social media links">
                   <a href="#" class="footer__social-btn" aria-label="LinkedIn">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
