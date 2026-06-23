@@ -1,15 +1,10 @@
-// ── _sgi.scss ─────────────────────────────────────────────────────────────
-// AI-Powered Smart Grid Intelligence — staggered column layout
-// Place in: src/scss/sections/_sgi.scss
-// ──────────────────────────────────────────────────────────────────────────
-
 .sgi {
   background-color: #ffffff;
   position: relative;
   z-index: 9;
   margin-block-start: -2px;
   padding-block-start: 40px;
-  padding-block-end: 30px;          // ← FIX 1: prevents next section ::before from eating card bottoms
+  padding-block-end: 30px;          
   scroll-margin-top: 80px;
 
   &::before {
@@ -106,11 +101,10 @@
   }
 
   // ── Grid wrapper ──────────────────────────────────────────────────────
-  &__grid-wrapper {
-    // ← FIX 2: tablet range must be fully visible — no clipping
+  &__grid-wrapper {  
     @media (max-width: 860px) and (min-width: 521px) {
       overflow: visible;
-      padding-bottom: 8px;          // small buffer so box-shadows aren't clipped
+      padding-bottom: 8px;          
     }
 
     // Mobile only: clips marquee overflow
@@ -136,7 +130,7 @@
       max-width: 640px;
       margin: 0 auto;
       align-items: start;
-      overflow: visible;            // ← FIX 3: never clip the grid itself at tablet
+      overflow: visible;            
     }
 
     // ── Mobile: horizontal marquee track ─────────────────────────────
@@ -172,8 +166,6 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-
-    // Tablet: dissolve so 6 cards flow into 2-col grid directly
     @media (max-width: 860px) {
       display: contents;
     }
@@ -202,9 +194,8 @@
     flex-direction: column;
     gap: 12px;
     min-height: 0;
-    overflow: visible;              // ← FIX 4: was "hidden" — that was cutting card bottoms off
+    overflow: visible;              
 
-    // Tablet: slightly reduce padding so cards fit better in 2-col layout
     @media (max-width: 860px) and (min-width: 521px) {
       padding: 22px;
       gap: 10px;
@@ -220,7 +211,7 @@
       width: 62vw;
       min-width: 200px;
       max-width: 240px;
-      overflow: hidden;             // keep hidden only on mobile marquee cards
+      overflow: hidden;             
 
       @media (prefers-reduced-motion: reduce) {
         scroll-snap-align: start;
@@ -295,7 +286,7 @@
     svg { width: 20px; height: 20px; fill: none; }
 
     @media (max-width: 860px) and (min-width: 521px) {
-      width: 38px;                  // ← FIX 5: slightly smaller icon at tablet
+      width: 38px;                  
       height: 38px;
     }
 
@@ -319,7 +310,7 @@
     &--sm { font-size: 22px; }
 
     @media (max-width: 860px) and (min-width: 521px) {
-      font-size: 21px;              // ← slightly smaller stat at tablet
+      font-size: 21px;              
       &--sm { font-size: 19px; }
     }
 
@@ -348,7 +339,7 @@
     flex-shrink: 0;
 
     @media (max-width: 860px) and (min-width: 521px) {
-      font-size: 16px;              // ← slightly smaller title at tablet
+      font-size: 16px;              
     }
 
     @media (max-width: 520px) { font-size: 13px; }
@@ -362,7 +353,7 @@
     flex-shrink: 0;
 
     @media (max-width: 860px) and (min-width: 521px) {
-      font-size: 12px;              // ← slightly smaller desc at tablet
+      font-size: 12px;              
     }
 
     @media (max-width: 520px) {
@@ -381,7 +372,7 @@
     flex-shrink: 0;
 
     @media (max-width: 860px) and (min-width: 521px) {
-      gap: 6px;                     // ← tighter list gap at tablet
+      gap: 6px;                    
     }
 
     @media (max-width: 520px) {
@@ -398,7 +389,7 @@
       line-height: 1.3;
 
       @media (max-width: 860px) and (min-width: 521px) {
-        font-size: 11.5px;          // ← slightly smaller list text at tablet
+        font-size: 11.5px;          
         gap: 6px;
       }
 
@@ -417,7 +408,7 @@
         background-position: center;
 
         @media (max-width: 860px) and (min-width: 521px) {
-          width: 15px;              // ← smaller check icons at tablet
+          width: 15px;              
           height: 15px;
         }
 
