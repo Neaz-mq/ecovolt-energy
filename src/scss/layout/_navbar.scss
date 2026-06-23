@@ -1,7 +1,3 @@
-// ============================================
-// ECOVOLT — NAVBAR  |  ThemeForest Standard
-// ============================================
-
 .navbar {
   position: fixed;
   top: 0;
@@ -11,12 +7,12 @@
   opacity: 0;
   visibility: hidden;
   background: transparent;
-  border-bottom: 1px solid transparent; // ← ADD THIS (always present, invisible)
+  border-bottom: 1px solid transparent; 
   transition:
     opacity $dur-fast $ease-out,
     visibility $dur-fast $ease-out,
     background $dur-slow $ease-in-out,
-    border-color $dur-slow $ease-in-out, // ← already here, now it'll actually work
+    border-color $dur-slow $ease-in-out, 
     box-shadow $dur-slow $ease-in-out;
 
   // ── Scrolled state ────────────────────────
@@ -24,7 +20,7 @@
     background: rgba($clr-bg, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom-color: $clr-border-white; // ← CHANGE: only transition the color, not add the border
+    border-bottom-color: $clr-border-white; 
     box-shadow: $shadow-lg;
   }
 
@@ -382,7 +378,7 @@
       align-items: center;
       justify-content: space-between;
       flex-shrink: 0;
-      padding: $sp-6 48px $sp-5; // ← change 48px to your preferred side padding
+      padding: $sp-6 48px $sp-5; 
 
       @include respond(lg) {
         padding: $sp-4 44px;
