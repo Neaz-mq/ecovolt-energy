@@ -1,8 +1,3 @@
-/* ============================================================
-   IMPACT IN ACTION SECTION
-   src/scss/sections/_impact-action.scss
-   ============================================================ */
-
 .impact-action {
   background-color: #1e5b4d;
   position: relative;
@@ -25,7 +20,7 @@
   z-index: 1;
   max-width: 1250px;
   margin: 0 auto;
-  padding: 0 60px; /* matches comparison base */
+  padding: 0 60px; 
   display: flex;
   align-items: center;
   gap: 100px;
@@ -95,19 +90,11 @@
 .ia-ray-2 { animation: ray-blink 2s ease-in-out infinite 0.4s; }
 .ia-ray-3 { animation: ray-blink 2s ease-in-out infinite 0.8s; }
 
-/* ══════════════════════════════════════════════════════════════
-   RESPONSIVE — padding schedule mirrors comparison exactly:
-   base 60px → ≤1024px 48px → ≤860px 44px
-             → ≤580px 32px  → ≤480px 20px → ≤319px 12px
-══════════════════════════════════════════════════════════════ */
 
-/* ── Large tablets (≤1024px) — FIX: was ≤1100px causing mismatch
-   between 1025px–1100px where comparison held 60px but
-   impact-action had already dropped to 48px ──────────────── */
 @media (max-width: 1024px) {
   .impact-action__container {
     gap: 64px;
-    padding: 0 48px; /* matches comparison's ≤1024px padding */
+    padding: 0 48px; 
   }
 
   .impact-action__left {
@@ -129,7 +116,7 @@
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    padding: 0 44px; /* matches comparison's ≤860px padding */
+    padding: 0 44px; 
   }
 
   .impact-action__left {
@@ -178,7 +165,7 @@
   }
 
   .impact-action__container {
-    padding: 0 32px; /* matches comparison's ≤560px padding */
+    padding: 0 32px; 
     gap: 36px;
   }
 
@@ -256,7 +243,7 @@
 /* ── Small phones (≤480px) ─────────────────────────────────── */
 @media (max-width: 480px) {
   .impact-action__container {
-    padding: 0 20px; /* matches comparison's ≤480px padding */
+    padding: 0 20px; 
   }
 }
 
@@ -274,6 +261,6 @@
 /* ── Ultra-small phones (≤319px) ──────────────────────────── */
 @media (max-width: 319px) {
   .impact-action__container {
-    padding: 0 12px; /* matches comparison's ≤319px padding */
+    padding: 0 12px; 
   }
 }
