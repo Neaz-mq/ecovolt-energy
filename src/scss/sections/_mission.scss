@@ -1,7 +1,12 @@
 @use '../abstracts' as *;
+
+// ── Mission-specific tokens (TF: section tokens, not scattered inline)
+$clr-mission-blue:  #2e86c1; // "Scalable" card accent — no theme-wide token exists for this hue
+$clr-mission-fill:  #121214; // card interior fill, sits behind the rotating beam border
+
 .mission {
   position: relative;
-  background: #000000;
+  background: #000000; // intentional true black — distinct from $clr-bg (#050f0a)
   overflow: visible;
   padding: $sp-24 0 0;
 
@@ -19,10 +24,10 @@
   &::before {
     content: "";
     position: absolute;
-    top: -160px;
+    top: -160px; // TF: matches the height below, no spacing-scale equivalent at this magnitude — intentional
     left: 0;
     width: 100%;
-    height: 220px;
+    height: 220px; // TF: between $sp-40 (160px) and $sp-48 (192px), and above both — intentional, left off-grid
     background: linear-gradient(
       to bottom,
       transparent 0%,
@@ -30,7 +35,7 @@
       rgba(0, 0, 0, 0.85) 65%,
       #000000 100%
     );
-    z-index: 5;
+    z-index: $z-base + 5; // local: 5 — above page content, below the card layer
     pointer-events: none;
   }
 
@@ -38,7 +43,7 @@
   &__container {
     @include container;
     position: relative;
-    z-index: 6;
+    z-index: $z-base + 6; // local: 6 — above the top-shadow overlay (5)
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,7 +73,7 @@
   &__dots {
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: $z-base + 1; // local: 1 — above section background, below shadow/content layers
     pointer-events: none;
     overflow: hidden;
 
@@ -80,15 +85,15 @@
     }
 
     background-image:
-      radial-gradient(circle, rgba(#f4d03f, 0.75) 0%, transparent 60%),
-      radial-gradient(circle, rgba(#88c499, 0.65) 0%, transparent 60%),
-      radial-gradient(circle, rgba(#f4d03f, 0.55) 0%, transparent 60%),
-      radial-gradient(circle, rgba(#88c499, 0.5) 0%, transparent 60%),
-      radial-gradient(circle, rgba(#1e5b4d, 0.6) 0%, transparent 60%),
-      radial-gradient(circle, rgba(#88c499, 0.45) 0%, transparent 60%),
-      radial-gradient(circle, rgba(#2e86c1, 0.5) 0%, transparent 60%),
-      radial-gradient(circle, rgba(#1e5b4d, 0.45) 0%, transparent 60%),
-      radial-gradient(circle, rgba(#f4d03f, 0.55) 0%, transparent 60%);
+      radial-gradient(circle, rgba($clr-warning, 0.75) 0%, transparent 60%),
+      radial-gradient(circle, rgba($clr-ev-accent, 0.65) 0%, transparent 60%),
+      radial-gradient(circle, rgba($clr-warning, 0.55) 0%, transparent 60%),
+      radial-gradient(circle, rgba($clr-ev-accent, 0.5) 0%, transparent 60%),
+      radial-gradient(circle, rgba($clr-ev-primary, 0.6) 0%, transparent 60%),
+      radial-gradient(circle, rgba($clr-ev-accent, 0.45) 0%, transparent 60%),
+      radial-gradient(circle, rgba($clr-mission-blue, 0.5) 0%, transparent 60%),
+      radial-gradient(circle, rgba($clr-ev-primary, 0.45) 0%, transparent 60%),
+      radial-gradient(circle, rgba($clr-warning, 0.55) 0%, transparent 60%);
 
     background-size:
       3px 3px,
@@ -118,14 +123,14 @@
   // ── Header ───────────────────────────────
   &__header {
     text-align: center;
-    max-width: 720px;
+    max-width: 720px; // component-specific measure, not on the spacing scale
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: $sp-5;
 
     @include lg {
-      max-width: 640px;
+      max-width: 640px; // component-specific measure, not on the spacing scale
       gap: $sp-4;
     }
     @include sm {
@@ -140,33 +145,33 @@
   }
 
   &__title {
-    font-size: clamp(2.4rem, 4vw, 4rem);
+    font-size: clamp(2.4rem, 4vw, 4rem); // fluid heading — custom range, not on the static $fz scale
     font-weight: $fw-bold;
     color: $clr-white;
-    line-height: 1.15;
+    line-height: 1.15; // TF: between $lh-tight (1.1) and $lh-snug (1.3) — intentional, left off-grid
     letter-spacing: $ls-tight;
     margin: 0;
 
     @include lg {
-      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-size: clamp(2rem, 3.5vw, 3rem); // fluid heading override — custom range
     }
     @include sm {
-      font-size: clamp(2rem, 8vw, 2.8rem);
+      font-size: clamp(2rem, 8vw, 2.8rem); // fluid heading override — custom range
     }
   }
 
   &__intro {
-    font-size: clamp($fz-sm, 1.05vw, $fz-base);
+    font-size: clamp($fz-sm, 1.05vw, $fz-base); // fluid — bounded by exact-match tokens
     color: rgba($clr-white, 0.8);
-    line-height: 1.8;
-    max-width: 680px;
+    line-height: 1.8; // TF: above $lh-relaxed (1.7), below $lh-loose (2.0) — intentional, left off-grid
+    max-width: 680px; // component-specific measure, not on the spacing scale
     margin: 0;
 
     @include lg {
-      font-size: $fz-sm;
+      font-size: $fz-sm; // exact match
     }
     @include sm {
-      font-size: $fz-sm;
+      font-size: $fz-sm; // exact match
       max-width: 100%;
     }
   }
@@ -188,7 +193,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: $sp-6;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1200px; // component-specific layout width, not on the spacing scale
     margin: 0 auto;
 
     .mission__card[data-clone] {
@@ -202,7 +207,7 @@
     }
     @include md {
       grid-template-columns: repeat(2, 1fr);
-      max-width: 560px;
+      max-width: 560px; // component-specific layout width, not on the spacing scale
       gap: $sp-4;
     }
     @include sm {
@@ -214,7 +219,7 @@
       margin: 0;
       gap: $sp-3;
       padding: $sp-1 0;
-      animation: missionMarquee 22s linear infinite;
+      animation: missionMarquee 22s linear infinite; // TF: no exact $dur match — intentional, left off-grid
       will-change: transform;
 
       .mission__card[data-clone] {
@@ -265,7 +270,7 @@
       box-shadow $dur-base $ease-out;
 
     opacity: 0;
-    transform: translateY(32px);
+    transform: translateY($sp-8); // 32px — exact match
 
     &.is-visible {
       opacity: 1;
@@ -274,8 +279,8 @@
 
     &:nth-child(1) {
       transition:
-        opacity 0.7s $ease-out 0.08s,
-        transform 0.7s $ease-snap 0.08s,
+        opacity 0.7s $ease-out 0.08s, // TF: no exact $dur match — intentional, left off-grid
+        transform 0.7s $ease-snap 0.08s, // TF: no exact $dur match — intentional, left off-grid
         box-shadow $dur-base $ease-out;
     }
     &:nth-child(2) {
@@ -310,12 +315,12 @@
       height: 200%;
       top: -50%;
       left: -50%;
-      z-index: -1;
+      z-index: $z-below; // local: -1 — sits behind the card's own background/content
       opacity: 0;
-      transition: opacity 0.8s $ease-out;
+      transition: opacity 0.8s $ease-out; // TF: no exact $dur match — intentional, left off-grid
       pointer-events: none;
       will-change: transform;
-      animation: missionBeamRotate 8s linear infinite;
+      animation: missionBeamRotate 8s linear infinite; // TF: no exact $dur match — intentional, left off-grid
       background: conic-gradient(
         from 0deg,
         transparent 0deg,
@@ -360,13 +365,13 @@
       position: absolute;
       inset: 1px;
       border-radius: calc(#{$radius-xl} - 1px);
-      background: #121214;
-      z-index: -1;
+      background: $clr-mission-fill;
+      z-index: $z-below; // local: -1 — same layer as the beam pseudo, sits behind card content
       pointer-events: none;
     }
 
     &:hover {
-      transform: translateY(-4px);
+      transform: translateY(-4px); // small hover lift — distinct from $sp-1 (4px), a deliberate negative offset, not a spacing value
     }
 
     // ── lg: tighter card ──────────────────
@@ -381,60 +386,60 @@
       gap: $sp-4;
     }
 
-    // ── Accessible — #1E5B4D ──────────────
+    // ── Accessible ──────────────────────
     &[data-color="green"] {
       .mission__card-icon {
-        background: rgba(#1e5b4d, 0.22);
-        color: #1e5b4d;
+        background: rgba($clr-ev-primary, 0.22);
+        color: $clr-ev-primary;
       }
       .mission__card-name {
-        color: #1e5b4d;
+        color: $clr-ev-primary;
       }
     }
 
-    // ── Intelligent — #88C499 ─────────────
+    // ── Intelligent ─────────────────────
     &[data-color="teal"] {
       .mission__card-icon {
-        background: rgba(#88c499, 0.18);
-        color: #88c499;
+        background: rgba($clr-ev-accent, 0.18);
+        color: $clr-ev-accent;
       }
       .mission__card-name {
-        color: #88c499;
+        color: $clr-ev-accent;
       }
     }
 
-    // ── Affordable — #F4D03F ──────────────
+    // ── Affordable ──────────────────────
     &[data-color="warning"] {
       .mission__card-icon {
-        background: rgba(#f4d03f, 0.18);
-        color: #f4d03f;
+        background: rgba($clr-warning, 0.18);
+        color: $clr-warning;
       }
       .mission__card-name {
-        color: #f4d03f;
+        color: $clr-warning;
       }
     }
 
-    // ── Scalable — #2E86C1 ────────────────
+    // ── Scalable ────────────────────────
     &[data-color="blue"] {
       .mission__card-icon {
-        background: rgba(#2e86c1, 0.18);
-        color: #2e86c1;
+        background: rgba($clr-mission-blue, 0.18);
+        color: $clr-mission-blue;
       }
       .mission__card-name {
-        color: #2e86c1;
+        color: $clr-mission-blue;
       }
     }
 
     @include sm {
       flex: none;
-      width: 68vw;
+      width: 68vw; // viewport-relative card width, not on the spacing scale
       min-width: 68vw;
       padding: $sp-6 $sp-5 $sp-8;
       gap: $sp-3;
 
       @include reduced-motion {
         scroll-snap-align: start;
-        width: 76vw;
+        width: 76vw; // viewport-relative card width, not on the spacing scale
         min-width: 76vw;
 
         &:last-child {
@@ -446,9 +451,9 @@
 
   // ── Card Icon ─────────────────────────────
   &__card-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
+    width: 52px; // TF: between $sp-12 (48px) and a $sp-13 that doesn't exist — intentional, left off-grid
+    height: 52px; // TF: between $sp-12 (48px) and a $sp-13 that doesn't exist — intentional, left off-grid
+    border-radius: $radius-full;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -456,26 +461,26 @@
     @include transition(background);
 
     svg {
-      width: 22px;
-      height: 22px;
+      width: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+      height: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
     }
 
     @include lg {
-      width: 40px;
-      height: 40px;
+      width: $sp-10; // 40px — exact match
+      height: $sp-10; // 40px — exact match
 
       svg {
-        width: 17px;
-        height: 17px;
+        width: 17px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+        height: 17px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
       }
     }
     @include sm {
-      width: 40px;
-      height: 40px;
+      width: $sp-10; // 40px — exact match
+      height: $sp-10; // 40px — exact match
 
       svg {
-        width: 17px;
-        height: 17px;
+        width: 17px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+        height: 17px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
       }
     }
   }
@@ -512,19 +517,19 @@
   &__card-desc {
     font-size: $fz-base;
     color: rgba($clr-white, 0.7);
-    line-height: 1.7;
+    line-height: $lh-relaxed; // 1.7 — exact match
     font-weight: $fw-medium;
-    max-width: 160px;
+    max-width: 160px; // component-specific measure, not on the spacing scale
 
     @include lg {
       font-size: $fz-sm;
-      line-height: 1.6;
-      max-width: 140px;
+      line-height: 1.6; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
+      max-width: 140px; // component-specific measure, not on the spacing scale
     }
     @include sm {
       font-size: $fz-xs;
-      max-width: 180px;
-      line-height: 1.6;
+      max-width: 180px; // component-specific measure, not on the spacing scale
+      line-height: 1.6; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
     }
   }
 
@@ -540,11 +545,11 @@
     gap: $sp-3;
     text-align: center;
     padding: $sp-20 $sp-6 clamp(160px, 12vw, 220px);
-    background: #000000;
+    background: #000000; // intentional true black — matches the section background
     overflow: visible;
-    z-index: 4;
+    z-index: $z-base + 4; // local: 4 — above background/dots layers, below the container content (6)
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY($sp-5); // 20px — exact match
 
     &.is-visible {
       opacity: 1;
@@ -569,7 +574,7 @@
   &__quote-waves {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: $z-base; // local: 0
     pointer-events: none;
 
     svg {
@@ -583,23 +588,23 @@
 
   &__quote-mark {
     position: relative;
-    z-index: 1;
+    z-index: $z-base + 1; // local: 1 — above the quote-waves layer (0)
     display: block;
     margin-bottom: $sp-2;
     opacity: 1;
     user-select: none;
-    transform: skewX(-12deg);
+    transform: skewX(-12deg); // decorative glyph skew, not a spacing/scale value
   }
 
   &__quote-text {
     position: relative;
-    z-index: 1;
-    max-width: 680px;
+    z-index: $z-base + 1; // local: 1 — same layer as the quote mark
+    max-width: 680px; // component-specific measure, not on the spacing scale
     padding: 0 $sp-6;
     font-size: clamp($fz-base, 2vw, $fz-xl);
     font-style: italic;
     color: rgba($clr-white, 0.9);
-    line-height: 1.7;
+    line-height: $lh-relaxed; // 1.7 — exact match
     margin: 0;
 
     @include sm {
@@ -611,9 +616,9 @@
   // ── Bottom wave divider ───────────────────────────────────────────────
   &__wave {
     position: absolute;
-    bottom: -2px;
+    bottom: -2px; // subpixel seam fix — intentionally not on the spacing grid, matches the pattern used in impact/measurable
     left: 0;
-    z-index: 3;
+    z-index: $z-base + 3; // local: 3 — above the quote layer's background, below container content
     width: 100%;
     line-height: 0;
     display: block;
@@ -624,10 +629,10 @@
     svg {
       display: block;
       width: 100%;
-      height: 181px;
+      height: 181px; // TF: between $sp-40 (160px) and $sp-48 (192px) — intentional, left off-grid
 
       @include sm {
-        height: 111px;
+        height: 111px; // TF: between $sp-24 (96px) and $sp-28 (112px), just under the latter — intentional, left off-grid
       }
     }
   }
