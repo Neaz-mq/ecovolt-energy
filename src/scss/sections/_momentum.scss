@@ -18,20 +18,20 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
     top: -8px;
     left: 0;
     width: 100%;
-    height: $sp-4; // 16px — exact match
+    height: $sp-4; // 16px 
     background: $clr-momentum-bg;
-    z-index: $z-base + 1; // local: 1
+    z-index: $z-base + 1; 
     pointer-events: none;
   }
 
   /* ── Container ─────────────────────────────────────────────── */
   &__container {
-    max-width: 1250px; // component-specific layout width, not on the spacing scale
+    max-width: 1250px; 
     margin-inline: auto;
-    padding-inline: 60px; // TF: between $sp-14 (56px) and $sp-16 (64px) — intentional, left off-grid
+    padding-inline: 60px; 
     display: flex;
     flex-direction: column;
-    gap: 52px; // TF: between $sp-12 (48px) and $sp-14 (56px) — intentional, left off-grid
+    gap: 52px; 
   }
 
   /* ── Header ────────────────────────────────────────────────── */
@@ -40,12 +40,12 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
   }
 
   &__title {
-    font-size: clamp(1.5rem, 4vw, 3rem); // fluid heading — custom range, not on the static $fz scale
+    font-size: clamp(1.5rem, 4vw, 3rem); 
     font-weight: $fw-extrabold;
-    line-height: 1.2; // TF: between $lh-tight (1.1) and $lh-snug (1.3) — intentional, left off-grid
+    line-height: 1.2; 
     color: $clr-ev-primary;
     margin: 0;
-    letter-spacing: -0.02em; // TF: between $ls-tight (-0.03em) and $ls-normal (0em) — intentional, left off-grid
+    letter-spacing: -0.02em; 
   }
 
   &__title-accent {
@@ -56,54 +56,53 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
   &__stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: $sp-4; // 16px — exact match
+    gap: $sp-4; // 16px 
   }
 
   &__stat-card {
-    background: #ffffff; // intentional white card on the section's tinted $clr-momentum-bg
+    background: #ffffff; 
     border: 1px solid rgba($clr-ev-accent, 0.18);
-    border-radius: 16px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
-    padding: $sp-6 $sp-5; // 24px 20px — exact matches
+    border-radius: 16px; 
+    padding: $sp-6 $sp-5; // 24px 20px 
     display: flex;
     align-items: flex-start;
-    gap: $sp-4; // 16px — exact match
+    gap: $sp-4; // 16px 
     transition:
-      box-shadow 0.25s ease, // TF: no exact $dur match (between $dur-base 250ms and $dur-slow 400ms, just over $dur-base) — intentional, left off-grid
-      transform 0.25s ease; // TF: no exact $dur match — intentional, left off-grid
-
+      box-shadow 0.25s ease, 
+      transform 0.25s ease; 
     &:hover {
-      box-shadow: 0 8px 32px rgba($clr-ev-primary, 0.1); // exact rgb match for #1e5b4d
-      transform: translateY(-2px); // small hover lift, not on the spacing scale
+      box-shadow: 0 8px 32px rgba($clr-ev-primary, 0.1); 
+      transform: translateY(-2px); 
     }
   }
 
   &__stat-icon {
     flex-shrink: 0;
-    width: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
-    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
-    border-radius: 12px; // TF: between $radius-md (8px) and $radius-lg (14px) — intentional, left off-grid
+    width: 44px; 
+    height: 44px; 
+    border-radius: 12px; 
     background: rgba($clr-ev-accent, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
 
     svg {
-      width: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
-      height: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+      width: 22px; 
+      height: 22px; 
     }
   }
 
   &__stat-body {
     display: flex;
     flex-direction: column;
-    gap: 2px; // TF: below $sp-1 (4px) — intentional, left off-grid
+    gap: 2px; 
   }
 
   &__stat-num {
-    font-size: $fz-base; // 1rem — exact match
+    font-size: $fz-base; 
     font-weight: $fw-extrabold;
     color: $clr-ev-primary;
-    line-height: 1.3; // exact match to $lh-snug
+    line-height: 1.3; 
 
     sub {
       font-size: 0.65em;
@@ -114,31 +113,31 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
   }
 
   &__stat-label {
-    font-size: $fz-base; // 1rem — exact match
+    font-size: $fz-base; 
     font-weight: $fw-bold;
     color: $clr-ev-primary;
-    line-height: 1.3; // exact match to $lh-snug
+    line-height: 1.3; 
   }
 
   &__stat-desc {
-    font-size: 0.82rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.82rem; 
     color: $clr-momentum-text-body;
     font-weight: $fw-medium;
-    line-height: $lh-normal; // 1.5 — exact match
-    margin: $sp-1 0 0; // 4px — exact match
+    line-height: $lh-normal; 
+    margin: $sp-1 0 0; // 4px 
   }
 
   /* ── Testimonial card ──────────────────────────────────────── */
   &__testimonial {
     background: $clr-ev-primary;
-    border-radius: 20px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
-    padding: $sp-12 52px; // 48px exact match; 52px — TF: between $sp-12 (48px) and $sp-14 (56px) — intentional, left off-grid
+    border-radius: 20px;
+    padding: $sp-12 52px; 
     display: flex;
     align-items: center;
-    gap: $sp-12; // 48px — exact match
+    gap: $sp-12; // 48px 
     overflow: hidden;
     position: relative;
-    min-height: 220px; // TF: above $sp-40 (160px) and $sp-48 (192px) — intentional, left off-grid
+    min-height: 220px; 
   }
 
   &__testimonial-left {
@@ -146,51 +145,51 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: $sp-6; // 24px — exact match
+    gap: $sp-6; // 24px 
     position: relative;
-    z-index: $z-base + 1; // local: 1
+    z-index: $z-base + 1; 
   }
 
   /* ── Quote icon + text inline row ──────────────────────────── */
   &__quote-icon-row {
     display: flex;
     align-items: flex-start;
-    gap: $sp-3; // 12px — exact match
+    gap: $sp-3; // 12px
   }
 
   &__quote-mark {
     flex-shrink: 0;
-    line-height: 1; // intentionally tighter than $lh-tight (1.1) for a tight decorative glyph
-    font-size: 5.5rem; // decorative glyph size, not on the $fz scale
-    font-weight: 900; // TF: above $fw-extrabold (800) — intentional, left off-grid (no $fw-black token exists)
+    line-height: 1; 
+    font-size: 5.5rem; 
+    font-weight: 900; 
     color: $clr-ev-accent;
     font-family: Georgia, "Times New Roman", serif;
-    letter-spacing: -0.05em; // TF: beyond $ls-tight (-0.03em) — intentional, left off-grid
+    letter-spacing: -0.05em; 
   }
 
   &__quote-text {
     flex: 1;
     min-width: 0;
-    max-width: 450px; // component-specific measure, not on the spacing scale
-    font-size: 1.15rem; // TF: between $fz-base (1rem) and $fz-md (1.25rem) — intentional, left off-grid
+    max-width: 450px; 
+    font-size: 1.15rem; 
     font-weight: $fw-medium;
-    line-height: 1.65; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
+    line-height: 1.65; 
     color: rgba(255, 255, 255, 0.92);
     margin: 0;
     font-style: normal;
-    padding-top: 6px; // TF: between $sp-1 (4px) and $sp-2 (8px) — intentional, left off-grid
+    padding-top: 6px; 
   }
 
   /* ── Author ─────────────────────────────────────────────────── */
   &__author {
     display: flex;
     align-items: center;
-    gap: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+    gap: 14px; 
   }
 
   &__author-avatar {
-    width: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
-    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    width: 44px; 
+    height: 44px;
     border-radius: $radius-full;
     background: rgba($clr-ev-accent, 0.2);
     border: 1.5px solid rgba($clr-ev-accent, 0.4);
@@ -200,31 +199,31 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
     justify-content: center;
 
     svg {
-      width: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
-      height: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+      width: 22px; 
+      height: 22px; 
     }
   }
 
   &__author-info {
     display: flex;
     flex-direction: column;
-    gap: 3px; // TF: below $sp-1 (4px) — intentional, left off-grid
+    gap: 3px; 
   }
 
   &__author-name {
-    font-size: 0.95rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.95rem; 
     font-weight: $fw-bold;
-    color: #ffffff; // intentional pure white on the $clr-ev-primary testimonial card
+    color: #ffffff; 
   }
 
   &__author-role {
-    font-size: $fz-sm; // 0.80rem — exact match
+    font-size: $fz-sm; 
     color: rgba($clr-ev-accent, 0.85);
   }
 
   /* ── Illustration ───────────────────────────────────────────── */
   &__testimonial-right {
-    flex: 0 0 300px; // component-specific layout width, not on the spacing scale
+    flex: 0 0 300px; 
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -234,18 +233,18 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
 
   &__illustration {
     width: 100%;
-    max-width: 300px; // component-specific layout width, not on the spacing scale
+    max-width: 300px; 
     height: auto;
-    border-radius: 12px; // TF: between $radius-md (8px) and $radius-lg (14px) — intentional, left off-grid
+    border-radius: 12px; 
     object-fit: cover;
     display: block;
   }
 
   /* ── Large tablets (≤1024px) ──────────────────────────────── */
-  @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px)
+  @media (max-width: 1024px) { 
     .momentum__container {
-      padding-inline: $sp-12; // 48px — exact match
-      gap: $sp-10; // 40px — exact match
+      padding-inline: $sp-12; // 48px 
+      gap: $sp-10; // 40px 
     }
 
     .momentum__stats {
@@ -253,35 +252,35 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
     }
 
     .momentum__testimonial {
-      padding: $sp-10 $sp-9; // 40px 36px — exact matches
-      gap: $sp-8; // 32px — exact match
+      padding: $sp-10 $sp-9; // 40px 36px 
+      gap: $sp-8; // 32px 
     }
 
     .momentum__testimonial-right {
-      flex: 0 0 260px; // component-specific layout width, not on the spacing scale
+      flex: 0 0 260px; 
     }
 
     .momentum__illustration {
-      max-width: 260px; // component-specific layout width, not on the spacing scale
+      max-width: 260px; 
     }
   }
 
   /* ── Tablets (≤860px) ─────────────────────────────────────── */
-  @media (max-width: 860px) { // TF: between $bp-md (768px) and $bp-lg (992px)
+  @media (max-width: 860px) { 
     & {
-      padding: 60px 0 72px; // TF: 60px between $sp-14 (56px)/$sp-16 (64px); 72px between $sp-16 (64px)/$sp-20 (80px) — intentional, left off-grid
+      padding: 60px 0 72px; 
     }
 
     .momentum__container {
-      padding-inline: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
-      gap: $sp-9; // 36px — exact match
+      padding-inline: 44px; 
+      gap: $sp-9; // 36px 
     }
 
     .momentum__testimonial {
       flex-direction: row;
       align-items: center;
-      padding: $sp-9 $sp-8; // 36px 32px — exact matches
-      gap: $sp-6; // 24px — exact match
+      padding: $sp-9 $sp-8; // 36px 32px 
+      gap: $sp-6; // 24px 
       min-height: unset;
     }
 
@@ -293,77 +292,77 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
 
     .momentum__testimonial-right {
       display: flex;
-      flex: 0 0 200px; // component-specific layout width, not on the spacing scale
+      flex: 0 0 200px; 
       align-items: center;
       justify-content: flex-end;
     }
 
     .momentum__illustration {
-      max-width: 200px; // component-specific layout width, not on the spacing scale
-      border-radius: $radius-md; // 8px — exact match
+      max-width: 200px; 
+      border-radius: $radius-md; // 8px 
       opacity: 0.85;
     }
   }
 
   /* ── Large phones (≤640px) ────────────────────────────────── */
-  @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px)
+  @media (max-width: 640px) { 
     & {
       padding: $sp-12 0 $sp-14; // 48px exact match; 56px exact match ($sp-14)
     }
 
     .momentum__container {
-      padding-inline: $sp-8; // 32px — exact match
-      gap: $sp-6; // 24px — exact match
+      padding-inline: $sp-8; // 32px 
+      gap: $sp-6; // 24px 
     }
 
     .momentum__title {
-      font-size: clamp(1.4rem, 6vw, 1.9rem); // fluid heading override — custom range
+      font-size: clamp(1.4rem, 6vw, 1.9rem); 
     }
 
     .momentum__stats {
       grid-template-columns: 1fr 1fr;
-      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+      gap: 10px; 
     }
 
     .momentum__stat-card {
-      padding: $sp-4 14px; // 16px exact match; 14px — TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
-      gap: $sp-3; // 12px — exact match
+      padding: $sp-4 14px; 
+      gap: $sp-3; // 12px 
       flex-direction: row;
       align-items: flex-start;
-      border-radius: 12px; // TF: between $radius-md (8px) and $radius-lg (14px) — intentional, left off-grid
+      border-radius: 12px; 
     }
 
     .momentum__stat-icon {
-      width: $sp-9; // 36px — exact match
-      height: $sp-9; // 36px — exact match
-      border-radius: 10px; // TF: between $radius-md (8px) and $radius-lg (14px) — intentional, left off-grid
+      width: $sp-9; // 36px
+      height: $sp-9; // 36px
+      border-radius: 10px; 
       flex-shrink: 0;
 
       svg {
-        width: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
-        height: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+        width: 18px; 
+        height: 18px; 
       }
     }
 
     .momentum__stat-num {
-      font-size: 0.9rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+      font-size: 0.9rem; 
     }
 
     .momentum__stat-label {
-      font-size: 0.9rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+      font-size: 0.9rem; 
     }
 
     .momentum__stat-desc {
-      font-size: 0.78rem; // TF: just under $fz-sm (0.80rem) — intentional, left off-grid
+      font-size: 0.78rem; 
     }
 
     /* ── Testimonial: image as background ───────────────────────── */
     .momentum__testimonial {
       flex-direction: column;
       align-items: flex-start;
-      padding: $sp-7 $sp-6; // 28px 24px — exact matches
-      border-radius: 16px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
-      gap: $sp-5; // 20px — exact match
+      padding: $sp-7 $sp-6; // 28px 24px
+      border-radius: 16px; 
+      gap: $sp-5; // 20px 
       min-height: unset;
       position: relative;
       overflow: hidden;
@@ -372,9 +371,9 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
     .momentum__testimonial-left {
       flex: none;
       width: 100%;
-      gap: $sp-5; // 20px — exact match
+      gap: $sp-5; // 20px 
       position: relative;
-      z-index: $z-base + 2; // local: 2 — above the background illustration (1)
+      z-index: $z-base + 2; 
     }
 
     /* image stretched as subtle background */
@@ -382,7 +381,7 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
       display: block;
       position: absolute;
       inset: 0;
-      z-index: $z-base + 1; // local: 1
+      z-index: $z-base + 1; 
       flex: none;
     }
 
@@ -398,58 +397,58 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
     }
 
     .momentum__quote-icon-row {
-      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+      gap: 10px; 
     }
 
     .momentum__quote-mark {
-      font-size: 3rem; // decorative glyph size, not on the $fz scale
+      font-size: 3rem; 
     }
 
     .momentum__quote-text {
-      font-size: 0.9rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
-      line-height: $lh-relaxed; // 1.7 — exact match
+      font-size: 0.9rem; 
+      line-height: $lh-relaxed; 
       max-width: 100%;
-      margin-top: -6px; // small negative offset, not on the spacing scale
+      margin-top: -6px; 
     }
 
     .momentum__author {
-      gap: $sp-3; // 12px — exact match
+      gap: $sp-3; // 12px 
     }
 
     .momentum__author-avatar {
-      width: $sp-10; // 40px — exact match
-      height: $sp-10; // 40px — exact match
+      width: $sp-10; // 40px 
+      height: $sp-10; // 40px 
 
       svg {
-        width: $sp-5; // 20px — exact match
-        height: $sp-5; // 20px — exact match
+        width: $sp-5; // 20px 
+        height: $sp-5; // 20px 
       }
     }
 
     .momentum__author-name {
-      font-size: 0.85rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+      font-size: 0.85rem; 
     }
 
     .momentum__author-role {
-      font-size: 0.75rem; // TF: just under $fz-sm (0.80rem) — intentional, left off-grid
+      font-size: 0.75rem; 
     }
   }
 
   /* ── Small phones (≤480px) ─────────────────────────────────── */
   @include xs {
     .momentum__container {
-      padding-inline: $sp-5; // 20px — exact match
+      padding-inline: $sp-5; // 20px 
     }
 
     .momentum__title {
-      font-size: clamp(1.3rem, 7vw, 1.6rem); // fluid heading override — custom range
+      font-size: clamp(1.3rem, 7vw, 1.6rem); 
     }
   }
 
   /* ── Single-column stats (≤400px) ─────────────────────────── */
-  @media (max-width: 400px) { // TF: below $bp-xs (480px), no defined breakpoint at this width — intentional, left off-grid
+  @media (max-width: 400px) { 
     .momentum__container {
-      padding-inline: $sp-5; // 20px — exact match
+      padding-inline: $sp-5; // 20px 
     }
 
     .momentum__stats {
@@ -463,9 +462,9 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
   }
 
   /* ── Ultra-small phones (≤319px) ──────────────────────────── */
-  @media (max-width: 319px) { // TF: below every defined breakpoint — intentional, left off-grid
+  @media (max-width: 319px) { 
     .momentum__container {
-      padding-inline: $sp-3; // 12px — exact match
+      padding-inline: $sp-3; // 12px 
     }
   }
 }
