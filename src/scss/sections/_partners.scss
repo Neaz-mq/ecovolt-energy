@@ -1,24 +1,24 @@
 @use '../abstracts' as *;
 
 .partners {
-  background: #ffffff;
-  padding: 68px 0 32px;
-  margin: 0;                 
-  margin-top: -4px;         
+  background: $clr-ev-bg;
+  padding: 68px 0 32px; // TF: 68px between $sp-16 (64px) and $sp-20 (80px); 32px — exact match ($sp-8)
+  margin: 0;
+  margin-top: -4px; // subpixel seam fix — intentionally not on the spacing grid
   overflow: hidden;
   position: relative;
-  z-index: 6;
+  z-index: $z-base + 6; // local: 6
 
   // ── Cover any subpixel gap from smartgrid wave ────────────────────────
   &::before {
     content: "";
     position: absolute;
-    top: -20px;
+    top: -20px; // TF: matches the height below, no spacing-scale equivalent at this magnitude — intentional
     left: 0;
     width: 100%;
-    height: 40px;
-    background: #ffffff;
-    z-index: 1;
+    height: $sp-10; // 40px — exact match
+    background: $clr-ev-bg;
+    z-index: $z-base + 1; // local: 1
     pointer-events: none;
   }
 
@@ -26,19 +26,19 @@
   &__label {
     display: block;
     text-align: center;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    color: #aaaaaa;
-    margin-bottom: 32px;
+    font-size: $fz-base; // 1rem (16px) — exact match
+    font-weight: $fw-regular;
+    letter-spacing: 0.04em; // TF: between $ls-normal (0em) and $ls-wide (0.05em) — intentional, left off-grid
+    color: #aaaaaa; // TF: no token match — $clr-muted/$clr-muted-light are green-tinted (rgba(178,210,190,...)), not a neutral grey like this; kept literal
+    margin-bottom: $sp-8; // 32px — exact match
   }
 
   // ── Track wrapper — centered, constrained ─────────────────────────────
   &__track-wrapper {
     position: relative;
     overflow: hidden;
-    max-width: 860px;
-    margin: 0 auto;
+    max-width: 860px; // component-specific layout width, not on the spacing scale
+    margin-inline: auto;
 
     // ── Edge fade masks ──────────────────────
     &::before,
@@ -47,26 +47,24 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 100px;
-      z-index: 2;
+      width: 100px; // TF: between $sp-24 (96px) and $sp-28 (112px) — intentional, left off-grid
+      z-index: $z-base + 2; // local: 2
       pointer-events: none;
     }
-
     &::before {
       left: 0;
       background: linear-gradient(
         to right,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
+        rgba($clr-ev-bg, 1) 0%,
+        rgba($clr-ev-bg, 0) 100%
       );
     }
-
     &::after {
       right: 0;
       background: linear-gradient(
         to left,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 0) 100%
+        rgba($clr-ev-bg, 1) 0%,
+        rgba($clr-ev-bg, 0) 100%
       );
     }
   }
@@ -75,7 +73,7 @@
   &__track {
     display: flex;
     width: max-content;
-    animation: partners-marquee 20s linear infinite;
+    animation: partners-marquee 20s linear infinite; // TF: no exact $dur match — intentional, left off-grid
 
     &:hover {
       animation-play-state: paused;
@@ -99,25 +97,25 @@
   &__item {
     display: flex;
     align-items: center;
-    padding: 0 56px;
+    padding: 0 $sp-14; // 56px — exact match
 
     @include sm {
-      padding: 0 28px;
+      padding: 0 $sp-7; // 28px — exact match
     }
   }
 
   // ── Brand name text ───────────────────────
   &__name {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    color: #565555;
+    font-size: 1.125rem; // TF: between $fz-base (1rem) and $fz-md (1.25rem) — intentional, left off-grid; unit normalized from px to rem to match the rest of the theme
+    font-weight: $fw-semibold;
+    letter-spacing: 0.01em; // TF: between $ls-normal (0em) and $ls-wide (0.05em) — intentional, left off-grid
+    color: #565555; // TF: no token match — $clr-muted/$clr-muted-light are green-tinted, not a neutral grey like this; kept literal
     white-space: nowrap;
-    transition: color 0.3s ease;
+    transition: color 0.3s $ease-out; // FIX: kept the $ease-out token (matches the hover pattern elsewhere in the theme); TF: 0.3s has no exact $dur match (between $dur-base 250ms and $dur-slow 400ms) — intentional, left off-grid
   }
 
   &__item:hover &__name {
-    color: #555555;
+    color: $clr-ev-primary; // FIX: was #555555 — a one-digit-off typo nearly identical to the base color (#565555), so hover produced no visible change. Darkened to the brand accent instead, matching the hover pattern used elsewhere in the theme (measurable__slide-card, momentum__stat-card)
   }
 }
 
