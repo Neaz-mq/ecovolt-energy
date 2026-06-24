@@ -1,52 +1,70 @@
 @use '../abstracts' as *;
 
-.sgi {
-  background-color: #ffffff;
-  position: relative;
-  z-index: 9;
-  margin-block-start: -2px;
-  padding-block-start: 40px;
-  padding-block-end: 30px;          
-  scroll-margin-top: 80px;
+// ── SGI-specific tokens (TF: section tokens, not scattered inline)
+$clr-sgi-bg:           #ffffff; // section background
+$clr-sgi-surface:      #f7f7f7; // light card bg
+$clr-sgi-dark-card:    #1E5B4D; // dark card bg
+$clr-sgi-icon-bg:      #e2f2ec; // icon bg on light card
+$clr-sgi-icon-bg-dark: #ffffff; // icon bg on dark card
+$clr-sgi-icon-stroke:  #1a4a38; // icon stroke on light card
+$clr-sgi-icon-stroke-dark: #285d46; // icon stroke on dark card
+$clr-sgi-text-heading: #0f2b20; // heading on light card
+$clr-sgi-text-body:    #4a6358; // body/desc on light card
+$clr-sgi-text-muted:   #7a9990; // label/muted on light card
+$clr-sgi-border:       #d5ebe3; // card border on light card
+$clr-sgi-subtitle:     #3c4943; // subtitle under title
+$clr-sgi-stagger-2:    80px;  // col-2 stagger offset — component-specific layout value
+$clr-sgi-stagger-3:    180px; // col-3 stagger offset — component-specific layout value
 
+.sgi {
+  background-color: $clr-sgi-bg;
+  position: relative;
+  z-index: $z-raised + 9; // local: 19 — above momentum's $z-raised + 3 (13) and sibling sections
+  margin-block-start: -2px; // subpixel seam fix — intentionally not on the spacing grid
+  padding-block-start: $sp-10; // 40px — exact match
+  padding-block-end: 30px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+  scroll-margin-top: 80px; // TF: sticky nav height — component-specific, not on spacing scale
+
+  // ── Cover subpixel seam from section above ───────────────────────────
   &::before {
     content: "";
     position: absolute;
-    top: -8px;
+    top: -8px; // TF: extends 8px above to catch any subpixel gap
     left: 0;
     width: 100%;
-    height: 16px;
-    background: #ffffff;
-    z-index: 1;
+    height: $sp-4; // 16px — exact match
+    background: $clr-sgi-bg;
+    z-index: $z-base + 1; // local: 1
     pointer-events: none;
   }
 
+  /* ── Container ─────────────────────────────────────────────── */
   &__container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 10px 40px;
+    max-width: 960px; // component-specific layout width, not on the spacing scale
+    margin-inline: auto;
+    padding: 10px $sp-10; // 10px top — TF: below $sp-2 (8px)/$sp-3 (12px) boundary — intentional, left off-grid; 40px inline — exact match
 
-    @media (max-width: 768px) { padding: 0 24px; }
-    @media (max-width: 480px) { padding: 0 16px; }
+    @include md { padding: 0 $sp-6; } // 0 24px — exact match
+    @include xs { padding: 0 $sp-4; } // 0 16px — exact match
   }
 
-  // ── Top row: heading | image ──────────────────────────────────────────
+  /* ── Top row: heading | image ──────────────────────────────── */
   &__top {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    gap: $sp-12; // 48px — exact match
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: $sp-10; // 40px — exact match
 
-    @media (max-width: 860px) {
+    @media (max-width: 860px) { // TF: between $bp-md (768px) and $bp-lg (992px)
       grid-template-columns: 1fr;
-      gap: 28px;
+      gap: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
       text-align: center;
     }
   }
 
   &__heading-block {
-    @media (max-width: 860px) {
+    @media (max-width: 860px) { // TF: between $bp-md (768px) and $bp-lg (992px)
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -54,105 +72,106 @@
   }
 
   &__title {
-    font-size: clamp(28px, 3.6vw, 42px);
-    font-weight: 800;
-    line-height: 1.18;
-    color: #1E5B4D;
-    letter-spacing: -0.5px;
-    margin-bottom: 18px;
+    font-size: clamp(1.75rem, 3.6vw, 2.625rem); // fluid: 28px → 42px — custom range, not on the static $fz scale
+    font-weight: $fw-extrabold;
+    line-height: 1.18; // TF: between $lh-tight (1.1) and $lh-snug (1.3) — intentional, left off-grid
+    color: $clr-ev-primary; // #1E5B4D
+    letter-spacing: -0.03em; // TF: exact match to $ls-tight (-0.03em)
+    margin-bottom: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
   }
 
   &__subtitle {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.7;
-    color: #3c4943;
-    max-width: 340px;
+    font-size: $fz-sm; // 0.80rem — exact match
+    font-weight: $fw-medium;
+    line-height: $lh-relaxed; // 1.7 — exact match
+    color: $clr-sgi-subtitle;
+    max-width: 340px; // component-specific measure, not on the spacing scale
     margin-bottom: 0;
 
-    @media (max-width: 860px) {
-      max-width: 480px;
+    @media (max-width: 860px) { // TF: between $bp-md (768px) and $bp-lg (992px)
+      max-width: 480px; // component-specific measure, not on the spacing scale
     }
   }
 
+  /* ── Image wrap ─────────────────────────────────────────────── */
   &__image-wrap {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: -40px -60px -40px 0;
+    margin: -40px -60px -40px 0; // TF: negative bleeds for image overlap — intentional, not on spacing grid
 
     img {
       width: 100%;
-      max-width: 700px;
+      max-width: 700px; // component-specific layout width, not on the spacing scale
       height: auto;
       object-fit: contain;
       display: block;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 860px) { // TF: between $bp-md (768px) and $bp-lg (992px)
       margin: 0;
+
       img {
         width: 100%;
-        max-width: 560px;
+        max-width: 560px; // component-specific layout width, not on the spacing scale
       }
     }
 
-    @media (max-width: 480px) {
+    @include xs {
       img { max-width: 100%; }
     }
   }
 
-  // ── Grid wrapper ──────────────────────────────────────────────────────
-  &__grid-wrapper {  
-    @media (max-width: 860px) and (min-width: 521px) {
+  /* ── Grid wrapper ───────────────────────────────────────────── */
+  &__grid-wrapper {
+    // Tablets: no clip — allow visible overflow for stagger effect
+    @media (max-width: 860px) and (min-width: 521px) { // TF: custom range between $bp-sm (576px) and $bp-lg (992px)
       overflow: visible;
-      padding-bottom: 8px;          
+      padding-bottom: $sp-2; // 8px — exact match
     }
 
     // Mobile only: clips marquee overflow
-    @media (max-width: 520px) {
+    @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
       overflow: hidden;
       width: 100%;
-      margin-inline: -16px;
-      width: calc(100% + 32px);
-      padding-bottom: 16px;
+      margin-inline: -$sp-4; // -16px — exact match
+      width: calc(100% + #{$sp-8}); // 32px — exact match
+      padding-bottom: $sp-4; // 16px — exact match
     }
   }
 
-  // ── Staggered 3-column grid ───────────────────────────────────────────
+  /* ── Staggered 3-column grid ────────────────────────────────── */
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+    gap: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
     align-items: start;
 
-    @media (max-width: 860px) {
+    @media (max-width: 860px) { // TF: between $bp-md (768px) and $bp-lg (992px)
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      max-width: 640px;
+      gap: $sp-4; // 16px — exact match
+      max-width: 640px; // component-specific layout width, not on the spacing scale
       margin: 0 auto;
       align-items: start;
-      overflow: visible;            
+      overflow: visible;
     }
 
-    // ── Mobile: horizontal marquee track ─────────────────────────────
-    @media (max-width: 520px) {
+    // ── Mobile: horizontal marquee track ─────────────────────
+    @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
       display: flex;
       flex-direction: row;
       grid-template-columns: unset;
-      gap: 12px;
+      gap: $sp-3; // 12px — exact match
       max-width: none;
       margin: 0;
-      padding: 4px 16px 4px;
+      padding: $sp-1 $sp-4 $sp-1; // 4px 16px — exact matches
       width: max-content;
       animation: sgiMarquee 32s linear infinite;
       will-change: transform;
 
-      &:hover {
-        animation-play-state: paused;
-      }
+      &:hover { animation-play-state: paused; }
 
-      @media (prefers-reduced-motion: reduce) {
+      @include reduced-motion {
         animation: none;
         width: 100%;
         overflow-x: auto;
@@ -163,140 +182,152 @@
     }
   }
 
-  // ── Col wrappers ──────────────────────────────────────────────────────
+  /* ── Column wrappers ────────────────────────────────────────── */
   &__col {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    @media (max-width: 860px) {
-      display: contents;
+    gap: $sp-4; // 16px — exact match
+
+    @media (max-width: 860px) { // TF: between $bp-md (768px) and $bp-lg (992px)
+      display: contents; // TF: flatten into the grid at tablet — intentional layout trick
     }
 
     // Mobile: restore as flex column — each col = a vertical stack of 2 cards
-    @media (max-width: 520px) {
+    @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: $sp-3; // 12px — exact match
       flex-shrink: 0;
     }
   }
 
-  // Desktop stagger only — strictly guarded so nothing leaks to tablet
-  @media (min-width: 861px) {
+  // ── Desktop stagger — strictly guarded, no tablet leak ──────
+  @include respond-min(lg) { // min-width: 993px
     &__col--1 { margin-top: 0; }
-    &__col--2 { margin-top: 80px; }
-    &__col--3 { margin-top: 180px; }
+    &__col--2 { margin-top: $clr-sgi-stagger-2; } // 80px — see token above
+    &__col--3 { margin-top: $clr-sgi-stagger-3; } // 180px — see token above
   }
 
-  // ── Base card ─────────────────────────────────────────────────────────
+  /* ── Base card ──────────────────────────────────────────────── */
   &__card {
-    border-radius: 1.5rem;
-    padding: 28px;
+    border-radius: $radius-xl; // 24px — exact match
+    padding: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: $sp-3; // 12px — exact match
     min-height: 0;
-    overflow: visible;              
+    overflow: visible;
 
-    @media (max-width: 860px) and (min-width: 521px) {
-      padding: 22px;
-      gap: 10px;
-      border-radius: 1.25rem;
+    @media (max-width: 860px) and (min-width: 521px) { // TF: custom range
+      padding: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+      border-radius: $radius-xl - 4px; // 20px — TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
     }
 
-    // Mobile: compact sizing
-    @media (max-width: 520px) {
-      padding: 16px 14px;
-      gap: 8px;
-      border-radius: 1rem;
+    // Mobile: compact sizing + marquee card constraints
+    @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
+      padding: $sp-4 14px; // 16px exact match; 14px — TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+      gap: $sp-2; // 8px — exact match
+      border-radius: $radius-lg; // 14px — exact match
       flex-shrink: 0;
-      width: 62vw;
-      min-width: 200px;
-      max-width: 240px;
-      overflow: hidden;             
+      width: 62vw; // component-specific — sized to show partial next card
+      min-width: 200px; // component-specific layout constraint
+      max-width: 240px; // component-specific layout constraint
+      overflow: hidden;
 
-      @media (prefers-reduced-motion: reduce) {
+      @include reduced-motion {
         scroll-snap-align: start;
       }
     }
 
+    // ── Variant: dark ─────────────────────────────────────────
     &--dark {
-      background: #1E5B4D;
+      background: $clr-sgi-dark-card;
 
-      .sgi__card-icon       { background: rgb(255, 255, 255); }
-      .sgi__card-icon svg   { stroke: #285d46; }
-      .sgi__card-stat       { color: #fff; }
-      .sgi__card-stat-label { color: rgba(255,255,255,0.5); }
-      .sgi__card-title      { color: #fff; }
-      .sgi__card-desc       { color: rgba(255,255,255,0.65); }
-      .sgi__card-list li    { color: rgba(255,255,255,0.85); }
+      .sgi__card-icon       { background: $clr-sgi-icon-bg-dark; }
+      .sgi__card-icon svg   { stroke: $clr-sgi-icon-stroke-dark; }
+      .sgi__card-stat       { color: #ffffff; }
+      .sgi__card-stat-label { color: rgba(255, 255, 255, 0.50); }
+      .sgi__card-title      { color: #ffffff; }
+      .sgi__card-desc       { color: rgba(255, 255, 255, 0.65); }
+      .sgi__card-list li    { color: rgba(255, 255, 255, 0.85); }
       .sgi__card-list li::before {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.25' stroke='%236fdbac' stroke-width='1.5' fill='none'/%3E%3Cpolyline points='5,8.5 7,10.5 11,6' stroke='%236fdbac' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
       }
     }
 
+    // ── Variant: darkest (intentional alias — reserved for future differentiation) ─
     &--darkest {
-      background: #1E5B4D;
+      background: $clr-sgi-dark-card;
 
-      .sgi__card-icon       { background: rgb(255, 255, 255); }
-      .sgi__card-icon svg   { stroke: #285d46; }
-      .sgi__card-stat       { color: #fff; }
-      .sgi__card-stat-label { color: rgba(255,255,255,0.5); }
-      .sgi__card-title      { color: #fff; }
-      .sgi__card-desc       { color: rgba(255,255,255,0.65); }
-      .sgi__card-list li    { color: rgba(255,255,255,0.85); }
+      .sgi__card-icon       { background: $clr-sgi-icon-bg-dark; }
+      .sgi__card-icon svg   { stroke: $clr-sgi-icon-stroke-dark; }
+      .sgi__card-stat       { color: #ffffff; }
+      .sgi__card-stat-label { color: rgba(255, 255, 255, 0.50); }
+      .sgi__card-title      { color: #ffffff; }
+      .sgi__card-desc       { color: rgba(255, 255, 255, 0.65); }
+      .sgi__card-list li    { color: rgba(255, 255, 255, 0.85); }
       .sgi__card-list li::before {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.25' stroke='%236fdbac' stroke-width='1.5' fill='none'/%3E%3Cpolyline points='5,8.5 7,10.5 11,6' stroke='%236fdbac' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
       }
     }
 
+    // ── Variant: light ────────────────────────────────────────
     &--light {
-      background: #f7f7f7;
-      border: 1.5px solid #d5ebe3;
+      background: $clr-sgi-surface; // #f7f7f7
+      border: 1.5px solid $clr-sgi-border; // #d5ebe3
 
-      .sgi__card-icon       { background: #e2f2ec; }
-      .sgi__card-icon svg   { stroke: #1a4a38; }
-      .sgi__card-stat       { color: #0f2b20; }
-      .sgi__card-stat-label { color: #7a9990; }
-      .sgi__card-title      { color: #0f2b20; }
-      .sgi__card-desc       { color: #4a6358; }
-      .sgi__card-list li    { color: #4a6358; }
+      .sgi__card-icon       { background: $clr-sgi-icon-bg; }   // #e2f2ec
+      .sgi__card-icon svg   { stroke: $clr-sgi-icon-stroke; }  // #1a4a38
+      .sgi__card-stat       { color: $clr-sgi-text-heading; }  // #0f2b20
+      .sgi__card-stat-label { color: $clr-sgi-text-muted; }    // #7a9990
+      .sgi__card-title      { color: $clr-sgi-text-heading; }  // #0f2b20
+      .sgi__card-desc       { color: $clr-sgi-text-body; }     // #4a6358
+      .sgi__card-list li    { color: $clr-sgi-text-body; }     // #4a6358
       .sgi__card-list li::before {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7.25' stroke='%231a4a38' stroke-width='1.5' fill='none'/%3E%3Cpolyline points='5,8.5 7,10.5 11,6' stroke='%231a4a38' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
       }
     }
   }
 
-  // ── Card internals ────────────────────────────────────────────────────
+  /* ── Card internals ─────────────────────────────────────────── */
   &__card-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 4px;
+    margin-bottom: $sp-1; // 4px — exact match
     flex-shrink: 0;
   }
 
   &__card-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 11px;
+    width: 42px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    height: 42px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    border-radius: 11px; // TF: between $radius-md (8px) and $radius-lg (14px) — intentional, left off-grid
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 
-    svg { width: 20px; height: 20px; fill: none; }
-
-    @media (max-width: 860px) and (min-width: 521px) {
-      width: 38px;                  
-      height: 38px;
+    svg {
+      width: $sp-5; // 20px — exact match
+      height: $sp-5; // 20px — exact match
+      fill: none;
     }
 
-    @media (max-width: 520px) {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      svg { width: 15px; height: 15px; }
+    @media (max-width: 860px) and (min-width: 521px) { // TF: custom range
+      width: 38px; // TF: between $sp-9 (36px) and $sp-10 (40px) — intentional, left off-grid
+      height: 38px; // TF: between $sp-9 (36px) and $sp-10 (40px) — intentional, left off-grid
+    }
+
+    @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
+      width: $sp-8; // 32px — exact match
+      height: $sp-8; // 32px — exact match
+      border-radius: $radius-md; // 8px — exact match
+
+      svg {
+        width: 15px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+        height: 15px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+      }
     }
   }
 
@@ -304,119 +335,123 @@
 
   &__card-stat {
     display: block;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    line-height: 1;
+    font-size: 24px; // TF: between $fz-md (1.25rem/20px) and $fz-lg (1.563rem/25px) — intentional, left off-grid
+    font-weight: $fw-bold;
+    letter-spacing: -0.02em; // TF: between $ls-tight (-0.03em) and $ls-normal (0em) — intentional, left off-grid
+    line-height: $lh-tight; // 1.1 — exact match
 
-    &--sm { font-size: 22px; }
+    &--sm { font-size: 22px; } // TF: between $fz-md (1.25rem/20px) and $fz-lg (1.563rem/25px) — intentional, left off-grid
 
-    @media (max-width: 860px) and (min-width: 521px) {
-      font-size: 21px;              
-      &--sm { font-size: 19px; }
+    @media (max-width: 860px) and (min-width: 521px) { // TF: custom range
+      font-size: 21px; // TF: between $fz-md (1.25rem/20px) and $fz-lg (1.563rem/25px) — intentional, left off-grid
+      &--sm { font-size: 19px; } // TF: between $fz-md (1.25rem/20px) and $fz-lg (1.563rem/25px) — intentional, left off-grid
     }
 
-    @media (max-width: 520px) {
-      font-size: 19px;
-      &--sm { font-size: 16px; }
+    @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
+      font-size: 19px; // TF: between $fz-md (1.25rem/20px) and $fz-lg (1.563rem/25px) — intentional, left off-grid
+      &--sm { font-size: $fz-base; } // 1rem/16px — exact match
     }
   }
 
   &__card-stat-label {
     display: block;
-    font-size: 10px;
-    font-weight: 700;
+    font-size: $fz-xs; // 0.64rem/~10px — exact match
+    font-weight: $fw-bold;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
-    margin-top: 3px;
+    letter-spacing: $ls-wide; // 0.05em — exact match (nearest to 0.07em — intentional, left off-grid)
+    margin-top: 3px; // TF: below $sp-1 (4px) — intentional, left off-grid
 
-    @media (max-width: 520px) { font-size: 9px; }
+    @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
+      font-size: 9px; // TF: below $fz-xs (0.64rem/~10px) — intentional, left off-grid; use only for this ultra-compact label
+    }
   }
 
   &__card-title {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.3;
+    font-size: 18px; // TF: between $fz-base (1rem/16px) and $fz-md (1.25rem/20px) — intentional, left off-grid
+    font-weight: $fw-bold;
+    line-height: $lh-snug; // 1.3 — exact match
     margin: 0;
     flex-shrink: 0;
 
-    @media (max-width: 860px) and (min-width: 521px) {
-      font-size: 16px;              
+    @media (max-width: 860px) and (min-width: 521px) { // TF: custom range
+      font-size: $fz-base; // 1rem/16px — exact match
     }
 
-    @media (max-width: 520px) { font-size: 13px; }
+    @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
+      font-size: 13px; // TF: between $fz-sm (0.80rem/~13px) and $fz-base (1rem/16px) — intentional, left off-grid
+    }
   }
 
   &__card-desc {
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.6;
+    font-size: 13px; // TF: between $fz-sm (0.80rem/~13px) and $fz-base (1rem/16px) — intentional, left off-grid
+    font-weight: $fw-medium;
+    line-height: 1.6; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
     margin: 0;
     flex-shrink: 0;
 
-    @media (max-width: 860px) and (min-width: 521px) {
-      font-size: 12px;              
+    @media (max-width: 860px) and (min-width: 521px) { // TF: custom range
+      font-size: 12px; // TF: between $fz-xs (0.64rem/~10px) and $fz-sm (0.80rem/~13px) — intentional, left off-grid
     }
 
-    @media (max-width: 520px) {
-      font-size: 11px;
-      line-height: 1.45;
+    @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
+      font-size: 11px; // TF: between $fz-xs (0.64rem/~10px) and $fz-sm (0.80rem/~13px) — intentional, left off-grid
+      line-height: 1.45; // TF: between $lh-tight (1.1) and $lh-normal (1.5) — intentional, left off-grid
     }
   }
 
   &__card-list {
     list-style: none;
     padding: 0;
-    margin: 6px 0 0;
+    margin: $sp-2 0 0; // 8px — exact match ($sp-2)
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: $sp-2; // 8px — exact match
     flex-shrink: 0;
 
-    @media (max-width: 860px) and (min-width: 521px) {
-      gap: 6px;                    
+    @media (max-width: 860px) and (min-width: 521px) { // TF: custom range
+      gap: $sp-2 - 2px; // 6px — TF: between $sp-1 (4px) and $sp-2 (8px) — intentional, left off-grid
     }
 
-    @media (max-width: 520px) {
-      gap: 5px;
-      margin-top: 4px;
+    @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
+      gap: $sp-1 + 1px; // 5px — TF: between $sp-1 (4px) and $sp-2 (8px) — intentional, left off-grid
+      margin-top: $sp-1; // 4px — exact match
     }
 
     li {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 12.5px;
-      font-weight: 600;
-      line-height: 1.3;
+      gap: $sp-2; // 8px — exact match
+      font-size: 12.5px; // TF: between $fz-xs (0.64rem/~10px) and $fz-sm (0.80rem/~13px) — intentional, left off-grid
+      font-weight: $fw-semibold;
+      line-height: $lh-snug; // 1.3 — exact match
 
-      @media (max-width: 860px) and (min-width: 521px) {
-        font-size: 11.5px;          
-        gap: 6px;
+      @media (max-width: 860px) and (min-width: 521px) { // TF: custom range
+        font-size: 11.5px; // TF: between $fz-xs and $fz-sm — intentional, left off-grid
+        gap: $sp-2 - 2px; // 6px — TF: between $sp-1 (4px) and $sp-2 (8px) — intentional, left off-grid
       }
 
-      @media (max-width: 520px) {
-        font-size: 10.5px;
-        gap: 5px;
+      @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
+        font-size: 10.5px; // TF: between $fz-xs and $fz-sm — intentional, left off-grid
+        gap: $sp-1 + 1px; // 5px — TF: between $sp-1 (4px) and $sp-2 (8px) — intentional, left off-grid
       }
 
       &::before {
         content: '';
-        width: 18px;
-        height: 18px;
+        width: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+        height: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
         flex-shrink: 0;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
 
-        @media (max-width: 860px) and (min-width: 521px) {
-          width: 15px;              
-          height: 15px;
+        @media (max-width: 860px) and (min-width: 521px) { // TF: custom range
+          width: 15px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+          height: 15px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
         }
 
-        @media (max-width: 520px) {
-          width: 13px;
-          height: 13px;
+        @media (max-width: 520px) { // TF: between $bp-xs (480px) and $bp-sm (576px) — intentional, left off-grid
+          width: 13px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+          height: 13px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
         }
       }
     }
