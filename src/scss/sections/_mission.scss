@@ -517,19 +517,19 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
   &__card-desc {
     font-size: $fz-base;
     color: rgba($clr-white, 0.7);
-    line-height: $lh-relaxed; 
+    line-height: $lh-relaxed; // 1.7 — exact match
     font-weight: $fw-medium;
-    max-width: 160px; 
+    max-width: 160px; // component-specific measure, not on the spacing scale
 
     @include lg {
       font-size: $fz-sm;
-      line-height: 1.6; 
-      max-width: 140px; 
+      line-height: 1.6; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
+      max-width: 140px; // component-specific measure, not on the spacing scale
     }
     @include sm {
       font-size: $fz-xs;
-      max-width: 180px; 
-      line-height: 1.6; 
+      max-width: 180px; // component-specific measure, not on the spacing scale
+      line-height: 1.6; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
     }
   }
 
@@ -545,11 +545,11 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
     gap: $sp-3;
     text-align: center;
     padding: $sp-20 $sp-6 clamp(160px, 12vw, 220px);
-    background: #000000; 
+    background: #000000; // intentional true black — matches the section background
     overflow: visible;
-    z-index: $z-base + 4; 
+    z-index: $z-base + 4; // local: 4 — above background/dots layers, below the container content (6)
     opacity: 0;
-    transform: translateY($sp-5); // 20px 
+    transform: translateY($sp-5); // 20px — exact match
 
     &.is-visible {
       opacity: 1;
@@ -574,7 +574,7 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
   &__quote-waves {
     position: absolute;
     inset: 0;
-    z-index: $z-base; 
+    z-index: $z-base; // local: 0
     pointer-events: none;
 
     svg {
@@ -588,23 +588,23 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
 
   &__quote-mark {
     position: relative;
-    z-index: $z-base + 1; 
+    z-index: $z-base + 1; // local: 1 — above the quote-waves layer (0)
     display: block;
     margin-bottom: $sp-2;
     opacity: 1;
     user-select: none;
-    transform: skewX(-12deg); 
+    transform: skewX(-12deg); // decorative glyph skew, not a spacing/scale value
   }
 
   &__quote-text {
     position: relative;
-    z-index: $z-base + 1; 
-    max-width: 680px; 
+    z-index: $z-base + 1; // local: 1 — same layer as the quote mark
+    max-width: 680px; // component-specific measure, not on the spacing scale
     padding: 0 $sp-6;
     font-size: clamp($fz-base, 2vw, $fz-xl);
     font-style: italic;
     color: rgba($clr-white, 0.9);
-    line-height: $lh-relaxed; 
+    line-height: $lh-relaxed; // 1.7 — exact match
     margin: 0;
 
     @include sm {
@@ -616,9 +616,10 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
   // ── Bottom wave divider ───────────────────────────────────────────────
   &__wave {
     position: absolute;
-    bottom: -2px; 
+    bottom: -2px; // subpixel seam fix — intentionally not on the spacing grid, matches the pattern used in impact/measurable
     left: 0;
-    z-index: $z-base + 3; 
+    z-index: $z-base + 3; // local: 3 — above the quote layer's background, below container content
+    width: 100%;
     line-height: 0;
     display: block;
     margin: 0;
@@ -628,10 +629,10 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
     svg {
       display: block;
       width: 100%;
-      height: 181px; 
+      height: 181px; // TF: between $sp-40 (160px) and $sp-48 (192px) — intentional, left off-grid
 
       @include sm {
-        height: 111px; 
+        height: 111px; // TF: between $sp-24 (96px) and $sp-28 (112px), just under the latter — intentional, left off-grid
       }
     }
   }
