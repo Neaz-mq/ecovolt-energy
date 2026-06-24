@@ -1,29 +1,36 @@
 @use '../abstracts' as *;
 
+// ── Section label ─────────────────────────────────────────────────────────
 .section-label {
   @include section-label;
 }
 
+// ── Section title ─────────────────────────────────────────────────────────
 .section-title {
-  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-size: clamp(1.75rem, 3vw, 2.75rem); // fluid — 1.75rem between $fz-lg (1.563rem) and $fz-xl (1.953rem); 2.75rem between $fz-2xl (2.441rem) and $fz-3xl (3.052rem) — intentional, left off-grid
   font-weight: $fw-extrabold;
   color: $clr-white;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  line-height: $lh-tight; // 1.1 — exact match
+  letter-spacing: $ls-tight; // -0.03em — exact match
 
   span { color: $clr-primary; }
 }
 
+// ── Section description ───────────────────────────────────────────────────
 .section-desc {
-  font-size: $fz-md;
+  font-size: $fz-md; // 1.25rem — exact match
   color: $clr-muted;
-  line-height: 1.8;
-  max-width: 580px;
+  line-height: 1.8; // TF: between $lh-relaxed (1.7) and $lh-loose (2.0) — intentional, left off-grid
+  max-width: 580px; // component-specific measure — not on the spacing scale; intentional, left off-grid
 }
 
+// ── Color utilities ───────────────────────────────────────────────────────
+// TF: !important intentional — these are override utilities, not component styles
 .text-lime    { color: $clr-primary !important; }
-.text-white   { color: $clr-white !important; }
-.text-muted   { color: $clr-muted !important; }
+.text-white   { color: $clr-white   !important; }
+.text-muted   { color: $clr-muted   !important; }
+
+// ── Weight utilities ──────────────────────────────────────────────────────
 .fw-medium    { font-weight: $fw-medium; }
 .fw-semibold  { font-weight: $fw-semibold; }
 .fw-bold      { font-weight: $fw-bold; }
