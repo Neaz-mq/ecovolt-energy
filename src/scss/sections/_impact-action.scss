@@ -26,11 +26,10 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
   z-index: $z-raised - 9; // local: 1
   max-width: 1250px;
   margin: 0 auto;
-  padding: 0 60px; // TF: kept as explicit ladder (see breakpoints below) — $container-pad's
-  // clamp() maxes out at 80px, wider than this design's 60px, which narrowed the section on desktop
+  padding: 0 60px; 
   display: flex;
   align-items: center;
-  gap: $sp-24; // 96px (was 100px, snapped to grid)
+  gap: $sp-24; 
 }
 
 /* ── LEFT: Heading block ───────────────────────────────────── */
@@ -44,10 +43,10 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
 .impact-action__title {
   font-size: clamp(2.4rem, 3.8vw, 3.2rem);
   font-weight: $fw-extrabold;
-  line-height: $lh-snug; // 1.3 (was 1.28, standardized to scale)
-  color: $clr-ev-bg; // #ffffff — note: NOT $clr-white, which is an off-white (#f2f7f0)
+  line-height: $lh-snug; 
+  color: $clr-ev-bg; 
   margin: 0;
-  letter-spacing: $ls-tight; // -0.03em (was -0.02em, snapped to nearest token)
+  letter-spacing: $ls-tight; 
 }
 
 .impact-action__title-accent {
@@ -56,7 +55,7 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
 
 .impact-action__tagline {
   font-size: 0.90rem; // TF: between $fz-sm (0.8rem) and $fz-base (1rem) — intentional, left off-grid
-  line-height: $lh-relaxed; // 1.7 (was 1.75, standardized to scale)
+  line-height: $lh-relaxed; 
   color: $clr-ia-white-78;
   margin: 0;
   max-width: 240px;
@@ -71,7 +70,7 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
   display: flex;
   align-items: center;
   overflow: visible;
-  padding-top: $sp-8; // 32px — exact match
+  padding-top: $sp-8; // 32px 
 }
 
 .impact-action__svg {
@@ -98,10 +97,10 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
 .ia-ray-3 { animation: ray-blink 2s $ease-in-out infinite 0.8s; }
 
 
-@media (max-width: 1024px) { // TF: custom component breakpoint, between $bp-lg (992) and $bp-xl (1200)
+@media (max-width: 1024px) { 
   .impact-action__container {
-    gap: $sp-16; // 64px — exact match
-    padding: 0 48px; // restored from original — keeps the ladder consistent, not derived from $container-pad
+    gap: $sp-16; // 64px 
+    padding: 0 48px; 
   }
 
   .impact-action__left {
@@ -114,16 +113,16 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
 }
 
 /* ── Tablets — stack layout (≤860px) ──────────────────────── */
-@media (max-width: 860px) { // TF: custom component breakpoint, matches hiw.scss's stepper breakpoint
+@media (max-width: 860px) { 
   .impact-action {
-    padding: $sp-14 0; // 56px — exact match
+    padding: $sp-14 0; // 56px 
   }
 
   .impact-action__container {
     flex-direction: column;
     align-items: center;
-    gap: $sp-10; // 40px — exact match
-    padding: 0 44px; // restored from original
+    gap: $sp-10; // 40px 
+    padding: 0 44px; 
   }
 
   .impact-action__left {
@@ -145,11 +144,11 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
   .impact-action__left::after {
     content: '';
     display: block;
-    width: $sp-12; // 48px — exact match
-    height: 2px; // line thickness, not a spacing-scale value
+    width: $sp-12; // 48px 
+    height: 2px; // 
     background: linear-gradient(90deg, transparent, $clr-ev-accent, transparent);
-    border-radius: $radius-xs; // 2px — exact match
-    margin-top: $sp-1; // 4px — exact match
+    border-radius: $radius-xs; 
+    margin-top: $sp-1; // 4px 
   }
 
   .impact-action__center {
@@ -166,18 +165,18 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
 }
 
 /* ── Mobile: swap SVG for card grid (≤580px) ──────────────── */
-@media (max-width: 580px) { // TF: custom breakpoint, just above $bp-sm (576)
+@media (max-width: 580px) { 
   .impact-action {
-    padding: 52px 0; // TF: between $sp-12 (48px) and $sp-14 (56px) — intentional, left off-grid
+    padding: 52px 0; 
   }
 
   .impact-action__container {
-    gap: $sp-9; // 36px — exact match
-    padding: 0 32px; // restored from original
+    gap: $sp-9; // 36px 
+    padding: 0 32px; 
   }
 
   .impact-action__left {
-    gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+    gap: 10px; 
   }
 
   .impact-action__title {
@@ -199,18 +198,18 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
   .impact-action__mobile-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $sp-3; // 12px — exact match
+    gap: $sp-3; // 12px 
     width: 100%;
   }
 
   .impact-action__card {
     background: rgba($clr-ev-accent, 0.07);
     border: 1px solid rgba($clr-ev-accent, 0.16);
-    border-radius: $radius-lg; // 14px (was 16px, snapped to nearest token)
-    padding: $sp-5 $sp-4; // 20px 16px — exact match
+    border-radius: $radius-lg; // 14px 
+    padding: $sp-5 $sp-4; // 20px 16px 
     display: flex;
     flex-direction: column;
-    gap: $sp-2; // 8px (was 10px, snapped to nearest token)
+    gap: $sp-2; // 8px 
     transition: background $dur-base $ease-out, border-color $dur-base $ease-out;
 
     &:hover {
@@ -220,9 +219,9 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
   }
 
   .impact-action__card-icon {
-    width: $sp-8; // 32px — exact match
-    height: $sp-8; // 32px — exact match
-    border-radius: $radius-full; // circle: equal width/height, % or 9999px both work — using the token
+    width: $sp-8; // 32px 
+    height: $sp-8; // 32px 
+    border-radius: $radius-full; 
     background: rgba($clr-ev-accent, 0.12);
     border: 1px solid rgba($clr-ev-accent, 0.30);
     display: flex;
@@ -232,16 +231,16 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
   }
 
   .impact-action__card-title {
-    font-size: $fz-sm; // 0.8rem (was 0.83rem, snapped to nearest token)
+    font-size: $fz-sm; // 0.8rem 
     font-weight: $fw-bold;
     color: $clr-ev-bg; // #ffffff
-    line-height: $lh-snug; // 1.3 — exact match
+    line-height: $lh-snug; // 1.3
     margin: 0;
   }
 
   .impact-action__card-desc {
-    font-size: 0.76rem; // TF: below $fz-sm (0.8rem), no smaller token fits without going to $fz-xs (0.64rem) — intentional, left off-grid
-    line-height: 1.6; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
+    font-size: 0.76rem; 
+    line-height: 1.6; 
     color: $clr-ia-white-52;
     margin: 0;
   }
@@ -250,24 +249,24 @@ $clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
 /* ── Small phones (≤480px) ─────────────────────────────────── */
 @media (max-width: $bp-xs) { // 480px
   .impact-action__container {
-    padding: 0 20px; // restored from original
+    padding: 0 20px; 
   }
 }
 
 /* ── Single-column card grid (≤360px) ─────────────────────── */
-@media (max-width: 360px) { // TF: custom breakpoint, below $bp-xs (480)
+@media (max-width: 360px) { 
   .impact-action__mobile-grid {
     grid-template-columns: 1fr;
   }
 
   .impact-action__card {
-    padding: $sp-4 14px; // 16px; 14px is between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+    padding: $sp-4 14px; // 16px
   }
 }
 
 /* ── Ultra-small phones (≤319px) ──────────────────────────── */
-@media (max-width: 319px) { // TF: custom breakpoint, below the standard scale
+@media (max-width: 319px) { 
   .impact-action__container {
-    padding: 0 12px; // restored from original
+    padding: 0 12px; 
   }
 }
