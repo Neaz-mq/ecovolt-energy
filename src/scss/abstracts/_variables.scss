@@ -34,6 +34,23 @@ $clr-info:           #3b82f6;
 $clr-overlay:        rgba(0, 0, 0, 0.60);
 $clr-overlay-light:  rgba(0, 0, 0, 0.30);
 
+// EcoVolt Section Colors (TF: section-specific tokens — not scattered inline)
+$clr-ev-primary:        #1e5b4d;  // Deep green — headings, icons, badges
+$clr-ev-primary-hover:  #174a3e;  // Hover state for primary
+$clr-ev-accent:         #88c499;  // Accent green — title highlights
+$clr-ev-accent-light:   #c9e4d2;  // Light accent — badge bg
+$clr-ev-bg:             #ffffff;  // Section background
+$clr-ev-surface:        #f5f6f7;  // Table wrap, cards
+$clr-ev-surface-alt:    #fafbfb;  // Alternating table row
+$clr-ev-surface-note:   #f0f1f2;  // Note block background
+$clr-ev-header-bg:      #e9ecea;  // Table header background
+$clr-ev-border:         #e6e8e9;  // Table row border
+$clr-ev-text:           #2d2d2d;  // Body text on light bg
+$clr-ev-text-alt:       #2f2f2f;  // Subtitle text
+$clr-ev-highlight-deco: rgba(255, 255, 255, 0.08);  // Icon circle bg on dark card
+$clr-ev-highlight-text: rgba(255, 255, 255, 0.60);  // Desc text on dark card
+$clr-ev-highlight-sep:  rgba(255, 255, 255, 0.07);  // Mobile item separator
+
 
 // ============================================
 // 02. TYPOGRAPHY
@@ -51,7 +68,7 @@ $fw-bold:        700;
 $fw-extrabold:   800;
 
 // Scale — Minor Third (1.25) ratio (TF: consistent modular scale required)
-$fz-xs:          0.64rem;    //  ~10px
+$fz-xs:          0.64rem;    //  ~10px — use only for labels/badges, never body text
 $fz-sm:          0.80rem;    //  ~13px
 $fz-base:        1.00rem;    //  16px
 $fz-md:          1.25rem;    //  20px
@@ -79,7 +96,6 @@ $ls-widest:       0.15em;
 // ============================================
 // 03. SPACING — 4px base grid
 // ============================================
-
 
 $sp-1:    4px;   //  4
 $sp-2:    8px;   //  8
@@ -208,5 +224,5 @@ $bp-4xl:  2560px;  // 2K / ultrawide
 // ============================================
 // TF: reusable animation values as tokens
 
-$anim-duration-base:  0.6s;
-$anim-stagger:        0.08s; // TF: stagger delay for list animations
+$anim-duration-base:  $dur-slower; // TF: reuse duration token — no duplication
+$anim-stagger:        0.08s;       // TF: stagger delay for list animations
