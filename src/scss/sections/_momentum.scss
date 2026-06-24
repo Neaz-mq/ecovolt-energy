@@ -1,11 +1,15 @@
 @use '../abstracts' as *;
 
+// ── Momentum-specific tokens (TF: section tokens, not scattered inline)
+$clr-momentum-bg:        #f4f6f4; // section background — no theme-wide token matches this tint
+$clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $clr-ev-text (#2d2d2d), kept distinct
+
 .momentum {
-  background-color: #f4f6f4;
+  background-color: $clr-momentum-bg;
   position: relative;
-  z-index: 13;
-  margin-block-start: -4px;
-  padding: 88px 0 88px;
+  z-index: $z-raised + 3; // local: 13 — above measurable's $z-raised + 1 (11) in this page's section stacking
+  margin-block-start: -4px; // subpixel seam fix — intentionally not on the spacing grid
+  padding-block: 88px; // TF: between $sp-20 (80px) and $sp-24 (96px) — intentional, left off-grid
 
   // ── Cover subpixel seam from smartgrid wave ───────────────────────────
   &::before {
@@ -14,455 +18,454 @@
     top: -8px;
     left: 0;
     width: 100%;
-    height: 16px;
-    background: #f4f6f4;
-    z-index: 1;
+    height: $sp-4; // 16px — exact match
+    background: $clr-momentum-bg;
+    z-index: $z-base + 1; // local: 1
     pointer-events: none;
   }
-}
 
-/* ── Container ─────────────────────────────────────────────── */
-.momentum__container {
-  max-width: 1250px;  
-  margin: 0 auto;
-  padding: 0 60px;    
-  display: flex;
-  flex-direction: column;
-  gap: 52px;
-}
-
-/* ── Header ────────────────────────────────────────────────── */
-.momentum__header {
-  text-align: center;
-}
-
-.momentum__title {
-  font-size: clamp(1.5rem, 4vw, 3rem);                                          
-  font-weight: 800;
-  line-height: 1.2;
-  color: #1e5b4d;
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-
-.momentum__title-accent {
-  color: #88c499;
-}
-
-/* ── Stat cards row ────────────────────────────────────────── */
-.momentum__stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.momentum__stat-card {
-  background: #ffffff;
-  border: 1px solid rgba(136, 196, 153, 0.18);
-  border-radius: 16px;
-  padding: 24px 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  transition:
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
-
-  &:hover {
-    box-shadow: 0 8px 32px rgba(30, 91, 77, 0.1);
-    transform: translateY(-2px);
-  }
-}
-
-.momentum__stat-icon {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(136, 196, 153, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  svg {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-.momentum__stat-body {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.momentum__stat-num {
-  font-size: 1rem;
-  font-weight: 800;
-  color: #1e5b4d;
-  line-height: 1.3;
-
-  sub {
-    font-size: 0.65em;
-    vertical-align: sub;
-    font-weight: 800;
-    line-height: 0;
-  }
-}
-
-.momentum__stat-label {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #1e5b4d;
-  line-height: 1.3;
-}
-
-.momentum__stat-desc {
-  font-size: 0.82rem;
-  color: #232424;
-  font-weight: 500;
-  line-height: 1.5;
-  margin: 4px 0 0;
-}
-
-/* ── Testimonial card ──────────────────────────────────────── */
-.momentum__testimonial {
-  background: #1e5b4d;
-  border-radius: 20px;
-  padding: 48px 52px;
-  display: flex;
-  align-items: center;
-  gap: 48px;
-  overflow: hidden;
-  position: relative;
-  min-height: 220px;
-}
-
-.momentum__testimonial-left {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  position: relative;
-  z-index: 1;
-}
-
-/* ── Quote icon + text inline row ──────────────────────────── */
-.momentum__quote-icon-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.momentum__quote-mark {
-  flex-shrink: 0;
-  line-height: 1;
-  font-size: 5.5rem;
-  font-weight: 900;
-  color: #88c499;
-  font-family: Georgia, "Times New Roman", serif;
-  letter-spacing: -0.05em;
-}
-
-.momentum__quote-text {
-  flex: 1;
-  min-width: 0;
-  max-width: 450px;
-  font-size: 1.15rem;
-  font-weight: 500;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.92);
-  margin: 0;
-  font-style: normal;
-  padding-top: 6px;
-}
-
-/* ── Author ─────────────────────────────────────────────────── */
-.momentum__author {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.momentum__author-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(136, 196, 153, 0.2);
-  border: 1.5px solid rgba(136, 196, 153, 0.4);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  svg {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-.momentum__author-info {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.momentum__author-name {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.momentum__author-role {
-  font-size: 0.8rem;
-  color: rgba(136, 196, 153, 0.85);
-}
-
-/* ── Illustration ───────────────────────────────────────────── */
-.momentum__testimonial-right {
-  flex: 0 0 300px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: relative;
-  z-index: 1;
-}
-
-.momentum__illustration {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  border-radius: 12px;
-  object-fit: cover;
-  display: block;
-}
-
-
-/* ── Large tablets (≤1024px) ──────────────────────────────── */
-@media (max-width: 1024px) {
-  .momentum__container {
-    padding: 0 48px; 
-    gap: 40px;
+  /* ── Container ─────────────────────────────────────────────── */
+  &__container {
+    max-width: 1250px; // component-specific layout width, not on the spacing scale
+    margin-inline: auto;
+    padding-inline: 60px; // TF: between $sp-14 (56px) and $sp-16 (64px) — intentional, left off-grid
+    display: flex;
+    flex-direction: column;
+    gap: 52px; // TF: between $sp-12 (48px) and $sp-14 (56px) — intentional, left off-grid
   }
 
-  .momentum__stats {
-    grid-template-columns: repeat(2, 1fr);
+  /* ── Header ────────────────────────────────────────────────── */
+  &__header {
+    text-align: center;
   }
 
-  .momentum__testimonial {
-    padding: 40px 36px;
-    gap: 32px;
+  &__title {
+    font-size: clamp(1.5rem, 4vw, 3rem); // fluid heading — custom range, not on the static $fz scale
+    font-weight: $fw-extrabold;
+    line-height: 1.2; // TF: between $lh-tight (1.1) and $lh-snug (1.3) — intentional, left off-grid
+    color: $clr-ev-primary;
+    margin: 0;
+    letter-spacing: -0.02em; // TF: between $ls-tight (-0.03em) and $ls-normal (0em) — intentional, left off-grid
   }
 
-  .momentum__testimonial-right {
-    flex: 0 0 260px;
+  &__title-accent {
+    color: $clr-ev-accent;
   }
 
-  .momentum__illustration {
-    max-width: 260px;
-  }
-}
-
-/* ── Tablets (≤860px) ─────────────────────────────────────── */
-@media (max-width: 860px) {
-  .momentum {
-    padding: 60px 0 72px;
+  /* ── Stat cards row ────────────────────────────────────────── */
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $sp-4; // 16px — exact match
   }
 
-  .momentum__container {
-    padding: 0 44px; 
-    gap: 36px;
+  &__stat-card {
+    background: #ffffff; // intentional white card on the section's tinted $clr-momentum-bg
+    border: 1px solid rgba($clr-ev-accent, 0.18);
+    border-radius: 16px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
+    padding: $sp-6 $sp-5; // 24px 20px — exact matches
+    display: flex;
+    align-items: flex-start;
+    gap: $sp-4; // 16px — exact match
+    transition:
+      box-shadow 0.25s ease, // TF: no exact $dur match (between $dur-base 250ms and $dur-slow 400ms, just over $dur-base) — intentional, left off-grid
+      transform 0.25s ease; // TF: no exact $dur match — intentional, left off-grid
+
+    &:hover {
+      box-shadow: 0 8px 32px rgba($clr-ev-primary, 0.1); // exact rgb match for #1e5b4d
+      transform: translateY(-2px); // small hover lift, not on the spacing scale
+    }
   }
 
-  .momentum__testimonial {
-    flex-direction: row;
+  &__stat-icon {
+    flex-shrink: 0;
+    width: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    border-radius: 12px; // TF: between $radius-md (8px) and $radius-lg (14px) — intentional, left off-grid
+    background: rgba($clr-ev-accent, 0.12);
+    display: flex;
     align-items: center;
-    padding: 36px 32px;
-    gap: 24px;
-    min-height: unset;
+    justify-content: center;
+
+    svg {
+      width: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+      height: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+    }
   }
 
-  .momentum__testimonial-left {
+  &__stat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px; // TF: below $sp-1 (4px) — intentional, left off-grid
+  }
+
+  &__stat-num {
+    font-size: $fz-base; // 1rem — exact match
+    font-weight: $fw-extrabold;
+    color: $clr-ev-primary;
+    line-height: 1.3; // exact match to $lh-snug
+
+    sub {
+      font-size: 0.65em;
+      vertical-align: sub;
+      font-weight: $fw-extrabold;
+      line-height: 0;
+    }
+  }
+
+  &__stat-label {
+    font-size: $fz-base; // 1rem — exact match
+    font-weight: $fw-bold;
+    color: $clr-ev-primary;
+    line-height: 1.3; // exact match to $lh-snug
+  }
+
+  &__stat-desc {
+    font-size: 0.82rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    color: $clr-momentum-text-body;
+    font-weight: $fw-medium;
+    line-height: $lh-normal; // 1.5 — exact match
+    margin: $sp-1 0 0; // 4px — exact match
+  }
+
+  /* ── Testimonial card ──────────────────────────────────────── */
+  &__testimonial {
+    background: $clr-ev-primary;
+    border-radius: 20px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
+    padding: $sp-12 52px; // 48px exact match; 52px — TF: between $sp-12 (48px) and $sp-14 (56px) — intentional, left off-grid
+    display: flex;
+    align-items: center;
+    gap: $sp-12; // 48px — exact match
+    overflow: hidden;
+    position: relative;
+    min-height: 220px; // TF: above $sp-40 (160px) and $sp-48 (192px) — intentional, left off-grid
+  }
+
+  &__testimonial-left {
     flex: 1;
     min-width: 0;
-    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: $sp-6; // 24px — exact match
+    position: relative;
+    z-index: $z-base + 1; // local: 1
   }
 
-  .momentum__testimonial-right {
+  /* ── Quote icon + text inline row ──────────────────────────── */
+  &__quote-icon-row {
     display: flex;
-    flex: 0 0 200px;
+    align-items: flex-start;
+    gap: $sp-3; // 12px — exact match
+  }
+
+  &__quote-mark {
+    flex-shrink: 0;
+    line-height: 1; // intentionally tighter than $lh-tight (1.1) for a tight decorative glyph
+    font-size: 5.5rem; // decorative glyph size, not on the $fz scale
+    font-weight: 900; // TF: above $fw-extrabold (800) — intentional, left off-grid (no $fw-black token exists)
+    color: $clr-ev-accent;
+    font-family: Georgia, "Times New Roman", serif;
+    letter-spacing: -0.05em; // TF: beyond $ls-tight (-0.03em) — intentional, left off-grid
+  }
+
+  &__quote-text {
+    flex: 1;
+    min-width: 0;
+    max-width: 450px; // component-specific measure, not on the spacing scale
+    font-size: 1.15rem; // TF: between $fz-base (1rem) and $fz-md (1.25rem) — intentional, left off-grid
+    font-weight: $fw-medium;
+    line-height: 1.65; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+    font-style: normal;
+    padding-top: 6px; // TF: between $sp-1 (4px) and $sp-2 (8px) — intentional, left off-grid
+  }
+
+  /* ── Author ─────────────────────────────────────────────────── */
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+  }
+
+  &__author-avatar {
+    width: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    border-radius: $radius-full;
+    background: rgba($clr-ev-accent, 0.2);
+    border: 1.5px solid rgba($clr-ev-accent, 0.4);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+      height: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+    }
+  }
+
+  &__author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px; // TF: below $sp-1 (4px) — intentional, left off-grid
+  }
+
+  &__author-name {
+    font-size: 0.95rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-weight: $fw-bold;
+    color: #ffffff; // intentional pure white on the $clr-ev-primary testimonial card
+  }
+
+  &__author-role {
+    font-size: $fz-sm; // 0.80rem — exact match
+    color: rgba($clr-ev-accent, 0.85);
+  }
+
+  /* ── Illustration ───────────────────────────────────────────── */
+  &__testimonial-right {
+    flex: 0 0 300px; // component-specific layout width, not on the spacing scale
+    display: flex;
     align-items: center;
     justify-content: flex-end;
-  }
-
-  .momentum__illustration {
-    max-width: 200px;
-    border-radius: 10px;
-    opacity: 0.85;
-  }
-}
-
-/* ── Large phones (≤640px) ────────────────────────────────── */
-@media (max-width: 640px) {
-  .momentum {
-    padding: 48px 0 56px;
-  }
-
-  .momentum__container {
-    padding: 0 32px; 
-    gap: 24px;
-  }
-
-  .momentum__title {
-    font-size: clamp(1.4rem, 6vw, 1.9rem);
-  }
-
-  .momentum__stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .momentum__stat-card {
-    padding: 16px 14px;
-    gap: 12px;
-    flex-direction: row;
-    align-items: flex-start;
-    border-radius: 12px;
-  }
-
-  .momentum__stat-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    flex-shrink: 0;
-
-    svg {
-      width: 18px;
-      height: 18px;
-    }
-  }
-
-  .momentum__stat-num {
-    font-size: 0.9rem;
-  }
-
-  .momentum__stat-label {
-    font-size: 0.9rem;
-  }
-
-  .momentum__stat-desc {
-    font-size: 0.78rem;
-  }
-
-  /* ── Testimonial: image as background ───────────────────────── */
-  .momentum__testimonial {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 28px 24px;
-    border-radius: 16px;
-    gap: 20px;
-    min-height: unset;
     position: relative;
-    overflow: hidden;
+    z-index: $z-base + 1; // local: 1
   }
 
-  .momentum__testimonial-left {
-    flex: none;
+  &__illustration {
     width: 100%;
-    gap: 20px;
-    position: relative;
-    z-index: 2;
-  }
-
-  /* image stretched as subtle background */
-  .momentum__testimonial-right {
-    display: block;
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    flex: none;
-  }
-
-  .momentum__illustration {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
+    max-width: 300px; // component-specific layout width, not on the spacing scale
+    height: auto;
+    border-radius: 12px; // TF: between $radius-md (8px) and $radius-lg (14px) — intentional, left off-grid
     object-fit: cover;
-    object-position: right center;
-    border-radius: 0;
-    opacity: 0.12;
     display: block;
   }
 
-  .momentum__quote-icon-row {
-    gap: 10px;
-  }
+  /* ── Large tablets (≤1024px) ──────────────────────────────── */
+  @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px)
+    .momentum__container {
+      padding-inline: $sp-12; // 48px — exact match
+      gap: $sp-10; // 40px — exact match
+    }
 
-  .momentum__quote-mark {
-    font-size: 3rem;
-  }
+    .momentum__stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-  .momentum__quote-text {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    max-width: 100%;
-    margin-top: -6px;
-  }
+    .momentum__testimonial {
+      padding: $sp-10 $sp-9; // 40px 36px — exact matches
+      gap: $sp-8; // 32px — exact match
+    }
 
-  .momentum__author {
-    gap: 12px;
-  }
+    .momentum__testimonial-right {
+      flex: 0 0 260px; // component-specific layout width, not on the spacing scale
+    }
 
-  .momentum__author-avatar {
-    width: 40px;
-    height: 40px;
-
-    svg {
-      width: 20px;
-      height: 20px;
+    .momentum__illustration {
+      max-width: 260px; // component-specific layout width, not on the spacing scale
     }
   }
 
-  .momentum__author-name {
-    font-size: 0.85rem;
+  /* ── Tablets (≤860px) ─────────────────────────────────────── */
+  @media (max-width: 860px) { // TF: between $bp-md (768px) and $bp-lg (992px)
+    & {
+      padding: 60px 0 72px; // TF: 60px between $sp-14 (56px)/$sp-16 (64px); 72px between $sp-16 (64px)/$sp-20 (80px) — intentional, left off-grid
+    }
+
+    .momentum__container {
+      padding-inline: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+      gap: $sp-9; // 36px — exact match
+    }
+
+    .momentum__testimonial {
+      flex-direction: row;
+      align-items: center;
+      padding: $sp-9 $sp-8; // 36px 32px — exact matches
+      gap: $sp-6; // 24px — exact match
+      min-height: unset;
+    }
+
+    .momentum__testimonial-left {
+      flex: 1;
+      min-width: 0;
+      width: auto;
+    }
+
+    .momentum__testimonial-right {
+      display: flex;
+      flex: 0 0 200px; // component-specific layout width, not on the spacing scale
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .momentum__illustration {
+      max-width: 200px; // component-specific layout width, not on the spacing scale
+      border-radius: $radius-md; // 8px — exact match
+      opacity: 0.85;
+    }
   }
 
-  .momentum__author-role {
-    font-size: 0.75rem;
-  }
-}
+  /* ── Large phones (≤640px) ────────────────────────────────── */
+  @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px)
+    & {
+      padding: $sp-12 0 $sp-14; // 48px exact match; 56px exact match ($sp-14)
+    }
 
-/* ── Small phones (≤480px) ─────────────────────────────────── */
-@media (max-width: 480px) {
-  .momentum__container {
-    padding: 0 20px; 
+    .momentum__container {
+      padding-inline: $sp-8; // 32px — exact match
+      gap: $sp-6; // 24px — exact match
+    }
+
+    .momentum__title {
+      font-size: clamp(1.4rem, 6vw, 1.9rem); // fluid heading override — custom range
+    }
+
+    .momentum__stats {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+    }
+
+    .momentum__stat-card {
+      padding: $sp-4 14px; // 16px exact match; 14px — TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+      gap: $sp-3; // 12px — exact match
+      flex-direction: row;
+      align-items: flex-start;
+      border-radius: 12px; // TF: between $radius-md (8px) and $radius-lg (14px) — intentional, left off-grid
+    }
+
+    .momentum__stat-icon {
+      width: $sp-9; // 36px — exact match
+      height: $sp-9; // 36px — exact match
+      border-radius: 10px; // TF: between $radius-md (8px) and $radius-lg (14px) — intentional, left off-grid
+      flex-shrink: 0;
+
+      svg {
+        width: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+        height: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+      }
+    }
+
+    .momentum__stat-num {
+      font-size: 0.9rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    }
+
+    .momentum__stat-label {
+      font-size: 0.9rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    }
+
+    .momentum__stat-desc {
+      font-size: 0.78rem; // TF: just under $fz-sm (0.80rem) — intentional, left off-grid
+    }
+
+    /* ── Testimonial: image as background ───────────────────────── */
+    .momentum__testimonial {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: $sp-7 $sp-6; // 28px 24px — exact matches
+      border-radius: 16px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
+      gap: $sp-5; // 20px — exact match
+      min-height: unset;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .momentum__testimonial-left {
+      flex: none;
+      width: 100%;
+      gap: $sp-5; // 20px — exact match
+      position: relative;
+      z-index: $z-base + 2; // local: 2 — above the background illustration (1)
+    }
+
+    /* image stretched as subtle background */
+    .momentum__testimonial-right {
+      display: block;
+      position: absolute;
+      inset: 0;
+      z-index: $z-base + 1; // local: 1
+      flex: none;
+    }
+
+    .momentum__illustration {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      object-position: right center;
+      border-radius: 0;
+      opacity: 0.12;
+      display: block;
+    }
+
+    .momentum__quote-icon-row {
+      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+    }
+
+    .momentum__quote-mark {
+      font-size: 3rem; // decorative glyph size, not on the $fz scale
+    }
+
+    .momentum__quote-text {
+      font-size: 0.9rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+      line-height: $lh-relaxed; // 1.7 — exact match
+      max-width: 100%;
+      margin-top: -6px; // small negative offset, not on the spacing scale
+    }
+
+    .momentum__author {
+      gap: $sp-3; // 12px — exact match
+    }
+
+    .momentum__author-avatar {
+      width: $sp-10; // 40px — exact match
+      height: $sp-10; // 40px — exact match
+
+      svg {
+        width: $sp-5; // 20px — exact match
+        height: $sp-5; // 20px — exact match
+      }
+    }
+
+    .momentum__author-name {
+      font-size: 0.85rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    }
+
+    .momentum__author-role {
+      font-size: 0.75rem; // TF: just under $fz-sm (0.80rem) — intentional, left off-grid
+    }
   }
 
-  .momentum__title {
-    font-size: clamp(1.3rem, 7vw, 1.6rem);
-  }
-}
+  /* ── Small phones (≤480px) ─────────────────────────────────── */
+  @include xs {
+    .momentum__container {
+      padding-inline: $sp-5; // 20px — exact match
+    }
 
-/* ── Single-column stats (≤400px) ─────────────────────────── */
-@media (max-width: 400px) {
-  .momentum__container {
-    padding: 0 20px; 
-  }
-
-  .momentum__stats {
-    grid-template-columns: 1fr;
+    .momentum__title {
+      font-size: clamp(1.3rem, 7vw, 1.6rem); // fluid heading override — custom range
+    }
   }
 
-  .momentum__stat-card {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
+  /* ── Single-column stats (≤400px) ─────────────────────────── */
+  @media (max-width: 400px) { // TF: below $bp-xs (480px), no defined breakpoint at this width — intentional, left off-grid
+    .momentum__container {
+      padding-inline: $sp-5; // 20px — exact match
+    }
 
-/* ── Ultra-small phones (≤319px) ──────────────────────────── */
-@media (max-width: 319px) {
-  .momentum__container {
-    padding: 0 12px; 
+    .momentum__stats {
+      grid-template-columns: 1fr;
+    }
+
+    .momentum__stat-card {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  /* ── Ultra-small phones (≤319px) ──────────────────────────── */
+  @media (max-width: 319px) { // TF: below every defined breakpoint — intentional, left off-grid
+    .momentum__container {
+      padding-inline: $sp-3; // 12px — exact match
+    }
   }
 }
