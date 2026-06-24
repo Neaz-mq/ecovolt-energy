@@ -1,8 +1,14 @@
+@use '../abstracts' as *;
+
+// ── Impact-action specific tokens (TF: section tokens, not scattered inline)
+$clr-ia-white-78:  rgba(255, 255, 255, 0.78); // tagline text
+$clr-ia-white-52:  rgba(255, 255, 255, 0.52); // mobile card desc text
+
 .impact-action {
-  background-color: #1e5b4d;
+  background-color: $clr-ev-primary;
   position: relative;
-  z-index: 13;
-  padding: 48px 0;
+  z-index: 13; // local: sits above this page's $z-raised (10) stacking context
+  padding: $sp-12 0; // 48px — exact match
   overflow: hidden;
 }
 
@@ -11,19 +17,20 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: $z-base;
 }
 
 /* ── Container ─────────────────────────────────────────────── */
 .impact-action__container {
   position: relative;
-  z-index: 1;
+  z-index: $z-raised - 9; // local: 1
   max-width: 1250px;
   margin: 0 auto;
-  padding: 0 60px; 
+  padding: 0 60px; // TF: kept as explicit ladder (see breakpoints below) — $container-pad's
+  // clamp() maxes out at 80px, wider than this design's 60px, which narrowed the section on desktop
   display: flex;
   align-items: center;
-  gap: 100px;
+  gap: $sp-24; // 96px (was 100px, snapped to grid)
 }
 
 /* ── LEFT: Heading block ───────────────────────────────────── */
@@ -31,26 +38,26 @@
   flex: 0 0 220px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
 }
 
 .impact-action__title {
   font-size: clamp(2.4rem, 3.8vw, 3.2rem);
-  font-weight: 800;
-  line-height: 1.28;
-  color: #ffffff;
+  font-weight: $fw-extrabold;
+  line-height: $lh-snug; // 1.3 (was 1.28, standardized to scale)
+  color: $clr-ev-bg; // #ffffff — note: NOT $clr-white, which is an off-white (#f2f7f0)
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: $ls-tight; // -0.03em (was -0.02em, snapped to nearest token)
 }
 
 .impact-action__title-accent {
-  color: #88c499;
+  color: $clr-ev-accent;
 }
 
 .impact-action__tagline {
-  font-size: 0.90rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.90rem; // TF: between $fz-sm (0.8rem) and $fz-base (1rem) — intentional, left off-grid
+  line-height: $lh-relaxed; // 1.7 (was 1.75, standardized to scale)
+  color: $clr-ia-white-78;
   margin: 0;
   max-width: 240px;
   white-space: normal;
@@ -64,7 +71,7 @@
   display: flex;
   align-items: center;
   overflow: visible;
-  padding-top: 32px;
+  padding-top: $sp-8; // 32px — exact match
 }
 
 .impact-action__svg {
@@ -72,7 +79,7 @@
   width: 100%;
   height: auto;
   overflow: visible;
-  min-height: 280px;
+  min-height: 280px; // component-specific layout constant, not on the spacing scale
 }
 
 /* ── Mobile card grid (hidden on desktop/tablet) ───────────── */
@@ -86,15 +93,15 @@
   50%       { opacity: 0.08; }
 }
 
-.ia-ray-1 { animation: ray-blink 2s ease-in-out infinite 0.0s; }
-.ia-ray-2 { animation: ray-blink 2s ease-in-out infinite 0.4s; }
-.ia-ray-3 { animation: ray-blink 2s ease-in-out infinite 0.8s; }
+.ia-ray-1 { animation: ray-blink 2s $ease-in-out infinite 0.0s; }
+.ia-ray-2 { animation: ray-blink 2s $ease-in-out infinite 0.4s; }
+.ia-ray-3 { animation: ray-blink 2s $ease-in-out infinite 0.8s; }
 
 
-@media (max-width: 1024px) {
+@media (max-width: 1024px) { // TF: custom component breakpoint, between $bp-lg (992) and $bp-xl (1200)
   .impact-action__container {
-    gap: 64px;
-    padding: 0 48px; 
+    gap: $sp-16; // 64px — exact match
+    padding: 0 48px; // restored from original — keeps the ladder consistent, not derived from $container-pad
   }
 
   .impact-action__left {
@@ -107,16 +114,16 @@
 }
 
 /* ── Tablets — stack layout (≤860px) ──────────────────────── */
-@media (max-width: 860px) {
+@media (max-width: 860px) { // TF: custom component breakpoint, matches hiw.scss's stepper breakpoint
   .impact-action {
-    padding: 56px 0;
+    padding: $sp-14 0; // 56px — exact match
   }
 
   .impact-action__container {
     flex-direction: column;
     align-items: center;
-    gap: 40px;
-    padding: 0 44px; 
+    gap: $sp-10; // 40px — exact match
+    padding: 0 44px; // restored from original
   }
 
   .impact-action__left {
@@ -138,11 +145,11 @@
   .impact-action__left::after {
     content: '';
     display: block;
-    width: 48px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #88c499, transparent);
-    border-radius: 2px;
-    margin-top: 4px;
+    width: $sp-12; // 48px — exact match
+    height: 2px; // line thickness, not a spacing-scale value
+    background: linear-gradient(90deg, transparent, $clr-ev-accent, transparent);
+    border-radius: $radius-xs; // 2px — exact match
+    margin-top: $sp-1; // 4px — exact match
   }
 
   .impact-action__center {
@@ -159,18 +166,18 @@
 }
 
 /* ── Mobile: swap SVG for card grid (≤580px) ──────────────── */
-@media (max-width: 580px) {
+@media (max-width: 580px) { // TF: custom breakpoint, just above $bp-sm (576)
   .impact-action {
-    padding: 52px 0;
+    padding: 52px 0; // TF: between $sp-12 (48px) and $sp-14 (56px) — intentional, left off-grid
   }
 
   .impact-action__container {
-    padding: 0 32px; 
-    gap: 36px;
+    gap: $sp-9; // 36px — exact match
+    padding: 0 32px; // restored from original
   }
 
   .impact-action__left {
-    gap: 10px;
+    gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
   }
 
   .impact-action__title {
@@ -192,32 +199,32 @@
   .impact-action__mobile-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: $sp-3; // 12px — exact match
     width: 100%;
   }
 
   .impact-action__card {
-    background: rgba(136, 196, 153, 0.07);
-    border: 1px solid rgba(136, 196, 153, 0.16);
-    border-radius: 16px;
-    padding: 20px 16px;
+    background: rgba($clr-ev-accent, 0.07);
+    border: 1px solid rgba($clr-ev-accent, 0.16);
+    border-radius: $radius-lg; // 14px (was 16px, snapped to nearest token)
+    padding: $sp-5 $sp-4; // 20px 16px — exact match
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    transition: background 0.25s ease, border-color 0.25s ease;
+    gap: $sp-2; // 8px (was 10px, snapped to nearest token)
+    transition: background $dur-base $ease-out, border-color $dur-base $ease-out;
 
     &:hover {
-      background: rgba(136, 196, 153, 0.13);
-      border-color: rgba(136, 196, 153, 0.30);
+      background: rgba($clr-ev-accent, 0.13);
+      border-color: rgba($clr-ev-accent, 0.30);
     }
   }
 
   .impact-action__card-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(136, 196, 153, 0.12);
-    border: 1px solid rgba(136, 196, 153, 0.30);
+    width: $sp-8; // 32px — exact match
+    height: $sp-8; // 32px — exact match
+    border-radius: $radius-full; // circle: equal width/height, % or 9999px both work — using the token
+    background: rgba($clr-ev-accent, 0.12);
+    border: 1px solid rgba($clr-ev-accent, 0.30);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -225,42 +232,42 @@
   }
 
   .impact-action__card-title {
-    font-size: 0.83rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1.3;
+    font-size: $fz-sm; // 0.8rem (was 0.83rem, snapped to nearest token)
+    font-weight: $fw-bold;
+    color: $clr-ev-bg; // #ffffff
+    line-height: $lh-snug; // 1.3 — exact match
     margin: 0;
   }
 
   .impact-action__card-desc {
-    font-size: 0.76rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.52);
+    font-size: 0.76rem; // TF: below $fz-sm (0.8rem), no smaller token fits without going to $fz-xs (0.64rem) — intentional, left off-grid
+    line-height: 1.6; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
+    color: $clr-ia-white-52;
     margin: 0;
   }
 }
 
 /* ── Small phones (≤480px) ─────────────────────────────────── */
-@media (max-width: 480px) {
+@media (max-width: $bp-xs) { // 480px
   .impact-action__container {
-    padding: 0 20px; 
+    padding: 0 20px; // restored from original
   }
 }
 
 /* ── Single-column card grid (≤360px) ─────────────────────── */
-@media (max-width: 360px) {
+@media (max-width: 360px) { // TF: custom breakpoint, below $bp-xs (480)
   .impact-action__mobile-grid {
     grid-template-columns: 1fr;
   }
 
   .impact-action__card {
-    padding: 16px 14px;
+    padding: $sp-4 14px; // 16px; 14px is between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
   }
 }
 
 /* ── Ultra-small phones (≤319px) ──────────────────────────── */
-@media (max-width: 319px) {
+@media (max-width: 319px) { // TF: custom breakpoint, below the standard scale
   .impact-action__container {
-    padding: 0 12px; 
+    padding: 0 12px; // restored from original
   }
 }
