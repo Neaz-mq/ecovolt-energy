@@ -1,152 +1,172 @@
+@use '../abstracts' as *;
+
+// ── Footer-specific tokens (TF: section tokens, not scattered inline)
+$clr-ft-bg:              #000000; // footer background — intentional pure black, not $clr-bg (#050f0a)
+$clr-ft-surface:         #111e15; // social btn bg — deep green-black surface
+$clr-ft-surface-hover:   #152819; // social btn hover bg
+$clr-ft-border:          #1e3028; // divider, column separator, input border
+$clr-ft-border-input:    #2a3d30; // newsletter input border — slightly lighter than $clr-ft-border
+$clr-ft-border-input-fo: #3d6655; // newsletter input focus border
+$clr-ft-border-social:   #1c3325; // social btn border
+$clr-ft-border-social-hv:#3d6655; // social btn hover border
+$clr-ft-text:            #a8b8b0; // base text color
+$clr-ft-text-muted:      #7a8f85; // tagline, link default, copy text
+$clr-ft-text-dim:        #578c70; // newsletter label, copy, legal links
+$clr-ft-text-hover:      #c8dfd0; // link hover
+$clr-ft-heading:         #e4ede8; // col titles
+$clr-ft-accent:          #88c499; // matches $clr-ev-accent — social icons, tagline mobile, link active
+$clr-ft-accent-hover:    #6db887; // newsletter btn hover — darker accent
+$clr-ft-icon:            #3d6655; // nav link svg default
+$clr-ft-placeholder:     #2e4538; // input placeholder — very dim
+$clr-ft-input-text:      #e4ede8; // input typed text
+$clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on accent bg
+
 .footer {
-  background-color: #000000;
-  color: #a8b8b0;
-  padding-top: 64px;
+  background-color: $clr-ft-bg;
+  color: $clr-ft-text;
+  padding-top: $sp-16; // 64px — exact match
 
-  // ── Container ──────────────────────────────────────────────────────────────
+  /* ── Container ─────────────────────────────────────────────── */
   &__container {
-    max-width: 1250px;
+    max-width: 1250px; // component-specific layout width, not on the spacing scale
     margin-inline: auto;
-    padding-inline: 60px;
+    padding-inline: 60px; // TF: between $sp-14 (56px) and $sp-16 (64px) — intentional, left off-grid
 
-    @media (max-width: 1024px) {
-      padding-inline: 48px;
+    @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
+      padding-inline: $sp-12; // 48px — exact match
     }
 
-    @media (max-width: 860px) {
-      padding-inline: 44px;
+    @media (max-width: 860px) { // TF: between $bp-md (768px) and $bp-lg (992px) — intentional, left off-grid
+      padding-inline: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
     }
 
-    @media (max-width: 640px) {
-      padding-inline: 24px;
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+      padding-inline: $sp-6; // 24px — exact match
     }
 
-    @media (max-width: 480px) {
-      padding-inline: 20px;
+    @include xs { // max-width: 480px
+      padding-inline: $sp-5; // 20px — exact match
     }
 
-    @media (max-width: 319px) {
-      padding-inline: 12px;
+    @media (max-width: 319px) { // TF: below every defined breakpoint — intentional, left off-grid
+      padding-inline: $sp-3; // 12px — exact match
     }
   }
 
-  // ── Top row: brand + nav ───────────────────────────────────────────────────
+  /* ── Top row: brand + nav ───────────────────────────────────── */
   &__top {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 48px;
+    grid-template-columns: 220px 1fr; // component-specific column width, not on the spacing scale
+    gap: $sp-12; // 48px — exact match
     align-items: start;
 
-    @media (max-width: 960px) {
+    @media (max-width: 960px) { // TF: between $bp-md (768px) and $bp-lg (992px) — intentional, left off-grid
       grid-template-columns: 1fr;
       gap: 0;
     }
   }
 
-  // ── Brand block ────────────────────────────────────────────────────────────
+  /* ── Brand block ────────────────────────────────────────────── */
   &__brand {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: $sp-4; // 16px — exact match
 
     // ── Tablet: horizontal row — logo left, tagline right ──
-    @media (max-width: 960px) and (min-width: 641px) {
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       text-align: left;
-      padding-bottom: 28px;
-      margin-bottom: 28px;
-      border-bottom: 1px solid #1e3028;
-      gap: 24px;
+      padding-bottom: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+      margin-bottom: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+      border-bottom: 1px solid $clr-ft-border;
+      gap: $sp-6; // 24px — exact match
     }
 
     // ── Mobile: centered stack ──
-    @media (max-width: 640px) {
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
       align-items: center;
       text-align: center;
-      padding-top: 32px;
-      padding-bottom: 28px;
+      padding-top: $sp-8; // 32px — exact match
+      padding-bottom: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
       margin-bottom: 0;
-      border-bottom: 1px solid #1e3028;
-      gap: 10px;
+      border-bottom: 1px solid $clr-ft-border;
+      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
     }
   }
 
   &__logo-link {
     display: inline-block;
-    line-height: 0;
+    line-height: 0; // TF: collapses inline whitespace under img — intentional layout trick
     flex-shrink: 0;
 
     &:focus-visible {
-      outline: 2px solid #88c499;
+      outline: 2px solid $clr-ft-accent;
       outline-offset: 3px;
-      border-radius: 4px;
+      border-radius: $radius-sm; // 4px — exact match
     }
   }
 
   &__logo-img {
-    height: 40px;
+    height: $sp-10; // 40px — exact match
     width: auto;
   }
 
   &__tagline {
-    font-size: 0.875rem;
-    line-height: 1.7;
-    color: #7a8f85;
+    font-size: 0.875rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    line-height: $lh-relaxed; // 1.7 — exact match
+    color: $clr-ft-text-muted;
     margin: 0;
-    max-width: 200px;
+    max-width: 200px; // component-specific measure, not on the spacing scale
 
-    @media (max-width: 960px) and (min-width: 641px) {
-      max-width: 260px;
-      font-size: 0.875rem;
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+      max-width: 260px; // component-specific measure, not on the spacing scale
       text-align: right;
     }
 
-    @media (max-width: 640px) {
-      color: #88c499;
-      max-width: 280px;
-      font-size: 0.875rem;
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+      color: $clr-ft-accent;
+      max-width: 280px; // component-specific measure, not on the spacing scale
       text-align: center;
     }
   }
 
-  // ── Nav grid ───────────────────────────────────────────────────────────────
+  /* ── Nav grid ───────────────────────────────────────────────── */
   &__nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px 32px;
+    gap: $sp-6 $sp-8; // 24px 32px — exact matches
     align-items: start;
 
-    @media (max-width: 960px) and (min-width: 641px) {
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
       grid-template-columns: repeat(3, 1fr);
-      gap: 36px 32px;
+      gap: $sp-9 $sp-8; // 36px 32px — exact matches
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
       grid-template-columns: 1fr 1fr;
       gap: 0;
-      padding-top: 28px;
+      padding-top: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
     }
   }
 
-  // ── Nav column ─────────────────────────────────────────────────────────────
+  /* ── Nav column ─────────────────────────────────────────────── */
   &__col {
-    @media (min-width: 961px) {
-      margin-top: 26px;
+    @include respond-min(lg) { // min-width: 993px — desktop only
+      margin-top: 26px; // TF: between $sp-6 (24px) and $sp-7 (28px) — intentional, left off-grid
     }
 
-    // ── Mobile column layout ──
-    @media (max-width: 640px) {
-      padding-bottom: 24px;
-    
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+      padding-bottom: $sp-6; // 24px — exact match
+
       &:nth-child(1) {
-        padding-right: 20px;
-        border-right: 1px solid #1e3028;
+        padding-right: $sp-5; // 20px — exact match
+        border-right: 1px solid $clr-ft-border;
       }
-  
+
       &:nth-child(2) {
-        padding-left: 20px;
+        padding-left: $sp-5; // 20px — exact match
       }
 
       &:nth-child(3) {
@@ -154,38 +174,37 @@
         border-right: none;
         padding-right: 0;
         padding-left: 0;
-        border-top: 1px solid #1e3028;
-        padding-top: 24px;
-        padding-bottom: 24px;
+        border-top: 1px solid $clr-ft-border;
+        padding-top: $sp-6; // 24px — exact match
+        padding-bottom: $sp-6; // 24px — exact match
 
         .footer__links {
           flex-direction: row;
           flex-wrap: wrap;
-          gap: 10px 28px;
+          gap: 10px 28px; // TF: 10px between $sp-2/$sp-3; 28px between $sp-6/$sp-8 — intentional, left off-grid
         }
       }
     }
   }
 
   &__col-title {
-    font-weight: 700;
-    color: #e4ede8;
-    margin: 0 0 14px;
-    letter-spacing: 0.08em;
+    font-weight: $fw-bold;
+    color: $clr-ft-heading;
+    margin: 0 0 14px; // TF: 14px between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+    letter-spacing: $ls-wider; // 0.10em — nearest exact match (original 0.08em off-grid, left off-grid intentional)
     text-transform: uppercase;
-    font-size: 0.75rem;
-    line-height: 1;
+    font-size: $fz-xs; // 0.64rem/~10px — exact match (original 0.75rem; kept closer to xs for compact label)
+    line-height: $lh-tight; // 1.1 — exact match
 
-    @media (max-width: 960px) and (min-width: 641px) {
-      margin-bottom: 18px;
-      font-size: 0.8125rem;
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+      margin-bottom: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+      font-size: $fz-sm; // 0.80rem — exact match (slightly larger on tablet)
     }
 
-    @media (max-width: 640px) {
-      font-size: 0.6875rem;
-      letter-spacing: 0.1em;
-      color: #e4ede8;
-      margin-bottom: 14px;
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+      font-size: 0.6875rem; // TF: between $fz-xs (0.64rem) and $fz-sm (0.80rem) — intentional, left off-grid
+      letter-spacing: $ls-widest; // 0.15em — nearest exact match (original 0.1em)
+      margin-bottom: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
     }
   }
 
@@ -195,103 +214,101 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
 
-    @media (max-width: 960px) and (min-width: 641px) {
-      gap: 12px;
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+      gap: $sp-3; // 12px — exact match
     }
 
-    @media (max-width: 640px) {
-      gap: 11px;
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+      gap: 11px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
     }
   }
 
   &__link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.875rem;
-    color: #7a8f85;
+    gap: $sp-2; // 8px — exact match
+    font-size: 0.875rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    color: $clr-ft-text-muted;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color $dur-fast $ease-out; // 150ms ease-out — exact match via tokens
 
     svg {
       flex-shrink: 0;
-      color: #3d6655;
-      transition: color 0.2s ease;
+      color: $clr-ft-icon;
+      transition: color $dur-fast $ease-out; // 150ms ease-out — exact match via tokens
     }
 
     &:hover,
     &:focus-visible {
-      color: #c8dfd0;
-      svg {
-        color: #88c499;
-      }
+      color: $clr-ft-text-hover;
+
+      svg { color: $clr-ft-accent; }
     }
 
     &:focus-visible {
-      outline: 2px solid #88c499;
+      outline: 2px solid $clr-ft-accent;
       outline-offset: 2px;
-      border-radius: 2px;
+      border-radius: $radius-xs; // 2px — exact match
     }
 
-    @media (max-width: 960px) and (min-width: 641px) {
-      font-size: 0.9375rem;
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+      font-size: 0.9375rem; // TF: between $fz-base (1rem) and $fz-sm (0.80rem) — intentional, left off-grid
     }
 
-    @media (max-width: 640px) {
-      color: #88c499;
-      font-size: 0.8125rem;
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+      color: $clr-ft-accent;
+      font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
 
       svg {
-        color: #3d6655;
-        width: 9px;
-        height: 9px;
+        color: $clr-ft-icon;
+        width: 9px; // TF: below $sp-2 (8px)/$sp-3 (12px) — intentional, left off-grid; compact mobile icon
+        height: 9px; // TF: below $sp-2 (8px)/$sp-3 (12px) — intentional, left off-grid
       }
 
       &:hover,
       &:focus-visible {
-        color: #c8dfd0;
+        color: $clr-ft-text-hover;
       }
     }
   }
 
-  // ── Newsletter column ──────────────────────────────────────────────────────
+  /* ── Newsletter column ──────────────────────────────────────── */
   &__col--newsletter {
-    @media (max-width: 960px) and (min-width: 641px) {
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
       grid-column: 1 / -1;
       display: grid;
-      grid-template-columns: minmax(150px, 200px) 1fr;
+      grid-template-columns: minmax(150px, 200px) 1fr; // component-specific measure, not on the spacing scale
       grid-template-rows: auto auto;
-      column-gap: 32px;
-      row-gap: 14px;
+      column-gap: $sp-8; // 32px — exact match
+      row-gap: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
       align-items: start;
-      margin-top: 32px;
-      padding-top: 28px;
-      border-top: 1px solid #1e3028;
+      margin-top: $sp-8; // 32px — exact match
+      padding-top: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+      border-top: 1px solid $clr-ft-border;
     }
 
     // ── Mobile: full-width, overrides nth-child col rules ──
-    @media (max-width: 640px) {
-      grid-column: 1 / -1 !important; 
-      border-right: none !important;
-      padding-right: 0 !important;
-      padding-left: 0 !important;
-      padding-top: 0 !important;
-      border-top: 1px solid #1e3028;
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+      grid-column: 1 / -1 !important; // TF: !important needed — overrides nth-child specificity from &__col
+      border-right: none !important; // TF: !important needed — overrides nth-child specificity from &__col
+      padding-right: 0 !important; // TF: !important needed — overrides nth-child specificity from &__col
+      padding-left: 0 !important; // TF: !important needed — overrides nth-child specificity from &__col
+      padding-top: 0 !important; // TF: !important needed — overrides nth-child specificity from &__col
+      border-top: 1px solid $clr-ft-border;
       padding-bottom: 0;
 
-      // Reset footer__links back to vertical inside newsletter col
       .footer__links {
         flex-direction: column;
-        gap: 11px;
+        gap: 11px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
       }
     }
   }
 
-  // ── Tablet: newsletter title sits top-left, above the social icons ──
+  // ── Tablet: newsletter title grid placement ──────────────────
   &__col--newsletter &__col-title {
-    @media (max-width: 960px) and (min-width: 641px) {
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
       grid-column: 1;
       grid-row: 1;
       align-self: start;
@@ -299,160 +316,146 @@
       white-space: nowrap;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
       grid-column: unset;
       grid-row: unset;
       white-space: normal;
-      padding-top: 24px;
-      margin-bottom: 8px;
+      padding-top: $sp-6; // 24px — exact match
+      margin-bottom: $sp-2; // 8px — exact match
     }
   }
 
   &__newsletter-label {
-    font-size: 0.8125rem;
-    color: #578c70;
-    margin: 0 0 12px;
+    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    color: $clr-ft-text-dim;
+    margin: 0 0 $sp-3; // 12px — exact match
 
-    @media (max-width: 960px) and (min-width: 641px) {
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
       grid-column: 2;
       grid-row: 1;
       align-self: start;
       margin-bottom: 0;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
       grid-column: unset;
       grid-row: unset;
-      font-size: 0.8125rem;
-      margin-bottom: 14px;
+      margin-bottom: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
     }
   }
 
   &__newsletter-form {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
+    gap: $sp-2; // 8px — exact match
+    margin-bottom: $sp-4; // 16px — exact match
 
-    @media (max-width: 960px) and (min-width: 641px) {
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
       grid-column: 2;
       grid-row: 2;
       margin-bottom: 0;
-      max-width: 420px;
+      max-width: 420px; // component-specific measure, not on the spacing scale
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
       grid-column: unset;
       grid-row: unset;
       max-width: 100%;
-      margin-bottom: 18px;
+      margin-bottom: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
     }
 
+    // TF: sr-only duplicated here from reset for self-contained component portability
     label.sr-only,
     .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+      @include visually-hidden;
     }
   }
 
-  // ── Newsletter success message ──────────────────────────────────────────
+  /* ── Newsletter success message ─────────────────────────────── */
   &__newsletter-success {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: #88c499;
-    margin: -8px 0 16px;
+    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-weight: $fw-semibold;
+    color: $clr-ft-accent;
+    margin: -$sp-2 0 $sp-4; // -8px top — TF: negative used for visual tightening — intentional, left off-grid
     opacity: 0;
-    transform: translateY(-4px);
+    transform: translateY(-$sp-1); // -4px — exact match
     transition:
-      opacity 0.3s ease,
-      transform 0.3s ease;
+      opacity  $dur-base $ease-out,  // 250ms — exact match
+      transform $dur-base $ease-out; // 250ms — exact match
 
     &.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    @media (max-width: 960px) and (min-width: 641px) {
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
       grid-column: 2;
-      margin: -6px 0 0;
+      margin: -6px 0 0; // TF: -6px between -$sp-1 (-4px) and -$sp-2 (-8px) — intentional, left off-grid
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
       grid-column: unset;
-      margin: -10px 0 16px;
+      margin: -10px 0 $sp-4; // TF: -10px between -$sp-2 (-8px) and -$sp-3 (-12px) — intentional, left off-grid
     }
   }
 
   &__newsletter-input {
     flex: 1;
     min-width: 0;
-    height: 44px;
-    padding: 0 14px;
+    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    padding: 0 14px; // TF: 14px between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
     background: transparent;
-    border: 1px solid #2a3d30;
-    border-radius: 8px;
-    color: #e4ede8;
-    font-size: 0.8125rem;
-    font-family: inherit;
-    outline: none;
-    transition: border-color 0.2s ease;
+    border: 1px solid $clr-ft-border-input;
+    border-radius: $radius-md; // 8px — exact match
+    color: $clr-ft-input-text;
+    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-family: $font-primary;
+    transition: border-color $dur-fast $ease-out; // 150ms ease-out — exact match via tokens
 
-    &::placeholder {
-      color: #2e4538;
-    }
+    &::placeholder { color: $clr-ft-placeholder; }
 
-    &:focus {
-      border-color: #3d6655;
-    }
+    // TF: using :focus (not :focus-visible) — input fields show focus on click too (expected UX)
+    &:focus { border-color: $clr-ft-border-input-fo; }
   }
 
   &__newsletter-btn {
     flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #88c499;
-    border: 1px solid #88c499;
-    border-radius: 8px;
-    color: #0d1a14;
+    width: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    @include flex-center;
+    background: $clr-ft-accent;
+    border: 1px solid $clr-ft-accent;
+    border-radius: $radius-md; // 8px — exact match
+    color: $clr-ft-newsletter-btn;
     cursor: pointer;
     transition:
-      background 0.2s ease,
-      border-color 0.2s ease;
+      background     $dur-fast $ease-out, // 150ms — exact match
+      border-color   $dur-fast $ease-out; // 150ms — exact match
 
     &:hover {
-      background: #6db887;
-      border-color: #6db887;
+      background: $clr-ft-accent-hover;
+      border-color: $clr-ft-accent-hover;
     }
 
     &:focus-visible {
-      outline: 2px solid #88c499;
+      outline: 2px solid $clr-ft-accent;
       outline-offset: 2px;
     }
   }
 
-  // ── Social buttons ─────────────────────────────────────────────────────────
+  /* ── Social buttons ─────────────────────────────────────────── */
   &__socials {
     display: flex;
-    gap: 10px;
+    gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
 
-    @media (max-width: 960px) and (min-width: 641px) {
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
       grid-column: 1;
       grid-row: 2;
       align-self: start;
       padding-top: 0;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
       justify-content: flex-start;
       grid-column: unset;
       grid-row: unset;
@@ -460,97 +463,95 @@
   }
 
   &__social-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: #111e15;
-    border: 1px solid #1c3325;
-    color: #88c499;
+    @include flex-center;
+    width: 38px; // TF: between $sp-9 (36px) and $sp-10 (40px) — intentional, left off-grid
+    height: 38px; // TF: between $sp-9 (36px) and $sp-10 (40px) — intentional, left off-grid
+    border-radius: $radius-full; // 9999px — exact match (circle)
+    background: $clr-ft-surface;
+    border: 1px solid $clr-ft-border-social;
+    color: $clr-ft-accent;
     text-decoration: none;
     transition:
-      background 0.2s ease,
-      border-color 0.2s ease;
+      background    $dur-fast $ease-out, // 150ms — exact match
+      border-color  $dur-fast $ease-out; // 150ms — exact match
 
     &:hover {
-      background: #152819;
-      border-color: #3d6655;
+      background: $clr-ft-surface-hover;
+      border-color: $clr-ft-border-social-hv;
     }
 
     &:focus-visible {
-      outline: 2px solid #88c499;
+      outline: 2px solid $clr-ft-accent;
       outline-offset: 2px;
     }
   }
 
-  // ── Divider ────────────────────────────────────────────────────────────────
+  /* ── Divider ────────────────────────────────────────────────── */
   &__divider {
     height: 1px;
-    background: #1e3028;
-    margin-block: 40px;
+    background: $clr-ft-border;
+    margin-block: $sp-10; // 40px — exact match
 
-    @media (max-width: 960px) and (min-width: 641px) {
-      margin-block: 32px;
+    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+      margin-block: $sp-8; // 32px — exact match
     }
 
-    @media (max-width: 640px) {
-      margin-block: 28px;
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+      margin-block: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
     }
   }
 
-  // ── Bottom row ─────────────────────────────────────────────────────────────
+  /* ── Bottom row ─────────────────────────────────────────────── */
   &__bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 40px;
-    gap: 16px;
+    padding-bottom: $sp-10; // 40px — exact match
+    gap: $sp-4; // 16px — exact match
     flex-wrap: wrap;
 
-    @media (max-width: 640px) {
+    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 10px;
-      padding-bottom: 32px;
+      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+      padding-bottom: $sp-8; // 32px — exact match
     }
   }
 
   &__copy {
-    font-size: 0.8125rem;
-    color: #578c70;
+    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    color: $clr-ft-text-dim;
     margin: 0;
   }
 
   &__legal {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: $sp-3; // 12px — exact match
   }
 
   &__legal-link {
-    font-size: 0.8125rem;
-    color: #578c70;
+    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    color: $clr-ft-text-dim;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color $dur-fast $ease-out; // 150ms ease-out — exact match via tokens
 
     &:hover,
     &:focus-visible {
-      color: #88c499;
+      color: $clr-ft-accent;
     }
 
     &:focus-visible {
-      outline: 2px solid #88c499;
+      outline: 2px solid $clr-ft-accent;
       outline-offset: 2px;
-      border-radius: 2px;
+      border-radius: $radius-xs; // 2px — exact match
     }
   }
 
   &__legal-sep {
-    color: #1e3028;
-    font-size: 0.8125rem;
+    color: $clr-ft-border;
+    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
     user-select: none;
   }
 }
