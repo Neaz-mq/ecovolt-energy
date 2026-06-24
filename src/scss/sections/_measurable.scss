@@ -11,8 +11,8 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
   background-color: $clr-ev-bg;
   position: relative;
   margin-block-start: -2px; // subpixel seam fix — intentionally not on the spacing grid
-  padding-block: 88px; // TF: between $sp-20 (80px) and $sp-24 (96px) — intentional, left off-grid
-  z-index: $z-raised + 1; // local: 11 — above $z-raised (10) in this page's section stacking
+  padding-block: 88px; 
+  z-index: $z-raised + 1; // local: 11 
 
   // ── Cover subpixel seam from smartgrid wave ───────────────────────────
   &::before {
@@ -21,20 +21,20 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
     top: -8px;
     left: 0;
     width: 100%;
-    height: $sp-4; // 16px — exact match
+    height: $sp-4; // 16px 
     background: $clr-ev-bg;
-    z-index: $z-raised - 9; // local: 1
+    z-index: $z-raised - 9; 
     pointer-events: none;
   }
 
   // ── Container ─────────────────────────────────────────────────────────────
   &__container {
-    max-width: 1250px; // component-specific layout width, not on the spacing scale
+    max-width: 1250px; 
     margin-inline: auto;
-    padding-inline: 60px; // TF: between $sp-14 (56px) and $sp-16 (64px) — intentional, left off-grid
+    padding-inline: 60px; 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $sp-12; // 48px — exact match
+    gap: $sp-12; // 48px 
     align-items: stretch;
   }
 
@@ -42,27 +42,27 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
   &__left {
     display: flex;
     flex-direction: column;
-    gap: $sp-7; // 28px — exact match
+    gap: $sp-7; // 28px 
     min-width: 0;
   }
 
   &__right {
     display: flex;
     flex-direction: column;
-    gap: $sp-4; // 16px — exact match
+    gap: $sp-4; // 16px 
     min-width: 0;
   }
 
   &__header {
     display: flex;
     flex-direction: column;
-    gap: $sp-3; // 12px — exact match
+    gap: $sp-3; // 12px 
   }
 
   &__title {
-    font-size: clamp(2rem, 3.2vw, 2.75rem); // fluid heading — custom range, not on the static $fz scale
+    font-size: clamp(2rem, 3.2vw, 2.75rem); 
     font-weight: $fw-bold;
-    line-height: 1.15; // TF: between $lh-tight (1.1) and $lh-snug (1.3) — intentional, left off-grid
+    line-height: 1.15; 
     color: $clr-ev-primary;
     margin: 0;
   }
@@ -72,11 +72,11 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
   }
 
   &__intro {
-    font-size: $fz-base; // 1rem — exact match
-    line-height: $lh-relaxed; // 1.7 — exact match
+    font-size: $fz-base; 
+    line-height: $lh-relaxed; 
     color: $clr-measurable-text-muted;
     margin: 0;
-    max-width: 440px; // component-specific measure, not on the spacing scale
+    max-width: 440px; 
   }
 
   /* ── Stats grid ────────────────────────────────────────────── */
@@ -86,19 +86,19 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
     grid-template-rows: repeat(2, 1fr);
     align-content: stretch;
     align-items: stretch;
-    gap: $sp-4; // 16px — exact match
+    gap: $sp-4; // 16px 
     flex: 1;
   }
 
   &__stat {
     background: $clr-ev-surface;
-    border-radius: 16px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
-    padding: $sp-9; // 36px — exact match
+    border-radius: 16px; 
+    padding: $sp-9; // 36px 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 6px; // TF: between $sp-1 (4px) and $sp-2 (8px) — intentional, left off-grid
-    min-height: 140px; // component-specific min-height, not on the spacing scale
+    gap: 6px; 
+    min-height: 140px; 
 
     &--accent {
       background: $clr-ev-accent-light;
@@ -106,31 +106,31 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
   }
 
   &__stat-num {
-    font-size: 1.9rem; // TF: close to $fz-xl (1.953rem) but not exact — intentional, left as custom value
+    font-size: 1.9rem; 
     font-weight: $fw-extrabold;
     color: $clr-ev-primary;
-    line-height: $lh-tight; // 1.1 — exact match
-    letter-spacing: -0.02em; // TF: between $ls-tight (-0.03em) and $ls-normal (0em) — intentional, left off-grid
+    line-height: $lh-tight; 
+    letter-spacing: -0.02em; 
   }
 
   &__stat-unit {
-    font-size: $fz-base; // 1rem — exact match
+    font-size: $fz-base; 
     font-weight: $fw-bold;
     color: $clr-ev-primary;
     vertical-align: super;
   }
 
   &__stat-title {
-    font-size: 0.95rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.95rem; 
     font-weight: $fw-semibold;
     color: $clr-ev-text;
-    margin: $sp-1 0 0; // 4px — exact match
+    margin: $sp-1 0 0; // 4px 
   }
 
   &__stat-desc {
-    font-size: 0.82rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.82rem; 
     color: $clr-ev-text;
-    line-height: $lh-normal; // 1.5 — exact match
+    line-height: $lh-normal; 
     margin: 0;
   }
 
@@ -138,13 +138,13 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
   &__globe {
     flex: 1;
     background: $clr-ev-primary;
-    border-radius: $radius-xl; // 24px — exact match
+    border-radius: $radius-xl; // 24px
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 0;
-    padding: $sp-2; // 8px — exact match
+    padding: $sp-2; // 8px
   }
 
   &__globe-img {
@@ -161,19 +161,19 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
 
   &__quote {
     background: $clr-ev-surface-note;
-    border-radius: 16px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
-    padding: $sp-5 $sp-6; // 20px 24px — exact matches
+    border-radius: 16px; 
+    padding: $sp-5 $sp-6; // 20px 24px 
     display: flex;
     align-items: center;
-    gap: $sp-4; // 16px — exact match
+    gap: $sp-4; // 16px 
     margin: 0;
   }
 
   &__quote-mark {
     flex-shrink: 0;
-    font-size: 2.5rem; // decorative glyph size, not on the $fz scale
+    font-size: 2.5rem; 
     font-weight: $fw-extrabold;
-    line-height: 1; // intentionally tighter than $lh-tight (1.1) for a tight decorative glyph
+    line-height: 1; 
     color: $clr-measurable-quote-mark;
     font-style: italic;
     position: relative;
@@ -181,22 +181,22 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
   }
 
   &__quote-text {
-    font-size: 0.85rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.85rem; 
     font-weight: $fw-semibold;
     color: $clr-ev-primary;
-    line-height: $lh-normal; // 1.5 — exact match
+    line-height: $lh-normal; 
     margin: 0;
   }
 
   /* ── FOOTER ────────────────────────────────────────────────── */
   &__footer-wrap {
-    max-width: 1250px; // component-specific layout width, not on the spacing scale
-    margin-block-start: $sp-8; // 32px — exact match
+    max-width: 1250px; 
+    margin-block-start: $sp-8; // 32px
     margin-inline: auto;
-    padding-inline: 60px; // TF: between $sp-14 (56px) and $sp-16 (64px) — intentional, left off-grid
+    padding-inline: 60px; 
     display: grid;
     grid-template-columns: 2.3fr 1fr;
-    gap: $sp-16; // 64px — exact match
+    gap: $sp-16; // 64px 
   }
 
   &__footer {
@@ -204,23 +204,23 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: $sp-4; // 16px — exact match
+    gap: $sp-4; // 16px 
     background: $clr-ev-surface;
-    border-radius: 20px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
-    padding: $sp-6 $sp-8; // 24px 32px — exact matches
+    border-radius: 20px; 
+    padding: $sp-6 $sp-8; // 24px 32px
   }
 
   &__footer-item {
     display: flex;
     align-items: center;
-    gap: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+    gap: 14px; 
     flex-shrink: 0;
   }
 
   &__footer-icon {
     flex-shrink: 0;
-    width: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
-    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    width: 44px; 
+    height: 44px; 
     border-radius: $radius-full;
     background: $clr-measurable-icon-bg;
     color: $clr-ev-primary;
@@ -229,26 +229,26 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
     justify-content: center;
 
     svg {
-      width: $sp-5; // 20px — exact match
-      height: $sp-5; // 20px — exact match
+      width: $sp-5; // 20px
+      height: $sp-5; // 20px 
     }
   }
 
   &__footer-body {
     display: flex;
     flex-direction: column;
-    gap: 2px; // TF: below $sp-1 (4px) — intentional, left off-grid
+    gap: 2px; 
   }
 
   &__footer-num {
-    font-size: 1.3rem; // TF: between $fz-md (1.25rem) and $fz-lg (1.563rem) — intentional, left off-grid
+    font-size: 1.3rem; 
     font-weight: $fw-extrabold;
     color: $clr-ev-primary;
-    line-height: $lh-tight; // 1.1 — exact match
+    line-height: $lh-tight; 
   }
 
   &__footer-label {
-    font-size: $fz-sm; // 0.80rem — exact match
+    font-size: $fz-sm; // 0.80rem 
     color: $clr-measurable-label-muted;
     white-space: nowrap;
   }
@@ -266,9 +266,9 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
   &__slider-track {
     display: flex;
     width: 100%;
-    gap: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+    gap: 14px; 
     box-sizing: border-box;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); // TF: no exact $dur/$ease match — intentional, left off-grid
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
     will-change: transform;
     cursor: grab;
 
@@ -278,19 +278,19 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
   }
 
   &__slide-card {
-    flex: 0 0 calc(50% - 7px); // TF: 7px = half the 14px gap, keeps two-up cards aligned — intentional, left off-grid
+    flex: 0 0 calc(50% - 7px); 
     min-width: 0;
     box-sizing: border-box;
     background: $clr-ev-surface;
-    border-radius: 20px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
-    padding: $sp-6 $sp-5; // 24px 20px — exact matches
+    border-radius: 20px; 
+    padding: $sp-6 $sp-5; // 24px 20px 
     display: flex;
     align-items: center;
-    gap: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
-    box-shadow: 0 2px 12px rgba($clr-ev-primary, 0.06); // exact rgb match for #1e5b4d
+    gap: 14px; 
+    box-shadow: 0 2px 12px rgba($clr-ev-primary, 0.06); 
     transition:
-      transform 0.2s ease, // TF: no exact $dur match (between $dur-fast 150ms and $dur-base 250ms) — intentional, left off-grid
-      box-shadow 0.2s ease; // TF: no exact $dur match — intentional, left off-grid
+      transform 0.2s ease, 
+      box-shadow 0.2s ease; 
     user-select: none;
 
     &:active {
@@ -301,8 +301,8 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
 
   &__slide-icon {
     flex-shrink: 0;
-    width: $sp-12; // 48px — exact match
-    height: $sp-12; // 48px — exact match
+    width: $sp-12; // 48px 
+    height: $sp-12; // 48px
     border-radius: $radius-full;
     background: $clr-measurable-icon-bg;
     color: $clr-ev-primary;
@@ -311,38 +311,38 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
     justify-content: center;
 
     svg {
-      width: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
-      height: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+      width: 22px; 
+      height: 22px; 
     }
   }
 
   &__slide-body {
     display: flex;
     flex-direction: column;
-    gap: 3px; // TF: below $sp-1 (4px) — intentional, left off-grid
+    gap: 3px; 
     min-width: 0;
   }
 
   &__slide-num {
-    font-size: 1.5rem; // TF: between $fz-md (1.25rem) and $fz-lg (1.563rem) — intentional, left off-grid
+    font-size: 1.5rem; 
     font-weight: $fw-extrabold;
     color: $clr-ev-primary;
-    line-height: 1; // intentionally tighter than $lh-tight (1.1) for a standalone number
-    letter-spacing: -0.02em; // TF: between $ls-tight (-0.03em) and $ls-normal (0em) — intentional, left off-grid
+    line-height: 1; 
+    letter-spacing: -0.02em; 
   }
 
   &__slide-label {
-    font-size: 0.78rem; // TF: just under $fz-sm (0.80rem) — intentional, left off-grid
+    font-size: 0.78rem; 
     color: $clr-measurable-label-muted;
-    line-height: 1.4; // TF: between $lh-snug (1.3) and $lh-normal (1.5) — intentional, left off-grid
+    line-height: 1.4; 
   }
 
-  /* Dots indicator — mirrors hero__stats-dots / impact__stats-dot */
+  /* Dots indicator */
   &__slider-dots {
     display: none;
     justify-content: center;
-    gap: 6px; // TF: between $sp-1 (4px) and $sp-2 (8px) — intentional, left off-grid
-    margin-block-start: $sp-4; // 16px — exact match
+    gap: 6px; 
+    margin-block-start: $sp-4; // 16px 
   }
 
   &__dot {
@@ -354,12 +354,12 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
     padding: 0;
     cursor: pointer;
     transition:
-      width 0.35s $ease-spring, // FIX: was "width 0.3s ease" — aligned with the dot-indicator pattern used everywhere else in the theme (hero__stats-dots, impact__stats-dot)
-      background 0.35s ease; // FIX: duration aligned to match the same pattern; TF: no exact $dur match for 0.35s — intentional, left off-grid
+      width 0.35s $ease-spring, 
+      background 0.35s ease; 
 
     &--active {
       width: 20px;
-      border-radius: $radius-sm; // 4px — exact match
+      border-radius: $radius-sm; // 4px 
       background: $clr-ev-primary;
     }
   }
@@ -369,44 +369,41 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
 ══════════════════════════════════════════════════════════════ */
 
   /* ── Medium desktops ───────────────────────────────────────── */
-  @media (max-width: 1280px) { // TF: custom breakpoint, between $bp-xl (1200px) and $bp-2xl (1440px)
-    // NOTE: removed duplicate, unchanged &__container and &__footer-wrap
-    // rulesets that were here — every property matched the base rule
-    // exactly (dead/redundant CSS), so only genuine overrides remain below.
+  @media (max-width: 1280px) { 
 
     &__stat {
-      padding: $sp-6; // 24px — exact match
+      padding: $sp-6; // 24px 
     }
 
     &__stat-num {
-      font-size: 1.6rem; // TF: between $fz-lg (1.563rem) and $fz-xl (1.953rem) — intentional, left off-grid
+      font-size: 1.6rem; 
     }
 
     &__stat-title {
-      font-size: 0.9rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+      font-size: 0.9rem; 
     }
 
     &__stat-desc {
-      font-size: 0.78rem; // TF: just under $fz-sm (0.80rem) — intentional, left off-grid
+      font-size: 0.78rem; 
     }
 
     &__quote-text {
-      max-width: 400px; // component-specific measure, not on the spacing scale
+      max-width: 400px; 
     }
   }
 
   /* ── Large tablets ─────────────────────────────────────────── */
-  @media (max-width: 1199px) { // TF: just under $bp-xl (1200px) — intentional one-pixel offset to avoid breakpoint overlap
+  @media (max-width: 1199px) { 
     &__footer-wrap {
       grid-template-columns: 1.4fr 1fr;
-      gap: $sp-8; // 32px — exact match
+      gap: $sp-8; // 32px 
     }
 
     &__footer {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: $sp-5 $sp-6; // 20px 24px — exact matches
-      padding: $sp-5 $sp-6; // 20px 24px — exact matches
+      gap: $sp-5 $sp-6; // 20px 24px 
+      padding: $sp-5 $sp-6; // 20px 24px 
     }
 
     &__footer-item {
@@ -432,16 +429,16 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
   }
 
   /* ── Tablets — stack layout, activate slider ───────────────── */
-  @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px)
+  @media (max-width: 1024px) { 
     &__container {
       grid-template-columns: 1fr;
-      gap: $sp-8; // 32px — exact match
-      padding-inline: $sp-12; // 48px — exact match
+      gap: $sp-8; // 32px 
+      padding-inline: $sp-12; // 48px
     }
 
     &__footer-wrap {
       grid-template-columns: 1fr;
-      padding-inline: $sp-12; // 48px — exact match
+      padding-inline: $sp-12; // 48px
       gap: 0;
     }
 
@@ -451,7 +448,7 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
     }
 
     &__intro {
-      max-width: 520px; // component-specific measure, not on the spacing scale
+      max-width: 520px; 
       margin-inline: auto;
     }
 
@@ -459,38 +456,36 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: $sp-5 $sp-8; // 20px 32px — exact matches
+      gap: $sp-5 $sp-8; // 20px 32px 
     }
 
     &__globe {
       flex: none;
       aspect-ratio: 21 / 9;
-      max-height: 360px; // component-specific, not on the spacing scale
+      max-height: 360px; 
       min-height: 0;
       width: 100%;
     }
 
     &__quote-text {
-      // NOTE: dropped repeated font-weight/color/line-height — identical to
-      // the base rule, so they were dead weight; only the real overrides remain.
-      max-width: 500px; // component-specific measure, not on the spacing scale
-      font-size: 0.85rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+      max-width: 500px; 
+      font-size: 0.85rem; 
     }
   }
 
   /* ── Small tablets / large phones — 529px to 768px ─────────── */
-  @media (max-width: $bp-md) { // 768px
+  @media (max-width: $bp-md) { 
     .measurable {
-      padding-block: $sp-12; // 48px — exact match
+      padding-block: $sp-12; // 48px 
     }
 
     &__container {
-      padding-inline: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
-      gap: $sp-6; // 24px — exact match
+      padding-inline: 44px; 
+      gap: $sp-6; // 24px 
     }
 
     &__title {
-      font-size: clamp(1.6rem, 7vw, 2.2rem); // fluid heading override — custom range, not on the static $fz scale
+      font-size: clamp(1.6rem, 7vw, 2.2rem); 
     }
 
     &__intro {
@@ -499,42 +494,42 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
 
     &__stats {
       grid-template-columns: 1fr 1fr;
-      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+      gap: 10px; 
     }
 
     &__stat {
-      padding: $sp-4; // 16px — exact match
+      padding: $sp-4; // 16px 
     }
 
     &__stat-num {
-      font-size: 1.4rem; // TF: between $fz-md (1.25rem) and $fz-lg (1.563rem) — intentional, left off-grid
+      font-size: 1.4rem; 
     }
 
     &__stat-title {
-      font-size: 0.85rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+      font-size: 0.85rem; 
     }
 
     &__stat-desc {
-      font-size: 0.75rem; // TF: just under $fz-sm (0.80rem) — intentional, left off-grid
+      font-size: 0.75rem; 
     }
 
     &__globe {
       aspect-ratio: 4 / 3;
       min-height: 0;
-      padding: $sp-6; // 24px — exact match
+      padding: $sp-6; // 24px 
     }
 
     &__quote {
-      padding: $sp-4; // 16px — exact match
+      padding: $sp-4; // 16px 
     }
 
     &__quote-text {
-      font-size: $fz-sm; // 0.80rem — exact match
+      font-size: $fz-sm; 
     }
 
     &__footer-wrap {
-      padding-inline: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
-      margin-block-start: $sp-6; // 24px — exact match
+      padding-inline: 44px; 
+      margin-block-start: $sp-6; // 24px 
     }
 
     /* Hide static footer, show slider — mobile only */
@@ -562,171 +557,170 @@ $clr-measurable-dot-inactive: #c5d9ce; // slider dot inactive bg
     }
 
     &__slide-num {
-      font-size: 1.35rem; // TF: between $fz-md (1.25rem) and $fz-lg (1.563rem) — intentional, left off-grid
+      font-size: 1.35rem; 
     }
 
     &__slide-label {
-      font-size: 0.75rem; // TF: just under $fz-sm (0.80rem) — intentional, left off-grid
+      font-size: 0.75rem; 
     }
   }
 
   /* ── Medium phones — 480px to 560px ───────────────────────── */
-  @media (max-width: 560px) { // TF: between $bp-xs (480px) and $bp-sm (576px)
+  @media (max-width: 560px) { 
     &__container {
-      padding-inline: $sp-8; // 32px — exact match
+      padding-inline: $sp-8; // 32px 
     }
 
     &__footer-wrap {
-      padding-inline: $sp-8; // 32px — exact match
+      padding-inline: $sp-8; // 32px 
     }
 
     &__slide-card {
       flex: 0 0 100%;
-      padding: $sp-5 14px; // 20px — exact match; 14px — TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
-      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+      padding: $sp-5 14px; // 20px 
+      gap: 10px; 
     }
 
     &__slide-icon {
-      width: 42px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
-      height: 42px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+      width: 42px; 
+      height: 42px; 
 
       svg {
-        width: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
-        height: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+        width: 18px; 
+        height: 18px; 
       }
     }
 
     &__slide-num {
-      font-size: $fz-md; // 1.25rem — exact match
+      font-size: $fz-md; 
     }
 
     &__slide-label {
-      font-size: 0.72rem; // TF: below $fz-sm (0.80rem) — intentional, left off-grid
+      font-size: 0.72rem; 
     }
   }
 
   /* ── Small phones — below 480px ────────────────────────────── */
-  @media (max-width: $bp-xs) { // 480px
+  @media (max-width: $bp-xs) { 
     .measurable {
-      padding-block: 26px; // TF: between $sp-6 (24px) and $sp-7 (28px) — intentional, left off-grid
+      padding-block: 26px; 
     }
 
     &__container {
-      padding-inline: $sp-5; // 20px — exact match
-      gap: $sp-5; // 20px — exact match
+      padding-inline: $sp-5; // 20px 
+      gap: $sp-5; // 20px 
     }
 
     &__title {
-      font-size: 1.6rem; // TF: between $fz-lg (1.563rem) and $fz-xl (1.953rem) — intentional, left off-grid
+      font-size: 1.6rem; 
     }
 
     &__intro {
-      font-size: 0.9rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+      font-size: 0.9rem; 
     }
 
     &__stats {
       grid-template-columns: 1fr;
       grid-template-rows: none;
-      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+      gap: 10px; 
     }
 
     &__stat {
-      padding: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+      padding: 18px; 
     }
 
     &__stat-num {
-      font-size: 1.5rem; // TF: between $fz-md (1.25rem) and $fz-lg (1.563rem) — intentional, left off-grid
+      font-size: 1.5rem; 
     }
 
     &__stat-unit {
-      font-size: 0.85rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+      font-size: 0.85rem; 
     }
 
     /* FIX: nearly square ratio on small phones, drop fixed min-height */
     &__globe {
       aspect-ratio: 1 / 1;
       min-height: 0;
-      padding: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
-      border-radius: 18px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
+      padding: 18px; 
+      border-radius: 18px; 
     }
 
     &__quote {
-      padding: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
-      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
-      border-radius: 12px; // TF: between $radius-md (8px) and $radius-lg (14px) — intentional, left off-grid
+      padding: 14px; 
+      gap: 10px; 
+      border-radius: 12px; 
     }
 
     &__quote-mark {
-      font-size: 1.8rem; // decorative glyph size, not on the $fz scale
-      top: -3px;
+      font-size: 1.8rem; 
     }
 
     &__quote-text {
-      font-size: 0.78rem; // TF: just under $fz-sm (0.80rem) — intentional, left off-grid
+      font-size: 0.78rem; 
     }
 
     &__footer-wrap {
-      padding-inline: $sp-5; // 20px — exact match
-      margin-block-start: $sp-2; // 8px — exact match
+      padding-inline: $sp-5; // 20px 
+      margin-block-start: $sp-2; // 8px 
     }
 
     /* Single full-width card, one at a time on small phones */
     &__slide-card {
       flex: 0 0 100%;
-      padding: 18px 14px; // TF: 18px between $sp-4/$sp-5; 14px between $sp-3/$sp-4 — intentional, left off-grid
+      padding: 18px 14px; 
     }
 
     &__slider-dots {
-      margin-block-start: $sp-6; // 24px — exact match
-      gap: $sp-2; // 8px — exact match
+      margin-block-start: $sp-6; // 24px 
+      gap: $sp-2; // 8px
     }
 
     &__dot {
       &--active {
-        width: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+        width: 22px; 
       }
     }
 
     &__footer {
-      border-radius: 16px; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
-      padding: $sp-4; // 16px — exact match
-      gap: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+      border-radius: 16px; 
+      padding: $sp-4; // 16px 
+      gap: 14px; 
     }
 
     &__footer-icon {
-      width: $sp-9; // 36px — exact match
-      height: $sp-9; // 36px — exact match
+      width: $sp-9; // 36px 
+      height: $sp-9; // 36px 
 
       svg {
-        width: $sp-4; // 16px — exact match
-        height: $sp-4; // 16px — exact match
+        width: $sp-4; // 16px 
+        height: $sp-4; // 16px 
       }
     }
 
     &__footer-num {
-      font-size: 1.1rem; // TF: between $fz-base (1rem) and $fz-md (1.25rem) — intentional, left off-grid
+      font-size: 1.1rem; 
     }
 
     &__footer-label {
-      font-size: 0.75rem; // TF: just under $fz-sm (0.80rem) — intentional, left off-grid
+      font-size: 0.75rem; 
     }
 
     &__slide-icon {
-      width: 38px; // TF: between $sp-9 (36px) and $sp-10 (40px) — intentional, left off-grid
-      height: 38px; // TF: between $sp-9 (36px) and $sp-10 (40px) — intentional, left off-grid
+      width: 38px; 
+      height: 38px; 
 
       svg {
-        width: $sp-4; // 16px — exact match
-        height: $sp-4; // 16px — exact match
+        width: $sp-4; // 16px 
+        height: $sp-4; // 16px 
       }
     }
 
     &__slide-num {
-      font-size: 1.2rem; // TF: between $fz-base (1rem) and $fz-md (1.25rem) — intentional, left off-grid
+      font-size: 1.2rem; 
     }
 
     &__slide-label {
-      font-size: 0.7rem; // TF: below $fz-sm (0.80rem) — intentional, left off-grid
+      font-size: 0.7rem; 
     }
   }
 }
