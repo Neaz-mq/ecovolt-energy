@@ -10,7 +10,7 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
   position: relative;
   z-index: 8; // local: below hiw's $z-raised (10) in this page's section stacking
   margin-block-start: -2px; // subpixel seam fix — intentionally not on the spacing grid
-  scroll-margin-top: 30px; // TF: between $sp-7 (28px) and $sp-8 (32px) — intentional, left off-grid
+  scroll-margin-top: 30px; 
 
   // ── Cover subpixel seam from smartgrid wave ───────────────────────────
   &::before {
@@ -19,7 +19,7 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
     top: -8px;
     left: 0;
     width: 100%;
-    height: $sp-4; // 16px — exact match
+    height: $sp-4; // 16px
     background: $clr-ev-bg;
     z-index: $z-raised - 9; // local: 1
     pointer-events: none;
@@ -29,29 +29,27 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
   &__container {
     max-width: 56rem;
     margin-inline: auto;
-    padding-inline: $sp-6; // TF: was var(--space-6, 1.5rem) — that CSS custom property is never
-    // defined anywhere in this codebase, so it always silently fell back to 1.5rem (=24px=$sp-6).
-    // Removed the dead indirection and used the token directly.
-    padding-block: clamp($sp-16, 7vw, $sp-28); // 64px / 112px — exact matches
-    text-align: center; // ← keep center for title
+    padding-inline: $sp-6; 
+    padding-block: clamp($sp-16, 7vw, $sp-28); // 64px / 112px 
+    text-align: center; 
 
-    @media (max-width: $bp-xs) { // 480px
-      padding-inline: $sp-5; // 20px — exact match
-      padding-block: $sp-12; // 48px — exact match
+    @media (max-width: $bp-xs) { 
+      padding-inline: $sp-5; // 20px 
+      padding-block: $sp-12; // 48px 
     }
   }
 
   // ── Header ────────────────────────────────────────────────────────────────
   &__header {
-    margin-block-end: clamp($sp-10, 5vw, $sp-16); // 40px / 64px — exact matches
+    margin-block-end: clamp($sp-10, 5vw, $sp-16); // 40px / 64px 
   }
 
   &__title {
     font-size: clamp(2rem, 5vw, 3.75rem);
     font-weight: $fw-bold;
-    line-height: 1.2; // TF: between $lh-tight (1.1) and $lh-snug (1.3) — intentional, left off-grid
+    line-height: 1.2; // 
     color: $clr-ev-primary;
-    margin-block-end: $sp-10; // 40px — exact match
+    margin-block-end: $sp-10; // 40px 
 
     @media (max-width: $bp-xs) { // 480px
       font-size: 1.75rem;
@@ -64,15 +62,15 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
 
   &__intro {
     font-size: clamp(1rem, 2.6vw, 1.1rem);
-    line-height: $lh-relaxed; // 1.7 — exact match
+    line-height: $lh-relaxed; // 
     font-weight: $fw-medium;
     color: $clr-ev-primary;
     max-width: 42rem;
     margin-inline: auto;
     text-align: center;
 
-    @media (max-width: 680px) { // TF: custom breakpoint, between $bp-sm (576) and $bp-md (768)
-      font-size: $fz-base; // 1rem — exact match
+    @media (max-width: 680px) { 
+      font-size: $fz-base; // 1rem 
       max-width: 100%;
       text-align: center;
     }
@@ -82,11 +80,11 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
   &__stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp($sp-2, 2.5vw, $sp-4); // 8px / 16px — exact matches
+    gap: clamp($sp-2, 2.5vw, $sp-4); // 8px / 16px 
     max-width: 45rem;
     margin-inline: auto;
 
-    @media (max-width: 640px) { // TF: custom breakpoint, between $bp-sm (576) and $bp-md (768)
+    @media (max-width: 640px) { 
       display: flex;
       flex-direction: row;
       overflow-x: auto;
@@ -112,14 +110,14 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
   &__stat-card {
     background-color: $clr-impact-card-bg;
     border: 1px solid $clr-impact-card-border;
-    border-radius: $radius-xl; // 24px (1.5rem) — exact match
-    padding: clamp($sp-6, 3vw, $sp-8) clamp($sp-5, 2.5vw, $sp-6); // 24/32px, 20/24px — exact matches
+    border-radius: $radius-xl; // 24px 
+    padding: clamp($sp-6, 3vw, $sp-8) clamp($sp-5, 2.5vw, $sp-6); // 24/32px, 20/24px 
     text-align: left;
 
     opacity: 0;
     transform: translateY(20px);
     transition:
-      opacity 0.5s ease, // TF: no exact $dur/$ease match (between $dur-base 250ms and $dur-slow 400ms) — intentional, left off-grid
+      opacity 0.5s ease, 
       transform 0.5s ease;
 
     &.is-visible {
@@ -142,8 +140,8 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
       width: 100%;
       min-width: 100%;
       scroll-snap-align: start;
-      padding: $sp-10 $sp-5; // 40px 20px — exact matches
-      border-radius: 1rem; // TF: between $radius-lg (14px) and $radius-xl (24px) — intentional, left off-grid
+      padding: $sp-10 $sp-5; // 40px 20px 
+      border-radius: 1rem; 
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -158,9 +156,8 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
     font-size: clamp(2.25rem, 5vw, 3rem);
     font-weight: $fw-bold;
     color: $clr-ev-accent;
-    line-height: 1; // intentionally tighter than $lh-tight (1.1) for a large standalone number
-    margin-block-end: 0.875rem; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
-
+    line-height: 1; 
+    margin-block-end: 0.875rem; 
     @media (max-width: $bp-xs) { // 480px
       font-size: 2.5rem;
     }
@@ -169,7 +166,7 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
   // ── Stat description ──────────────────────────────────────────────────────
   &__stat-desc {
     font-size: clamp(0.9rem, 1.8vw, 1rem);
-    line-height: 1.55; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
+    line-height: 1.55; 
     color: $clr-impact-text-muted;
     font-weight: $fw-medium;
     margin: 0;
@@ -189,8 +186,8 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 6px; // TF: between $sp-1 (4px) and $sp-2 (8px) — intentional, left off-grid
-      margin-top: $sp-4; // 16px — exact match
+      gap: 6px; 
+      margin-top: $sp-4; // 16px 
     }
   }
 
@@ -200,13 +197,13 @@ $clr-impact-text-muted:  #3a4a42;  // stat description text
     border-radius: $radius-full;
     background: rgba($clr-ev-primary, 0.18);
     transition:
-      width 0.35s $ease-spring, // cubic-bezier(0.34, 1.56, 0.64, 1) — exact match
-      background 0.35s ease; // TF: duration has no exact $dur match — intentional, left off-grid
+      width 0.35s $ease-spring, 
+      background 0.35s ease; 
     flex-shrink: 0;
 
     &.is-active {
       width: 20px;
-      border-radius: 3px; // TF: between $radius-sm (4px) and $radius-xs (2px) — intentional, left off-grid
+      border-radius: 3px; 
       background: $clr-ev-primary;
     }
   }
