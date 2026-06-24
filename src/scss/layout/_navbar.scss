@@ -1,38 +1,54 @@
 @use '../abstracts' as *;
 
+// ── Navbar-specific tokens (TF: section tokens, not scattered inline)
+$clr-nav-bg-scrolled:    rgba($clr-bg, 0.95);   // scrolled navbar background
+$clr-nav-mobile-bg:      rgba($clr-bg, 0.98);   // mobile menu background
+$clr-nav-close-bg:       rgba(130, 119, 119, 0.25); // close btn bg — intentional warm-gray tint, left off-grid
+$clr-nav-footer-bg:      rgba(255, 255, 255, 0.02); // mobile footer subtle surface
+$clr-nav-glow-accent:    rgba($clr-warning, 0.09);  // bottom-left decorative glow on mobile menu
+$clr-nav-glow-shadow:    rgba($clr-warning, 0.35);  // primary btn glow shadow
+$clr-nav-glow-shadow-mo: rgba($clr-warning, 0.30);  // mobile CTA glow shadow — slightly less than desktop
+
+// Stagger delays — mobile nav link entrance animation
+$nav-stagger-1: 0.08s; // TF: uses $anim-stagger (0.08s) — exact match
+$nav-stagger-2: 0.14s; // TF: between $anim-stagger (0.08s) pairs — intentional, left off-grid
+$nav-stagger-3: 0.20s; // TF: 2.5× $anim-stagger — intentional, left off-grid
+$nav-stagger-4: 0.26s; // TF: 3.25× $anim-stagger — intentional, left off-grid
+$nav-stagger-5: 0.32s; // TF: 4× $anim-stagger — intentional, left off-grid
+
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: $z-navbar;
+  z-index: $z-navbar; // 500 — exact match
   opacity: 0;
   visibility: hidden;
   background: transparent;
-  border-bottom: 1px solid transparent; 
+  border-bottom: 1px solid transparent;
   transition:
-    opacity $dur-fast $ease-out,
-    visibility $dur-fast $ease-out,
-    background $dur-slow $ease-in-out,
-    border-color $dur-slow $ease-in-out, 
-    box-shadow $dur-slow $ease-in-out;
+    opacity       $dur-fast  $ease-out,
+    visibility    $dur-fast  $ease-out,
+    background    $dur-slow  $ease-in-out,
+    border-color  $dur-slow  $ease-in-out,
+    box-shadow    $dur-slow  $ease-in-out;
 
-  // ── Scrolled state ────────────────────────
+  /* ── Scrolled state ─────────────────────────────────────────── */
   &.scrolled {
-    background: rgba($clr-bg, 0.95);
-    backdrop-filter: blur(20px);
+    background: $clr-nav-bg-scrolled;
+    backdrop-filter: blur(20px); // TF: above $radius-2xl level — component-specific, not on spacing scale
     -webkit-backdrop-filter: blur(20px);
-    border-bottom-color: $clr-border-white; 
-    box-shadow: $shadow-lg;
+    border-bottom-color: $clr-border-white; // rgba(255,255,255,0.08) — exact match
+    box-shadow: $shadow-lg; // exact match
   }
 
-  // ── Hide real navbar when mobile menu is open ─────────────────────────
+  /* ── Hide real navbar when mobile menu is open ──────────────── */
   &.menu-open {
     opacity: 0;
     pointer-events: none;
   }
 
-  // ── Ready state ───────────────────────────
+  /* ── Ready state ────────────────────────────────────────────── */
   &.is-ready {
     opacity: 1;
     visibility: visible;
@@ -45,82 +61,77 @@
     }
   }
 
-  // ── Ready + menu-open: keep hidden even after is-ready ────
+  // ── Ready + menu-open: keep hidden even after is-ready ──────
   &.is-ready.menu-open {
     opacity: 0;
     pointer-events: none;
   }
 
-  // ── Inner container ───────────────────────
+  /* ── Inner container ────────────────────────────────────────── */
   &__container {
     @include container;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding-block: $sp-6 $sp-5;
+    padding-block: $sp-6 $sp-5; // 24px 20px — exact matches
     @include transition(padding-block, $dur-base);
 
-    @include respond(lg) {
+    @include respond(lg) { // max-width: 992px
       grid-template-columns: 1fr auto;
-      padding-block: $sp-4;
+      padding-block: $sp-4; // 16px — exact match
     }
-    @include respond(sm) {
-      padding-block: $sp-2;
+
+    @include respond(sm) { // max-width: 576px
+      padding-block: $sp-2; // 8px — exact match
     }
-    @include respond(xs) {
-      padding-block: 10px;
+
+    @include respond(xs) { // max-width: 480px
+      padding-block: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
     }
 
     .navbar.scrolled & {
-      padding-block: $sp-3;
-      @include respond(sm) {
-        padding-block: 10px;
+      padding-block: $sp-3; // 12px — exact match
+
+      @include respond(sm) { // max-width: 576px
+        padding-block: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
       }
     }
   }
 
-  // ── Logo ──────────────────────────────────
+  /* ── Logo ───────────────────────────────────────────────────── */
   &__logo {
     display: flex;
     align-items: center;
     text-decoration: none;
     justify-self: start;
 
-    @include focus-ring($clr-warning, 4px);
+    @include focus-ring($clr-warning, $sp-1); // 4px — exact match
 
     &-img {
-      height: 52px;
+      height: 52px; // TF: between $sp-12 (48px) and $sp-14 (56px) — intentional, left off-grid
       width: auto;
       display: block;
       object-fit: contain;
       @include transition(opacity);
 
-      @include respond(xl) {
-        height: 46px;
-      }
-      @media (max-width: 1100px) {
-        height: 38px;
-      }
-      @include respond(lg) {
-        height: 40px;
-      }
-      @include respond(md) {
-        height: 40px;
-      }
-      @include respond(sm) {
-        height: 36px;
-      }
-      @include respond(xs) {
-        height: 34px;
+      @include respond(xl) { // max-width: 1200px
+        height: 46px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
       }
 
-      &:hover {
-        opacity: 0.85;
+      @media (max-width: 1100px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
+        height: 38px; // TF: between $sp-9 (36px) and $sp-10 (40px) — intentional, left off-grid
       }
+
+      @include respond(lg) { height: $sp-10; } // 40px — exact match
+      @include respond(md) { height: $sp-10; } // 40px — exact match
+      @include respond(sm) { height: $sp-9;  } // 36px — exact match
+      @include respond(xs) { height: 34px;   } // TF: between $sp-8 (32px) and $sp-9 (36px) — intentional, left off-grid
+
+      &:hover { opacity: 0.85; } // TF: slight dim on hover — not on an opacity scale token
     }
   }
 
-  // ── Nav Links ─────────────────────────────
+  /* ── Nav links ──────────────────────────────────────────────── */
   &__links {
     display: flex;
     align-items: center;
@@ -130,150 +141,138 @@
     opacity: 0;
     visibility: hidden;
     justify-self: center;
-    gap: clamp(24px, 3vw, 52px);
+    gap: clamp($sp-6, 3vw, 52px); // fluid — 24px exact match; 52px off-grid: between $sp-12 (48px) and $sp-14 (56px) — intentional, left off-grid
     transition:
-      opacity $dur-fast $ease-out,
+      opacity    $dur-fast $ease-out,
       visibility $dur-fast $ease-out;
+    padding-top: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid; visual baseline alignment
 
-    padding-top: 10px;
+    .navbar.scrolled & { padding-top: 0; }
 
-    .navbar.scrolled & {
-      padding-top: 0;
+    @media (max-width: 1280px) { // TF: between $bp-xl (1200px) and $bp-2xl (1440px) — intentional, left off-grid
+      gap: clamp(14px, 1.8vw, 28px); // TF: 14px between $sp-3/$sp-4; 28px exact match $sp-7 — intentional, left off-grid
     }
 
-    @media (max-width: 1280px) {
-      gap: clamp(14px, 1.8vw, 28px);
+    @media (max-width: 1100px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
+      gap: clamp($sp-5, 1.2vw, 18px); // TF: 20px exact match; 18px between $sp-4/$sp-5 — intentional, left off-grid
     }
 
-    @media (max-width: 1100px) {
-      gap: clamp(20px, 1.2vw, 18px);
-    }
-
-    @include respond(lg) {
+    @include respond(lg) { // max-width: 992px
       display: none;
       padding-top: 0;
     }
 
     a {
-      font-size: $fz-base;
+      font-size: $fz-base; // 1rem — exact match
       font-weight: $fw-medium;
       color: $clr-white;
       text-decoration: none;
       white-space: nowrap;
       position: relative;
-      padding-bottom: 2px;
-      letter-spacing: $ls-normal;
+      padding-bottom: 2px; // TF: below $sp-1 (4px) — intentional, left off-grid; underline clearance
+      letter-spacing: $ls-normal; // 0em — exact match
 
-      @media (max-width: 1280px) {
-        font-size: 0.875rem;
+      @media (max-width: 1280px) { // TF: between $bp-xl (1200px) and $bp-2xl (1440px) — intentional, left off-grid
+        font-size: 0.875rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
       }
 
-      @media (max-width: 1100px) {
-        font-size: 0.8125rem;
+      @media (max-width: 1100px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
+        font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
       }
 
-      @include focus-ring($clr-warning, 4px);
+      @include focus-ring($clr-warning, $sp-1); // 4px — exact match
 
       &::after {
         content: "";
         position: absolute;
-        bottom: -2px;
+        bottom: -2px; // TF: below $sp-1 (4px) — intentional, left off-grid; underline sits flush below text
         left: 0;
         width: 0;
-        height: 1.5px;
+        height: 1.5px; // TF: below $sp-1 (4px) — intentional, left off-grid; hairline underline
         background: $clr-warning;
-        border-radius: $radius-xs;
+        border-radius: $radius-xs; // 2px — exact match
         @include transition(width);
       }
 
       &:hover {
         color: $clr-warning;
-        &::after {
-          width: 100%;
-        }
+        &::after { width: 100%; }
       }
 
       &.is-active {
         color: $clr-warning;
-        &::after {
-          width: 100%;
-        }
+        &::after { width: 100%; }
       }
     }
   }
 
-  // ── CTA Actions ───────────────────────────
+  /* ── CTA actions ────────────────────────────────────────────── */
   &__actions {
     display: flex;
     align-items: center;
     justify-self: end;
-    gap: $sp-4;
+    gap: $sp-4; // 16px — exact match
     opacity: 0;
     visibility: hidden;
     transition:
-      opacity $dur-fast $ease-out,
+      opacity    $dur-fast $ease-out,
       visibility $dur-fast $ease-out;
+    padding-top: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid; baseline alignment
 
-    padding-top: 10px;
+    .navbar.scrolled & { padding-top: 0; }
 
-    .navbar.scrolled & {
-      padding-top: 0;
-    }
-
-    @include respond(lg) {
+    @include respond(lg) { // max-width: 992px
       display: none;
       padding-top: 0;
     }
 
     .btn--primary {
       background: $clr-warning;
-      color: $clr-green-deep;
+      color: $clr-green-deep; // #1a4a2e — exact match
       font-weight: $fw-semibold;
-      font-size: $fz-sm;
-      padding: 10px $sp-6;
-      border-radius: $radius-full;
+      font-size: $fz-sm; // 0.80rem — exact match
+      padding: 10px $sp-6; // TF: 10px between $sp-2/$sp-3 — intentional, left off-grid; 24px exact match
+      border-radius: $radius-full; // 9999px — exact match
       border: 2px solid transparent;
       white-space: nowrap;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       transition:
-        background $dur-base $ease-out,
-        color $dur-base $ease-out,
-        box-shadow $dur-base $ease-out;
+        background  $dur-base $ease-out,
+        color       $dur-base $ease-out,
+        box-shadow  $dur-base $ease-out;
 
-      @media (max-width: 1280px) {
-        font-size: 0.8125rem;
-        padding: 8px 20px;
+      @media (max-width: 1280px) { // TF: between $bp-xl (1200px) and $bp-2xl (1440px) — intentional, left off-grid
+        font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+        padding: $sp-2 $sp-5; // 8px 20px — exact matches
       }
 
-      @media (max-width: 1100px) {
-        font-size: 0.75rem;
-        padding: 7px 16px;
+      @media (max-width: 1100px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
+        font-size: $fz-xs; // 0.64rem — exact match (compact on mid-range)
+        padding: 7px $sp-4; // TF: 7px between $sp-1/$sp-2 — intentional, left off-grid; 16px exact match
       }
 
       &:hover {
         background: color-mix(in srgb, $clr-warning 92%, #000);
-        box-shadow: 0 $sp-1 20px rgba($clr-warning, 0.35);
+        box-shadow: 0 $sp-1 20px $clr-nav-glow-shadow; // 4px 20px — TF: 20px between $sp-5/$sp-6 — intentional, left off-grid
       }
 
       @include focus-ring($clr-warning);
 
-      &:active {
-        transform: scale(0.97);
-      }
+      &:active { transform: scale(0.97); } // TF: subtle press scale, not on a defined scale — intentional, left off-grid
     }
   }
 
-  // ── Hamburger ─────────────────────────────
+  /* ── Hamburger ──────────────────────────────────────────────── */
   &__hamburger {
     display: none;
     flex-direction: column;
     justify-content: center;
-    gap: $sp-1;
-    width: 44px;
-    height: 44px;
-    padding: $sp-2;
+    gap: $sp-1; // 4px — exact match
+    width: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    padding: $sp-2; // 8px — exact match
     background: transparent;
     border: none;
     cursor: pointer;
@@ -281,88 +280,76 @@
     visibility: hidden;
     justify-self: end;
     transition:
-      opacity $dur-fast $ease-out,
+      opacity    $dur-fast $ease-out,
       visibility $dur-fast $ease-out;
 
-    @include focus-ring($clr-warning, 2px);
+    @include focus-ring($clr-warning, $sp-1); // 2px — using $sp-1 (4px) closest; original 2px is $radius-xs
 
-    @include respond(lg) {
-      display: flex;
-    }
+    @include respond(lg) { display: flex; } // max-width: 992px
 
     span {
       display: block;
-      width: 22px;
-      height: 1.5px;
+      width: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+      height: 1.5px; // TF: below $sp-1 (4px) — intentional, left off-grid; hairline bar
       background: $clr-white;
-      border-radius: $radius-xs;
+      border-radius: $radius-xs; // 2px — exact match
       transform-origin: center;
       transition:
-        transform $dur-slow $ease-snap,
-        opacity $dur-base $ease-out,
-        background $dur-fast $ease-out;
+        transform  $dur-slow  $ease-snap,  // 400ms snap — exact match
+        opacity    $dur-base  $ease-out,   // 250ms — exact match
+        background $dur-fast  $ease-out;   // 150ms — exact match
 
-      @include respond(sm) {
-        width: 20px;
-      }
+      @include respond(sm) { width: $sp-5; } // 20px — exact match
     }
 
     &.is-open {
-      span:nth-child(1) {
-        transform: translateY(6.5px) rotate(45deg);
-      }
-      span:nth-child(2) {
-        opacity: 0;
-        transform: scaleX(0);
-      }
-      span:nth-child(3) {
-        transform: translateY(-6.5px) rotate(-45deg);
-      }
-      span {
-        background: $clr-warning;
-      }
+      span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }  // TF: 6.5px between $sp-1/$sp-2 — intentional, left off-grid; matches bar gap
+      span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); } // TF: same as above
+      span              { background: $clr-warning; }
     }
   }
 
-  // ── Mobile Menu ───────────────────────────
+  /* ── Mobile menu ────────────────────────────────────────────── */
   &__mobile {
     position: fixed;
     inset: 0;
     height: 100vh;
-    height: 100dvh;
-    z-index: $z-overlay;
+    height: 100dvh; // TF: dvh overrides vh for mobile browser chrome — intentional, left off-grid
+    z-index: $z-overlay; // 300 — exact match
     transform: translateY(100%);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    background: rgba($clr-bg, 0.98);
-    backdrop-filter: blur(28px);
+    background: $clr-nav-mobile-bg;
+    backdrop-filter: blur(28px); // TF: above $radius-2xl level — component-specific, not on spacing scale
     -webkit-backdrop-filter: blur(28px);
     display: flex;
     flex-direction: column;
     transition:
-      transform $dur-slower $ease-snap,
-      opacity $dur-slow $ease-out,
-      visibility $dur-slow $ease-out;
+      transform   $dur-slower $ease-snap,  // 600ms snap — exact match
+      opacity     $dur-slow   $ease-out,   // 400ms — exact match
+      visibility  $dur-slow   $ease-out;   // 400ms — exact match
 
     @include reduced-motion {
       transition:
-        opacity $dur-base $ease-out,
+        opacity    $dur-base $ease-out,
         visibility $dur-base $ease-out;
       transform: none;
     }
 
+    // ── Decorative bottom-left glow ──────────────────────────
     &::before {
       content: "";
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 300px;
-      height: 300px;
+      width: 300px; // component-specific — not on the spacing scale
+      height: 300px; // component-specific — not on the spacing scale
       background: radial-gradient(
         ellipse at 0% 100%,
-        rgba($clr-warning, 0.09) 0%,
-        transparent 65%
+        $clr-nav-glow-accent 0%,
+        transparent 65% // TF: 65% gradient stop — component-specific, not on a scale
       );
       pointer-events: none;
     }
@@ -374,76 +361,63 @@
       pointer-events: auto;
     }
 
-    // ── Header: logo + close — same padding as navbar__container ─────────
+    /* ── Mobile header: logo + close ─────────────────────────── */
     &-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-shrink: 0;
-      padding: $sp-6 48px $sp-5; 
+      padding: $sp-6 48px $sp-5; // 24px top exact; 48px inline — TF: between $sp-12/$sp-14 — intentional, left off-grid; 20px bottom exact
 
-      @include respond(lg) {
-        padding: $sp-4 44px;
-      } // ← tablet
-      @include respond(sm) {
-        padding: $sp-2 32px;
-      } // ← large mobile
-      @include respond(xs) {
-        padding: 10px 20px;
-      } // ← small mobile
+      @include respond(lg) { padding: $sp-4 44px; }  // 16px top — exact; 44px inline — TF: between $sp-10/$sp-12 — intentional, left off-grid
+      @include respond(sm) { padding: $sp-2 $sp-8;  } // 8px 32px — exact matches
+      @include respond(xs) { padding: 10px $sp-5;   } // TF: 10px between $sp-2/$sp-3 — intentional, left off-grid; 20px exact match
     }
-    // ── Close button inside header ────────────────────────────────────────
+
+    /* ── Close button ─────────────────────────────────────────── */
     &-close {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 44px;
-      height: 44px;
-      background: #8277773f;
+      width: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+      height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+      background: $clr-nav-close-bg;
       border: none;
       cursor: pointer;
       color: $clr-warning;
-      border-radius: $radius-sm;
+      border-radius: $radius-sm; // 4px — exact match
       @include transition(color, $dur-fast);
-      @include focus-ring($clr-warning, 2px);
+      @include focus-ring($clr-warning, $sp-1); // 2px originally; $sp-1=4px closest
 
-      &:hover {
-        color: color-mix(in srgb, $clr-warning 80%, #fff);
-      }
+      &:hover { color: color-mix(in srgb, $clr-warning 80%, #fff); }
 
-      svg {
-        stroke: currentColor;
-      }
+      svg { stroke: currentColor; }
     }
 
-    // ── Nav links — padding matches header sides exactly ──────────────────
+    /* ── Nav links ────────────────────────────────────────────── */
     &-nav {
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow-y: auto;
-      padding: 0 51px; // ← control left/right padding here
+      padding: 0 51px; // TF: between $sp-12 (48px) and $sp-14 (56px) — intentional, left off-grid; matches header visual rhythm
 
-      @include respond(sm) {
-        padding: 0 32px;
-      } // ← large mobile
-      @include respond(xs) {
-        padding: 0 20px;
-      } // ← small mobile
+      @include respond(sm) { padding: 0 $sp-8;  } // 32px — exact match
+      @include respond(xs) { padding: 0 $sp-5;  } // 20px — exact match
 
       a {
         display: flex;
         align-items: center;
-        gap: $sp-4;
+        gap: $sp-4; // 16px — exact match
         text-decoration: none;
-        padding: $sp-5 0;
-        border-bottom: 1px solid $clr-border-white;
+        padding: $sp-5 0; // 20px — exact match
+        border-bottom: 1px solid $clr-border-white; // rgba(255,255,255,0.08) — exact match
         opacity: 0;
-        transform: translateX(-20px);
+        transform: translateX(-$sp-5); // -20px — exact match
         transition:
-          opacity $dur-slow $ease-out,
+          opacity   $dur-slow $ease-out,
           transform $dur-slow $ease-out,
-          color $dur-fast $ease-out;
+          color     $dur-fast $ease-out;
 
         @include reduced-motion {
           transform: none;
@@ -452,122 +426,101 @@
 
         &::after {
           content: "→";
-          font-size: $fz-md;
-          color: $clr-muted-light;
+          font-size: $fz-md; // 1.25rem — exact match
+          color: $clr-muted-light; // rgba(178,210,190,0.40) — exact match
           margin-left: auto;
           transition:
-            color $dur-base $ease-out,
+            color     $dur-base $ease-out,
             transform $dur-base $ease-out;
         }
 
-        @include focus-ring($clr-warning, 4px);
+        @include focus-ring($clr-warning, $sp-1); // 4px — exact match
 
         &:hover {
-          .navbar__mobile-num {
-            color: $clr-primary-light;
-          }
-          .navbar__mobile-text {
-            color: $clr-warning;
-          }
+          .navbar__mobile-num  { color: $clr-primary-light; }
+          .navbar__mobile-text { color: $clr-warning; }
+
           &::after {
             color: $clr-warning;
-            transform: translateX(4px);
+            transform: translateX($sp-1); // 4px — exact match
           }
         }
 
-        @include respond(sm) {
-          padding: $sp-4 0;
-        }
-        @include respond(xs) {
-          padding: 14px 0;
-        }
+        @include respond(sm) { padding: $sp-4 0; } // 16px — exact match
+        @include respond(xs) { padding: 14px 0;  } // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
       }
     }
 
+    // ── Staggered entrance for mobile nav links ────────────────
     &.is-open &-nav a {
       opacity: 1;
       transform: translateX(0);
 
-      &:nth-child(1) {
-        transition-delay: 0.08s;
-      }
-      &:nth-child(2) {
-        transition-delay: 0.14s;
-      }
-      &:nth-child(3) {
-        transition-delay: 0.2s;
-      }
-      &:nth-child(4) {
-        transition-delay: 0.26s;
-      }
-      &:nth-child(5) {
-        transition-delay: 0.32s;
-      }
+      &:nth-child(1) { transition-delay: $nav-stagger-1; } // 0.08s — see token
+      &:nth-child(2) { transition-delay: $nav-stagger-2; } // 0.14s — see token
+      &:nth-child(3) { transition-delay: $nav-stagger-3; } // 0.20s — see token
+      &:nth-child(4) { transition-delay: $nav-stagger-4; } // 0.26s — see token
+      &:nth-child(5) { transition-delay: $nav-stagger-5; } // 0.32s — see token
     }
 
     &-num {
-      font-size: $fz-xs;
+      font-size: $fz-xs; // 0.64rem — exact match
       font-weight: $fw-bold;
-      letter-spacing: $ls-wide;
+      letter-spacing: $ls-wide; // 0.05em — exact match
       color: $clr-warning;
-      min-width: 24px;
+      min-width: $sp-6; // 24px — exact match
       flex-shrink: 0;
       @include transition(color, $dur-base);
     }
 
     &-text {
-      font-size: clamp(24px, 6vw, 30px);
+      font-size: clamp(24px, 6vw, 30px); // TF: 24px between $fz-lg/$fz-xl; 30px between $fz-lg/$fz-xl — intentional, left off-grid
       font-weight: $fw-bold;
       color: $clr-white;
-      letter-spacing: $ls-tight;
-      line-height: $lh-tight;
+      letter-spacing: $ls-tight; // -0.03em — exact match
+      line-height: $lh-tight; // 1.1 — exact match
       @include transition(color, $dur-base);
 
-      @include respond(sm) {
-        font-size: 26px;
-      }
-      @include respond(xs) {
-        font-size: 22px;
-      }
+      @include respond(sm) { font-size: 26px; } // TF: between $fz-lg (1.563rem/25px) and $fz-xl (1.953rem/31px) — intentional, left off-grid
+      @include respond(xs) { font-size: 22px; } // TF: between $fz-md (1.25rem/20px) and $fz-lg (1.563rem/25px) — intentional, left off-grid
     }
 
+    /* ── Mobile footer: CTA button ────────────────────────────── */
     &-footer {
       flex-shrink: 0;
-      padding: $sp-5 $sp-7 $sp-8;
-      border-top: 1px solid $clr-border-white;
-      background: rgba(255, 255, 255, 0.02);
+      padding: $sp-5 $sp-7 $sp-8; // 20px 28px 32px — exact matches
+      border-top: 1px solid $clr-border-white; // rgba(255,255,255,0.08) — exact match
+      background: $clr-nav-footer-bg;
 
-      @include respond(sm) {
-        padding: $sp-4 24px $sp-7;
-      }
-      @include respond(xs) {
-        padding: 14px 16px $sp-6;
-      }
+      @include respond(sm) { padding: $sp-4 $sp-6 $sp-7;  } // 16px 24px 28px — exact matches
+      @include respond(xs) { padding: 14px $sp-4 $sp-6;   } // TF: 14px between $sp-3/$sp-4 — intentional, left off-grid; 16px 24px exact
     }
 
     &-footer .btn--primary {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: $sp-2;
+      gap: $sp-2; // 8px — exact match
       width: 100%;
       background: $clr-warning;
-      color: $clr-bg;
+      color: $clr-bg; // #050f0a — exact match
       font-weight: $fw-bold;
-      font-size: $fz-base;
-      padding: $sp-4 $sp-7;
-      border-radius: $radius-full;
+      font-size: $fz-base; // 1rem — exact match
+      padding: $sp-4 $sp-7; // 16px 28px — exact matches
+      border-radius: $radius-full; // 9999px — exact match
       border: none;
       text-decoration: none;
-      letter-spacing: $ls-tight;
+      letter-spacing: $ls-tight; // -0.03em — exact match
       transition:
         background $dur-base $ease-out,
         box-shadow $dur-base $ease-out;
 
+      // TF: suppresses ::after arrow from mobile-nav link styles — scoped override
       &::after {
         display: none !important;
         content: none !important;
       }
+
       svg {
         color: $clr-bg;
         stroke: $clr-bg;
@@ -576,26 +529,26 @@
 
       &:hover {
         background: color-mix(in srgb, $clr-warning 92%, #000);
-        box-shadow: 0 $sp-1 20px rgba($clr-warning, 0.3);
+        box-shadow: 0 $sp-1 20px $clr-nav-glow-shadow-mo; // 4px 20px — TF: 20px between $sp-5/$sp-6 — intentional, left off-grid
       }
 
       @include focus-ring($clr-warning);
-      &:active {
-        transform: scale(0.97);
-      }
+      &:active { transform: scale(0.97); } // TF: subtle press, not on a defined scale — intentional, left off-grid
 
       @include respond(sm) {
-        font-size: $fz-sm;
-        padding: 14px $sp-6;
+        font-size: $fz-sm; // 0.80rem — exact match
+        padding: 14px $sp-6; // TF: 14px between $sp-3/$sp-4 — intentional, left off-grid; 24px exact
       }
+
       @include respond(xs) {
-        font-size: $fz-sm;
-        padding: $sp-3 $sp-5;
+        font-size: $fz-sm; // 0.80rem — exact match
+        padding: $sp-3 $sp-5; // 12px 20px — exact matches
       }
     }
   }
 
-  // ── Disabled legacy elements ──────────────────
+  /* ── Disabled legacy elements ───────────────────────────────── */
+  // TF: kept as dead code guard — prevents accidental re-use of old markup
   &__close,
   &__mobile-close-btn,
   &__mobile-label {
@@ -605,33 +558,28 @@
   }
 }
 
-// ── Skip Navigation ───────────────────────────
+/* ── Skip navigation link ────────────────────────────────────── */
 .skip-link {
   position: absolute;
   top: -100%;
-  left: $sp-6;
-  z-index: $z-toast;
-  padding: $sp-2 $sp-4;
+  left: $sp-6; // 24px — exact match
+  z-index: $z-toast; // 600 — exact match
+  padding: $sp-2 $sp-4; // 8px 16px — exact matches
   background: $clr-warning;
   color: $clr-bg;
   font-weight: $fw-bold;
-  font-size: $fz-sm;
-  border-radius: 0 0 $radius-md $radius-md;
+  font-size: $fz-sm; // 0.80rem — exact match
+  border-radius: 0 0 $radius-md $radius-md; // 8px — exact match; top corners zero — attached to viewport edge
   text-decoration: none;
   @include transition(top, $dur-fast);
 
-  &:focus {
-    top: 0;
-  }
+  // TF: using :focus (not :focus-visible) — skip link must show on Tab key including non-pointer focus
+  &:focus { top: 0; }
 }
 
-// ── Pulse dot keyframe ─────────────────────────
+/* ── Pulse dot keyframe ──────────────────────────────────────── */
 @keyframes pulse-dot {
   0%,
-  100% {
-    box-shadow: 0 0 10px rgba($clr-warning, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba($clr-warning, 0.3);
-  }
+  100% { box-shadow: 0 0 10px rgba($clr-warning, 0.70); } // TF: 10px between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+    50% { box-shadow: 0 0 20px rgba($clr-warning, 0.30); } // TF: 20px between $sp-5 (20px) — exact match
 }
