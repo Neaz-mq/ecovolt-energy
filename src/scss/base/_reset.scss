@@ -1,5 +1,6 @@
 @use '../abstracts' as *;
 
+// ── Box model ─────────────────────────────────────────────────────────────
 *,
 *::before,
 *::after {
@@ -8,23 +9,31 @@
   padding: 0;
 }
 
+// ── Root ──────────────────────────────────────────────────────────────────
+:root {
+  color-scheme: dark; // TF: tells browser scrollbar, inputs, and system UI to match dark theme
+}
+
+// ── HTML ──────────────────────────────────────────────────────────────────
 html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 
+// ── Body ──────────────────────────────────────────────────────────────────
 body {
   background-color: $clr-bg;
   color: $clr-white;
   font-family: $font-primary;
   font-weight: $fw-regular;
-  line-height: 1.7;
+  line-height: $lh-relaxed; // 1.7 — exact match
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+// ── Media elements ────────────────────────────────────────────────────────
 img,
 svg,
 video,
@@ -33,44 +42,69 @@ canvas {
   display: block;
 }
 
+// ── Links ─────────────────────────────────────────────────────────────────
 a {
   text-decoration: none;
   color: inherit;
   transition: $ease-fast;
+
+  &:focus-visible {
+    outline: 2px solid $clr-primary;
+    outline-offset: 3px;
+    border-radius: $radius-sm; // 4px — exact match
+  }
 }
 
+// ── Lists ─────────────────────────────────────────────────────────────────
 ul,
 ol {
   list-style: none;
 }
 
+// ── Buttons ───────────────────────────────────────────────────────────────
 button {
   cursor: pointer;
   font-family: $font-primary;
   background: none;
   border: none;
-  outline: none;
+
+  // TF: never use outline: none globally — kills keyboard accessibility
+  &:focus-visible {
+    outline: 2px solid $clr-primary;
+    outline-offset: 3px;
+    border-radius: $radius-sm; // 4px — exact match
+  }
 }
 
+// ── Form elements ─────────────────────────────────────────────────────────
 input,
 textarea,
 select {
   font-family: $font-primary;
-  outline: none;
+
+  // TF: never use outline: none globally — kills keyboard accessibility
+  &:focus-visible {
+    outline: 2px solid $clr-primary;
+    outline-offset: 2px;
+    border-radius: $radius-sm; // 4px — exact match
+  }
 }
 
+// ── Headings ──────────────────────────────────────────────────────────────
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-primary;
   color: $clr-white;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  line-height: $lh-tight; // 1.1 — exact match
+  letter-spacing: -0.025em; // TF: between $ls-tight (-0.03em) and $ls-normal (0em) — intentional, left off-grid
 }
 
+// ── Paragraphs ────────────────────────────────────────────────────────────
 p {
   color: $clr-muted;
-  line-height: 1.75;
+  line-height: 1.75; // TF: between $lh-relaxed (1.7) and $lh-loose (2.0) — intentional, left off-grid
 }
 
+// ── Sections ──────────────────────────────────────────────────────────────
 section {
   position: relative;
   overflow: hidden;
