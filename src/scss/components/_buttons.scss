@@ -1,47 +1,52 @@
 @use '../abstracts' as *;
 
+// ── Base button ───────────────────────────────────────────────────────────
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: $sp-2;
+  gap: $sp-2; // 8px — exact match
   font-family: $font-primary;
   font-weight: $fw-bold;
-  font-size: $fz-sm;
-  letter-spacing: 0.02em;
-  border-radius: $radius-lg;
-  padding: 14px 28px;
-  transition: $ease-base;
+  font-size: $fz-sm; // 0.80rem — exact match
+  letter-spacing: 0.02em; // TF: between $ls-normal (0em) and $ls-wide (0.05em) — intentional, left off-grid
+  border-radius: $radius-lg; // 14px — exact match
+  padding: 14px 28px; // TF: 14px between $sp-3 (12px) and $sp-4 (16px); 28px between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+  transition: $ease-base; // all 250ms ease-out — exact match
   white-space: nowrap;
   cursor: pointer;
   border: none;
-  outline: none;
   position: relative;
 
+  // TF: never outline: none globally — use focus-visible for accessibility
+  &:focus-visible {
+    outline: 2px solid $clr-primary;
+    outline-offset: 3px;
+    border-radius: $radius-sm; // 4px — exact match
+  }
+
   svg {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.2s ease;
+    width: $sp-4; // 16px — exact match
+    height: $sp-4; // 16px — exact match
+    transition: transform $dur-fast $ease-out; // 150ms ease-out — exact match via tokens
     flex-shrink: 0;
   }
 
   &:hover svg {
-    transform: translateX(3px);
+    transform: translateX(3px); // TF: below $sp-1 (4px) — intentional, left off-grid; subtle nudge
   }
 
-  // Primary
+  // ── Variant: primary ─────────────────────────────────────────
   &--primary {
-    background: $clr-warning; 
-    color: #1e5b4d;
+    background: $clr-warning; // #f4d03f — exact match
+    color: $clr-ev-primary; // #1e5b4d — exact match via section token
 
     &:hover {
-      background: color-mix(
-        in srgb,
-        $clr-warning 92%,
-        #000
-      ); // ← was $clr-primary-dark
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba($clr-warning, 0.35);
+      // TF: color-mix() is modern CSS (Chrome 111+, Firefox 113+, Safari 16.2+)
+      // IE not supported — acceptable for ThemeForest HTML templates in 2024+
+      background: color-mix(in srgb, $clr-warning 92%, #000);
+      transform: translateY(-2px); // TF: below $sp-1 (4px) — intentional, left off-grid; hover lift
+      box-shadow: 0 $sp-2 $sp-8 rgba($clr-warning, 0.35); // 8px 32px — exact matches
     }
 
     &:active {
@@ -49,67 +54,75 @@
     }
   }
 
-  // Ghost
+  // ── Variant: ghost ───────────────────────────────────────────
   &--ghost {
     background: transparent;
     color: $clr-white;
-    border: 1px solid rgba(255, 255, 255, 0.55); 
+    border: 1px solid rgba(255, 255, 255, 0.55); // TF: between $clr-border-white (0.08) and $clr-border-strong (0.15) — intentional, left off-grid; stronger for standalone button
 
     &:hover {
-      border-color: rgba(255, 255, 255, 0.85); 
+      border-color: rgba(255, 255, 255, 0.85); // TF: above $clr-border-strong (0.15) — intentional, left off-grid; near-opaque on hover
       background: rgba(255, 255, 255, 0.05);
     }
   }
 
-  // Outline lime
+  // ── Variant: outline lime ────────────────────────────────────
   &--outline {
     background: transparent;
     color: $clr-primary;
-    border: 1px solid $clr-border;
+    border: 1px solid $clr-border; // rgba(184, 245, 61, 0.12) — exact match
 
     &:hover {
       background: rgba(184, 245, 61, 0.08);
-      border-color: rgba(184, 245, 61, 0.3);
+      border-color: rgba(184, 245, 61, 0.30);
     }
   }
 
-  // Sizes
+  // ── Size: small ──────────────────────────────────────────────
   &--sm {
-    font-size: $fz-xs;
-    padding: 10px 20px;
+    font-size: $fz-xs; // 0.64rem — exact match
+    padding: 10px $sp-5; // TF: 10px between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid; 20px exact match
   }
 
+  // ── Size: large ──────────────────────────────────────────────
   &--lg {
-    font-size: $fz-base;
-    padding: 17px 36px;
+    font-size: $fz-base; // 1rem — exact match
+    padding: 17px $sp-9; // TF: 17px between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid; 36px exact match
   }
 }
 
-// Play button
+// ── Play button ───────────────────────────────────────────────────────────
 .btn-play {
-  @include flex-gap($sp-3);
+  @include flex-gap($sp-3); // 12px — exact match
   background: transparent;
   color: $clr-white;
-  font-size: $fz-sm;
+  font-size: $fz-sm; // 0.80rem — exact match
   font-weight: $fw-medium;
   border: none;
   cursor: pointer;
-  transition: $ease-base;
+  transition: $ease-base; // all 250ms ease-out — exact match
+
+  // TF: focus-visible for keyboard accessibility
+  &:focus-visible {
+    outline: 2px solid $clr-primary;
+    outline-offset: 3px;
+    border-radius: $radius-sm; // 4px — exact match
+  }
 
   .play-circle {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid $clr-border-white;
+    width: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    border-radius: $radius-full; // 9999px — exact match (circle)
+    border: 1px solid $clr-border-white; // rgba(255,255,255,0.08) — exact match
     @include flex-center;
-    transition: $ease-base;
+    transition: $ease-base; // all 250ms ease-out — exact match
     flex-shrink: 0;
 
     svg {
-      width: 14px;
-      height: 14px;
+      width: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+      height: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
       fill: $clr-white;
-      margin-left: 2px;
+      margin-left: 2px; // TF: below $sp-1 (4px) — intentional, left off-grid; optical centering for play icon
     }
   }
 
