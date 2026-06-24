@@ -28,9 +28,6 @@ $clr-hiw-divider-gold:  rgba(200, 150, 10, 0.20);   // tablet divider, gold side
   scroll-margin-top: $sp-12; // TF: snapped 50px → 48px to land on the 4px grid
 
   /* ── Cover subpixel seam from smartgrid wave ── */
-  // TF fix: was a SECOND `.hiw::before` rule below — two ::before declarations on the
-  // same element is a bug; the second silently won and the seam-cover never rendered.
-  // Moved this one to ::after so both effects actually paint.
   &::after {
     content: "";
     position: absolute;
