@@ -2,21 +2,21 @@
 
 .partners {
   background: $clr-ev-bg;
-  padding: 68px 0 32px; // TF: 68px between $sp-16 (64px) and $sp-20 (80px); 32px — exact match ($sp-8)
+  padding: 68px 0 32px; 
   margin: 0;
-  margin-top: -4px; // subpixel seam fix — intentionally not on the spacing grid
+  margin-top: -4px; 
   overflow: hidden;
   position: relative;
-  z-index: $z-base + 6; // local: 6
+  z-index: $z-base + 6; 
 
   // ── Cover any subpixel gap from smartgrid wave ────────────────────────
   &::before {
     content: "";
     position: absolute;
-    top: -20px; // TF: matches the height below, no spacing-scale equivalent at this magnitude — intentional
+    top: -20px; 
     left: 0;
     width: 100%;
-    height: $sp-10; // 40px — exact match
+    height: $sp-10; // 40px
     background: $clr-ev-bg;
     z-index: $z-base + 1; // local: 1
     pointer-events: none;
@@ -26,18 +26,18 @@
   &__label {
     display: block;
     text-align: center;
-    font-size: $fz-base; // 1rem (16px) — exact match
+    font-size: $fz-base; 
     font-weight: $fw-regular;
-    letter-spacing: 0.04em; // TF: between $ls-normal (0em) and $ls-wide (0.05em) — intentional, left off-grid
-    color: #aaaaaa; // TF: no token match — $clr-muted/$clr-muted-light are green-tinted (rgba(178,210,190,...)), not a neutral grey like this; kept literal
-    margin-bottom: $sp-8; // 32px — exact match
+    letter-spacing: 0.04em; 
+    color: #aaaaaa; 
+    margin-bottom: $sp-8; // 32px 
   }
 
   // ── Track wrapper — centered, constrained ─────────────────────────────
   &__track-wrapper {
     position: relative;
     overflow: hidden;
-    max-width: 860px; // component-specific layout width, not on the spacing scale
+    max-width: 860px; 
     margin-inline: auto;
 
     // ── Edge fade masks ──────────────────────
@@ -47,8 +47,8 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 100px; // TF: between $sp-24 (96px) and $sp-28 (112px) — intentional, left off-grid
-      z-index: $z-base + 2; // local: 2
+      width: 100px; 
+      z-index: $z-base + 2; 
       pointer-events: none;
     }
     &::before {
@@ -73,7 +73,7 @@
   &__track {
     display: flex;
     width: max-content;
-    animation: partners-marquee 20s linear infinite; // TF: no exact $dur match — intentional, left off-grid
+    animation: partners-marquee 20s linear infinite; 
 
     &:hover {
       animation-play-state: paused;
@@ -97,25 +97,25 @@
   &__item {
     display: flex;
     align-items: center;
-    padding: 0 $sp-14; // 56px — exact match
+    padding: 0 $sp-14; // 56px 
 
     @include sm {
-      padding: 0 $sp-7; // 28px — exact match
+      padding: 0 $sp-7; // 28px 
     }
   }
 
   // ── Brand name text ───────────────────────
   &__name {
-    font-size: 1.125rem; // TF: between $fz-base (1rem) and $fz-md (1.25rem) — intentional, left off-grid; unit normalized from px to rem to match the rest of the theme
+    font-size: 1.125rem; 
     font-weight: $fw-semibold;
-    letter-spacing: 0.01em; // TF: between $ls-normal (0em) and $ls-wide (0.05em) — intentional, left off-grid
-    color: #565555; // TF: no token match — $clr-muted/$clr-muted-light are green-tinted, not a neutral grey like this; kept literal
+    letter-spacing: 0.01em; 
+    color: #565555; 
     white-space: nowrap;
-    transition: color 0.3s $ease-out; // FIX: kept the $ease-out token (matches the hover pattern elsewhere in the theme); TF: 0.3s has no exact $dur match (between $dur-base 250ms and $dur-slow 400ms) — intentional, left off-grid
+    transition: color 0.3s $ease-out;
   }
 
   &__item:hover &__name {
-    color: $clr-ev-primary; // FIX: was #555555 — a one-digit-off typo nearly identical to the base color (#565555), so hover produced no visible change. Darkened to the brand accent instead, matching the hover pattern used elsewhere in the theme (measurable__slide-card, momentum__stat-card)
+    color: $clr-ev-primary; 
   }
 }
 
