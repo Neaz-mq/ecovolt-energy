@@ -383,7 +383,7 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     bottom: -2px; 
     left: 0;
     width: 100%;
-    z-index: $z-raised / 2; 
+    z-index: calc($z-raised / 2);
     line-height: 0; 
     pointer-events: none;
 
