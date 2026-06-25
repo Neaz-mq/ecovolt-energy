@@ -19,7 +19,7 @@ $clr-sgi-stagger-3:    180px; // col-3 stagger offset — component-specific lay
 .sgi {
   background-color: $clr-sgi-bg;
   position: relative;
-  z-index: $z-raised + 9; 
+  z-index: $z-raised + 16; 
   margin-block-start: -2px; 
   padding-block-start: $sp-10; // 40px 
   padding-block-end: 30px; 
