@@ -24,43 +24,43 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
 .footer {
   background-color: $clr-ft-bg;
   color: $clr-ft-text;
-  padding-top: $sp-16; // 64px — exact match
+  padding-top: $sp-16; // 64px 
 
   /* ── Container ─────────────────────────────────────────────── */
   &__container {
     max-width: 1250px; // component-specific layout width, not on the spacing scale
     margin-inline: auto;
-    padding-inline: 60px; // TF: between $sp-14 (56px) and $sp-16 (64px) — intentional, left off-grid
+    padding-inline: 60px; 
 
-    @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
-      padding-inline: $sp-12; // 48px — exact match
+    @media (max-width: 1024px) { 
+      padding-inline: $sp-12; // 48px
     }
 
-    @media (max-width: 860px) { // TF: between $bp-md (768px) and $bp-lg (992px) — intentional, left off-grid
-      padding-inline: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    @media (max-width: 860px) { 
+      padding-inline: 44px; 
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
-      padding-inline: $sp-6; // 24px — exact match
+    @media (max-width: 640px) { 
+      padding-inline: $sp-6; // 24px 
     }
 
-    @include xs { // max-width: 480px
-      padding-inline: $sp-5; // 20px — exact match
+    @include xs { 
+      padding-inline: $sp-5; // 20px 
     }
 
-    @media (max-width: 319px) { // TF: below every defined breakpoint — intentional, left off-grid
-      padding-inline: $sp-3; // 12px — exact match
+    @media (max-width: 319px) { 
+      padding-inline: $sp-3; // 12px 
     }
   }
 
   /* ── Top row: brand + nav ───────────────────────────────────── */
   &__top {
     display: grid;
-    grid-template-columns: 220px 1fr; // component-specific column width, not on the spacing scale
-    gap: $sp-12; // 48px — exact match
+    grid-template-columns: 220px 1fr; 
+    gap: $sp-12; // 48px 
     align-items: start;
 
-    @media (max-width: 960px) { // TF: between $bp-md (768px) and $bp-lg (992px) — intentional, left off-grid
+    @media (max-width: 960px) { 
       grid-template-columns: 1fr;
       gap: 0;
     }
@@ -70,64 +70,64 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
   &__brand {
     display: flex;
     flex-direction: column;
-    gap: $sp-4; // 16px — exact match
+    gap: $sp-4; // 16px 
 
     // ── Tablet: horizontal row — logo left, tagline right ──
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+    @media (max-width: 960px) and (min-width: 641px) { 
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       text-align: left;
-      padding-bottom: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
-      margin-bottom: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+      padding-bottom: 28px; 
+      margin-bottom: 28px; 
       border-bottom: 1px solid $clr-ft-border;
-      gap: $sp-6; // 24px — exact match
+      gap: $sp-6; // 24px 
     }
 
     // ── Mobile: centered stack ──
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+    @media (max-width: 640px) { 
       align-items: center;
       text-align: center;
-      padding-top: $sp-8; // 32px — exact match
-      padding-bottom: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+      padding-top: $sp-8; // 32px 
+      padding-bottom: 28px; 
       margin-bottom: 0;
       border-bottom: 1px solid $clr-ft-border;
-      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+      gap: 10px; 
     }
   }
 
   &__logo-link {
     display: inline-block;
-    line-height: 0; // TF: collapses inline whitespace under img — intentional layout trick
+    line-height: 0; 
     flex-shrink: 0;
 
     &:focus-visible {
       outline: 2px solid $clr-ft-accent;
       outline-offset: 3px;
-      border-radius: $radius-sm; // 4px — exact match
+      border-radius: $radius-sm; // 4px 
     }
   }
 
   &__logo-img {
-    height: $sp-10; // 40px — exact match
+    height: $sp-10; // 40px 
     width: auto;
   }
 
   &__tagline {
-    font-size: 0.875rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
-    line-height: $lh-relaxed; // 1.7 — exact match
+    font-size: 0.875rem; 
+    line-height: $lh-relaxed; 
     color: $clr-ft-text-muted;
     margin: 0;
-    max-width: 200px; // component-specific measure, not on the spacing scale
+    max-width: 200px; 
 
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
-      max-width: 260px; // component-specific measure, not on the spacing scale
+    @media (max-width: 960px) and (min-width: 641px) { 
+      max-width: 260px; 
       text-align: right;
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+    @media (max-width: 640px) { 
       color: $clr-ft-accent;
-      max-width: 280px; // component-specific measure, not on the spacing scale
+      max-width: 280px; 
       text-align: center;
     }
   }
@@ -136,37 +136,37 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
   &__nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: $sp-6 $sp-8; // 24px 32px — exact matches
+    gap: $sp-6 $sp-8; // 24px 32px 
     align-items: start;
 
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+    @media (max-width: 960px) and (min-width: 641px) { 
       grid-template-columns: repeat(3, 1fr);
-      gap: $sp-9 $sp-8; // 36px 32px — exact matches
+      gap: $sp-9 $sp-8; // 36px 32px
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+    @media (max-width: 640px) { 
       grid-template-columns: 1fr 1fr;
       gap: 0;
-      padding-top: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+      padding-top: 28px; 
     }
   }
 
   /* ── Nav column ─────────────────────────────────────────────── */
   &__col {
-    @include respond-min(lg) { // min-width: 993px — desktop only
-      margin-top: 26px; // TF: between $sp-6 (24px) and $sp-7 (28px) — intentional, left off-grid
+    @include respond-min(lg) { 
+      margin-top: 26px; 
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
-      padding-bottom: $sp-6; // 24px — exact match
+    @media (max-width: 640px) { 
+      padding-bottom: $sp-6; // 24px
 
       &:nth-child(1) {
-        padding-right: $sp-5; // 20px — exact match
+        padding-right: $sp-5; // 20px
         border-right: 1px solid $clr-ft-border;
       }
 
       &:nth-child(2) {
-        padding-left: $sp-5; // 20px — exact match
+        padding-left: $sp-5; // 20px
       }
 
       &:nth-child(3) {
@@ -175,13 +175,13 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
         padding-right: 0;
         padding-left: 0;
         border-top: 1px solid $clr-ft-border;
-        padding-top: $sp-6; // 24px — exact match
-        padding-bottom: $sp-6; // 24px — exact match
+        padding-top: $sp-6; // 24px 
+        padding-bottom: $sp-6; // 24px
 
         .footer__links {
           flex-direction: row;
           flex-wrap: wrap;
-          gap: 10px 28px; // TF: 10px between $sp-2/$sp-3; 28px between $sp-6/$sp-8 — intentional, left off-grid
+          gap: 10px 28px; 
         }
       }
     }
@@ -190,21 +190,21 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
   &__col-title {
     font-weight: $fw-bold;
     color: $clr-ft-heading;
-    margin: 0 0 14px; // TF: 14px between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
-    letter-spacing: $ls-wider; // 0.10em — nearest exact match (original 0.08em off-grid, left off-grid intentional)
+    margin: 0 0 14px; 
+    letter-spacing: $ls-wider; 
     text-transform: uppercase;
-    font-size: $fz-xs; // 0.64rem/~10px — exact match (original 0.75rem; kept closer to xs for compact label)
-    line-height: $lh-tight; // 1.1 — exact match
+    font-size: $fz-xs; 
+    line-height: $lh-tight; 
 
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
-      margin-bottom: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
-      font-size: $fz-sm; // 0.80rem — exact match (slightly larger on tablet)
+    @media (max-width: 960px) and (min-width: 641px) { 
+      margin-bottom: 18px; 
+      font-size: $fz-sm; 
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
-      font-size: 0.6875rem; // TF: between $fz-xs (0.64rem) and $fz-sm (0.80rem) — intentional, left off-grid
-      letter-spacing: $ls-widest; // 0.15em — nearest exact match (original 0.1em)
-      margin-bottom: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+    @media (max-width: 640px) {
+      font-size: 0.6875rem; 
+      letter-spacing: $ls-widest; 
+      margin-bottom: 14px; 
     }
   }
 
@@ -214,30 +214,30 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+    gap: 10px; 
 
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
-      gap: $sp-3; // 12px — exact match
+    @media (max-width: 960px) and (min-width: 641px) { 
+      gap: $sp-3; // 12px
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
-      gap: 11px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+    @media (max-width: 640px) { 
+      gap: 11px; 
     }
   }
 
   &__link {
     display: flex;
     align-items: center;
-    gap: $sp-2; // 8px — exact match
-    font-size: 0.875rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    gap: $sp-2; // 8px 
+    font-size: 0.875rem; 
     color: $clr-ft-text-muted;
     text-decoration: none;
-    transition: color $dur-fast $ease-out; // 150ms ease-out — exact match via tokens
+    transition: color $dur-fast $ease-out; 
 
     svg {
       flex-shrink: 0;
       color: $clr-ft-icon;
-      transition: color $dur-fast $ease-out; // 150ms ease-out — exact match via tokens
+      transition: color $dur-fast $ease-out; 
     }
 
     &:hover,
@@ -250,21 +250,21 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
     &:focus-visible {
       outline: 2px solid $clr-ft-accent;
       outline-offset: 2px;
-      border-radius: $radius-xs; // 2px — exact match
+      border-radius: $radius-xs; // 2px 
     }
 
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
-      font-size: 0.9375rem; // TF: between $fz-base (1rem) and $fz-sm (0.80rem) — intentional, left off-grid
+    @media (max-width: 960px) and (min-width: 641px) { 
+      font-size: 0.9375rem; 
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+    @media (max-width: 640px) { 
       color: $clr-ft-accent;
-      font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+      font-size: 0.8125rem; 
 
       svg {
         color: $clr-ft-icon;
-        width: 9px; // TF: below $sp-2 (8px)/$sp-3 (12px) — intentional, left off-grid; compact mobile icon
-        height: 9px; // TF: below $sp-2 (8px)/$sp-3 (12px) — intentional, left off-grid
+        width: 9px; 
+        height: 9px; 
       }
 
       &:hover,
@@ -276,16 +276,16 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
 
   /* ── Newsletter column ──────────────────────────────────────── */
   &__col--newsletter {
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+    @media (max-width: 960px) and (min-width: 641px) { 
       grid-column: 1 / -1;
       display: grid;
-      grid-template-columns: minmax(150px, 200px) 1fr; // component-specific measure, not on the spacing scale
+      grid-template-columns: minmax(150px, 200px) 1fr; 
       grid-template-rows: auto auto;
-      column-gap: $sp-8; // 32px — exact match
-      row-gap: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+      column-gap: $sp-8; // 32px
+      row-gap: 14px; 
       align-items: start;
-      margin-top: $sp-8; // 32px — exact match
-      padding-top: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+      margin-top: $sp-8; // 32px
+      padding-top: 28px; 
       border-top: 1px solid $clr-ft-border;
     }
 
@@ -301,14 +301,14 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
 
       .footer__links {
         flex-direction: column;
-        gap: 11px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+        gap: 11px;
       }
     }
   }
 
   // ── Tablet: newsletter title grid placement ──────────────────
   &__col--newsletter &__col-title {
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+    @media (max-width: 960px) and (min-width: 641px) {
       grid-column: 1;
       grid-row: 1;
       align-self: start;
@@ -316,52 +316,52 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
       white-space: nowrap;
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+    @media (max-width: 640px) {
       grid-column: unset;
       grid-row: unset;
       white-space: normal;
-      padding-top: $sp-6; // 24px — exact match
-      margin-bottom: $sp-2; // 8px — exact match
+      padding-top: $sp-6; // 24px
+      margin-bottom: $sp-2; // 8px
     }
   }
 
   &__newsletter-label {
-    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.8125rem; 
     color: $clr-ft-text-dim;
-    margin: 0 0 $sp-3; // 12px — exact match
+    margin: 0 0 $sp-3; // 12px
 
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+    @media (max-width: 960px) and (min-width: 641px) { 
       grid-column: 2;
       grid-row: 1;
       align-self: start;
       margin-bottom: 0;
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+    @media (max-width: 640px) { 
       grid-column: unset;
       grid-row: unset;
-      margin-bottom: 14px; // TF: between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+      margin-bottom: 14px; 
     }
   }
 
   &__newsletter-form {
     display: flex;
     align-items: center;
-    gap: $sp-2; // 8px — exact match
-    margin-bottom: $sp-4; // 16px — exact match
+    gap: $sp-2; // 8px
+    margin-bottom: $sp-4; // 16px
 
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+    @media (max-width: 960px) and (min-width: 641px) { 
       grid-column: 2;
       grid-row: 2;
       margin-bottom: 0;
-      max-width: 420px; // component-specific measure, not on the spacing scale
+      max-width: 420px; 
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+    @media (max-width: 640px) { 
       grid-column: unset;
       grid-row: unset;
       max-width: 100%;
-      margin-bottom: 18px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+      margin-bottom: 18px; 
     }
 
     // TF: sr-only duplicated here from reset for self-contained component portability
@@ -373,55 +373,54 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
 
   /* ── Newsletter success message ─────────────────────────────── */
   &__newsletter-success {
-    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.8125rem; 
     font-weight: $fw-semibold;
     color: $clr-ft-accent;
-    margin: -$sp-2 0 $sp-4; // -8px top — TF: negative used for visual tightening — intentional, left off-grid
+    margin: -$sp-2 0 $sp-4; // -8px 
     opacity: 0;
-    transform: translateY(-$sp-1); // -4px — exact match
+    transform: translateY(-$sp-1); // -4px 
     transition:
-      opacity  $dur-base $ease-out,  // 250ms — exact match
-      transform $dur-base $ease-out; // 250ms — exact match
+      opacity  $dur-base $ease-out,  // 250ms 
+      transform $dur-base $ease-out; // 250ms
 
     &.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+    @media (max-width: 960px) and (min-width: 641px) { 
       grid-column: 2;
-      margin: -6px 0 0; // TF: -6px between -$sp-1 (-4px) and -$sp-2 (-8px) — intentional, left off-grid
+      margin: -6px 0 0; 
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+    @media (max-width: 640px) { 
       grid-column: unset;
-      margin: -10px 0 $sp-4; // TF: -10px between -$sp-2 (-8px) and -$sp-3 (-12px) — intentional, left off-grid
+      margin: -10px 0 $sp-4; 
     }
   }
 
   &__newsletter-input {
     flex: 1;
     min-width: 0;
-    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
-    padding: 0 14px; // TF: 14px between $sp-3 (12px) and $sp-4 (16px) — intentional, left off-grid
+    height: 44px; 
+    padding: 0 14px; 
     background: transparent;
     border: 1px solid $clr-ft-border-input;
-    border-radius: $radius-md; // 8px — exact match
+    border-radius: $radius-md; // 8px
     color: $clr-ft-input-text;
-    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.8125rem; 
     font-family: $font-primary;
-    transition: border-color $dur-fast $ease-out; // 150ms ease-out — exact match via tokens
+    transition: border-color $dur-fast $ease-out; // 150ms ease-out 
 
     &::placeholder { color: $clr-ft-placeholder; }
 
-    // TF: using :focus (not :focus-visible) — input fields show focus on click too (expected UX)
     &:focus { border-color: $clr-ft-border-input-fo; }
   }
 
   &__newsletter-btn {
     flex-shrink: 0;
-    width: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
-    height: 44px; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    width: 44px; 
+    height: 44px; 
     @include flex-center;
     background: $clr-ft-accent;
     border: 1px solid $clr-ft-accent;
@@ -446,16 +445,16 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
   /* ── Social buttons ─────────────────────────────────────────── */
   &__socials {
     display: flex;
-    gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
+    gap: 10px; 
 
-    @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
+    @media (max-width: 960px) and (min-width: 641px) { 
       grid-column: 1;
       grid-row: 2;
       align-self: start;
       padding-top: 0;
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+    @media (max-width: 640px) { 
       justify-content: flex-start;
       grid-column: unset;
       grid-row: unset;
@@ -464,16 +463,16 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
 
   &__social-btn {
     @include flex-center;
-    width: 38px; // TF: between $sp-9 (36px) and $sp-10 (40px) — intentional, left off-grid
-    height: 38px; // TF: between $sp-9 (36px) and $sp-10 (40px) — intentional, left off-grid
-    border-radius: $radius-full; // 9999px — exact match (circle)
+    width: 38px; 
+    height: 38px; 
+    border-radius: $radius-full; // 9999px
     background: $clr-ft-surface;
     border: 1px solid $clr-ft-border-social;
     color: $clr-ft-accent;
     text-decoration: none;
     transition:
-      background    $dur-fast $ease-out, // 150ms — exact match
-      border-color  $dur-fast $ease-out; // 150ms — exact match
+      background    $dur-fast $ease-out, // 150ms 
+      border-color  $dur-fast $ease-out; // 150ms
 
     &:hover {
       background: $clr-ft-surface-hover;
@@ -490,14 +489,14 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
   &__divider {
     height: 1px;
     background: $clr-ft-border;
-    margin-block: $sp-10; // 40px — exact match
+    margin-block: $sp-10; // 40px 
 
     @media (max-width: 960px) and (min-width: 641px) { // TF: custom range — intentional, left off-grid
-      margin-block: $sp-8; // 32px — exact match
+      margin-block: $sp-8; // 32px 
     }
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
-      margin-block: 28px; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+    @media (max-width: 640px) { 
+      margin-block: 28px; 
     }
   }
 
@@ -506,21 +505,21 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: $sp-10; // 40px — exact match
-    gap: $sp-4; // 16px — exact match
+    padding-bottom: $sp-10; // 40px 
+    gap: $sp-4; // 16px
     flex-wrap: wrap;
 
-    @media (max-width: 640px) { // TF: between $bp-sm (576px) and $bp-md (768px) — intentional, left off-grid
+    @media (max-width: 640px) { 
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 10px; // TF: between $sp-2 (8px) and $sp-3 (12px) — intentional, left off-grid
-      padding-bottom: $sp-8; // 32px — exact match
+      gap: 10px; 
+      padding-bottom: $sp-8; // 32px
     }
   }
 
   &__copy {
-    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.8125rem; 
     color: $clr-ft-text-dim;
     margin: 0;
   }
@@ -528,14 +527,14 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
   &__legal {
     display: flex;
     align-items: center;
-    gap: $sp-3; // 12px — exact match
+    gap: $sp-3; // 12px 
   }
 
   &__legal-link {
-    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.8125rem; 
     color: $clr-ft-text-dim;
     text-decoration: none;
-    transition: color $dur-fast $ease-out; // 150ms ease-out — exact match via tokens
+    transition: color $dur-fast $ease-out; // 150ms ease-out 
 
     &:hover,
     &:focus-visible {
@@ -545,13 +544,13 @@ $clr-ft-newsletter-btn:  #0d1a14; // newsletter btn icon color — near-black on
     &:focus-visible {
       outline: 2px solid $clr-ft-accent;
       outline-offset: 2px;
-      border-radius: $radius-xs; // 2px — exact match
+      border-radius: $radius-xs; // 2px 
     }
   }
 
   &__legal-sep {
     color: $clr-ft-border;
-    font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    font-size: 0.8125rem; 
     user-select: none;
   }
 }
