@@ -18,7 +18,7 @@ $clr-sg-icon-teal-fg:    #88c499;
 
 $clr-sg-icon-warn-bg:    #fef6e0;
 $clr-sg-icon-warn-bd:    #f5d78e;
-$clr-sg-icon-warn-fg:    #f4d03f; // matches $clr-warning
+$clr-sg-icon-warn-fg:    #f4d03f; 
 
 $clr-sg-icon-blue-bg:    #e8f1fb;
 $clr-sg-icon-blue-bd:    #a9c8ee;
@@ -42,10 +42,10 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
   position: relative;
   background-color: $clr-sg-bg;
   overflow: hidden;
-  z-index: $z-raised - 3; // local: 7 — below sgi ($z-raised + 9 = 19) in this page's section stacking
-  margin-block-start: -2px; // subpixel seam fix — intentionally not on the spacing grid
-  margin-block-end: -2px; // subpixel seam fix — intentionally not on the spacing grid
-  scroll-margin-top: 30px; // TF: below $sp-8 (32px) — intentional, left off-grid; sticky nav is shorter here
+  z-index: $z-raised - 3; 
+  margin-block-start: -2px; 
+  margin-block-end: -2px; 
+  scroll-margin-top: 30px; 
 
   // ── Cover subpixel seam from section above (partners bottom edge) ────────
   &::before {
@@ -54,34 +54,34 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     top: 0;
     left: 0;
     width: 100%;
-    height: $sp-2; // 8px — exact match
+    height: $sp-2; // 8px 
     background: $clr-sg-bg;
-    z-index: $z-raised; // local: 10 — above cards ($z-base + 3 = 3) and bg ($z-base + 1 = 1)
+    z-index: $z-raised; 
     pointer-events: none;
   }
 
   /* ── Container ─────────────────────────────────────────────── */
   &__container {
     position: relative;
-    z-index: $z-base + 3; // local: 3 — above bg layer (1) but below seam cover (10)
-    max-width: 72rem; // component-specific layout width — not on the spacing scale
+    z-index: $z-base + 3; 
+    max-width: 72rem; 
     margin-inline: auto;
-    padding-inline: $sp-6; // TF: not exactly $sp-6 (24px) — using $sp-6 as closest token (24px)
-    padding-block-start: clamp(4rem, 6vw, 7rem); // fluid heading clearance — custom range
+    padding-inline: $sp-6; 
+    padding-block-start: clamp(4rem, 6vw, 7rem); 
     padding-block-end: 0;
 
-    @media (max-width: 1200px) { // TF: between $bp-xl (1200px) — exact boundary
-      padding-block-start: clamp(3.5rem, 5.5vw, 6rem); // fluid — reduced stagger on mid-range desktop
+    @media (max-width: 1200px) { 
+      padding-block-start: clamp(3.5rem, 5.5vw, 6rem); 
     }
 
-    @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
-      padding-inline: clamp(1.5rem, 5vw, 3rem); // fluid inline — custom range
-      padding-block-start: clamp(3rem, 5vw, 5rem); // fluid — tablet reduction
+    @media (max-width: 1024px) { 
+      padding-inline: clamp(1.5rem, 5vw, 3rem); 
+      padding-block-start: clamp(3rem, 5vw, 5rem); 
     }
 
-    @include xs { // max-width: 480px — exact match
-      padding-inline: 1.25rem; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
-      padding-block-start: 2.5rem; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    @include xs { 
+      padding-inline: 1.25rem; 
+      padding-block-start: 2.5rem; 
     }
   }
 
@@ -90,37 +90,37 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     text-align: center;
     max-width: 44rem; // component-specific measure, not on the spacing scale
     margin-inline: auto;
-    margin-block-end: clamp(2.5rem, 5vw, 4rem); // fluid bottom gap — custom range
+    margin-block-end: clamp(2.5rem, 5vw, 4rem); 
   }
 
   &__title {
-    font-size: clamp(2rem, 5vw, 3.75rem); // fluid — custom range, not on the static $fz scale
+    font-size: clamp(2rem, 5vw, 3.75rem); 
     font-weight: $fw-bold;
-    line-height: 1.15; // TF: between $lh-tight (1.1) and $lh-snug (1.3) — intentional, left off-grid
+    line-height: 1.15; 
     color: $clr-sg-title;
-    margin-block-end: 2.5rem; // TF: between $sp-10 (40px) and $sp-12 (48px) — intentional, left off-grid
+    margin-block-end: 2.5rem; 
 
-    @include xs { // max-width: 480px
-      font-size: $fz-lg; // 1.563rem/~25px — nearest exact match to 1.5rem; close enough
-      line-height: 1.25; // TF: between $lh-tight (1.1) and $lh-snug (1.3) — intentional, left off-grid
+    @include xs { 
+      font-size: $fz-lg; 
+      line-height: 1.25; 
     }
   }
 
   &__title-accent {
     color: $clr-sg-title-accent;
-    font-style: normal; // TF: explicit reset — some browsers italicise <em> inside headings
+    font-style: normal; 
   }
 
   &__intro {
-    font-size: clamp(1rem, 2.6vw, 1.1rem); // fluid — custom range; 1rem = $fz-base (exact); 1.1rem off-grid
-    line-height: $lh-relaxed; // 1.7 — exact match
+    font-size: clamp(1rem, 2.6vw, 1.1rem); 
+    line-height: $lh-relaxed; 
     font-weight: $fw-medium;
     color: $clr-sg-intro;
-    max-width: 58rem; // component-specific measure, not on the spacing scale
+    max-width: 58rem; 
     margin-inline: auto;
 
-    @include xs { // max-width: 480px
-      font-size: $fz-sm; // 0.80rem — exact match
+    @include xs { 
+      font-size: $fz-sm; 
     }
   }
 
@@ -128,19 +128,19 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
   &__cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(1rem, 2vw, 1.75rem); // fluid gap — $fz-base (1rem) exact; 1.75rem off-grid
+    gap: clamp(1rem, 2vw, 1.75rem); 
     align-items: start;
 
-    @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
+    @media (max-width: 1024px) { 
       grid-template-columns: repeat(2, 1fr);
-      gap: $sp-6; // 24px — exact match
-      max-width: 560px; // component-specific layout width, not on the spacing scale
+      gap: $sp-6; // 24px 
+      max-width: 560px; 
       margin-inline: auto;
     }
 
-    @include xs { // max-width: 480px
+    @include xs { 
       grid-template-columns: repeat(2, 1fr);
-      gap: $sp-4; // 16px — exact match (down from 24px at tablet)
+      gap: $sp-4; // 16px 
       max-width: 100%;
       margin-inline: auto;
     }
@@ -152,12 +152,12 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 0.875rem; // TF: between $sp-3 (12px) and $sp-5 (20px) — intentional, left off-grid
+    gap: 0.875rem; 
 
     // ── Entrance animation ────────────────────────────────────
-    padding: 1.25rem 1rem; // TF: 1.25rem between $sp-5 (20px) and $sp-6 (24px); 1rem = $sp-4 (16px) exact match
+    padding: 1.25rem 1rem; 
     opacity: 0;
-    transform: translateY($sp-6); // 24px — exact match
+    transform: translateY($sp-6); // 24px 
     transition:
       opacity  $dur-slow $ease-out,   // 400ms ease-out
       transform $dur-slow $ease-out;  // 400ms ease-out
@@ -172,16 +172,16 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     @media (min-width: 1201px) { // TF: above $bp-xl (1200px) — exact boundary
       &:nth-child(1) { margin-block-start: 0; }
       &:nth-child(2) {
-        margin-block-start: $sg-stagger-2;     // 2.5rem — see token
-        padding-block-start: $sg-stagger-2-pad; // 3.2rem — see token (extra depth for wave shape)
+        margin-block-start: $sg-stagger-2;     
+        padding-block-start: $sg-stagger-2-pad; 
       }
-      &:nth-child(3) { margin-block-start: $sg-stagger-3; } // 4.5rem — see token
-      &:nth-child(4) { margin-block-start: $sg-stagger-4; } // 0.5rem — see token
+      &:nth-child(3) { margin-block-start: $sg-stagger-3; } 
+      &:nth-child(4) { margin-block-start: $sg-stagger-4; } 
     }
 
     // ── Staggered offsets — mid desktop (1025–1200px) ─────────
     // Reduced stagger — less visual depth at this width
-    @media (min-width: 1025px) and (max-width: 1200px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
+    @media (min-width: 1025px) and (max-width: 1200px) { 
       &:nth-child(1) { margin-block-start: 0; }
       &:nth-child(2) {
         margin-block-start: $sg-stagger-2-mid; // 1.5rem — see token
@@ -192,13 +192,13 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     }
 
     // ── Tablet & mobile — zero stagger, clean grid ────────────
-    @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
+    @media (max-width: 1024px) { 
       margin-block-start: 0;
     }
 
-    @include xs { // max-width: 480px
-      gap: 0.625rem; // TF: between $sp-1 (4px) and $sp-3 (12px) — intentional, left off-grid
-      padding: $sp-4 $sp-3; // 16px 12px — exact matches
+    @include xs { 
+      gap: 0.625rem; 
+      padding: $sp-4 $sp-3; // 16px 12px 
     }
   }
 
@@ -207,15 +207,15 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 4.75rem; // TF: between $sp-20 (80px) and $sp-24 (96px) — intentional, left off-grid
-    height: 4.75rem; // TF: between $sp-20 (80px) and $sp-24 (96px) — intentional, left off-grid
-    border-radius: $radius-full; // 9999px — exact match (circle)
+    width: 4.75rem; 
+    height: 4.75rem; 
+    border-radius: $radius-full; 
     flex-shrink: 0;
-    transition: transform $dur-slow $ease-out; // 400ms ease-out — exact match via tokens
+    transition: transform $dur-slow $ease-out; // 400ms ease-out 
 
     svg {
-      width: 1.75rem; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
-      height: 1.75rem; // TF: between $sp-6 (24px) and $sp-8 (32px) — intentional, left off-grid
+      width: 1.75rem; 
+      height: 1.75rem; 
     }
 
     // ── Per-variant color application (TF: data-attribute theming, no scattered inline) ──
@@ -240,27 +240,27 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
       color: $clr-sg-icon-blue-fg;
     }
 
-    @include xs { // max-width: 480px
-      width: 3.75rem; // TF: between $sp-16 (64px) and $sp-20 (80px) — intentional, left off-grid
-      height: 3.75rem; // TF: between $sp-16 (64px) and $sp-20 (80px) — intentional, left off-grid
+    @include xs { 
+      width: 3.75rem; 
+      height: 3.75rem; 
 
       svg {
-        width: $sp-6; // 24px — exact match
-        height: $sp-6; // 24px — exact match
+        width: $sp-6; // 24px
+        height: $sp-6; // 24px
       }
     }
   }
 
   // Icon scale on card hover — TF: selector kept flat, not nested inside &__card
   &__card:hover &__card-icon {
-    transform: scale(1.08); // TF: subtle scale, not on a defined scale — intentional, left off-grid
+    transform: scale(1.08); 
   }
 
   /* ── Card name ──────────────────────────────────────────────── */
   &__card-name {
-    font-size: clamp(0.9375rem, 1.4vw, 1.0625rem); // fluid — both endpoints off-grid: between $fz-base (1rem) and $fz-md (1.25rem) — intentional, left off-grid
+    font-size: clamp(0.9375rem, 1.4vw, 1.0625rem); 
     font-weight: $fw-semibold;
-    line-height: $lh-snug; // 1.3 — exact match
+    line-height: $lh-snug; 
     margin: 0;
 
     // ── Per-variant color application ────────────────────────
@@ -269,50 +269,50 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     .smartgrid__card[data-color="warning"] & { color: $clr-sg-name-warn; }
     .smartgrid__card[data-color="blue"]    & { color: $clr-sg-name-blue; }
 
-    @include xs { // max-width: 480px
-      font-size: 0.875rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
+    @include xs { 
+      font-size: 0.875rem; 
     }
   }
 
   /* ── Card description ───────────────────────────────────────── */
   &__card-desc {
-    font-size: 0.9rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
-    line-height: 1.6; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
+    font-size: 0.9rem; 
+    line-height: 1.6; 
     font-weight: $fw-medium;
     color: $clr-sg-desc;
     margin: 0;
     max-width: 16rem; // component-specific measure, not on the spacing scale
 
-    @include xs { // max-width: 480px
-      font-size: 0.8125rem; // TF: between $fz-sm (0.80rem) and $fz-base (1rem) — intentional, left off-grid
-      max-width: 100%; // full width — no measure limit on small screens
+    @include xs { 
+      font-size: 0.8125rem; 
+      max-width: 100%; 
     }
   }
 
   /* ── Background image block ─────────────────────────────────── */
   &__bg {
     position: relative;
-    z-index: $z-base + 1; // local: 1 — below container (3) and seam cover (10)
+    z-index: $z-base + 1; 
     pointer-events: none;
-    line-height: 0; // TF: collapses inline whitespace under image — intentional layout trick
+    line-height: 0; 
 
     // Full desktop (>1200px): deep negative pull — image sits behind staggered cards
-    margin-block-start: clamp(-65rem, -35vw, -30rem); // fluid — extreme pull for wave overlap
+    margin-block-start: clamp(-65rem, -35vw, -30rem); 
 
     @media (max-width: 1200px) { // TF: exact $bp-xl (1200px) boundary
-      margin-block-start: clamp(-40rem, -28vw, -22rem); // fluid — reduced at mid-range
+      margin-block-start: clamp(-40rem, -28vw, -22rem); 
     }
 
-    @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
-      margin-block-start: -17rem; // TF: strong pull up — component-specific, not on spacing scale
+    @media (max-width: 1024px) { 
+      margin-block-start: -17rem; 
     }
 
     @include md { // max-width: 768px
-      margin-block-start: -13rem; // TF: moderate pull — component-specific, not on spacing scale
+      margin-block-start: -13rem; 
     }
 
     @include xs { // max-width: 480px
-      margin-block-start: -$sp-20; // -80px — exact match
+      margin-block-start: -$sp-20; // -80px 
     }
   }
 
@@ -320,24 +320,24 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     width: 100%;
     height: auto;
     display: block;
-    filter: saturate(1.1) hue-rotate(15deg) brightness(1.03); // TF: subtle color grade — not a design token; intentional, left off-grid
+    filter: saturate(1.1) hue-rotate(15deg) brightness(1.03);
 
-    @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
+    @media (max-width: 1024px) { 
       max-height: 520px; // component-specific constraint, not on spacing scale
       object-fit: cover;
-      object-position: center 15%; // TF: 15% crops into the focal area — intentional, left off-grid
+      object-position: center 15%; 
     }
 
-    @include md { // max-width: 768px
+    @include md { 
       max-height: 460px; // component-specific constraint, not on spacing scale
       object-fit: cover;
       object-position: center 15%;
     }
 
-    @include xs { // max-width: 480px
+    @include xs { 
       max-height: 240px; // component-specific constraint, not on spacing scale
       object-fit: cover;
-      object-position: center 20%; // TF: 20% — slightly lower crop on mobile — intentional, left off-grid
+      object-position: center 20%; 
     }
   }
 
@@ -345,7 +345,7 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
   &__bg-fade {
     position: absolute;
     inset: 0;
-    z-index: $z-base + 2; // local: 2 — above bg-img (1), below container (3)
+    z-index: $z-base + 2; 
 
     // Desktop: deep fade — image sits far behind cards
     background: linear-gradient(
@@ -357,7 +357,7 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     );
 
     // Large tablet ≤1024px: shallow fade — image body stays visible
-    @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
+    @media (max-width: 1024px) { 
       background: linear-gradient(
         to bottom,
         $clr-sg-bg 0%,
@@ -367,7 +367,7 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
     }
 
     // Tablet ≤768px: same shallow fade
-    @include md { // max-width: 768px
+    @include md { 
       background: linear-gradient(
         to bottom,
         $clr-sg-bg 0%,
@@ -380,24 +380,24 @@ $sg-stagger-3-mid:       2.5rem;  // col-3 margin-block-start — mid desktop (1
   /* ── Bottom wave divider ────────────────────────────────────── */
   &__wave {
     position: absolute;
-    bottom: -2px; // TF: -2px bleed to close subpixel gap — intentionally not on spacing grid
+    bottom: -2px; 
     left: 0;
     width: 100%;
-    z-index: $z-raised / 2; // local: 5 — above bg (2), below seam cover (10)
-    line-height: 0; // TF: collapses inline whitespace — intentional layout trick
+    z-index: $z-raised / 2; 
+    line-height: 0; 
     pointer-events: none;
 
     svg {
       display: block;
       width: 100%;
-      height: 181px; // TF: above $sp-40 (160px) and $sp-48 (192px) — intentional, left off-grid
+      height: 181px; 
 
-      @media (max-width: 1024px) { // TF: between $bp-lg (992px) and $bp-xl (1200px) — intentional, left off-grid
-        height: 100px; // TF: between $sp-24 (96px) and $sp-28 (112px) — intentional, left off-grid
+      @media (max-width: 1024px) { 
+        height: 100px; 
       }
 
-      @include xs { // max-width: 480px
-        height: 70px; // TF: between $sp-16 (64px) and $sp-20 (80px) — intentional, left off-grid
+      @include xs { 
+        height: 70px; 
       }
     }
   }
