@@ -8,6 +8,7 @@ export function initNavbar() {
 
   requestAnimationFrame(() => {
     navbar.classList.add("is-ready");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
   });
 
   window.addEventListener(
