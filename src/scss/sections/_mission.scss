@@ -27,7 +27,7 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
     top: -160px; // TF: matches the height below, no spacing-scale equivalent at this magnitude — intentional
     left: 0;
     width: 100%;
-    height: 220px; // TF: between $sp-40 (160px) and $sp-48 (192px), and above both — intentional, left off-grid
+    height: 220px; 
     background: linear-gradient(
       to bottom,
       transparent 0%,
@@ -35,7 +35,7 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
       rgba(0, 0, 0, 0.85) 65%,
       #000000 100%
     );
-    z-index: $z-base + 5; // local: 5 — above page content, below the card layer
+    z-index: $z-base + 5; 
     pointer-events: none;
   }
 
@@ -43,7 +43,7 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
   &__container {
     @include container;
     position: relative;
-    z-index: $z-base + 6; // local: 6 — above the top-shadow overlay (5)
+    z-index: $z-base + 6; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,7 +73,7 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
   &__dots {
     position: absolute;
     inset: 0;
-    z-index: $z-base + 1; // local: 1 — above section background, below shadow/content layers
+    z-index: $z-base + 1; 
     pointer-events: none;
     overflow: hidden;
 
@@ -123,14 +123,14 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
   // ── Header ───────────────────────────────
   &__header {
     text-align: center;
-    max-width: 720px; // component-specific measure, not on the spacing scale
+    max-width: 720px; 
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: $sp-5;
 
     @include lg {
-      max-width: 640px; // component-specific measure, not on the spacing scale
+      max-width: 640px; 
       gap: $sp-4;
     }
     @include sm {
@@ -145,33 +145,33 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
   }
 
   &__title {
-    font-size: clamp(2.4rem, 4vw, 4rem); // fluid heading — custom range, not on the static $fz scale
+    font-size: clamp(2.4rem, 4vw, 4rem); 
     font-weight: $fw-bold;
     color: $clr-white;
-    line-height: 1.15; // TF: between $lh-tight (1.1) and $lh-snug (1.3) — intentional, left off-grid
+    line-height: 1.15; 
     letter-spacing: $ls-tight;
     margin: 0;
 
     @include lg {
-      font-size: clamp(2rem, 3.5vw, 3rem); // fluid heading override — custom range
+      font-size: clamp(2rem, 3.5vw, 3rem); 
     }
     @include sm {
-      font-size: clamp(2rem, 8vw, 2.8rem); // fluid heading override — custom range
+      font-size: clamp(2rem, 8vw, 2.8rem); 
     }
   }
 
   &__intro {
-    font-size: clamp($fz-sm, 1.05vw, $fz-base); // fluid — bounded by exact-match tokens
+    font-size: clamp($fz-sm, 1.05vw, $fz-base); 
     color: rgba($clr-white, 0.8);
-    line-height: 1.8; // TF: above $lh-relaxed (1.7), below $lh-loose (2.0) — intentional, left off-grid
-    max-width: 680px; // component-specific measure, not on the spacing scale
+    line-height: 1.8; 
+    max-width: 680px; 
     margin: 0;
 
     @include lg {
-      font-size: $fz-sm; // exact match
+      font-size: $fz-sm; 
     }
     @include sm {
-      font-size: $fz-sm; // exact match
+      font-size: $fz-sm; 
       max-width: 100%;
     }
   }
@@ -219,7 +219,7 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
       margin: 0;
       gap: $sp-3;
       padding: $sp-1 0;
-      animation: missionMarquee 22s linear infinite; // TF: no exact $dur match — intentional, left off-grid
+      animation: missionMarquee 22s linear infinite; 
       will-change: transform;
 
       .mission__card[data-clone] {
@@ -270,7 +270,7 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
       box-shadow $dur-base $ease-out;
 
     opacity: 0;
-    transform: translateY($sp-8); // 32px — exact match
+    transform: translateY($sp-8); // 32px 
 
     &.is-visible {
       opacity: 1;
@@ -279,8 +279,8 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
 
     &:nth-child(1) {
       transition:
-        opacity 0.7s $ease-out 0.08s, // TF: no exact $dur match — intentional, left off-grid
-        transform 0.7s $ease-snap 0.08s, // TF: no exact $dur match — intentional, left off-grid
+        opacity 0.7s $ease-out 0.08s, 
+        transform 0.7s $ease-snap 0.08s, 
         box-shadow $dur-base $ease-out;
     }
     &:nth-child(2) {
@@ -315,12 +315,12 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
       height: 200%;
       top: -50%;
       left: -50%;
-      z-index: $z-below; // local: -1 — sits behind the card's own background/content
+      z-index: $z-below; 
       opacity: 0;
-      transition: opacity 0.8s $ease-out; // TF: no exact $dur match — intentional, left off-grid
+      transition: opacity 0.8s $ease-out; 
       pointer-events: none;
       will-change: transform;
-      animation: missionBeamRotate 8s linear infinite; // TF: no exact $dur match — intentional, left off-grid
+      animation: missionBeamRotate 8s linear infinite; 
       background: conic-gradient(
         from 0deg,
         transparent 0deg,
@@ -366,12 +366,12 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
       inset: 1px;
       border-radius: calc(#{$radius-xl} - 1px);
       background: $clr-mission-fill;
-      z-index: $z-below; // local: -1 — same layer as the beam pseudo, sits behind card content
+      z-index: $z-below; 
       pointer-events: none;
     }
 
     &:hover {
-      transform: translateY(-4px); // small hover lift — distinct from $sp-1 (4px), a deliberate negative offset, not a spacing value
+      transform: translateY(-4px); 
     }
 
     // ── lg: tighter card ──────────────────
@@ -439,7 +439,7 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
 
       @include reduced-motion {
         scroll-snap-align: start;
-        width: 76vw; // viewport-relative card width, not on the spacing scale
+        width: 76vw; 
         min-width: 76vw;
 
         &:last-child {
@@ -451,8 +451,8 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
 
   // ── Card Icon ─────────────────────────────
   &__card-icon {
-    width: 52px; // TF: between $sp-12 (48px) and a $sp-13 that doesn't exist — intentional, left off-grid
-    height: 52px; // TF: between $sp-12 (48px) and a $sp-13 that doesn't exist — intentional, left off-grid
+    width: 52px; 
+    height: 52px; 
     border-radius: $radius-full;
     display: flex;
     align-items: center;
@@ -461,26 +461,26 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
     @include transition(background);
 
     svg {
-      width: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
-      height: 22px; // TF: between $sp-5 (20px) and $sp-6 (24px) — intentional, left off-grid
+      width: 22px; 
+      height: 22px; 
     }
 
     @include lg {
-      width: $sp-10; // 40px — exact match
-      height: $sp-10; // 40px — exact match
+      width: $sp-10; // 40px 
+      height: $sp-10; // 40px 
 
       svg {
-        width: 17px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
-        height: 17px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+        width: 17px; 
+        height: 17px; 
       }
     }
     @include sm {
-      width: $sp-10; // 40px — exact match
-      height: $sp-10; // 40px — exact match
+      width: $sp-10; // 40px
+      height: $sp-10; // 40px
 
       svg {
-        width: 17px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
-        height: 17px; // TF: between $sp-4 (16px) and $sp-5 (20px) — intentional, left off-grid
+        width: 17px; 
+        height: 17px; 
       }
     }
   }
@@ -517,19 +517,19 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
   &__card-desc {
     font-size: $fz-base;
     color: rgba($clr-white, 0.7);
-    line-height: $lh-relaxed; // 1.7 — exact match
+    line-height: $lh-relaxed; 
     font-weight: $fw-medium;
-    max-width: 160px; // component-specific measure, not on the spacing scale
+    max-width: 160px; 
 
     @include lg {
       font-size: $fz-sm;
-      line-height: 1.6; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
-      max-width: 140px; // component-specific measure, not on the spacing scale
+      line-height: 1.6; 
+      max-width: 140px; 
     }
     @include sm {
       font-size: $fz-xs;
-      max-width: 180px; // component-specific measure, not on the spacing scale
-      line-height: 1.6; // TF: between $lh-normal (1.5) and $lh-relaxed (1.7) — intentional, left off-grid
+      max-width: 180px; 
+      line-height: 1.6; 
     }
   }
 
@@ -547,9 +547,9 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
     padding: $sp-20 $sp-6 clamp(160px, 12vw, 220px);
     background: #000000; // intentional true black — matches the section background
     overflow: visible;
-    z-index: $z-base + 4; // local: 4 — above background/dots layers, below the container content (6)
+    z-index: $z-base + 4; 
     opacity: 0;
-    transform: translateY($sp-5); // 20px — exact match
+    transform: translateY($sp-5); // 20px
 
     &.is-visible {
       opacity: 1;
@@ -588,23 +588,23 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
 
   &__quote-mark {
     position: relative;
-    z-index: $z-base + 1; // local: 1 — above the quote-waves layer (0)
+    z-index: $z-base + 1; 
     display: block;
     margin-bottom: $sp-2;
     opacity: 1;
     user-select: none;
-    transform: skewX(-12deg); // decorative glyph skew, not a spacing/scale value
+    transform: skewX(-12deg); 
   }
 
   &__quote-text {
     position: relative;
-    z-index: $z-base + 1; // local: 1 — same layer as the quote mark
-    max-width: 680px; // component-specific measure, not on the spacing scale
+    z-index: $z-base + 1; 
+    max-width: 680px; 
     padding: 0 $sp-6;
     font-size: clamp($fz-base, 2vw, $fz-xl);
     font-style: italic;
     color: rgba($clr-white, 0.9);
-    line-height: $lh-relaxed; // 1.7 — exact match
+    line-height: $lh-relaxed; 
     margin: 0;
 
     @include sm {
@@ -616,9 +616,9 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
   // ── Bottom wave divider ───────────────────────────────────────────────
   &__wave {
     position: absolute;
-    bottom: -2px; // subpixel seam fix — intentionally not on the spacing grid, matches the pattern used in impact/measurable
+    bottom: -2px; 
     left: 0;
-    z-index: $z-base + 3; // local: 3 — above the quote layer's background, below container content
+    z-index: $z-base + 3; 
     width: 100%;
     line-height: 0;
     display: block;
@@ -629,10 +629,10 @@ $clr-mission-fill:  #121214; // card interior fill, sits behind the rotating bea
     svg {
       display: block;
       width: 100%;
-      height: 181px; // TF: between $sp-40 (160px) and $sp-48 (192px) — intentional, left off-grid
+      height: 181px; 
 
       @include sm {
-        height: 111px; // TF: between $sp-24 (96px) and $sp-28 (112px), just under the latter — intentional, left off-grid
+        height: 111px; 
       }
     }
   }
