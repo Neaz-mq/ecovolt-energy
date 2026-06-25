@@ -7,9 +7,9 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
 .momentum {
   background-color: $clr-momentum-bg;
   position: relative;
-  z-index: $z-raised + 3; // local: 13 — above measurable's $z-raised + 1 (11) in this page's section stacking
-  margin-block-start: -4px; // subpixel seam fix — intentionally not on the spacing grid
-  padding-block: 88px; // TF: between $sp-20 (80px) and $sp-24 (96px) — intentional, left off-grid
+  z-index: $z-raised + 3; 
+  margin-block-start: -4px; 
+  padding-block: 88px; 
 
   // ── Cover subpixel seam from smartgrid wave ───────────────────────────
   &::before {
@@ -307,7 +307,7 @@ $clr-momentum-text-body: #232424; // stat-desc text — slightly darker than $cl
   /* ── Large phones (≤640px) ────────────────────────────────── */
   @media (max-width: 640px) { 
     & {
-      padding: $sp-12 0 $sp-14; // 48px exact match; 56px exact match ($sp-14)
+      padding: $sp-12 0 $sp-14; // 48px 56px 
     }
 
     .momentum__container {
